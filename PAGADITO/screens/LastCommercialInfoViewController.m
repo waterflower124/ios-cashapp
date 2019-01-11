@@ -301,6 +301,7 @@
     freeifaddrs(interfaces);
     return address;
 }
+
 // get the mac address of current-device
 -(NSString *)getMacAddress
 {

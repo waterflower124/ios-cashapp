@@ -8,8 +8,13 @@
 
 #import "UserCreationViewController.h"
 #import "LastCommercialInfoViewController.h"
+#import "AFNetworking.h"
 
 @interface UserCreationViewController () <UITableViewDelegate, UITableViewDataSource>
+
+@property(strong, nonatomic)UIView *overlayView;
+@property(strong, nonatomic)UIActivityIndicatorView * activityIndicator;
+
 
 @property(strong, nonatomic)NSMutableArray *role_list;
 
@@ -91,55 +96,82 @@ int role_int = -1;
         return;
     }
     
-    if(role_int == 4) {
-        
-        NSDictionary *dataUserDic = @{@"nombres":self.name, @"apellidos":self.lastname, @"idPrivilegio":@"4", @"username":self.username, @"password":self.password, @"shiftEveryday":self.checkStatus, @"codigoAprobacion":@""};
-        [self.infoUserArray addObject:dataUserDic];
-        self.infoUserDic = @{@"infoUsuario":self.infoUserArray};
-        /****************
-         go to next screen with infoUserArray
-         ***************/
-        [self performSegueWithIdentifier:@"creationtolast_segue" sender:nil];
-    } else if(role_int == 1) {
-        [self displayAlertView:@"Notice" :@"Usuario Guardado"];
-        NSDictionary *dataUserDic = @{@"nombres":self.name, @"apellidos":self.lastname, @"idPrivilegio":@"1", @"username":self.username, @"password":self.password, @"shiftEveryday":@"0", @"codigoAprobacion":@""};
-        [self.infoUserArray addObject:dataUserDic];
-        role_int = 2;
-        [selectRoleButton setTitle:@"Supervisor" forState:UIControlStateNormal];
-        self.role_list = [[NSMutableArray alloc] initWithObjects:@"Supervisor", nil];
-        [self.roleTableView reloadData];
-        roleTableViewHeightConstraint.constant = 40 * self.role_list.count;
-        [pincodeUIView setHidden:NO];
-    } else if(role_int == 2) {
-        [self displayAlertView:@"Notice" :@"Usuario Guardado"];
-        NSDictionary *dataUserDic = @{@"nombres":self.name, @"apellidos":self.lastname, @"idPrivilegio":@"2", @"username":self.username, @"password":self.password, @"shiftEveryday":@"0", @"codigoAprobacion":self.pin_code};
-        [self.infoUserArray addObject:dataUserDic];
-        role_int = 3;
-        [selectRoleButton setTitle:@"Cajero" forState:UIControlStateNormal];
-        [continueButton setTitle:@"Guardar y continuar" forState:UIControlStateNormal];
-        self.role_list = [[NSMutableArray alloc] initWithObjects:@"Cajero", nil];
-        [self.roleTableView reloadData];
-        roleTableViewHeightConstraint.constant = 40 * self.role_list.count;
-        [pincodeUIView setHidden:YES];
-        [checkBoxUIView setHidden:NO];
-        [switchButton setOn:YES];
-        self.checkStatus = @"1";
-    } else if(role_int == 3) {
-        NSDictionary *dataUserDic = @{@"nombres":self.name, @"apellidos":self.lastname, @"idPrivilegio":@"3", @"username":self.username, @"password":self.password, @"shiftEveryday":self.checkStatus, @"codigoAprobacion":@""};
-        [self.infoUserArray addObject:dataUserDic];
-        
-        self.infoUserDic = @{@"infoUsuario":self.infoUserArray};
-        
-        /****************
-         go to next screen with infoUserArray
-         ***************/
-        [self performSegueWithIdentifier:@"creationtolast_segue" sender:nil];
-    }
-    nameTextField.text = @"";
-    lastnameTextField.text = @"";
-    usernameTextField.text = @"";
-    passwordTextField.text = @"";
-    confirmpwdTextField.text = @"";
+    [self startActivityIndicator];
+    
+    NSDictionary *parameters = @{
+                                 @"method": @"checkUserName",
+                                 @"username": self.username
+                                 };
+    
+    AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
+    sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects: @"application/json", nil];
+    [sessionManager POST: @"http://ninjahosting.us/web_api/service.php" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         NSError *jsonError;
+         NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&jsonError];
+         
+         [self stopActivityIndicator];
+         
+         NSString *statusValue = jsonResponse[@"status"];
+         
+         if([statusValue isEqualToString:@"false"]) {
+             if(role_int == 4) {
+                 NSDictionary *dataUserDic = @{@"nombres":self.name, @"apellidos":self.lastname, @"idPrivilegio":@"4", @"username":self.username, @"password":self.password, @"shiftEveryday":self.checkStatus, @"codigoAprobacion":@""};
+                 [self.infoUserArray addObject:dataUserDic];
+                 self.infoUserDic = @{@"infoUsuario":self.infoUserArray};
+                 /****************
+                  go to next screen with infoUserArray
+                  ***************/
+                 [self performSegueWithIdentifier:@"creationtolast_segue" sender:nil];
+             } else if(role_int == 1) {
+                 [self displayAlertView:@"Notice" :@"Usuario Guardado"];
+                 NSDictionary *dataUserDic = @{@"nombres":self.name, @"apellidos":self.lastname, @"idPrivilegio":@"1", @"username":self.username, @"password":self.password, @"shiftEveryday":@"0", @"codigoAprobacion":@""};
+                 [self.infoUserArray addObject:dataUserDic];
+                 role_int = 2;
+                 [selectRoleButton setTitle:@"Supervisor" forState:UIControlStateNormal];
+                 self.role_list = [[NSMutableArray alloc] initWithObjects:@"Supervisor", nil];
+                 [self.roleTableView reloadData];
+                 roleTableViewHeightConstraint.constant = 40 * self.role_list.count;
+                 [pincodeUIView setHidden:NO];
+             } else if(role_int == 2) {
+                 [self displayAlertView:@"Notice" :@"Usuario Guardado"];
+                 NSDictionary *dataUserDic = @{@"nombres":self.name, @"apellidos":self.lastname, @"idPrivilegio":@"2", @"username":self.username, @"password":self.password, @"shiftEveryday":@"0", @"codigoAprobacion":self.pin_code};
+                 [self.infoUserArray addObject:dataUserDic];
+                 role_int = 3;
+                 [selectRoleButton setTitle:@"Cajero" forState:UIControlStateNormal];
+                 [continueButton setTitle:@"Guardar y continuar" forState:UIControlStateNormal];
+                 self.role_list = [[NSMutableArray alloc] initWithObjects:@"Cajero", nil];
+                 [self.roleTableView reloadData];
+                 roleTableViewHeightConstraint.constant = 40 * self.role_list.count;
+                 [pincodeUIView setHidden:YES];
+                 [checkBoxUIView setHidden:NO];
+                 [switchButton setOn:YES];
+                 self.checkStatus = @"1";
+             } else if(role_int == 3) {
+                 NSDictionary *dataUserDic = @{@"nombres":self.name, @"apellidos":self.lastname, @"idPrivilegio":@"3", @"username":self.username, @"password":self.password, @"shiftEveryday":self.checkStatus, @"codigoAprobacion":@""};
+                 [self.infoUserArray addObject:dataUserDic];
+                 
+                 self.infoUserDic = @{@"infoUsuario":self.infoUserArray};
+                 
+                 /****************
+                  go to next screen with infoUserArray
+                  ***************/
+                 [self performSegueWithIdentifier:@"creationtolast_segue" sender:nil];
+             }
+             self.nameTextField.text = @"";
+             self.lastnameTextField.text = @"";
+             self.usernameTextField.text = @"";
+             self.passwordTextField.text = @"";
+             self.confirmpwdTextField.text = @"";
+         } else if([statusValue isEqualToString:@"true"]){
+             [self displayAlertView:@"Warning!" :@"Username is not available. Please try again with another username"];
+         }
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+         [self stopActivityIndicator];
+         [self displayAlertView:@"Warning!" :@"Network error."];
+     }];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -229,6 +261,21 @@ int role_int = -1;
     }];
     [alert addAction:actionOK];
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+-(void) startActivityIndicator {
+    self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityIndicator.center = self.overlayView.center;
+    [self.overlayView addSubview:self.activityIndicator];
+    [self.activityIndicator startAnimating];
+    [self.view addSubview:self.overlayView];
+}
+
+-(void) stopActivityIndicator {
+    [self.activityIndicator stopAnimating];
+    [self.overlayView removeFromSuperview];
 }
 
 @end

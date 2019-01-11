@@ -13,5 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView_language;
 @property (weak, nonatomic) IBOutlet UILabel *pv_txt;
 
+- (IBAction)OKButtonAction:(id)sender;
+
 @end
 

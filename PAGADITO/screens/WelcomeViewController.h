@@ -12,6 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WelcomeViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIImageView *logoImageView;
+@property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+
+
+- (IBAction)SigninButtonAction:(id)sender;
 
 @end
 

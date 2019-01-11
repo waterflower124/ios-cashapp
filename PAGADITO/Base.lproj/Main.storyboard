@@ -54,7 +54,7 @@
                                 <rect key="frame" x="54" y="542" width="267" height="44"/>
                                 <state key="normal" image="Pagadito_0000_Ok.png"/>
                                 <connections>
-                                    <segue destination="OBP-SC-OoB" kind="show" id="eko-9T-ePQ"/>
+                                    <action selector="OKButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TM5-v2-VHF"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -76,6 +76,8 @@
                     </view>
                     <connections>
                         <outlet property="pickerView_language" destination="8o3-0T-2Q1" id="xQB-xU-Jub"/>
+                        <segue destination="OBP-SC-OoB" kind="presentation" identifier="firsttologin_segue" id="DFb-lS-2Hg"/>
+                        <segue destination="5Z4-mn-8hx" kind="presentation" identifier="firsttowelcome_segue" id="lHT-m2-bJB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -116,7 +118,7 @@
                                     <constraint firstAttribute="height" constant="40" id="9Oi-v0-syV"/>
                                 </constraints>
                                 <attributedString key="attributedText"/>
-                                <textInputTraits key="textInputTraits" textContentType="nickname"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="nickname"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1D5-Gc-yB7">
                                 <rect key="frame" x="54" y="420" width="267" height="44"/>
@@ -125,7 +127,7 @@
                                     <attributedString key="attributedTitle"/>
                                 </state>
                                 <connections>
-                                    <segue destination="d8D-n5-YfO" kind="show" id="0Ip-TP-3Fz"/>
+                                    <action selector="SigninButtonAction:" destination="5Z4-mn-8hx" eventType="touchUpInside" id="AKd-JE-pVV"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Pagadito_0001_Layer-43.png" translatesAutoresizingMaskIntoConstraints="NO" id="jLw-G3-llF">
@@ -183,6 +185,9 @@
                     </view>
                     <connections>
                         <outlet property="logoImageView" destination="i6s-al-Kva" id="EQ8-Ji-eoi"/>
+                        <outlet property="passwordTextField" destination="KxS-WB-x22" id="QKk-Sb-DGQ"/>
+                        <outlet property="usernameTextField" destination="fK2-S0-NnZ" id="e78-Cm-JO6"/>
+                        <segue destination="d8D-n5-YfO" kind="presentation" identifier="logintohome_segue" id="VwE-5X-ZSC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8z1-AV-ARs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -10452,7 +10457,6 @@ mal funcionamiento de las transacciones POS.</string>
                                 </state>
                                 <connections>
                                     <action selector="continueButtonAction:" destination="BLN-M7-ivG" eventType="touchUpInside" id="Elw-NC-6Xs"/>
-                                    <segue destination="lZY-O8-ELh" kind="presentation" identifier="creationtolast_segue" id="nfM-Fe-AXr"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5sW-Dx-yIl">
@@ -10630,6 +10634,7 @@ mal funcionamiento de las transacciones POS.</string>
                         <outlet property="selectRoleButton" destination="dX7-SA-FV4" id="FSr-CX-iZb"/>
                         <outlet property="switchButton" destination="TRs-1V-Fzf" id="zKg-y5-dlO"/>
                         <outlet property="usernameTextField" destination="8GW-qk-Aoc" id="lBm-CI-6K6"/>
+                        <segue destination="lZY-O8-ELh" kind="presentation" identifier="creationtolast_segue" id="Uw2-EW-ngD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kFK-Fe-d1E" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -11154,10 +11159,9 @@ mal funcionamiento de las transacciones POS.</string>
         <image name="Pagadito_0013_Layer-10.png" width="126" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nfM-Fe-AXr"/>
         <segue reference="e76-cs-Nyg"/>
         <segue reference="3TK-Ke-iOO"/>
-        <segue reference="mvb-xt-TA0"/>
+        <segue reference="DFb-lS-2Hg"/>
         <segue reference="Aoq-1C-Utg"/>
         <segue reference="zQS-cz-hWH"/>
         <segue reference="0xv-aj-3yJ"/>
@@ -11168,12 +11172,12 @@ mal funcionamiento de las transacciones POS.</string>
         <segue reference="upf-uW-nS6"/>
         <segue reference="xGE-zO-q7t"/>
         <segue reference="pb5-F5-9pQ"/>
-        <segue reference="0Ip-TP-3Fz"/>
+        <segue reference="VwE-5X-ZSC"/>
         <segue reference="gZg-DN-wVl"/>
         <segue reference="zzn-x8-4xL"/>
         <segue reference="0kq-Cg-V8g"/>
         <segue reference="oSC-O4-CSe"/>
         <segue reference="qEM-ep-jst"/>
-        <segue reference="db4-ab-WBO"/>
+        <segue reference="x5O-4m-db2"/>
     </inferredMetricsTieBreakers>
 </document>

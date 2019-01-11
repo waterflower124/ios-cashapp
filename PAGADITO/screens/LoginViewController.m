@@ -68,16 +68,16 @@
     [self.activityIndicator startAnimating];
     [self.view addSubview:self.overlayView];
     
-//    NSDictionary *credentials = @{@"credentials": @{
-//                                                  @"email": @"jescobar@ninjawebcorporation.com",
-//                                                  @"pwd": @"12345678a",
-//                                                  @"ambiente": @"0"
-//                                                  }};
     NSDictionary *credentials = @{@"credentials": @{
-                                          @"email": emailText,
-                                          @"pwd": passwordText,
-                                          @"ambiente": @"0"
-                                          }};
+                                                  @"email": @"jescobar@ninjawebcorporation.com",
+                                                  @"pwd": @"12345678a",
+                                                  @"ambiente": @"0"
+                                                  }};
+//    NSDictionary *credentials = @{@"credentials": @{
+//                                          @"email": emailText,
+//                                          @"pwd": passwordText,
+//                                          @"ambiente": @"0"
+//                                          }};
     
     NSError *error;
     NSData *postData = [NSJSONSerialization dataWithJSONObject:credentials options:0 error:&error];

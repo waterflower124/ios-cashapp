@@ -9,6 +9,7 @@
 #import "WelcomeViewController.h"
 #import "Global.h"
 #import "AFNetworking.h"
+#import "../SecondViewController.h"
 
 @interface WelcomeViewController ()
 
@@ -107,17 +108,43 @@
         
         BOOL status = [jsonResponse[@"status"] boolValue];
         if(status) {
+            globals.username = jsonResponse[@"username"];
+            globals.idPrivilegio = jsonResponse[@"idPrivilegio"];
+            globals.nombreCompleto = jsonResponse[@"nombreCompleto"];
+            globals.idUser = jsonResponse[@"idUser"];
+            globals.idDispositivo = jsonResponse[@"idDispositivo"];
+            globals.login_wsk = jsonResponse[@"WSK"];
+            globals.login_uid = jsonResponse[@"UID"];
+            globals.nombreComercio = jsonResponse[@"nombreComercio"];
+            globals.nombreTerminal = jsonResponse[@"nombreTerminal"];
+            globals.emailComercio = jsonResponse[@"emailComercio"];
+            globals.numeroRegistro = jsonResponse[@"test123Registro"];
+            globals.idComercio = jsonResponse[@"idComercio"];
+            globals.branchid = jsonResponse[@"branchid"];
+            globals.terminalid = jsonResponse[@"terminalid"];
+            globals.llaveCifrado = jsonResponse[@"llaveCifrado"];
+            globals.cifradoIV = jsonResponse[@"cifradoIV"];
+            globals.moneda = jsonResponse[@"moneda"];
+            globals.currency = jsonResponse[@"currency"];
+            globals.ambiente = jsonResponse[@"ambiente"];
+            
+            [self performSegueWithIdentifier:@"logintohome_segue" sender:self];
             
         } else {
             [self displayAlertView:@"Warning" :@"Signin information is incorrect. Please input valid information"];
         }
-        
-        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         [self displayAlertView:@"Warning" :@"Network error."];
     }];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqualToString:@"logintohome_segue"]) {
+        SecondViewController *SecondVC;
+        SecondVC = [segue destinationViewController];
+    }
 }
 
 -(void)displayAlertView: (NSString *)header :(NSString *)message {

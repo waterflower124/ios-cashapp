@@ -4406,6 +4406,11 @@ mal funcionamiento de las transacciones POS.</string>
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view hidden="YES" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1kQ-N5-Kyv">
+                                <rect key="frame" x="0.0" y="80" width="375" height="587"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3go-jg-uRG">
                                 <rect key="frame" x="-300" y="80" width="300" height="587"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -4538,17 +4543,15 @@ mal funcionamiento de las transacciones POS.</string>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view hidden="YES" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1kQ-N5-Kyv">
-                                <rect key="frame" x="0.0" y="80" width="375" height="587"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="PhO-KN-eVL"/>
                     </view>
                     <connections>
                         <outlet property="DashboardButton1" destination="CJN-xh-nv9" id="9gq-VF-BJd"/>
+                        <outlet property="DashboardButton2" destination="XLk-4E-yzV" id="tgZ-H6-dfX"/>
+                        <outlet property="DashboardButton3" destination="rcG-2L-06c" id="78x-0O-Rkd"/>
+                        <outlet property="DashboardButton4" destination="FNS-P4-7xp" id="ZpA-iR-JLf"/>
                         <outlet property="MenuBtn" destination="SQZ-e8-DOq" id="Xrb-u2-Bmd"/>
                         <outlet property="SidePanel" destination="3go-jg-uRG" id="fRY-Bg-h4u"/>
                         <outlet property="TransV" destination="1kQ-N5-Kyv" id="h2a-uK-yEm"/>
@@ -11208,19 +11211,19 @@ mal funcionamiento de las transacciones POS.</string>
         <segue reference="Aoq-1C-Utg"/>
         <segue reference="zQS-cz-hWH"/>
         <segue reference="0xv-aj-3yJ"/>
-        <segue reference="IH0-7X-hEi"/>
-        <segue reference="N6K-Yl-gfX"/>
-        <segue reference="6To-n5-LZL"/>
-        <segue reference="Y5I-Au-913"/>
+        <segue reference="jy3-0G-vRn"/>
+        <segue reference="6LH-X5-Pq9"/>
+        <segue reference="Naa-SV-HM1"/>
+        <segue reference="Tca-NJ-Lxt"/>
         <segue reference="upf-uW-nS6"/>
         <segue reference="Hd1-eZ-QA3"/>
-        <segue reference="hlc-HD-HAu"/>
-        <segue reference="ZZN-Ep-UZD"/>
-        <segue reference="eys-hp-saq"/>
+        <segue reference="DlL-Rh-xWn"/>
+        <segue reference="TdH-iV-ZbI"/>
+        <segue reference="O6d-dd-hei"/>
         <segue reference="zzn-x8-4xL"/>
-        <segue reference="Yes-Kk-zxo"/>
+        <segue reference="0DY-tJ-kja"/>
         <segue reference="oSC-O4-CSe"/>
-        <segue reference="4OQ-Bw-VQj"/>
-        <segue reference="L6B-TD-AG8"/>
+        <segue reference="oJZ-C9-9uj"/>
+        <segue reference="IIT-Bf-BZW"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -24,5 +24,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *sessionInfoLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *DashboardButton1;
+@property (weak, nonatomic) IBOutlet UIButton *DashboardButton2;
+@property (weak, nonatomic) IBOutlet UIButton *DashboardButton3;
+@property (weak, nonatomic) IBOutlet UIButton *DashboardButton4;
 
 @end

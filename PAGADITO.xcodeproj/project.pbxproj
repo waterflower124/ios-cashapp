@@ -14,6 +14,7 @@
 		232096B421E35FCF00C93E3B /* LastCommercialInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 232096B321E35FCF00C93E3B /* LastCommercialInfoViewController.m */; };
 		2328843821E3DEB200E5E7C1 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2328843721E3DEB200E5E7C1 /* WelcomeViewController.m */; };
 		2328843A21E4E89000E5E7C1 /* pagadito_0000_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2328843921E4E88F00E5E7C1 /* pagadito_0000_logo.png */; };
+		23296F8A21E9EBB10013AAC8 /* UserAdminViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23296F8921E9EBB10013AAC8 /* UserAdminViewController.m */; };
 		233E54EB21DFD1B800279DB1 /* Pagadito01_0001s_0002_Layer-108.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E549121DFD1B700279DB1 /* Pagadito01_0001s_0002_Layer-108.png */; };
 		233E54EC21DFD1B800279DB1 /* Pagadito_0000_Cancelar.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E549221DFD1B700279DB1 /* Pagadito_0000_Cancelar.png */; };
 		233E54ED21DFD1B800279DB1 /* Pagadito_0000_Capa-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E549321DFD1B700279DB1 /* Pagadito_0000_Capa-4.png */; };
@@ -147,6 +148,8 @@
 		2328843621E3DEB200E5E7C1 /* WelcomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
 		2328843721E3DEB200E5E7C1 /* WelcomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		2328843921E4E88F00E5E7C1 /* pagadito_0000_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pagadito_0000_logo.png; sourceTree = "<group>"; };
+		23296F8821E9EBB10013AAC8 /* UserAdminViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserAdminViewController.h; sourceTree = "<group>"; };
+		23296F8921E9EBB10013AAC8 /* UserAdminViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserAdminViewController.m; sourceTree = "<group>"; };
 		233E549121DFD1B700279DB1 /* Pagadito01_0001s_0002_Layer-108.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pagadito01_0001s_0002_Layer-108.png"; sourceTree = "<group>"; };
 		233E549221DFD1B700279DB1 /* Pagadito_0000_Cancelar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pagadito_0000_Cancelar.png; sourceTree = "<group>"; };
 		233E549321DFD1B700279DB1 /* Pagadito_0000_Capa-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pagadito_0000_Capa-4.png"; sourceTree = "<group>"; };
@@ -411,6 +414,8 @@
 				232096B321E35FCF00C93E3B /* LastCommercialInfoViewController.m */,
 				2328843621E3DEB200E5E7C1 /* WelcomeViewController.h */,
 				2328843721E3DEB200E5E7C1 /* WelcomeViewController.m */,
+				23296F8821E9EBB10013AAC8 /* UserAdminViewController.h */,
+				23296F8921E9EBB10013AAC8 /* UserAdminViewController.m */,
 			);
 			path = screens;
 			sourceTree = "<group>";
@@ -754,6 +759,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23296F8A21E9EBB10013AAC8 /* UserAdminViewController.m in Sources */,
 				232096B421E35FCF00C93E3B /* LastCommercialInfoViewController.m in Sources */,
 				3A64430121C3484B00F392DD /* SecondViewController.m in Sources */,
 				3A09261C21BAAA5900333F1A /* ViewController.m in Sources */,

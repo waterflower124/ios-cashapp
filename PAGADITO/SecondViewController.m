@@ -18,6 +18,7 @@
 
 @implementation SecondViewController
 @synthesize SidePanel,MenuBtn,TransV, userFullNameLabel, dateTimeLabel, sessionInfoLabel;
+@synthesize DashboardButton1, DashboardButton2, DashboardButton3, DashboardButton4;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,6 +41,15 @@
     //session info label
     self.sessionInfoLabelText = [NSString stringWithFormat:@"%@ / %@", globals.username, globals.nombreComercio];
     sessionInfoLabel.text = self.sessionInfoLabelText;
+    
+    //set dashborad buttons background image according to priviledge ID
+    if([globals.idPrivilegio isEqualToString:@"1"]) {
+        
+    } else if([globals.idPrivilegio isEqualToString:@"2"]) {
+        
+    } else if([globals.idPrivilegio isEqualToString:@"3"]) {
+        // re-draw dashboardbutton
+    }
 }
 
 -(void)hideSidePanel:(UIGestureRecognizer *)gesture{
@@ -60,7 +70,7 @@
 }
 
 -(IBAction)buttonPressed:(id)sender{
-    
+    Global *globals = [Global sharedInstance];
     if (sender == MenuBtn) {
         if([TransV isHidden]) {
             [TransV setHidden:NO];
@@ -80,6 +90,42 @@
                 self->SidePanel.frame = frame;
                 
             } completion:nil];
+        }
+    }
+    if(sender == DashboardButton1) {
+        if([globals.idPrivilegio isEqualToString:@"1"]) {
+            
+        } else if([globals.idPrivilegio isEqualToString:@"2"]) {
+            
+        } else if([globals.idPrivilegio isEqualToString:@"4"]) {
+            
+        }
+    }
+    if(sender == DashboardButton2) {
+        if([globals.idPrivilegio isEqualToString:@"1"]) {
+            
+        } else if([globals.idPrivilegio isEqualToString:@"2"]) {
+            
+        } else if([globals.idPrivilegio isEqualToString:@"4"]) {
+            
+        }
+    }
+    if(sender == DashboardButton3) {
+        if([globals.idPrivilegio isEqualToString:@"1"]) {
+            
+        } else if([globals.idPrivilegio isEqualToString:@"2"]) {
+            
+        } else if([globals.idPrivilegio isEqualToString:@"4"]) {
+            
+        }
+    }
+    if(sender == DashboardButton4) {
+        if([globals.idPrivilegio isEqualToString:@"1"]) {
+            
+        } else if([globals.idPrivilegio isEqualToString:@"2"]) {
+            
+        } else if([globals.idPrivilegio isEqualToString:@"4"]) {
+            
         }
     }
 }

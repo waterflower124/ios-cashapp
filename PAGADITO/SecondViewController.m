@@ -7,13 +7,17 @@
 //
 
 #import "SecondViewController.h"
+#import "screens/Global.h"
 
 @interface SecondViewController ()
+@property(strong, nonatomic)NSString *userFullNameText;
+@property(strong, nonatomic)NSString *dateTimeLabelText;
+@property(strong, nonatomic)NSString *sessionInfoLabelText;
 
 @end
 
 @implementation SecondViewController
-@synthesize SidePanel,MenuBtn,TransV;
+@synthesize SidePanel,MenuBtn,TransV, userFullNameLabel, dateTimeLabel, sessionInfoLabel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,7 +26,20 @@
     tapper.numberOfTapsRequired = 1;
     [TransV addGestureRecognizer:tapper];
     
-    // Do any additional setup after loading the view.
+    Global *globals = [Global sharedInstance];
+    // user full name label setting
+    self.userFullNameText = [NSString stringWithFormat:@"¡Bienvenido, %@!", globals.nombreCompleto];
+    userFullNameLabel.text = self.userFullNameText;
+    
+    //current date and time setting
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd MMMM yyyy - HH:mm a"];
+    self.dateTimeLabelText = [dateFormatter stringFromDate:[NSDate date]];
+    dateTimeLabel.text = self.dateTimeLabelText;
+    
+    //session info label
+    self.sessionInfoLabelText = [NSString stringWithFormat:@"%@ / %@", globals.username, globals.nombreComercio];
+    sessionInfoLabel.text = self.sessionInfoLabelText;
 }
 
 -(void)hideSidePanel:(UIGestureRecognizer *)gesture{
@@ -45,17 +62,26 @@
 -(IBAction)buttonPressed:(id)sender{
     
     if (sender == MenuBtn) {
-        
-        [TransV setHidden:NO];
-        [UIView transitionWithView:SidePanel duration:0.2 options:UIViewAnimationOptionCurveEaseIn animations:^{
-            
-            CGRect frame = self->SidePanel.frame;
-            frame.origin.x = 0;
-            self->SidePanel.frame = frame;
-            
-        } completion:nil];
+        if([TransV isHidden]) {
+            [TransV setHidden:NO];
+            [UIView transitionWithView:SidePanel duration:0.2 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                
+                CGRect frame = self->SidePanel.frame;
+                frame.origin.x = 0;
+                self->SidePanel.frame = frame;
+                
+            } completion:nil];
+        } else {
+            [TransV setHidden:YES];
+            [UIView transitionWithView:SidePanel duration:0.2 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                
+                CGRect frame = self->SidePanel.frame;
+                frame.origin.x = -self->SidePanel.frame.size.width;
+                self->SidePanel.frame = frame;
+                
+            } completion:nil];
+        }
     }
-    
 }
 
 - (void)didReceiveMemoryWarning {

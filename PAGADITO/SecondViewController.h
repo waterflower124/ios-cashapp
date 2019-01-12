@@ -19,5 +19,10 @@
 @property(nonatomic)IBOutlet UIButton *MenuBtn;
 @property(nonatomic)IBOutlet UIView *SidePanel;
 @property(nonatomic)IBOutlet UIView *TransV;
+@property (weak, nonatomic) IBOutlet UILabel *userFullNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sessionInfoLabel;
+
+@property (weak, nonatomic) IBOutlet UIButton *DashboardButton1;
 
 @end

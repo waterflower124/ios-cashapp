@@ -86,11 +86,10 @@ Global *globals;
         
         NSString *statusValue = jsonResponse[@"status"];
         NSInteger statusInt = [statusValue integerValue];
-        
         if(statusInt == 1) {
             [self performSegueWithIdentifier:@"firsttowelcome_segue" sender:self];
         } else if(statusInt == 2){
-            
+
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];

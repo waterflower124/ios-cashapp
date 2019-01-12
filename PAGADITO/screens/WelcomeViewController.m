@@ -128,7 +128,11 @@
             globals.currency = jsonResponse[@"currency"];
             globals.ambiente = jsonResponse[@"ambiente"];
             
-            [self performSegueWithIdentifier:@"logintohome_segue" sender:self];
+            if([globals.idPrivilegio isEqualToString:@"3"]) {
+                [self getShiftCode];
+            } else {
+                [self performSegueWithIdentifier:@"logintohome_segue" sender:self];
+            }
             
         } else {
             [self displayAlertView:@"Warning" :@"Signin information is incorrect. Please input valid information"];
@@ -145,6 +149,46 @@
         SecondViewController *SecondVC;
         SecondVC = [segue destinationViewController];
     }
+}
+
+-(void)getShiftCode {
+    Global *globals = [Global sharedInstance];
+    [self.activityIndicator startAnimating];
+    [self.view addSubview:self.overlayView];
+    
+    NSDictionary *parameters = @{
+                                 @"method": @"getShiftCode",
+                                 @"param": globals.idUser
+                                 };
+    
+    AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
+    sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects: @"application/json", nil];
+    [sessionManager POST: @"http://ninjahosting.us/web_api/service.php" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        [self.activityIndicator stopAnimating];
+        [self.overlayView removeFromSuperview];
+        
+        NSError *jsonError;
+        NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&jsonError];
+        
+        BOOL status = [jsonResponse[@"status"] boolValue];
+        if(status) {
+            globals.turnoCod = jsonResponse[@"turnoCod"];
+            globals.codeShift = jsonResponse[@"codeShift"];
+            globals.idTurno = jsonResponse[@"idTurno"];
+            
+            [self performSegueWithIdentifier:@"logintohome_segue" sender:self];
+            
+        } else {
+            [self displayAlertView:@"Warning" :@"Signin information is incorrect. Please input valid information"];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [self.activityIndicator stopAnimating];
+        [self.overlayView removeFromSuperview];
+        [self displayAlertView:@"Warning" :@"Network error."];
+    }];
 }
 
 -(void)displayAlertView: (NSString *)header :(NSString *)message {

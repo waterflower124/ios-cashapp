@@ -15,6 +15,13 @@
 		2328843821E3DEB200E5E7C1 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2328843721E3DEB200E5E7C1 /* WelcomeViewController.m */; };
 		2328843A21E4E89000E5E7C1 /* pagadito_0000_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2328843921E4E88F00E5E7C1 /* pagadito_0000_logo.png */; };
 		23296F8A21E9EBB10013AAC8 /* UserAdminViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23296F8921E9EBB10013AAC8 /* UserAdminViewController.m */; };
+		2337175D21EA48F4003D7D15 /* user_supervisor_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2337175C21EA48EC003D7D15 /* user_supervisor_icon.png */; };
+		2337175F21EA493B003D7D15 /* user_cajero_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2337175E21EA493A003D7D15 /* user_cajero_icon.png */; };
+		2337176221EA4D6D003D7D15 /* UserListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2337176121EA4D6D003D7D15 /* UserListTableViewCell.m */; };
+		2337176521EA8599003D7D15 /* InsertUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2337176421EA8599003D7D15 /* InsertUserViewController.m */; };
+		2337176821EAF273003D7D15 /* DeleteUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2337176721EAF273003D7D15 /* DeleteUserViewController.m */; };
+		2337176B21EC20D2003D7D15 /* EditUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2337176A21EC20D2003D7D15 /* EditUserViewController.m */; };
+		2337176E21EC2CF7003D7D15 /* EditUserScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2337176D21EC2CF7003D7D15 /* EditUserScreenViewController.m */; };
 		233E54EB21DFD1B800279DB1 /* Pagadito01_0001s_0002_Layer-108.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E549121DFD1B700279DB1 /* Pagadito01_0001s_0002_Layer-108.png */; };
 		233E54EC21DFD1B800279DB1 /* Pagadito_0000_Cancelar.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E549221DFD1B700279DB1 /* Pagadito_0000_Cancelar.png */; };
 		233E54ED21DFD1B800279DB1 /* Pagadito_0000_Capa-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E549321DFD1B700279DB1 /* Pagadito_0000_Capa-4.png */; };
@@ -106,6 +113,11 @@
 		233E554321DFD1B800279DB1 /* PagaditoR_0000_Layer-17.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E54E921DFD1B700279DB1 /* PagaditoR_0000_Layer-17.png */; };
 		233E554421DFD1B800279DB1 /* PagaditoR_0001_fondo.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E54EA21DFD1B700279DB1 /* PagaditoR_0001_fondo.png */; };
 		233E554821E046B300279DB1 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 233E554721E046B300279DB1 /* LoginViewController.m */; };
+		2352F92621EC469F003F106A /* ReportsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2352F92521EC469F003F106A /* ReportsViewController.m */; };
+		2352F92921EC493D003F106A /* NewTransactionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2352F92821EC493D003F106A /* NewTransactionViewController.m */; };
+		2352F92C21ECD2D0003F106A /* SearchUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2352F92B21ECD2D0003F106A /* SearchUserViewController.m */; };
+		2352F92E21ECE13B003F106A /* system_config.png in Resources */ = {isa = PBXBuildFile; fileRef = 2352F92D21ECE13A003F106A /* system_config.png */; };
+		2352F93021ECE2DA003F106A /* assign_shift.png in Resources */ = {isa = PBXBuildFile; fileRef = 2352F92F21ECE2D8003F106A /* assign_shift.png */; };
 		3A09261921BAAA5900333F1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A09261821BAAA5900333F1A /* AppDelegate.m */; };
 		3A09261C21BAAA5900333F1A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A09261B21BAAA5900333F1A /* ViewController.m */; };
 		3A09261F21BAAA5900333F1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A09261D21BAAA5900333F1A /* Main.storyboard */; };
@@ -150,6 +162,18 @@
 		2328843921E4E88F00E5E7C1 /* pagadito_0000_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pagadito_0000_logo.png; sourceTree = "<group>"; };
 		23296F8821E9EBB10013AAC8 /* UserAdminViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserAdminViewController.h; sourceTree = "<group>"; };
 		23296F8921E9EBB10013AAC8 /* UserAdminViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserAdminViewController.m; sourceTree = "<group>"; };
+		2337175C21EA48EC003D7D15 /* user_supervisor_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_supervisor_icon.png; sourceTree = "<group>"; };
+		2337175E21EA493A003D7D15 /* user_cajero_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_cajero_icon.png; sourceTree = "<group>"; };
+		2337176021EA4D6D003D7D15 /* UserListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserListTableViewCell.h; sourceTree = "<group>"; };
+		2337176121EA4D6D003D7D15 /* UserListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserListTableViewCell.m; sourceTree = "<group>"; };
+		2337176321EA8599003D7D15 /* InsertUserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InsertUserViewController.h; sourceTree = "<group>"; };
+		2337176421EA8599003D7D15 /* InsertUserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InsertUserViewController.m; sourceTree = "<group>"; };
+		2337176621EAF273003D7D15 /* DeleteUserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeleteUserViewController.h; sourceTree = "<group>"; };
+		2337176721EAF273003D7D15 /* DeleteUserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeleteUserViewController.m; sourceTree = "<group>"; };
+		2337176921EC20D2003D7D15 /* EditUserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditUserViewController.h; sourceTree = "<group>"; };
+		2337176A21EC20D2003D7D15 /* EditUserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditUserViewController.m; sourceTree = "<group>"; };
+		2337176C21EC2CF7003D7D15 /* EditUserScreenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditUserScreenViewController.h; sourceTree = "<group>"; };
+		2337176D21EC2CF7003D7D15 /* EditUserScreenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditUserScreenViewController.m; sourceTree = "<group>"; };
 		233E549121DFD1B700279DB1 /* Pagadito01_0001s_0002_Layer-108.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pagadito01_0001s_0002_Layer-108.png"; sourceTree = "<group>"; };
 		233E549221DFD1B700279DB1 /* Pagadito_0000_Cancelar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pagadito_0000_Cancelar.png; sourceTree = "<group>"; };
 		233E549321DFD1B700279DB1 /* Pagadito_0000_Capa-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pagadito_0000_Capa-4.png"; sourceTree = "<group>"; };
@@ -242,6 +266,14 @@
 		233E54EA21DFD1B700279DB1 /* PagaditoR_0001_fondo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PagaditoR_0001_fondo.png; sourceTree = "<group>"; };
 		233E554621E046B300279DB1 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		233E554721E046B300279DB1 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		2352F92421EC469F003F106A /* ReportsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReportsViewController.h; sourceTree = "<group>"; };
+		2352F92521EC469F003F106A /* ReportsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReportsViewController.m; sourceTree = "<group>"; };
+		2352F92721EC493D003F106A /* NewTransactionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewTransactionViewController.h; sourceTree = "<group>"; };
+		2352F92821EC493D003F106A /* NewTransactionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewTransactionViewController.m; sourceTree = "<group>"; };
+		2352F92A21ECD2D0003F106A /* SearchUserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchUserViewController.h; sourceTree = "<group>"; };
+		2352F92B21ECD2D0003F106A /* SearchUserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchUserViewController.m; sourceTree = "<group>"; };
+		2352F92D21ECE13A003F106A /* system_config.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = system_config.png; sourceTree = "<group>"; };
+		2352F92F21ECE2D8003F106A /* assign_shift.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = assign_shift.png; sourceTree = "<group>"; };
 		2A63F08DE9CEED364D00A01B /* Pods_PAGADITO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PAGADITO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A09261421BAAA5900333F1A /* PAGADITO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PAGADITO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A09261721BAAA5900333F1A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -303,6 +335,10 @@
 		233E549021DFD1B700279DB1 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				2352F92F21ECE2D8003F106A /* assign_shift.png */,
+				2352F92D21ECE13A003F106A /* system_config.png */,
+				2337175C21EA48EC003D7D15 /* user_supervisor_icon.png */,
+				2337175E21EA493A003D7D15 /* user_cajero_icon.png */,
 				2328843921E4E88F00E5E7C1 /* pagadito_0000_logo.png */,
 				232096AD21E25DED00C93E3B /* Pagadito_0000s_0001_button_yellow.png */,
 				233E549121DFD1B700279DB1 /* Pagadito01_0001s_0002_Layer-108.png */,
@@ -416,6 +452,22 @@
 				2328843721E3DEB200E5E7C1 /* WelcomeViewController.m */,
 				23296F8821E9EBB10013AAC8 /* UserAdminViewController.h */,
 				23296F8921E9EBB10013AAC8 /* UserAdminViewController.m */,
+				2337176021EA4D6D003D7D15 /* UserListTableViewCell.h */,
+				2337176121EA4D6D003D7D15 /* UserListTableViewCell.m */,
+				2337176321EA8599003D7D15 /* InsertUserViewController.h */,
+				2337176421EA8599003D7D15 /* InsertUserViewController.m */,
+				2337176621EAF273003D7D15 /* DeleteUserViewController.h */,
+				2337176721EAF273003D7D15 /* DeleteUserViewController.m */,
+				2337176921EC20D2003D7D15 /* EditUserViewController.h */,
+				2337176A21EC20D2003D7D15 /* EditUserViewController.m */,
+				2337176C21EC2CF7003D7D15 /* EditUserScreenViewController.h */,
+				2337176D21EC2CF7003D7D15 /* EditUserScreenViewController.m */,
+				2352F92421EC469F003F106A /* ReportsViewController.h */,
+				2352F92521EC469F003F106A /* ReportsViewController.m */,
+				2352F92721EC493D003F106A /* NewTransactionViewController.h */,
+				2352F92821EC493D003F106A /* NewTransactionViewController.m */,
+				2352F92A21ECD2D0003F106A /* SearchUserViewController.h */,
+				2352F92B21ECD2D0003F106A /* SearchUserViewController.m */,
 			);
 			path = screens;
 			sourceTree = "<group>";
@@ -593,6 +645,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2352F93021ECE2DA003F106A /* assign_shift.png in Resources */,
 				233E552821DFD1B800279DB1 /* Pagadito_0001s_0003_Iniciar-sesión--.png in Resources */,
 				233E550B21DFD1B800279DB1 /* Pagadito_0000s_0007_Guardar-.png in Resources */,
 				233E553E21DFD1B800279DB1 /* Pagadito_0008_Layer-15-copy-2.png in Resources */,
@@ -626,10 +679,12 @@
 				233E54F121DFD1B800279DB1 /* Pagadito_0000_white_down_arrow.png in Resources */,
 				233E552621DFD1B800279DB1 /* Pagadito_0001s_0001_Layer-110.png in Resources */,
 				233E552921DFD1B800279DB1 /* Pagadito_0001s_0004_Layer-100.png in Resources */,
+				2337175D21EA48F4003D7D15 /* user_supervisor_icon.png in Resources */,
 				233E551421DFD1B800279DB1 /* Pagadito_0000s_0011_4.png in Resources */,
 				233E550821DFD1B800279DB1 /* Pagadito_0000s_0006_Seleccionar.png in Resources */,
 				233E550921DFD1B800279DB1 /* Pagadito_0000s_0007_2.png in Resources */,
 				2328843A21E4E89000E5E7C1 /* pagadito_0000_logo.png in Resources */,
+				2337175F21EA493B003D7D15 /* user_cajero_icon.png in Resources */,
 				233E54ED21DFD1B800279DB1 /* Pagadito_0000_Capa-4.png in Resources */,
 				233E554121DFD1B800279DB1 /* Pagadito_0015_Layer-6.png in Resources */,
 				233E552321DFD1B800279DB1 /* Pagadito_0001s_0000_Cancelar.png in Resources */,
@@ -671,6 +726,7 @@
 				233E551E21DFD1B800279DB1 /* Pagadito_0000s_0036_Layer-88.png in Resources */,
 				233E54F521DFD1B800279DB1 /* Pagadito_0000s_0000s_0001_Layer-41.png in Resources */,
 				233E550621DFD1B800279DB1 /* Pagadito_0000s_0006_0.png in Resources */,
+				2352F92E21ECE13B003F106A /* system_config.png in Resources */,
 				233E551321DFD1B800279DB1 /* Pagadito_0000s_0010_5.png in Resources */,
 				233E550721DFD1B800279DB1 /* Pagadito_0000s_0006_Layer-88.png in Resources */,
 				233E553121DFD1B800279DB1 /* Pagadito_0001s_0019_Layer-64.png in Resources */,
@@ -759,15 +815,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2337176521EA8599003D7D15 /* InsertUserViewController.m in Sources */,
 				23296F8A21E9EBB10013AAC8 /* UserAdminViewController.m in Sources */,
+				2352F92921EC493D003F106A /* NewTransactionViewController.m in Sources */,
 				232096B421E35FCF00C93E3B /* LastCommercialInfoViewController.m in Sources */,
+				2337176B21EC20D2003D7D15 /* EditUserViewController.m in Sources */,
 				3A64430121C3484B00F392DD /* SecondViewController.m in Sources */,
 				3A09261C21BAAA5900333F1A /* ViewController.m in Sources */,
+				2337176221EA4D6D003D7D15 /* UserListTableViewCell.m in Sources */,
+				2352F92C21ECD2D0003F106A /* SearchUserViewController.m in Sources */,
 				232096B121E261C700C93E3B /* UserCreationViewController.m in Sources */,
 				3A09262721BAAA5A00333F1A /* main.m in Sources */,
 				2328843821E3DEB200E5E7C1 /* WelcomeViewController.m in Sources */,
 				232096AC21E12FBE00C93E3B /* Global.m in Sources */,
+				2337176821EAF273003D7D15 /* DeleteUserViewController.m in Sources */,
 				3A09261921BAAA5900333F1A /* AppDelegate.m in Sources */,
+				2352F92621EC469F003F106A /* ReportsViewController.m in Sources */,
+				2337176E21EC2CF7003D7D15 /* EditUserScreenViewController.m in Sources */,
 				232096A321E081B700C93E3B /* SelectStoreTerminalViewController.m in Sources */,
 				233E554821E046B300279DB1 /* LoginViewController.m in Sources */,
 			);

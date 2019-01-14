@@ -19,6 +19,7 @@
 @property(nonatomic)IBOutlet UIButton *MenuBtn;
 @property(nonatomic)IBOutlet UIView *SidePanel;
 @property(nonatomic)IBOutlet UIView *TransV;
+
 @property (weak, nonatomic) IBOutlet UILabel *userFullNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *sessionInfoLabel;
@@ -27,5 +28,21 @@
 @property (weak, nonatomic) IBOutlet UIButton *DashboardButton2;
 @property (weak, nonatomic) IBOutlet UIButton *DashboardButton3;
 @property (weak, nonatomic) IBOutlet UIButton *DashboardButton4;
+
+- (IBAction)DashboardButton1Action:(id)sender;
+- (IBAction)DashboardButton2Action:(id)sender;
+- (IBAction)DashboardButton3Action:(id)sender;
+- (IBAction)DashboardButton4Action:(id)sender;
+
+
+@property (weak, nonatomic) IBOutlet UIView *privilidgeID3DashboardView;
+@property (weak, nonatomic) IBOutlet UIImageView *priv3logoImageView;
+@property (weak, nonatomic) IBOutlet UILabel *priv3FullNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *priv3CurrentTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *priv3ShiftCodeLabel;
+- (IBAction)signoutButtonAction:(id)sender;
+
+
+
 
 @end

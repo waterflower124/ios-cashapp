@@ -160,7 +160,7 @@
     if([globals.idPrivilegio isEqualToString:@"1"]) {
         [self performSegueWithIdentifier:@"hometouseradmin_segue" sender:self];
     } else if([globals.idPrivilegio isEqualToString:@"2"]) {
-        
+        [self performSegueWithIdentifier:@"hometouseradmin_segue" sender:self];
     } else if([globals.idPrivilegio isEqualToString:@"4"]) {
         [self performSegueWithIdentifier:@"hometonewtransaction_segue" sender:self];
     }

@@ -4482,9 +4482,8 @@ mal funcionamiento de las transacciones POS.</string>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3go-jg-uRG">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3go-jg-uRG">
                                 <rect key="frame" x="-300" y="80" width="300" height="587"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SAT-yE-HHo">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
@@ -4613,6 +4612,9 @@ mal funcionamiento de las transacciones POS.</string>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="FX1-Ej-hkW"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -4620,6 +4622,9 @@ mal funcionamiento de las transacciones POS.</string>
                             <constraint firstItem="PhO-KN-eVL" firstAttribute="bottom" secondItem="mJH-pt-rb5" secondAttribute="bottom" constant="27" id="66A-nb-86J"/>
                             <constraint firstItem="mJH-pt-rb5" firstAttribute="width" secondItem="3z7-b1-9Zj" secondAttribute="width" id="Wf2-bR-Ocx"/>
                             <constraint firstItem="mJH-pt-rb5" firstAttribute="top" secondItem="PhO-KN-eVL" secondAttribute="top" constant="60" id="jN2-pe-7tp"/>
+                            <constraint firstItem="3go-jg-uRG" firstAttribute="leading" secondItem="3z7-b1-9Zj" secondAttribute="leading" constant="-300" id="nQB-Xs-iic"/>
+                            <constraint firstAttribute="bottom" secondItem="3go-jg-uRG" secondAttribute="bottom" id="o4F-4s-F84"/>
+                            <constraint firstItem="3go-jg-uRG" firstAttribute="top" secondItem="3z7-b1-9Zj" secondAttribute="top" constant="80" id="pHQ-vc-4E4"/>
                             <constraint firstItem="mJH-pt-rb5" firstAttribute="centerX" secondItem="PhO-KN-eVL" secondAttribute="centerX" id="z15-Wg-oER"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PhO-KN-eVL"/>
@@ -6588,7 +6593,7 @@ mal funcionamiento de las transacciones POS.</string>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5Q-qs-0EE">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5Q-qs-0EE">
                                                             <rect key="frame" x="140" y="20" width="120" height="59.5"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="120" id="I3n-e1-0eg"/>
@@ -11751,24 +11756,24 @@ mal funcionamiento de las transacciones POS.</string>
         <image name="user_supervisor_icon.png" width="70" height="47"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="L35-3n-3Ti"/>
-        <segue reference="e76-cs-Nyg"/>
+        <segue reference="e5t-5z-f4H"/>
+        <segue reference="X7W-o2-g0m"/>
         <segue reference="3TK-Ke-iOO"/>
-        <segue reference="DFb-lS-2Hg"/>
+        <segue reference="mvb-xt-TA0"/>
         <segue reference="Aoq-1C-Utg"/>
-        <segue reference="ZY0-Ah-Urh"/>
-        <segue reference="3ax-so-uZt"/>
-        <segue reference="cB3-i3-ZTn"/>
-        <segue reference="cho-D9-L8Y"/>
+        <segue reference="ggG-WD-r8D"/>
+        <segue reference="4J5-oD-WY6"/>
+        <segue reference="IFn-GB-61X"/>
+        <segue reference="5o7-2G-f9V"/>
         <segue reference="upf-uW-nS6"/>
         <segue reference="Hd1-eZ-QA3"/>
-        <segue reference="Z81-MR-6y4"/>
-        <segue reference="G3H-qu-BOw"/>
-        <segue reference="UaC-8z-NXP"/>
+        <segue reference="XZZ-XI-9Ei"/>
+        <segue reference="TdH-iV-ZbI"/>
+        <segue reference="Edt-ev-liM"/>
         <segue reference="zzn-x8-4xL"/>
-        <segue reference="gfW-ev-rFX"/>
+        <segue reference="UHC-Iq-8At"/>
         <segue reference="oSC-O4-CSe"/>
-        <segue reference="dSx-4X-k3g"/>
-        <segue reference="eyM-J0-pqn"/>
+        <segue reference="Srs-VG-dz2"/>
+        <segue reference="oaI-jn-cle"/>
     </inferredMetricsTieBreakers>
 </document>

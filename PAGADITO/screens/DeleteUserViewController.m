@@ -136,7 +136,8 @@
 
     DeletTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"deletusertableviewcell"];
     /*   set user full name and user name and image*/
-    cell.fullnameLabel.text = self.user_array[indexPath.row][1];
+    NSString *userfullname = [NSString stringWithFormat:@"%@ %@", self.user_array[indexPath.row][1], self.user_array[indexPath.row][2]];
+    cell.fullnameLabel.text = userfullname;
     cell.usernameLabel.text = self.user_array[indexPath.row][4];
     if([self.user_array[indexPath.row][3] isEqualToString:@"Supervisor"]) {/////supervisor
         cell.logoimageview.image = [UIImage imageNamed:@"user_supervisor_icon.png"];

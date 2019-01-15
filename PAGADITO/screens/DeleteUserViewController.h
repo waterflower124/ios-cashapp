@@ -26,9 +26,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(strong, nonatomic)NSMutableArray *user_array;
 
+- (IBAction)backButtonAction:(id)sender;
 - (IBAction)createUserButtonAction:(id)sender;
 - (IBAction)editUserButtonAction:(id)sender;
 - (IBAction)searchUserButtonAction:(id)sender;
+
+
+@property (weak, nonatomic) IBOutlet UIView *deleteAlertView;
+@property (weak, nonatomic) IBOutlet UILabel *deleteUserNameLabel;
+- (IBAction)deleteUserCancelButtonAction:(id)sender;
+- (IBAction)deleteUserOKButtonAction:(id)sender;
+
+
 
 @end
 

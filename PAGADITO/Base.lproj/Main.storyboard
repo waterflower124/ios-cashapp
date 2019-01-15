@@ -7095,7 +7095,7 @@ mal funcionamiento de las transacciones POS.</string>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="userlisttableviewcell" rowHeight="100" id="qxO-oE-WwM" customClass="UserListTableViewCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="deletusertableviewcell" rowHeight="100" id="qxO-oE-WwM" customClass="DeletTableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qxO-oE-WwM" id="3h2-XR-WsQ">
@@ -7154,10 +7154,10 @@ mal funcionamiento de las transacciones POS.</string>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="roleImageView" destination="Bso-SC-99U" id="1ki-ny-aoD"/>
-                                            <outlet property="userFullNameLabel" destination="VuP-jC-oQ0" id="cVA-Sp-1Yf"/>
-                                            <outlet property="userNameLabel" destination="RGP-vD-GtU" id="AbX-sR-ja3"/>
-                                            <outlet property="userTableViewCellView" destination="YDa-zC-1eO" id="w7O-uk-5lA"/>
+                                            <outlet property="deletetableviewcell" destination="YDa-zC-1eO" id="rlV-kX-fYj"/>
+                                            <outlet property="fullnameLabel" destination="VuP-jC-oQ0" id="1MA-Vd-sGr"/>
+                                            <outlet property="logoimageview" destination="Bso-SC-99U" id="kgx-4z-Uj0"/>
+                                            <outlet property="usernameLabel" destination="RGP-vD-GtU" id="7t2-d7-wXa"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

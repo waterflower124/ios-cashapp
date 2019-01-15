@@ -10,11 +10,10 @@
 #import "Global.h"
 #import "EditUserViewController.h"
 #import "InsertUserViewController.h"
-#import "UserListTableViewCell.h"
 #import "SearchUserViewController.h"
 #import "AFNetworking.h"
 #import "UserAdminViewController.h"
-
+#import "DeletTableViewCell.h"
 
 
 @interface DeleteUserViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -134,25 +133,30 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UserListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userlisttableviewcell"];
+
+    DeletTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"deletusertableviewcell"];
     /*   set user full name and user name and image*/
-    cell.userFullNameLabel.text = self.user_array[indexPath.row][1];
-    cell.userNameLabel.text = self.user_array[indexPath.row][4];
+    cell.fullnameLabel.text = self.user_array[indexPath.row][1];
+    cell.usernameLabel.text = self.user_array[indexPath.row][4];
     if([self.user_array[indexPath.row][3] isEqualToString:@"Supervisor"]) {/////supervisor
-        cell.roleImageView.image = [UIImage imageNamed:@"user_supervisor_icon.png"];
+        cell.logoimageview.image = [UIImage imageNamed:@"user_supervisor_icon.png"];
     } else if([self.user_array[indexPath.row][3] isEqualToString:@"Cajero"]) {/////cajero
-        cell.roleImageView.image = [UIImage imageNamed:@"user_cajero_icon.png"];
+        cell.logoimageview.image = [UIImage imageNamed:@"user_cajero_icon.png"];
     }
     [cell setCellIndex:indexPath.row];
     cell.delegate = self;
     return cell;
+    
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"deletusertableviewcell"];
+//    cell.textLabel.text = @"22222";
+//    return cell;
 }
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%ld", (long)indexPath.row);
 }
 
--(void) reloadTableView:(UserListTableViewCell *)sender :(NSInteger)index {
+-(void) reloadDeleteTableViewData:(DeletTableViewCell *)sender :(NSInteger)index {
     self.deleting_user = self.user_array[index];
     self.deleting_user_tableview_index = index;
     [self.user_array removeObjectAtIndex:index];

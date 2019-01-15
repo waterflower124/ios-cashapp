@@ -10,18 +10,18 @@
 
 @implementation UserListTableViewCell
 
-@synthesize userTableViewCellView, cellIndex;
+//@synthesize userTableViewCellView, cellIndex;
 
-float originX = 0;
-float originY = 0;
-float deviceWidth = 0;
+//float originX = 0;
+//float originY = 0;
+//float deviceWidth = 0;
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    originX = userTableViewCellView.center.x;
-    originY = userTableViewCellView.center.y;
-    CGRect screen = [[UIScreen mainScreen] bounds];
-    deviceWidth = CGRectGetWidth(screen);
+//    originX = userTableViewCellView.center.x;
+//    originY = userTableViewCellView.center.y;
+//    CGRect screen = [[UIScreen mainScreen] bounds];
+//    deviceWidth = CGRectGetWidth(screen);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

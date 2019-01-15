@@ -118,6 +118,7 @@
 		2352F92C21ECD2D0003F106A /* SearchUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2352F92B21ECD2D0003F106A /* SearchUserViewController.m */; };
 		2352F92E21ECE13B003F106A /* system_config.png in Resources */ = {isa = PBXBuildFile; fileRef = 2352F92D21ECE13A003F106A /* system_config.png */; };
 		2352F93021ECE2DA003F106A /* assign_shift.png in Resources */ = {isa = PBXBuildFile; fileRef = 2352F92F21ECE2D8003F106A /* assign_shift.png */; };
+		23682F4121EE2B56002BC7D7 /* DeletTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23682F4021EE2B56002BC7D7 /* DeletTableViewCell.m */; };
 		3A09261921BAAA5900333F1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A09261821BAAA5900333F1A /* AppDelegate.m */; };
 		3A09261C21BAAA5900333F1A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A09261B21BAAA5900333F1A /* ViewController.m */; };
 		3A09261F21BAAA5900333F1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A09261D21BAAA5900333F1A /* Main.storyboard */; };
@@ -274,6 +275,8 @@
 		2352F92B21ECD2D0003F106A /* SearchUserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchUserViewController.m; sourceTree = "<group>"; };
 		2352F92D21ECE13A003F106A /* system_config.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = system_config.png; sourceTree = "<group>"; };
 		2352F92F21ECE2D8003F106A /* assign_shift.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = assign_shift.png; sourceTree = "<group>"; };
+		23682F3F21EE2B56002BC7D7 /* DeletTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeletTableViewCell.h; sourceTree = "<group>"; };
+		23682F4021EE2B56002BC7D7 /* DeletTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeletTableViewCell.m; sourceTree = "<group>"; };
 		2A63F08DE9CEED364D00A01B /* Pods_PAGADITO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PAGADITO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A09261421BAAA5900333F1A /* PAGADITO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PAGADITO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A09261721BAAA5900333F1A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -468,6 +471,8 @@
 				2352F92821EC493D003F106A /* NewTransactionViewController.m */,
 				2352F92A21ECD2D0003F106A /* SearchUserViewController.h */,
 				2352F92B21ECD2D0003F106A /* SearchUserViewController.m */,
+				23682F3F21EE2B56002BC7D7 /* DeletTableViewCell.h */,
+				23682F4021EE2B56002BC7D7 /* DeletTableViewCell.m */,
 			);
 			path = screens;
 			sourceTree = "<group>";
@@ -827,6 +832,7 @@
 				232096B121E261C700C93E3B /* UserCreationViewController.m in Sources */,
 				3A09262721BAAA5A00333F1A /* main.m in Sources */,
 				2328843821E3DEB200E5E7C1 /* WelcomeViewController.m in Sources */,
+				23682F4121EE2B56002BC7D7 /* DeletTableViewCell.m in Sources */,
 				232096AC21E12FBE00C93E3B /* Global.m in Sources */,
 				2337176821EAF273003D7D15 /* DeleteUserViewController.m in Sources */,
 				3A09261921BAAA5900333F1A /* AppDelegate.m in Sources */,

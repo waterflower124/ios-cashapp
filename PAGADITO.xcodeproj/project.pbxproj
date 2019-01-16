@@ -115,6 +115,8 @@
 		233E554321DFD1B800279DB1 /* PagaditoR_0000_Layer-17.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E54E921DFD1B700279DB1 /* PagaditoR_0000_Layer-17.png */; };
 		233E554421DFD1B800279DB1 /* PagaditoR_0001_fondo.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E54EA21DFD1B700279DB1 /* PagaditoR_0001_fondo.png */; };
 		233E554821E046B300279DB1 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 233E554721E046B300279DB1 /* LoginViewController.m */; };
+		2345039421EF482A0057C772 /* ShiftListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2345039321EF482A0057C772 /* ShiftListViewController.m */; };
+		2345039A21EF5B840057C772 /* ShiftListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2345039921EF5B840057C772 /* ShiftListTableViewCell.m */; };
 		2352F92621EC469F003F106A /* ReportsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2352F92521EC469F003F106A /* ReportsViewController.m */; };
 		2352F92921EC493D003F106A /* NewTransactionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2352F92821EC493D003F106A /* NewTransactionViewController.m */; };
 		2352F92C21ECD2D0003F106A /* SearchUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2352F92B21ECD2D0003F106A /* SearchUserViewController.m */; };
@@ -271,6 +273,10 @@
 		233E54EA21DFD1B700279DB1 /* PagaditoR_0001_fondo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PagaditoR_0001_fondo.png; sourceTree = "<group>"; };
 		233E554621E046B300279DB1 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		233E554721E046B300279DB1 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		2345039221EF482A0057C772 /* ShiftListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShiftListViewController.h; sourceTree = "<group>"; };
+		2345039321EF482A0057C772 /* ShiftListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShiftListViewController.m; sourceTree = "<group>"; };
+		2345039821EF5B840057C772 /* ShiftListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShiftListTableViewCell.h; sourceTree = "<group>"; };
+		2345039921EF5B840057C772 /* ShiftListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShiftListTableViewCell.m; sourceTree = "<group>"; };
 		2352F92421EC469F003F106A /* ReportsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReportsViewController.h; sourceTree = "<group>"; };
 		2352F92521EC469F003F106A /* ReportsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReportsViewController.m; sourceTree = "<group>"; };
 		2352F92721EC493D003F106A /* NewTransactionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewTransactionViewController.h; sourceTree = "<group>"; };
@@ -346,6 +352,8 @@
 				23682F4021EE2B56002BC7D7 /* DeletTableViewCell.m */,
 				2337176021EA4D6D003D7D15 /* UserListTableViewCell.h */,
 				2337176121EA4D6D003D7D15 /* UserListTableViewCell.m */,
+				2345039821EF5B840057C772 /* ShiftListTableViewCell.h */,
+				2345039921EF5B840057C772 /* ShiftListTableViewCell.m */,
 			);
 			path = tableviewcells;
 			sourceTree = "<group>";
@@ -486,6 +494,8 @@
 				2352F92821EC493D003F106A /* NewTransactionViewController.m */,
 				2352F92A21ECD2D0003F106A /* SearchUserViewController.h */,
 				2352F92B21ECD2D0003F106A /* SearchUserViewController.m */,
+				2345039221EF482A0057C772 /* ShiftListViewController.h */,
+				2345039321EF482A0057C772 /* ShiftListViewController.m */,
 			);
 			path = screens;
 			sourceTree = "<group>";
@@ -842,8 +852,10 @@
 				232096B421E35FCF00C93E3B /* LastCommercialInfoViewController.m in Sources */,
 				2337176B21EC20D2003D7D15 /* EditUserViewController.m in Sources */,
 				3A64430121C3484B00F392DD /* SecondViewController.m in Sources */,
+				2345039A21EF5B840057C772 /* ShiftListTableViewCell.m in Sources */,
 				3A09261C21BAAA5900333F1A /* ViewController.m in Sources */,
 				2337176221EA4D6D003D7D15 /* UserListTableViewCell.m in Sources */,
+				2345039421EF482A0057C772 /* ShiftListViewController.m in Sources */,
 				2352F92C21ECD2D0003F106A /* SearchUserViewController.m in Sources */,
 				232096B121E261C700C93E3B /* UserCreationViewController.m in Sources */,
 				3A09262721BAAA5A00333F1A /* main.m in Sources */,

@@ -62,7 +62,7 @@ Global *globals;
     
     self.macAddress =[self getMacAddress];
     globals.macAddress = self.macAddress;
-    
+    NSLog(@"%@", globals.macAddress);
     NSDictionary *parameters = @{
                                  @"method": @"initSystem",
                                  @"param": self.macAddress

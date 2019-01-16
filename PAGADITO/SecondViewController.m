@@ -26,7 +26,7 @@
 @synthesize privilidgeID3DashboardView;
 @synthesize priv3logoImageView, priv3FullNameLabel, priv3CurrentTimeLabel, priv3ShiftCodeLabel;
 
-@synthesize homeButton, reportbutton, configureButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
+@synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -57,19 +57,91 @@
         [DashboardButton4 setImage:[UIImage imageNamed: @"Pagadito_0000_Capa-4"] forState:UIControlStateNormal];
         
         ///////  side menu button config   ////////////
-//        CGRect configureButtonFrame = self.configureButton.frame;
-//        configureButtonFrame.origin.x = 0;
-//        configureButtonFrame.origin.y = 0;
-//        self.configureButton.frame = configureButtonFrame;
-//        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 60, configureButton.frame.size.width, 1)];
-//        lineView.backgroundColor = [UIColor lightGrayColor];
-//        [configureButton addSubview:lineView];
+        CGRect homeButtonFrame = self.homeButton.frame;
+        homeButtonFrame.origin.x = 0;
+        homeButtonFrame.origin.y = 0;
+        self.homeButton.frame = homeButtonFrame;
+        UIView *homelineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, homeButton.frame.size.width, 1)];
+        homelineView.backgroundColor = [UIColor lightGrayColor];
+        [self.homeButton addSubview:homelineView];
         
+        CGRect reportButtonFrame = self.reportButton.frame;
+        reportButtonFrame.origin.x = 0;
+        reportButtonFrame.origin.y = 60;
+        self.reportButton.frame = reportButtonFrame;
+        UIView *reportlineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, reportButton.frame.size.width, 1)];
+        reportlineView.backgroundColor = [UIColor lightGrayColor];
+        [self.reportButton addSubview:reportlineView];
+        
+        CGRect configureButtonFrame = self.configButton.frame;
+        configureButtonFrame.origin.x = 0;
+        configureButtonFrame.origin.y = 120;
+        self.configButton.frame = configureButtonFrame;
+        UIView *configurelineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, configButton.frame.size.width, 1)];
+        configurelineView.backgroundColor = [UIColor lightGrayColor];
+        [self.configButton addSubview:configurelineView];
+        
+        CGRect usuarioButtonFrame = self.usuarioButton.frame;
+        usuarioButtonFrame.origin.x = 0;
+        usuarioButtonFrame.origin.y = 180;
+        self.usuarioButton.frame = usuarioButtonFrame;
+        UIView *usuariolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, usuarioButton.frame.size.width, 1)];
+        usuariolineView.backgroundColor = [UIColor lightGrayColor];
+        [self.usuarioButton addSubview:usuariolineView];
+        
+        [self.turnoButton setHidden:YES];
+        [self.canceltransactionButton setHidden:YES];
+        [self.newtransactionButton setHidden:YES];
         
         ////////////////////////////////////////////
     } else if([globals.idPrivilegio isEqualToString:@"2"]) {
         [DashboardButton2 setImage:[UIImage imageNamed: @"assign_shift"] forState:UIControlStateNormal];
         [DashboardButton4 setImage:[UIImage imageNamed: @"Pagadito_0000_Capa-4"] forState:UIControlStateNormal];
+        
+        ///////  side menu button config   ////////////
+        CGRect homeButtonFrame = self.homeButton.frame;
+        homeButtonFrame.origin.x = 0;
+        homeButtonFrame.origin.y = 0;
+        self.homeButton.frame = homeButtonFrame;
+        UIView *homelineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, homeButton.frame.size.width, 1)];
+        homelineView.backgroundColor = [UIColor lightGrayColor];
+        [self.homeButton addSubview:homelineView];
+        
+        CGRect reportButtonFrame = self.reportButton.frame;
+        reportButtonFrame.origin.x = 0;
+        reportButtonFrame.origin.y = 60;
+        self.reportButton.frame = reportButtonFrame;
+        UIView *reportlineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, reportButton.frame.size.width, 1)];
+        reportlineView.backgroundColor = [UIColor lightGrayColor];
+        [self.reportButton addSubview:reportlineView];
+        
+        CGRect usuarioButtonFrame = self.usuarioButton.frame;
+        usuarioButtonFrame.origin.x = 0;
+        usuarioButtonFrame.origin.y = 120;
+        self.usuarioButton.frame = usuarioButtonFrame;
+        UIView *usuariolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, usuarioButton.frame.size.width, 1)];
+        usuariolineView.backgroundColor = [UIColor lightGrayColor];
+        [self.usuarioButton addSubview:usuariolineView];
+        
+        CGRect turnoButtonFrame = self.turnoButton.frame;
+        turnoButtonFrame.origin.x = 0;
+        turnoButtonFrame.origin.y = 180;
+        self.turnoButton.frame = turnoButtonFrame;
+        UIView *turnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, turnoButton.frame.size.width, 1)];
+        turnolineView.backgroundColor = [UIColor lightGrayColor];
+        [self.turnoButton addSubview:turnolineView];
+        
+        CGRect canceltransactionButtonFrame = self.canceltransactionButton.frame;
+        canceltransactionButtonFrame.origin.x = 0;
+        canceltransactionButtonFrame.origin.y = 240;
+        self.canceltransactionButton.frame = canceltransactionButtonFrame;
+        UIView *tcanceltransactionlineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, canceltransactionButton.frame.size.width, 1)];
+        turnolineView.backgroundColor = [UIColor lightGrayColor];
+        [self.canceltransactionButton addSubview:tcanceltransactionlineView];
+        
+        [self.configButton setHidden:YES];
+        [self.newtransactionButton setHidden:YES];
+        ///////////////////////////////
         
     } else if([globals.idPrivilegio isEqualToString:@"3"]) {
         NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -85,6 +157,60 @@
         priv3CurrentTimeLabel.text = self.dateTimeLabelText;
         priv3ShiftCodeLabel.text = [NSString stringWithFormat:@"Shift Code: %@", globals.codeShift];
         [privilidgeID3DashboardView setHidden:NO];
+    } else if([globals.idPrivilegio isEqualToString:@"4"]) {
+        
+        ///////  side menu button config   ////////////
+        CGRect homeButtonFrame = self.homeButton.frame;
+        homeButtonFrame.origin.x = 0;
+        homeButtonFrame.origin.y = 0;
+        self.homeButton.frame = homeButtonFrame;
+        UIView *homelineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, homeButton.frame.size.width, 1)];
+        homelineView.backgroundColor = [UIColor lightGrayColor];
+        [self.homeButton addSubview:homelineView];
+        
+        CGRect reportButtonFrame = self.reportButton.frame;
+        reportButtonFrame.origin.x = 0;
+        reportButtonFrame.origin.y = 60;
+        self.reportButton.frame = reportButtonFrame;
+        UIView *reportlineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, reportButton.frame.size.width, 1)];
+        reportlineView.backgroundColor = [UIColor lightGrayColor];
+        [self.reportButton addSubview:reportlineView];
+        
+        CGRect configureButtonFrame = self.configButton.frame;
+        configureButtonFrame.origin.x = 0;
+        configureButtonFrame.origin.y = 120;
+        self.configButton.frame = configureButtonFrame;
+        UIView *configurelineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, configButton.frame.size.width, 1)];
+        configurelineView.backgroundColor = [UIColor lightGrayColor];
+        [self.configButton addSubview:configurelineView];
+        
+        CGRect turnoButtonFrame = self.turnoButton.frame;
+        turnoButtonFrame.origin.x = 0;
+        turnoButtonFrame.origin.y = 180;
+        self.turnoButton.frame = turnoButtonFrame;
+        UIView *turnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, turnoButton.frame.size.width, 1)];
+        turnolineView.backgroundColor = [UIColor lightGrayColor];
+        [self.turnoButton addSubview:turnolineView];
+        
+        CGRect canceltransactionButtonFrame = self.canceltransactionButton.frame;
+        canceltransactionButtonFrame.origin.x = 0;
+        canceltransactionButtonFrame.origin.y = 240;
+        self.canceltransactionButton.frame = canceltransactionButtonFrame;
+        UIView *tcanceltransactionlineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, canceltransactionButton.frame.size.width, 1)];
+        turnolineView.backgroundColor = [UIColor lightGrayColor];
+        [self.canceltransactionButton addSubview:tcanceltransactionlineView];
+        
+        CGRect newtransactionButtonFrame = self.newtransactionButton.frame;
+        newtransactionButtonFrame.origin.x = 0;
+        newtransactionButtonFrame.origin.y = 300;
+        self.newtransactionButton.frame = newtransactionButtonFrame;
+        UIView *newtransactiolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, newtransactionButton.frame.size.width, 1)];
+        turnolineView.backgroundColor = [UIColor lightGrayColor];
+        [self.newtransactionButton addSubview:newtransactiolineView];
+        
+        [self.usuarioButton setHidden:YES];
+        ///////////////////////////////
+        
     }
 }
 

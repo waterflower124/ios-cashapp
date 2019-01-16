@@ -47,6 +47,10 @@ int role_int = -1;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
+    tap.cancelsTouchesInView = NO;
+    
     role_int = -1;
     self.checkStatus = @"1";
     self.infoUserArray = [[NSMutableArray alloc] init];
@@ -59,15 +63,10 @@ int role_int = -1;
     [pincodeUIView setHidden:YES];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)dismissKeyboard
+{
+    [self.view endEditing:YES];
 }
-*/
 
 - (IBAction)continueButtonAction:(id)sender {
     
@@ -200,12 +199,6 @@ int role_int = -1;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    CGFloat numberOfRows =  self.role_list.count;
-//
-//    CGRect tableViewFrame = tableView.frame;
-//    tableViewFrame.size.height = numberOfRows * 40.0f;
-//    tableView.frame = tableViewFrame;
-    
     return self.role_list.count;
 }
 
@@ -241,18 +234,18 @@ int role_int = -1;
     return 40.0f;
 }
 
--(void)setHeightOfTableView
-{
-    
-    /**** set frame size of tableview according to number of cells ****/
-    CGFloat rowHeight = 40.0f;
-    int tableHeight = rowHeight * self.role_list.count;
-//    CGRect tableFrame = self.roleTableView.frame;
-//    tableFrame.size.height = tableHeight;
-//    self.roleTableView.frame = tableFrame;
-    [self.roleTableView setFrame:(CGRect){roleTableView.frame.origin.x, roleTableView.frame.origin.y, self.roleTableView.frame.size.width, tableHeight}];
-
-}
+//-(void)setHeightOfTableView
+//{
+//
+//    /**** set frame size of tableview according to number of cells ****/
+//    CGFloat rowHeight = 40.0f;
+//    int tableHeight = rowHeight * self.role_list.count;
+////    CGRect tableFrame = self.roleTableView.frame;
+////    tableFrame.size.height = tableHeight;
+////    self.roleTableView.frame = tableFrame;
+//    [self.roleTableView setFrame:(CGRect){roleTableView.frame.origin.x, roleTableView.frame.origin.y, self.roleTableView.frame.size.width, tableHeight}];
+//
+//}
 
 -(void)displayAlertView: (NSString *)header :(NSString *)message {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:header message:message preferredStyle:UIAlertControllerStyleAlert];

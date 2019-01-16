@@ -11,7 +11,7 @@
 #import "DeleteUserViewController.h"
 #import "EditUserViewController.h"
 #import "InsertUserViewController.h"
-#import "UserListTableViewCell.h"
+#import "../tableviewcells/UserListTableViewCell.h"
 
 @interface SearchUserViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -31,6 +31,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
+    tap.cancelsTouchesInView = NO;
+    
+    
     UITapGestureRecognizer *tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideSidePanel:)];
     tapper.numberOfTapsRequired = 1;
     [TransV addGestureRecognizer:tapper];
@@ -41,6 +46,11 @@
     
     ////   add event whenever search text view text is changed
     [self.searchWordTextView addTarget:self action:@selector(searchWordTextViewDidChange) forControlEvents:UIControlEventEditingChanged];
+}
+
+-(void)dismissKeyboard
+{
+    [self.view endEditing:YES];
 }
 
 -(void)hideSidePanel:(UIGestureRecognizer *)gesture{
@@ -137,7 +147,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UserListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userlisttableviewcell"];
     /*   set user full name and user name and image*/
-    NSString *userfullname = [NSString stringWithFormat:@"%@ %@", self.user_array[indexPath.row][1], self.user_array[indexPath.row][2]];
+    NSString *userfullname = [NSString stringWithFormat:@"%@ %@", self.showUsersArray[indexPath.row][1], self.showUsersArray[indexPath.row][2]];
     cell.userFullNameLabel.text = userfullname;
     cell.userNameLabel.text = self.showUsersArray[indexPath.row][4];
     if([self.showUsersArray[indexPath.row][3] isEqualToString:@"Supervisor"]) {/////supervisor

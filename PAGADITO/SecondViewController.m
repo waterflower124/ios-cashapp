@@ -26,6 +26,7 @@
 @synthesize privilidgeID3DashboardView;
 @synthesize priv3logoImageView, priv3FullNameLabel, priv3CurrentTimeLabel, priv3ShiftCodeLabel;
 
+@synthesize homeButton, reportbutton, configureButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -54,6 +55,18 @@
     if([globals.idPrivilegio isEqualToString:@"1"]) {
         [DashboardButton2 setImage:[UIImage imageNamed: @"system_config"] forState:UIControlStateNormal];
         [DashboardButton4 setImage:[UIImage imageNamed: @"Pagadito_0000_Capa-4"] forState:UIControlStateNormal];
+        
+        ///////  side menu button config   ////////////
+//        CGRect configureButtonFrame = self.configureButton.frame;
+//        configureButtonFrame.origin.x = 0;
+//        configureButtonFrame.origin.y = 0;
+//        self.configureButton.frame = configureButtonFrame;
+//        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 60, configureButton.frame.size.width, 1)];
+//        lineView.backgroundColor = [UIColor lightGrayColor];
+//        [configureButton addSubview:lineView];
+        
+        
+        ////////////////////////////////////////////
     } else if([globals.idPrivilegio isEqualToString:@"2"]) {
         [DashboardButton2 setImage:[UIImage imageNamed: @"assign_shift"] forState:UIControlStateNormal];
         [DashboardButton4 setImage:[UIImage imageNamed: @"Pagadito_0000_Capa-4"] forState:UIControlStateNormal];

@@ -8,7 +8,7 @@
 
 #import "EditUserViewController.h"
 #import "Global.h"
-#import "UserListTableViewCell.h"
+#import "../tableviewcells/UserListTableViewCell.h"
 #import "EditUserScreenViewController.h"
 #import "DeleteUserViewController.h"
 #import "InsertUserViewController.h"

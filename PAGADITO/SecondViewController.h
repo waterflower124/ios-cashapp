@@ -42,6 +42,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *priv3ShiftCodeLabel;
 - (IBAction)signoutButtonAction:(id)sender;
 
+////  side menu buttons  //////
+@property (weak, nonatomic) IBOutlet UIButton *homeButton;
+@property (weak, nonatomic) IBOutlet UIButton *reportbutton;
+@property (weak, nonatomic) IBOutlet UIButton *configureButton;
+@property (weak, nonatomic) IBOutlet UIButton *usuarioButton;
+@property (weak, nonatomic) IBOutlet UIButton *turnoButton;
+@property (weak, nonatomic) IBOutlet UIButton *canceltransactionButton;
+@property (weak, nonatomic) IBOutlet UIButton *newtransactionButton;
+@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 
 
 

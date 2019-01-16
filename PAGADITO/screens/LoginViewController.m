@@ -25,7 +25,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
     
 //    globals = [Global sharedInstance];
     
@@ -34,21 +36,15 @@
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     self.activityIndicator.center = self.overlayView.center;
     [self.overlayView addSubview:self.activityIndicator];
-    
-    
+
     
 }
 
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)dismissKeyboard
+{
+    [self.view endEditing:YES];
 }
-*/
 
 - (IBAction)LoginButtonAction:(id)sender {
     Global *globals = [Global sharedInstance];
@@ -68,16 +64,16 @@
     [self.activityIndicator startAnimating];
     [self.view addSubview:self.overlayView];
     
-    NSDictionary *credentials = @{@"credentials": @{
-                                                  @"email": @"jescobar@ninjawebcorporation.com",
-                                                  @"pwd": @"12345678a",
-                                                  @"ambiente": @"0"
-                                                  }};
 //    NSDictionary *credentials = @{@"credentials": @{
-//                                          @"email": emailText,
-//                                          @"pwd": passwordText,
-//                                          @"ambiente": @"0"
-//                                          }};
+//                                                  @"email": @"jescobar@ninjawebcorporation.com",
+//                                                  @"pwd": @"12345678a",
+//                                                  @"ambiente": @"0"
+//                                                  }};
+    NSDictionary *credentials = @{@"credentials": @{
+                                          @"email": emailText,
+                                          @"pwd": passwordText,
+                                          @"ambiente": @"0"
+                                          }};
     
     NSError *error;
     NSData *postData = [NSJSONSerialization dataWithJSONObject:credentials options:0 error:&error];

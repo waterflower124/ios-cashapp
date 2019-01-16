@@ -32,6 +32,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
+    
     Global *globals = [Global sharedInstance];
     if(globals.logo_imagePath.length == 0 ) {
         logoImageView.image = [UIImage imageNamed:@"pagadito_0000_logo.png"];
@@ -55,6 +58,11 @@
     self.activityIndicator.center = self.overlayView.center;
     [self.overlayView addSubview:self.activityIndicator];
     
+}
+
+-(void)dismissKeyboard
+{
+    [self.view endEditing:YES];
 }
 
 - (IBAction)SigninButtonAction:(id)sender {

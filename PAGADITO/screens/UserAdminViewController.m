@@ -8,7 +8,7 @@
 
 #import "UserAdminViewController.h"
 #import "Global.h"
-#import "UserListTableViewCell.h"
+#import "../tableviewcells/UserListTableViewCell.h"
 #import "AFNetworking.h"
 #import "InsertUserViewController.h"
 #import "EditUserViewController.h"

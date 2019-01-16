@@ -4194,6 +4194,206 @@ mal funcionamiento de las transacciones POS.</string>
             </objects>
             <point key="canvasLocation" x="-98" y="2810"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="Ra9-Wt-F0W">
+            <objects>
+                <viewController id="qja-4M-7Hc" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GCs-fY-y0d">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vsd-Ny-SAO">
+                                <rect key="frame" x="0.0" y="20" width="375" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6iT-yL-8h2">
+                                        <rect key="frame" x="16" y="18" width="30" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="83q-2n-oqp"/>
+                                            <constraint firstAttribute="height" constant="24" id="ca7-M3-Tub"/>
+                                        </constraints>
+                                        <state key="normal" image="Pagadito_0000_Layer-44.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="backButtonAction:" destination="XKq-6y-rr8" eventType="touchUpInside" id="AOE-3q-HVD"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="08g-6Q-BY7">
+                                        <rect key="frame" x="56" y="15" width="269" height="30"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="oXz-aV-uq6"/>
+                                        </constraints>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Nuevo Usuario">
+                                                <attributes>
+                                                    <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <font key="NSFont" size="24" name=".SFNSDisplay"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b9D-3E-mVU">
+                                        <rect key="frame" x="335" y="19" width="24" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="5vK-0e-kIf"/>
+                                            <constraint firstAttribute="width" constant="24" id="k6i-8k-n1d"/>
+                                        </constraints>
+                                        <state key="normal" image="Pagadito_0000s_0009_Layer-50.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="buttonPressed:" destination="APy-JS-0hp" eventType="touchUpInside" id="jwr-EP-t4f"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.13725490196078433" green="0.52941176470588236" blue="0.84313725490196079" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="b9D-3E-mVU" firstAttribute="leading" secondItem="08g-6Q-BY7" secondAttribute="trailing" constant="10" id="16B-KH-dSv"/>
+                                    <constraint firstItem="b9D-3E-mVU" firstAttribute="centerY" secondItem="vsd-Ny-SAO" secondAttribute="centerY" id="Fa3-qU-z6D"/>
+                                    <constraint firstItem="08g-6Q-BY7" firstAttribute="leading" secondItem="6iT-yL-8h2" secondAttribute="trailing" constant="10" id="Iqp-Ss-uj3"/>
+                                    <constraint firstAttribute="height" constant="60" id="eYs-mL-1It"/>
+                                    <constraint firstItem="6iT-yL-8h2" firstAttribute="leading" secondItem="vsd-Ny-SAO" secondAttribute="leading" constant="16" id="gzf-dK-U0g"/>
+                                    <constraint firstAttribute="trailing" secondItem="b9D-3E-mVU" secondAttribute="trailing" constant="16" id="kRY-nj-wpn"/>
+                                    <constraint firstItem="6iT-yL-8h2" firstAttribute="centerY" secondItem="vsd-Ny-SAO" secondAttribute="centerY" id="lhP-4N-6JZ"/>
+                                    <constraint firstItem="08g-6Q-BY7" firstAttribute="centerY" secondItem="vsd-Ny-SAO" secondAttribute="centerY" id="tD3-se-TJN"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CSL-JI-Tze">
+                                <rect key="frame" x="0.0" y="80" width="375" height="70"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HIG-rv-9t1">
+                                        <rect key="frame" x="270" y="0.0" width="80" height="70"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1tZ-2A-oV2">
+                                                <rect key="frame" x="0.0" y="8" width="80" height="35"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="jwb-vc-ob6"/>
+                                                </constraints>
+                                                <state key="normal" image="Pagadito_0001s_0004_Layer-100.png">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buscar" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EYX-TI-ygb">
+                                                <rect key="frame" x="0.0" y="51" width="80" height="21"/>
+                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                                <color key="textColor" red="0.13725490200000001" green="0.52941176469999995" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="GvT-X1-X59"/>
+                                            <constraint firstItem="1tZ-2A-oV2" firstAttribute="top" secondItem="HIG-rv-9t1" secondAttribute="top" constant="8" id="Rie-vK-tNg"/>
+                                            <constraint firstAttribute="height" constant="70" id="Z6L-DG-G7x"/>
+                                            <constraint firstAttribute="trailing" secondItem="EYX-TI-ygb" secondAttribute="trailing" id="dHq-dM-T7V"/>
+                                            <constraint firstItem="1tZ-2A-oV2" firstAttribute="leading" secondItem="HIG-rv-9t1" secondAttribute="leading" id="gb8-A1-bYb"/>
+                                            <constraint firstAttribute="trailing" secondItem="1tZ-2A-oV2" secondAttribute="trailing" id="jpF-Cf-8nT"/>
+                                            <constraint firstItem="EYX-TI-ygb" firstAttribute="top" secondItem="1tZ-2A-oV2" secondAttribute="bottom" constant="8" id="lrh-ne-UzY"/>
+                                            <constraint firstItem="EYX-TI-ygb" firstAttribute="leading" secondItem="HIG-rv-9t1" secondAttribute="leading" id="qRu-hX-xEU"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nvf-mT-NjB">
+                                        <rect key="frame" x="190" y="0.0" width="80" height="70"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="40J-WR-KZS">
+                                                <rect key="frame" x="0.0" y="8" width="80" height="35"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="2pp-3V-WX7"/>
+                                                </constraints>
+                                                <state key="normal" image="assignshift_icon.png">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Asignar" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="azn-Kb-X3W">
+                                                <rect key="frame" x="0.0" y="51" width="80" height="21"/>
+                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                                <color key="textColor" red="0.13725490200000001" green="0.52941176469999995" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="40J-WR-KZS" firstAttribute="leading" secondItem="Nvf-mT-NjB" secondAttribute="leading" id="3SP-m9-6Jo"/>
+                                            <constraint firstItem="40J-WR-KZS" firstAttribute="top" secondItem="Nvf-mT-NjB" secondAttribute="top" constant="8" id="DFy-T2-k8I"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="Uy8-G9-aLF"/>
+                                            <constraint firstItem="azn-Kb-X3W" firstAttribute="top" secondItem="40J-WR-KZS" secondAttribute="bottom" constant="8" id="f07-7a-aWO"/>
+                                            <constraint firstAttribute="height" constant="70" id="hoR-yF-eir"/>
+                                            <constraint firstAttribute="width" constant="80" id="nOM-5V-T0x"/>
+                                            <constraint firstItem="azn-Kb-X3W" firstAttribute="leading" secondItem="Nvf-mT-NjB" secondAttribute="leading" id="qHQ-74-VUq"/>
+                                            <constraint firstAttribute="trailing" secondItem="40J-WR-KZS" secondAttribute="trailing" id="y2J-U1-04Z"/>
+                                            <constraint firstAttribute="trailing" secondItem="azn-Kb-X3W" secondAttribute="trailing" id="zyX-XM-pOz"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lly-iH-DeS">
+                                        <rect key="frame" x="110" y="0.0" width="80" height="70"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x6P-v1-wyA">
+                                                <rect key="frame" x="0.0" y="8" width="80" height="35"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="Opi-1d-zPp"/>
+                                                </constraints>
+                                                <state key="normal" image="assignshift_logout_icon.png">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cerrar" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9wC-pY-LiQ">
+                                                <rect key="frame" x="0.0" y="51" width="80" height="21"/>
+                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                                <color key="textColor" red="0.13725490200000001" green="0.52941176469999995" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="9wC-pY-LiQ" secondAttribute="trailing" id="Aer-ch-aPW"/>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="BDW-VO-IqE"/>
+                                            <constraint firstItem="9wC-pY-LiQ" firstAttribute="top" secondItem="x6P-v1-wyA" secondAttribute="bottom" constant="8" id="NHd-4o-wEp"/>
+                                            <constraint firstAttribute="height" constant="70" id="PL9-Qu-cWd"/>
+                                            <constraint firstItem="9wC-pY-LiQ" firstAttribute="leading" secondItem="lly-iH-DeS" secondAttribute="leading" id="VUv-BU-xsI"/>
+                                            <constraint firstItem="x6P-v1-wyA" firstAttribute="top" secondItem="lly-iH-DeS" secondAttribute="top" constant="8" id="YiF-xY-hxj"/>
+                                            <constraint firstAttribute="trailing" secondItem="x6P-v1-wyA" secondAttribute="trailing" id="ZPO-HJ-sXd"/>
+                                            <constraint firstAttribute="width" constant="80" id="kkS-SZ-tSp"/>
+                                            <constraint firstItem="x6P-v1-wyA" firstAttribute="leading" secondItem="lly-iH-DeS" secondAttribute="leading" id="pxe-LY-Meo"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="yGK-fk-H9O"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="lly-iH-DeS" secondAttribute="bottom" id="62j-ZX-Rth"/>
+                                    <constraint firstItem="HIG-rv-9t1" firstAttribute="leading" secondItem="Nvf-mT-NjB" secondAttribute="trailing" id="AJB-sS-ycE"/>
+                                    <constraint firstAttribute="bottom" secondItem="Nvf-mT-NjB" secondAttribute="bottom" id="MKc-Ak-1bz"/>
+                                    <constraint firstItem="lly-iH-DeS" firstAttribute="top" secondItem="CSL-JI-Tze" secondAttribute="top" id="avM-UZ-uBF"/>
+                                    <constraint firstItem="Nvf-mT-NjB" firstAttribute="leading" secondItem="lly-iH-DeS" secondAttribute="trailing" id="coq-Ik-q9O"/>
+                                    <constraint firstAttribute="trailing" secondItem="HIG-rv-9t1" secondAttribute="trailing" constant="25" id="dde-ZZ-EMR"/>
+                                    <constraint firstItem="Nvf-mT-NjB" firstAttribute="top" secondItem="CSL-JI-Tze" secondAttribute="top" id="fIJ-xI-tID"/>
+                                    <constraint firstItem="HIG-rv-9t1" firstAttribute="top" secondItem="CSL-JI-Tze" secondAttribute="top" id="g4u-1C-cqY"/>
+                                    <constraint firstAttribute="height" constant="70" id="ziz-th-dPx"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.95294117647058818" green="0.97254901960784312" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="CSL-JI-Tze" firstAttribute="leading" secondItem="P7w-fo-NPw" secondAttribute="leading" id="1iJ-qn-qwa"/>
+                            <constraint firstItem="vsd-Ny-SAO" firstAttribute="leading" secondItem="P7w-fo-NPw" secondAttribute="leading" id="1oZ-mB-D1y"/>
+                            <constraint firstItem="CSL-JI-Tze" firstAttribute="trailing" secondItem="P7w-fo-NPw" secondAttribute="trailing" id="6tq-fh-T8x"/>
+                            <constraint firstItem="P7w-fo-NPw" firstAttribute="trailing" secondItem="vsd-Ny-SAO" secondAttribute="trailing" id="DXh-XA-WIh"/>
+                            <constraint firstItem="vsd-Ny-SAO" firstAttribute="top" secondItem="P7w-fo-NPw" secondAttribute="top" id="Hbp-uO-rJg"/>
+                            <constraint firstItem="CSL-JI-Tze" firstAttribute="top" secondItem="vsd-Ny-SAO" secondAttribute="bottom" id="xRy-f9-Bpi"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="P7w-fo-NPw"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tT5-EN-MM3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1084" y="2840.3298350824589"/>
+        </scene>
         <!--Second View Controller-->
         <scene sceneID="XTU-R8-2v7">
             <objects>
@@ -4482,8 +4682,8 @@ mal funcionamiento de las transacciones POS.</string>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3go-jg-uRG">
-                                <rect key="frame" x="-300" y="80" width="300" height="587"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3go-jg-uRG">
+                                <rect key="frame" x="-2" y="80" width="300" height="587"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SAT-yE-HHo">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
@@ -4495,7 +4695,7 @@ mal funcionamiento de las transacciones POS.</string>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yL0-bg-S7a">
-                                        <rect key="frame" x="0.0" y="59" width="300" height="60"/>
+                                        <rect key="frame" x="0.0" y="60" width="300" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -4507,7 +4707,7 @@ mal funcionamiento de las transacciones POS.</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="39A-hB-Du5">
-                                        <rect key="frame" x="0.0" y="119" width="300" height="60"/>
+                                        <rect key="frame" x="0.0" y="120" width="300" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <inset key="contentEdgeInsets" minX="15" minY="5" maxX="0.0" maxY="0.0"/>
@@ -4519,7 +4719,7 @@ mal funcionamiento de las transacciones POS.</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ygg-KR-6zV">
-                                        <rect key="frame" x="0.0" y="179" width="300" height="60"/>
+                                        <rect key="frame" x="0.0" y="180" width="300" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -4531,7 +4731,7 @@ mal funcionamiento de las transacciones POS.</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I5X-Hr-lCI">
-                                        <rect key="frame" x="0.0" y="239" width="300" height="60"/>
+                                        <rect key="frame" x="0.0" y="240" width="300" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -4540,7 +4740,7 @@ mal funcionamiento de las transacciones POS.</string>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IPN-qn-rRk">
-                                        <rect key="frame" x="0.0" y="299" width="300" height="60"/>
+                                        <rect key="frame" x="0.0" y="300" width="300" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -4552,7 +4752,7 @@ mal funcionamiento de las transacciones POS.</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lqs-2q-OAb">
-                                        <rect key="frame" x="0.0" y="359" width="300" height="60"/>
+                                        <rect key="frame" x="0.0" y="360" width="300" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -4575,36 +4775,6 @@ mal funcionamiento de las transacciones POS.</string>
                                             <segue destination="5Z4-mn-8hx" kind="show" id="MXZ-vI-Ph6"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Y6-oM-fRP">
-                                        <rect key="frame" x="0.0" y="59" width="300" height="1"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ElF-zp-fM9">
-                                        <rect key="frame" x="0.0" y="118" width="300" height="1"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rTd-LO-oO8">
-                                        <rect key="frame" x="0.0" y="179" width="300" height="1"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rzt-nv-rUj">
-                                        <rect key="frame" x="0.0" y="238" width="300" height="1"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gh6-EV-IXy">
-                                        <rect key="frame" x="0.0" y="359" width="300" height="1"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yjJ-PX-vcj">
-                                        <rect key="frame" x="0.0" y="299" width="300" height="1"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="20K-Pc-A0t">
                                         <rect key="frame" x="0.0" y="527" width="300" height="1"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -4637,13 +4807,21 @@ mal funcionamiento de las transacciones POS.</string>
                         <outlet property="MenuBtn" destination="SQZ-e8-DOq" id="Xrb-u2-Bmd"/>
                         <outlet property="SidePanel" destination="3go-jg-uRG" id="fRY-Bg-h4u"/>
                         <outlet property="TransV" destination="1kQ-N5-Kyv" id="h2a-uK-yEm"/>
+                        <outlet property="canceltransactionButton" destination="IPN-qn-rRk" id="eLG-hq-rBD"/>
+                        <outlet property="configureButton" destination="39A-hB-Du5" id="i4y-u0-Xxu"/>
                         <outlet property="dateTimeLabel" destination="kLu-fx-HeF" id="Wwr-zC-fzZ"/>
+                        <outlet property="homeButton" destination="SAT-yE-HHo" id="CCo-Rf-Ydu"/>
+                        <outlet property="logoutButton" destination="gVt-LY-OyI" id="R2Z-l3-Ly2"/>
+                        <outlet property="newtransactionButton" destination="lqs-2q-OAb" id="7y6-q0-MnF"/>
                         <outlet property="priv3CurrentTimeLabel" destination="Il1-cJ-Cvt" id="mX7-hU-Lbn"/>
                         <outlet property="priv3FullNameLabel" destination="2cE-J4-mE2" id="fvb-16-OH8"/>
                         <outlet property="priv3ShiftCodeLabel" destination="Ir0-np-Awh" id="asN-Vf-mZZ"/>
                         <outlet property="priv3logoImageView" destination="ruq-Jx-KTF" id="Vib-Bg-eQv"/>
                         <outlet property="privilidgeID3DashboardView" destination="mJH-pt-rb5" id="pJL-41-VEn"/>
+                        <outlet property="reportbutton" destination="yL0-bg-S7a" id="BEW-6p-pcp"/>
                         <outlet property="sessionInfoLabel" destination="CWD-zF-rsa" id="4Wt-H6-ZOy"/>
+                        <outlet property="turnoButton" destination="I5X-Hr-lCI" id="ofk-NW-KJ5"/>
+                        <outlet property="usuarioButton" destination="Ygg-KR-6zV" id="acK-RJ-qID"/>
                         <segue destination="APy-JS-0hp" kind="presentation" identifier="hometouseradmin_segue" id="iXa-z2-ZnQ"/>
                         <segue destination="UJ6-Nh-syK" kind="presentation" identifier="hometonewtransaction_segue" id="Edt-ev-liM"/>
                         <segue destination="5Z4-mn-8hx" kind="presentation" identifier="hometowelcome_segue" id="oaI-jn-cle"/>
@@ -11753,27 +11931,30 @@ mal funcionamiento de las transacciones POS.</string>
         <image name="Pagadito_0008_Layer-15-copy-2.png" width="132" height="29"/>
         <image name="Pagadito_0011_Configuración.png" width="171" height="33"/>
         <image name="Pagadito_0013_Layer-10.png" width="126" height="32"/>
+        <image name="assignshift_icon.png" width="35" height="35"/>
+        <image name="assignshift_logout_icon.png" width="37" height="36"/>
         <image name="user_supervisor_icon.png" width="70" height="47"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="e5t-5z-f4H"/>
-        <segue reference="X7W-o2-g0m"/>
-        <segue reference="3TK-Ke-iOO"/>
-        <segue reference="mvb-xt-TA0"/>
+        <segue reference="Uw2-EW-ngD"/>
+        <segue reference="hO8-wg-cUF"/>
+        <segue reference="e76-cs-Nyg"/>
+        <segue reference="u4j-r1-HxG"/>
+        <segue reference="DFb-lS-2Hg"/>
         <segue reference="Aoq-1C-Utg"/>
         <segue reference="ggG-WD-r8D"/>
-        <segue reference="4J5-oD-WY6"/>
-        <segue reference="IFn-GB-61X"/>
-        <segue reference="5o7-2G-f9V"/>
+        <segue reference="yf9-sf-dlg"/>
+        <segue reference="cB3-i3-ZTn"/>
+        <segue reference="nVN-oc-rfN"/>
         <segue reference="upf-uW-nS6"/>
         <segue reference="Hd1-eZ-QA3"/>
-        <segue reference="XZZ-XI-9Ei"/>
-        <segue reference="TdH-iV-ZbI"/>
-        <segue reference="Edt-ev-liM"/>
+        <segue reference="u63-Ve-mA7"/>
+        <segue reference="7J4-eP-Z5j"/>
+        <segue reference="eLc-Ye-xqu"/>
         <segue reference="zzn-x8-4xL"/>
-        <segue reference="UHC-Iq-8At"/>
+        <segue reference="Lcq-Df-uKr"/>
         <segue reference="oSC-O4-CSe"/>
-        <segue reference="Srs-VG-dz2"/>
-        <segue reference="oaI-jn-cle"/>
+        <segue reference="SQ9-67-Fzs"/>
+        <segue reference="lHT-m2-bJB"/>
     </inferredMetricsTieBreakers>
 </document>

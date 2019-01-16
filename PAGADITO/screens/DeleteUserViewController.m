@@ -13,7 +13,7 @@
 #import "SearchUserViewController.h"
 #import "AFNetworking.h"
 #import "UserAdminViewController.h"
-#import "DeletTableViewCell.h"
+#import "../tableviewcells/DeletTableViewCell.h"
 
 
 @interface DeleteUserViewController () <UITableViewDelegate, UITableViewDataSource>

@@ -37,6 +37,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
+    tap.cancelsTouchesInView = NO;
+    
+    
     self.selected_user = self.user_array[selected_index];
     NSLog(@"%@", self.user_array);
     NSLog(@"%@", self.selected_user);
@@ -64,6 +69,11 @@
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     self.activityIndicator.center = self.overlayView.center;
     [self.overlayView addSubview:self.activityIndicator];
+}
+
+-(void)dismissKeyboard
+{
+    [self.view endEditing:YES];
 }
 
 - (IBAction)backButtonAction:(id)sender {

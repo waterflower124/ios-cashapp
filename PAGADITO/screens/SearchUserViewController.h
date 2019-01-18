@@ -31,6 +31,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITableView *usersTableView;
 @property (weak, nonatomic) IBOutlet UITextField *searchWordTextView;
 
+
+@property (weak, nonatomic) IBOutlet UIButton *homeButton;
+@property (weak, nonatomic) IBOutlet UIButton *reportButton;
+@property (weak, nonatomic) IBOutlet UIButton *configButton;
+@property (weak, nonatomic) IBOutlet UIButton *usuarioButton;
+@property (weak, nonatomic) IBOutlet UIButton *turnoButton;
+@property (weak, nonatomic) IBOutlet UIButton *canceltransactionButton;
+@property (weak, nonatomic) IBOutlet UIButton *newtransactionButton;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

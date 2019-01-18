@@ -46,13 +46,15 @@
 @property (weak, nonatomic) IBOutlet UIButton *homeButton;
 @property (weak, nonatomic) IBOutlet UIButton *reportButton;
 @property (weak, nonatomic) IBOutlet UIButton *configButton;
-
 @property (weak, nonatomic) IBOutlet UIButton *usuarioButton;
 @property (weak, nonatomic) IBOutlet UIButton *turnoButton;
 @property (weak, nonatomic) IBOutlet UIButton *canceltransactionButton;
 @property (weak, nonatomic) IBOutlet UIButton *newtransactionButton;
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
+@property (weak, nonatomic) IBOutlet UIButton *cerraturnoButton;
 
+- (IBAction)homeButtonAction:(id)sender;
+- (IBAction)turnoButtonAction:(id)sender;
 
 
 

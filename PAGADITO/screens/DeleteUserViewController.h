@@ -37,6 +37,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)deleteUserCancelButtonAction:(id)sender;
 - (IBAction)deleteUserOKButtonAction:(id)sender;
 
+/////// side menu buttons configure /////////
+@property (weak, nonatomic) IBOutlet UIButton *homeButton;
+@property (weak, nonatomic) IBOutlet UIButton *reportButton;
+@property (weak, nonatomic) IBOutlet UIButton *configButton;
+@property (weak, nonatomic) IBOutlet UIButton *usuarioButton;
+@property (weak, nonatomic) IBOutlet UIButton *turnoButton;
+@property (weak, nonatomic) IBOutlet UIButton *canceltransactionButton;
+@property (weak, nonatomic) IBOutlet UIButton *newtransactionButton;
+
 
 
 @end

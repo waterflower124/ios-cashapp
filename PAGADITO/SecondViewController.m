@@ -11,6 +11,7 @@
 #import "screens/UserAdminViewController.h"
 #import "screens/NewTransactionViewController.h"
 #import "screens/WelcomeViewController.h"
+#import "screens/ShiftListViewController.h"
 
 @interface SecondViewController ()
 @property(strong, nonatomic)NSString *userFullNameText;
@@ -26,7 +27,7 @@
 @synthesize privilidgeID3DashboardView;
 @synthesize priv3logoImageView, priv3FullNameLabel, priv3CurrentTimeLabel, priv3ShiftCodeLabel;
 
-@synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
+@synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton, cerraturnoButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -92,7 +93,7 @@
         [self.turnoButton setHidden:YES];
         [self.canceltransactionButton setHidden:YES];
         [self.newtransactionButton setHidden:YES];
-        
+        [self.cerraturnoButton setHidden:YES];
         ////////////////////////////////////////////
     } else if([globals.idPrivilegio isEqualToString:@"2"]) {
         [DashboardButton2 setImage:[UIImage imageNamed: @"assign_shift"] forState:UIControlStateNormal];
@@ -135,12 +136,13 @@
         canceltransactionButtonFrame.origin.x = 0;
         canceltransactionButtonFrame.origin.y = 240;
         self.canceltransactionButton.frame = canceltransactionButtonFrame;
-        UIView *tcanceltransactionlineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, canceltransactionButton.frame.size.width, 1)];
-        turnolineView.backgroundColor = [UIColor lightGrayColor];
-        [self.canceltransactionButton addSubview:tcanceltransactionlineView];
+        UIView *canceltransactionlineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, canceltransactionButton.frame.size.width, 1)];
+        canceltransactionlineView.backgroundColor = [UIColor lightGrayColor];
+        [self.canceltransactionButton addSubview:canceltransactionlineView];
         
         [self.configButton setHidden:YES];
         [self.newtransactionButton setHidden:YES];
+        [self.cerraturnoButton setHidden:YES];
         ///////////////////////////////
         
     } else if([globals.idPrivilegio isEqualToString:@"3"]) {
@@ -157,6 +159,45 @@
         priv3CurrentTimeLabel.text = self.dateTimeLabelText;
         priv3ShiftCodeLabel.text = [NSString stringWithFormat:@"Shift Code: %@", globals.codeShift];
         [privilidgeID3DashboardView setHidden:NO];
+        
+        ///////  side menu button config   ////////////
+        CGRect homeButtonFrame = self.homeButton.frame;
+        homeButtonFrame.origin.x = 0;
+        homeButtonFrame.origin.y = 0;
+        self.homeButton.frame = homeButtonFrame;
+        UIView *homelineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, homeButton.frame.size.width, 1)];
+        homelineView.backgroundColor = [UIColor lightGrayColor];
+        [self.homeButton addSubview:homelineView];
+        
+        CGRect cerraturnoButtonFrame = self.cerraturnoButton.frame;
+        cerraturnoButtonFrame.origin.x = 0;
+        cerraturnoButtonFrame.origin.y = 60;
+        self.cerraturnoButton.frame = cerraturnoButtonFrame;
+        UIView *cerrarturnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, canceltransactionButton.frame.size.width, 1)];
+        cerrarturnolineView.backgroundColor = [UIColor lightGrayColor];
+        [self.cerraturnoButton addSubview:cerrarturnolineView];
+        
+        CGRect canceltransactionButtonFrame = self.canceltransactionButton.frame;
+        canceltransactionButtonFrame.origin.x = 0;
+        canceltransactionButtonFrame.origin.y = 120;
+        self.canceltransactionButton.frame = canceltransactionButtonFrame;
+        UIView *canceltransactionlineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, canceltransactionButton.frame.size.width, 1)];
+        canceltransactionlineView.backgroundColor = [UIColor lightGrayColor];
+        [self.canceltransactionButton addSubview:canceltransactionlineView];
+        
+        CGRect newtransactionButtonFrame = self.newtransactionButton.frame;
+        newtransactionButtonFrame.origin.x = 0;
+        newtransactionButtonFrame.origin.y = 180;
+        self.newtransactionButton.frame = newtransactionButtonFrame;
+        UIView *newtransactiolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, newtransactionButton.frame.size.width, 1)];
+        newtransactiolineView.backgroundColor = [UIColor lightGrayColor];
+        [self.newtransactionButton addSubview:newtransactiolineView];
+        
+        [self.reportButton setHidden:YES];
+        [self.configButton setHidden:YES];
+        [self.usuarioButton setHidden:YES];
+        [self.turnoButton setHidden:YES];
+        
     } else if([globals.idPrivilegio isEqualToString:@"4"]) {
         
         ///////  side menu button config   ////////////
@@ -184,9 +225,17 @@
         configurelineView.backgroundColor = [UIColor lightGrayColor];
         [self.configButton addSubview:configurelineView];
         
+        CGRect usuarioButtonFrame = self.usuarioButton.frame;
+        usuarioButtonFrame.origin.x = 0;
+        usuarioButtonFrame.origin.y = 180;
+        self.usuarioButton.frame = usuarioButtonFrame;
+        UIView *usuariolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, usuarioButton.frame.size.width, 1)];
+        usuariolineView.backgroundColor = [UIColor lightGrayColor];
+        [self.usuarioButton addSubview:usuariolineView];
+        
         CGRect turnoButtonFrame = self.turnoButton.frame;
         turnoButtonFrame.origin.x = 0;
-        turnoButtonFrame.origin.y = 180;
+        turnoButtonFrame.origin.y = 240;
         self.turnoButton.frame = turnoButtonFrame;
         UIView *turnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, turnoButton.frame.size.width, 1)];
         turnolineView.backgroundColor = [UIColor lightGrayColor];
@@ -194,21 +243,21 @@
         
         CGRect canceltransactionButtonFrame = self.canceltransactionButton.frame;
         canceltransactionButtonFrame.origin.x = 0;
-        canceltransactionButtonFrame.origin.y = 240;
+        canceltransactionButtonFrame.origin.y = 300;
         self.canceltransactionButton.frame = canceltransactionButtonFrame;
-        UIView *tcanceltransactionlineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, canceltransactionButton.frame.size.width, 1)];
-        turnolineView.backgroundColor = [UIColor lightGrayColor];
-        [self.canceltransactionButton addSubview:tcanceltransactionlineView];
+        UIView *canceltransactionlineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, canceltransactionButton.frame.size.width, 1)];
+        canceltransactionlineView.backgroundColor = [UIColor lightGrayColor];
+        [self.canceltransactionButton addSubview:canceltransactionlineView];
         
         CGRect newtransactionButtonFrame = self.newtransactionButton.frame;
         newtransactionButtonFrame.origin.x = 0;
-        newtransactionButtonFrame.origin.y = 300;
+        newtransactionButtonFrame.origin.y = 360;
         self.newtransactionButton.frame = newtransactionButtonFrame;
         UIView *newtransactiolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, newtransactionButton.frame.size.width, 1)];
-        turnolineView.backgroundColor = [UIColor lightGrayColor];
+        newtransactiolineView.backgroundColor = [UIColor lightGrayColor];
         [self.newtransactionButton addSubview:newtransactiolineView];
         
-        [self.usuarioButton setHidden:YES];
+        [self.cerraturnoButton setHidden:YES];
         ///////////////////////////////
         
     }
@@ -276,7 +325,7 @@
     if([globals.idPrivilegio isEqualToString:@"1"]) {
         
     } else if([globals.idPrivilegio isEqualToString:@"2"]) {
-        
+        [self performSegueWithIdentifier:@"hometoshiftlist_segue" sender:self];
     } else if([globals.idPrivilegio isEqualToString:@"4"]) {
         [self performSegueWithIdentifier:@"hometouseradmin_segue" sender:self];
     }
@@ -315,11 +364,28 @@
     } else if([segue.identifier isEqualToString:@"hometowelcome_segue"]) {
         WelcomeViewController *WelcomeVC;
         WelcomeVC = [segue destinationViewController];
+    } else if([segue.identifier isEqualToString:@"hometoshiftlist_segue"]) {
+        ShiftListViewController *ShiftListVC;
+        ShiftListVC = [segue destinationViewController];
     }
 }
 
 
 - (IBAction)signoutButtonAction:(id)sender {
     [self performSegueWithIdentifier:@"hometowelcome_segue" sender:self];
+}
+- (IBAction)homeButtonAction:(id)sender {
+    [TransV setHidden:YES];
+    [UIView transitionWithView:SidePanel duration:0.2 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        
+        CGRect frame = self->SidePanel.frame;
+        frame.origin.x = -self->SidePanel.frame.size.width;
+        self->SidePanel.frame = frame;
+        
+    } completion:nil];
+}
+
+- (IBAction)turnoButtonAction:(id)sender {
+    [self performSegueWithIdentifier:@"hometoshiftlist_segue" sender:self];
 }
 @end

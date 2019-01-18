@@ -82,7 +82,7 @@ Global *globals;
         
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
-        NSLog(@"%@", jsonResponse);
+        NSLog(@"popopopopopopopoa");
         
         NSString *statusValue = jsonResponse[@"status"];
         NSInteger statusInt = [statusValue integerValue];

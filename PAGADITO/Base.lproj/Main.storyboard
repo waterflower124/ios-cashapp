@@ -4248,6 +4248,7 @@ mal funcionamiento de las transacciones POS.</string>
                                         </state>
                                         <connections>
                                             <action selector="buttonPressed:" destination="APy-JS-0hp" eventType="touchUpInside" id="n37-1G-kE2"/>
+                                            <action selector="menuButtonAction:" destination="BU5-oH-Dg7" eventType="touchUpInside" id="Ucy-uZ-UW8"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -4732,10 +4733,114 @@ mal funcionamiento de las transacciones POS.</string>
                                     <constraint firstItem="flY-s9-Kwv" firstAttribute="top" secondItem="PHz-NK-m6b" secondAttribute="top" constant="15" id="xW3-R2-uJ8"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ge-1N-QUO">
+                                <rect key="frame" x="-300" y="80" width="300" height="587"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ki5-t9-qak">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0007_Layer-8.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="homeButtonAction:" destination="BU5-oH-Dg7" eventType="touchUpInside" id="fSK-qy-Jtb"/>
+                                            <action selector="homeButtonAction:" destination="qja-4M-7Hc" eventType="touchUpInside" id="wAO-e1-O7v"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y3j-VC-ufY">
+                                        <rect key="frame" x="0.0" y="59" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0013_Layer-10.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y99-HG-6j4">
+                                        <rect key="frame" x="0.0" y="119" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="5" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0011_Configuración.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sPF-xd-gtl">
+                                        <rect key="frame" x="0.0" y="179" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0008_Layer-15-copy-2.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="usuarioButtonAction:" destination="qja-4M-7Hc" eventType="touchUpInside" id="D7s-F4-H5m"/>
+                                            <action selector="usuarioButtonAction:" destination="BU5-oH-Dg7" eventType="touchUpInside" id="qHg-gP-3Ew"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h3I-vj-lyR">
+                                        <rect key="frame" x="0.0" y="239" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0001_Layer-17.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="turnoButtonAction:" destination="BU5-oH-Dg7" eventType="touchUpInside" id="hLX-Fh-hbP"/>
+                                            <action selector="turnoButtonAction:" destination="qja-4M-7Hc" eventType="touchUpInside" id="mTW-lH-Vgj"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NBl-Ws-TTv">
+                                        <rect key="frame" x="0.0" y="299" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0005_$.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bIG-Y1-Wc1">
+                                        <rect key="frame" x="0.0" y="359" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0003_Layer-16.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YFH-1W-D5r">
+                                        <rect key="frame" x="0.0" y="527" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0000_Layer-20.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="signoutButtonAction:" destination="BU5-oH-Dg7" eventType="touchUpInside" id="5MJ-Gs-v1Y"/>
+                                            <action selector="signoutButtonAction:" destination="qja-4M-7Hc" eventType="touchUpInside" id="QKh-Oc-ec3"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zR8-AA-9wY">
+                                        <rect key="frame" x="0.0" y="527" width="300" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="RgW-iN-TFg"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="gq3-1Q-Doo"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.95294117647058818" green="0.97254901960784312" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Qly-wZ-sOx" firstAttribute="leading" secondItem="zWS-p5-Oeh" secondAttribute="leading" id="0rA-Up-aYx"/>
+                            <constraint firstItem="zWS-p5-Oeh" firstAttribute="bottom" secondItem="9ge-1N-QUO" secondAttribute="bottom" id="1KN-me-Avu"/>
                             <constraint firstItem="UUb-ai-tFg" firstAttribute="trailing" secondItem="zWS-p5-Oeh" secondAttribute="trailing" id="2z9-5q-UDz"/>
                             <constraint firstItem="GqU-eQ-paE" firstAttribute="leading" secondItem="zWS-p5-Oeh" secondAttribute="leading" id="3lL-x7-ZxU"/>
                             <constraint firstItem="2C8-dp-G2m" firstAttribute="trailing" secondItem="zWS-p5-Oeh" secondAttribute="trailing" id="Dpu-hh-Qzd"/>
@@ -4746,8 +4851,10 @@ mal funcionamiento de las transacciones POS.</string>
                             <constraint firstItem="2C8-dp-G2m" firstAttribute="top" secondItem="GqU-eQ-paE" secondAttribute="bottom" id="KDG-bi-WGD"/>
                             <constraint firstItem="be9-0U-XUb" firstAttribute="top" secondItem="Qly-wZ-sOx" secondAttribute="bottom" id="RYc-PU-HBp"/>
                             <constraint firstItem="lUe-Ls-WYh" firstAttribute="trailing" secondItem="zWS-p5-Oeh" secondAttribute="trailing" id="RnW-0n-VRT"/>
+                            <constraint firstItem="9ge-1N-QUO" firstAttribute="leading" secondItem="zWS-p5-Oeh" secondAttribute="leading" constant="-300" id="S27-DQ-mQa"/>
                             <constraint firstAttribute="trailing" secondItem="mYR-dR-vGX" secondAttribute="trailing" id="UIw-FV-OOw"/>
                             <constraint firstItem="Am8-43-w8U" firstAttribute="leading" secondItem="zWS-p5-Oeh" secondAttribute="leading" id="Vck-Lq-wWe"/>
+                            <constraint firstItem="9ge-1N-QUO" firstAttribute="top" secondItem="Qly-wZ-sOx" secondAttribute="bottom" id="Xp6-8Q-pRO"/>
                             <constraint firstItem="PHz-NK-m6b" firstAttribute="centerY" secondItem="zWS-p5-Oeh" secondAttribute="centerY" id="YU9-m1-KFD"/>
                             <constraint firstItem="mYR-dR-vGX" firstAttribute="top" secondItem="Am8-43-w8U" secondAttribute="bottom" id="Z2c-D6-7V3"/>
                             <constraint firstItem="UUb-ai-tFg" firstAttribute="top" secondItem="lUe-Ls-WYh" secondAttribute="bottom" id="Z4q-Sd-KS9"/>
@@ -4770,14 +4877,24 @@ mal funcionamiento de las transacciones POS.</string>
                         <viewLayoutGuide key="safeArea" id="zWS-p5-Oeh"/>
                     </view>
                     <connections>
+                        <outlet property="SidePanel" destination="9ge-1N-QUO" id="lmf-Lf-Xwr"/>
                         <outlet property="TransV" destination="GqU-eQ-paE" id="CE5-gg-PJw"/>
                         <outlet property="alertMessageLabel" destination="flY-s9-Kwv" id="ebF-Kz-e1a"/>
+                        <outlet property="canceltransactionButton" destination="NBl-Ws-TTv" id="0bU-EW-h4o"/>
                         <outlet property="closeshiftAlertView" destination="PHz-NK-m6b" id="cVe-LN-RAc"/>
+                        <outlet property="configButton" destination="y99-HG-6j4" id="LBR-Vr-FgS"/>
+                        <outlet property="homeButton" destination="Ki5-t9-qak" id="lvr-W0-jLG"/>
+                        <outlet property="newtransactionButton" destination="bIG-Y1-Wc1" id="GJp-Bb-GmP"/>
+                        <outlet property="reportButton" destination="y3j-VC-ufY" id="Yp3-JG-hDD"/>
                         <outlet property="shiftlistTableView" destination="UUb-ai-tFg" id="vjB-Dy-y6e"/>
+                        <outlet property="turnoButton" destination="h3I-vj-lyR" id="Ete-JK-2od"/>
+                        <outlet property="usuarioButton" destination="sPF-xd-gtl" id="U3T-EF-cBW"/>
                         <segue destination="d8D-n5-YfO" kind="presentation" identifier="closeshifttohome_segue" id="G55-hW-0C4"/>
                         <segue destination="WyZ-oE-TfI" kind="presentation" identifier="closeshifttosearchshift_segue" id="mm5-66-luM"/>
                         <segue destination="npW-YR-nEN" kind="presentation" identifier="closeshifttoassignshift_segue" id="7OW-Kf-U3H"/>
                         <segue destination="qja-4M-7Hc" kind="presentation" identifier="closeshifttoshiftlist_segue" id="1YI-ML-KJt"/>
+                        <segue destination="APy-JS-0hp" kind="presentation" identifier="closeshifttouseradmin_segue" id="GRb-vz-vIW"/>
+                        <segue destination="5Z4-mn-8hx" kind="presentation" identifier="closeshifttowelcome_segue" id="fMW-BB-YHP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="szP-Ps-pcP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -5449,6 +5566,7 @@ mal funcionamiento de las transacciones POS.</string>
                                         </state>
                                         <connections>
                                             <action selector="buttonPressed:" destination="APy-JS-0hp" eventType="touchUpInside" id="Utg-z2-Sdb"/>
+                                            <action selector="menuButtonAction:" destination="WyZ-oE-TfI" eventType="touchUpInside" id="Its-wf-ZLf"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -5858,23 +5976,136 @@ mal funcionamiento de las transacciones POS.</string>
                                     <outlet property="delegate" destination="WyZ-oE-TfI" id="Up8-HM-rbV"/>
                                 </connections>
                             </tableView>
+                            <view hidden="YES" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V3z-AS-VPB">
+                                <rect key="frame" x="0.0" y="80" width="375" height="560"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="biW-a1-Prq">
+                                <rect key="frame" x="-5" y="80" width="300" height="587"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HdQ-Ds-kAD">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0007_Layer-8.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="homeButtonAction:" destination="qja-4M-7Hc" eventType="touchUpInside" id="ahB-zj-0hU"/>
+                                            <action selector="homeButtonAction:" destination="WyZ-oE-TfI" eventType="touchUpInside" id="vVu-sO-QAG"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eoF-nY-52J">
+                                        <rect key="frame" x="0.0" y="59" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0013_Layer-10.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Chv-ya-Jtu">
+                                        <rect key="frame" x="0.0" y="119" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="5" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0011_Configuración.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aC6-lx-IVf">
+                                        <rect key="frame" x="0.0" y="179" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0008_Layer-15-copy-2.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="usuarioButtonAction:" destination="qja-4M-7Hc" eventType="touchUpInside" id="OwK-6b-Pd9"/>
+                                            <action selector="usuarionButtonAction:" destination="WyZ-oE-TfI" eventType="touchUpInside" id="oje-0H-DOs"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mA8-uI-Dfp">
+                                        <rect key="frame" x="0.0" y="239" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0001_Layer-17.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="turnoButtonAction:" destination="WyZ-oE-TfI" eventType="touchUpInside" id="8ml-yj-pRD"/>
+                                            <action selector="turnoButtonAction:" destination="qja-4M-7Hc" eventType="touchUpInside" id="BLc-Dm-iZw"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9L0-xd-69L">
+                                        <rect key="frame" x="0.0" y="299" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0005_$.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tcx-mx-Nng">
+                                        <rect key="frame" x="0.0" y="359" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0003_Layer-16.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ihY-Ei-ADR">
+                                        <rect key="frame" x="0.0" y="527" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0000_Layer-20.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="signoutButtonAction:" destination="WyZ-oE-TfI" eventType="touchUpInside" id="muc-3K-P6R"/>
+                                            <action selector="signoutButtonAction:" destination="qja-4M-7Hc" eventType="touchUpInside" id="wNP-8R-HYy"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="huV-9i-FCj">
+                                        <rect key="frame" x="0.0" y="527" width="300" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="rdL-6P-qfY"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="zex-Td-9sM"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.95294117647058818" green="0.97254901960784312" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="d8q-aJ-7bh" firstAttribute="top" secondItem="V3z-AS-VPB" secondAttribute="bottom" id="34m-Jq-Qiy"/>
                             <constraint firstItem="d8q-aJ-7bh" firstAttribute="top" secondItem="4xy-zb-Osa" secondAttribute="bottom" id="51z-Pq-WAD"/>
                             <constraint firstItem="I9f-cl-40I" firstAttribute="trailing" secondItem="dr5-bS-JSm" secondAttribute="trailing" constant="16" id="8id-V3-y7b"/>
                             <constraint firstItem="qQO-0g-Egf" firstAttribute="leading" secondItem="I9f-cl-40I" secondAttribute="leading" id="AFb-Wg-lo9"/>
+                            <constraint firstItem="biW-a1-Prq" firstAttribute="top" secondItem="egq-4p-G43" secondAttribute="bottom" id="CuJ-oU-zYc"/>
                             <constraint firstItem="fHZ-Q4-VPq" firstAttribute="leading" secondItem="yHk-rP-90J" secondAttribute="leading" id="Fht-tK-dh4"/>
                             <constraint firstAttribute="trailing" secondItem="ueV-P3-uBg" secondAttribute="trailing" id="Gba-Ug-7r4"/>
                             <constraint firstItem="d8q-aJ-7bh" firstAttribute="trailing" secondItem="I9f-cl-40I" secondAttribute="trailing" id="KqB-uV-nzC"/>
                             <constraint firstItem="cXC-uK-Evg" firstAttribute="top" secondItem="egq-4p-G43" secondAttribute="bottom" id="LMd-by-okP"/>
+                            <constraint firstItem="V3z-AS-VPB" firstAttribute="leading" secondItem="I9f-cl-40I" secondAttribute="leading" id="Odu-fV-xCP"/>
                             <constraint firstItem="ueV-P3-uBg" firstAttribute="top" secondItem="qQO-0g-Egf" secondAttribute="bottom" id="Pxr-JV-29K"/>
+                            <constraint firstItem="biW-a1-Prq" firstAttribute="leading" secondItem="I9f-cl-40I" secondAttribute="leading" constant="-300" id="R2P-PF-PO8"/>
                             <constraint firstItem="4xy-zb-Osa" firstAttribute="leading" secondItem="I9f-cl-40I" secondAttribute="leading" id="TQa-pH-M9Y"/>
                             <constraint firstItem="d8q-aJ-7bh" firstAttribute="leading" secondItem="I9f-cl-40I" secondAttribute="leading" id="X6W-mx-wvL"/>
                             <constraint firstItem="cXC-uK-Evg" firstAttribute="trailing" secondItem="I9f-cl-40I" secondAttribute="trailing" id="XLq-XN-iIZ"/>
                             <constraint firstItem="I9f-cl-40I" firstAttribute="trailing" secondItem="4xy-zb-Osa" secondAttribute="trailing" id="YgR-PZ-LiN"/>
+                            <constraint firstItem="V3z-AS-VPB" firstAttribute="top" secondItem="egq-4p-G43" secondAttribute="bottom" id="YlQ-Xo-w2M"/>
                             <constraint firstItem="egq-4p-G43" firstAttribute="leading" secondItem="I9f-cl-40I" secondAttribute="leading" id="Ys4-Mx-EnI"/>
                             <constraint firstItem="4xy-zb-Osa" firstAttribute="top" secondItem="ueV-P3-uBg" secondAttribute="bottom" id="ZON-t1-dH8"/>
+                            <constraint firstAttribute="bottom" secondItem="biW-a1-Prq" secondAttribute="bottom" id="azl-SR-UZk"/>
                             <constraint firstItem="egq-4p-G43" firstAttribute="trailing" secondItem="I9f-cl-40I" secondAttribute="trailing" id="bPE-gw-L2g"/>
                             <constraint firstItem="fHZ-Q4-VPq" firstAttribute="top" secondItem="dr5-bS-JSm" secondAttribute="bottom" constant="5" id="hLj-ms-yay"/>
                             <constraint firstItem="I9f-cl-40I" firstAttribute="bottom" secondItem="d8q-aJ-7bh" secondAttribute="bottom" id="k7n-tm-Ye6"/>
@@ -5883,6 +6114,7 @@ mal funcionamiento de las transacciones POS.</string>
                             <constraint firstItem="dr5-bS-JSm" firstAttribute="leading" secondItem="I9f-cl-40I" secondAttribute="leading" constant="16" id="qYT-3k-7NI"/>
                             <constraint firstAttribute="trailing" secondItem="fHZ-Q4-VPq" secondAttribute="trailing" id="sD5-Yq-gPa"/>
                             <constraint firstItem="cXC-uK-Evg" firstAttribute="leading" secondItem="I9f-cl-40I" secondAttribute="leading" id="szn-Rm-RFU"/>
+                            <constraint firstItem="V3z-AS-VPB" firstAttribute="trailing" secondItem="I9f-cl-40I" secondAttribute="trailing" id="vfn-q3-TrL"/>
                             <constraint firstItem="dr5-bS-JSm" firstAttribute="top" secondItem="cXC-uK-Evg" secondAttribute="bottom" constant="7" id="yIb-gi-2mP"/>
                             <constraint firstItem="qQO-0g-Egf" firstAttribute="top" secondItem="fHZ-Q4-VPq" secondAttribute="bottom" id="yUe-N8-eFF"/>
                             <constraint firstItem="qQO-0g-Egf" firstAttribute="trailing" secondItem="I9f-cl-40I" secondAttribute="trailing" id="zMn-rD-W9M"/>
@@ -5890,17 +6122,28 @@ mal funcionamiento de las transacciones POS.</string>
                         <viewLayoutGuide key="safeArea" id="I9f-cl-40I"/>
                     </view>
                     <connections>
+                        <outlet property="SidePanel" destination="biW-a1-Prq" id="mhI-ZM-bre"/>
+                        <outlet property="TransV" destination="V3z-AS-VPB" id="kJS-TN-Iml"/>
+                        <outlet property="canceltransactionButton" destination="9L0-xd-69L" id="HdV-ea-X8I"/>
+                        <outlet property="configButton" destination="Chv-ya-Jtu" id="K32-hC-glV"/>
+                        <outlet property="homeButton" destination="HdQ-Ds-kAD" id="qGf-YA-bwf"/>
+                        <outlet property="newtransactionButton" destination="Tcx-mx-Nng" id="6mS-oW-hGA"/>
+                        <outlet property="reportButton" destination="eoF-nY-52J" id="Xng-9h-Zcp"/>
                         <outlet property="searchwordTextView" destination="dr5-bS-JSm" id="jlT-lc-Rj3"/>
                         <outlet property="shiftlistTableView" destination="4xy-zb-Osa" id="Zxj-nJ-U45"/>
+                        <outlet property="turnoButton" destination="mA8-uI-Dfp" id="8L8-G9-NNW"/>
+                        <outlet property="usuarioButton" destination="aC6-lx-IVf" id="I7c-e6-xsa"/>
                         <segue destination="npW-YR-nEN" kind="presentation" identifier="searchshifttoassignshift_segue" id="hZQ-nt-5jT"/>
                         <segue destination="d8D-n5-YfO" kind="presentation" identifier="searchshifttohome_segue" id="mRi-t2-K02"/>
                         <segue destination="BU5-oH-Dg7" kind="presentation" identifier="searchshifttocloseshift_segue" id="V6I-pk-HHA"/>
                         <segue destination="qja-4M-7Hc" kind="presentation" identifier="searchshifttoshiftlist_segue" id="y1I-Gf-tzI"/>
+                        <segue destination="APy-JS-0hp" kind="presentation" identifier="searchshifttouseradmin_segue" id="c2u-eF-LWn"/>
+                        <segue destination="5Z4-mn-8hx" kind="presentation" identifier="searchshifttowelcome_segue" id="1vm-Oj-j90"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qes-VY-ZzX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="209" y="4597"/>
+            <point key="canvasLocation" x="208.80000000000001" y="4595.3523238380812"/>
         </scene>
         <!--Second View Controller-->
         <scene sceneID="XTU-R8-2v7">
@@ -8210,7 +8453,7 @@ mal funcionamiento de las transacciones POS.</string>
                                     <attributedString key="attributedTitle"/>
                                 </state>
                                 <connections>
-                                    <segue destination="d8D-n5-YfO" kind="show" id="TdH-iV-ZbI"/>
+                                    <action selector="backButtonAction:" destination="APy-JS-0hp" eventType="touchUpInside" id="W5o-6N-aNP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iWX-Qv-B3Z">
@@ -8452,7 +8695,7 @@ mal funcionamiento de las transacciones POS.</string>
                                             <attributedString key="attributedTitle"/>
                                         </state>
                                         <connections>
-                                            <segue destination="d8D-n5-YfO" kind="show" id="4fL-Yf-9LV"/>
+                                            <action selector="homeButtonAction:" destination="APy-JS-0hp" eventType="touchUpInside" id="aVj-tN-sAf"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zGC-bh-agi">
@@ -8487,6 +8730,9 @@ mal funcionamiento de las transacciones POS.</string>
                                         <state key="normal" image="Pagadito_0008_Layer-15-copy-2.png">
                                             <attributedString key="attributedTitle"/>
                                         </state>
+                                        <connections>
+                                            <action selector="usuarioButtonAction:" destination="APy-JS-0hp" eventType="touchUpInside" id="Fts-ad-2Yf"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bme-aT-7m4">
                                         <rect key="frame" x="0.0" y="239" width="300" height="60"/>
@@ -8496,6 +8742,9 @@ mal funcionamiento de las transacciones POS.</string>
                                         <state key="normal" image="Pagadito_0001_Layer-17.png">
                                             <attributedString key="attributedTitle"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="qja-4M-7Hc" kind="show" id="WZW-Qe-Ojo"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aI6-o6-iZC">
                                         <rect key="frame" x="0.0" y="299" width="300" height="60"/>
@@ -8575,6 +8824,7 @@ mal funcionamiento de las transacciones POS.</string>
                         <segue destination="IOh-8J-uEF" kind="presentation" identifier="useradmintoedit_segue" id="4J5-oD-WY6"/>
                         <segue destination="gx5-XN-oCB" kind="presentation" identifier="useradmintodeleteuser_segue" id="IFn-GB-61X"/>
                         <segue destination="ouP-c7-clX" kind="presentation" identifier="useradmintosearchuser_segue" id="ggG-WD-r8D"/>
+                        <segue destination="d8D-n5-YfO" kind="presentation" identifier="useradmintohome_segue" id="MOE-b9-ZmU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XX9-9p-d0K" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -8914,6 +9164,9 @@ mal funcionamiento de las transacciones POS.</string>
                                         <state key="normal" image="Pagadito_0001_Layer-17.png">
                                             <attributedString key="attributedTitle"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="qja-4M-7Hc" kind="show" id="WdF-do-G6l"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AAe-Xm-Emz">
                                         <rect key="frame" x="0.0" y="299" width="300" height="60"/>
@@ -9394,6 +9647,9 @@ mal funcionamiento de las transacciones POS.</string>
                                         <state key="normal" image="Pagadito_0001_Layer-17.png">
                                             <attributedString key="attributedTitle"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="qja-4M-7Hc" kind="show" id="Ubw-ec-Trh"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qyw-fV-Z2N">
                                         <rect key="frame" x="0.0" y="299" width="300" height="60"/>
@@ -9792,6 +10048,9 @@ mal funcionamiento de las transacciones POS.</string>
                                         <state key="normal" image="Pagadito_0001_Layer-17.png">
                                             <attributedString key="attributedTitle"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="qja-4M-7Hc" kind="show" id="pMU-2O-5ac"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qAC-FD-Kz3">
                                         <rect key="frame" x="0.0" y="299" width="300" height="60"/>
@@ -12821,6 +13080,7 @@ mal funcionamiento de las transacciones POS.</string>
                                         </state>
                                         <connections>
                                             <action selector="buttonPressed:" destination="APy-JS-0hp" eventType="touchUpInside" id="GTc-eA-spg"/>
+                                            <action selector="menuButtonAction:" destination="npW-YR-nEN" eventType="touchUpInside" id="ilC-9t-aUh"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -13397,6 +13657,109 @@ mal funcionamiento de las transacciones POS.</string>
                                     <constraint firstItem="AYH-eo-8rw" firstAttribute="top" secondItem="ba6-fa-fJg" secondAttribute="bottom" constant="8" id="zrw-2m-mYH"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wBC-PQ-vFz">
+                                <rect key="frame" x="-300" y="80" width="300" height="587"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MC3-sW-0hB">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0007_Layer-8.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="homeButtonAction:" destination="npW-YR-nEN" eventType="touchUpInside" id="JLL-iB-wqm"/>
+                                            <action selector="homeButtonAction:" destination="qja-4M-7Hc" eventType="touchUpInside" id="We2-hc-gXF"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LRU-Zz-pGS">
+                                        <rect key="frame" x="0.0" y="59" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0013_Layer-10.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9im-z6-eau">
+                                        <rect key="frame" x="0.0" y="119" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="5" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0011_Configuración.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dvv-EX-aax">
+                                        <rect key="frame" x="0.0" y="179" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0008_Layer-15-copy-2.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="usuarioButtonAction:" destination="npW-YR-nEN" eventType="touchUpInside" id="REq-yC-KFY"/>
+                                            <action selector="usuarioButtonAction:" destination="qja-4M-7Hc" eventType="touchUpInside" id="akO-B2-h2v"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GMz-h1-nbl">
+                                        <rect key="frame" x="0.0" y="239" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0001_Layer-17.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="turnoButtonAction:" destination="qja-4M-7Hc" eventType="touchUpInside" id="hHK-5n-x0P"/>
+                                            <action selector="turnoButtonAction:" destination="npW-YR-nEN" eventType="touchUpInside" id="hHR-eT-NAd"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GgO-74-Qg0">
+                                        <rect key="frame" x="0.0" y="299" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0005_$.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r8J-7j-lnA">
+                                        <rect key="frame" x="0.0" y="359" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0003_Layer-16.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uwm-kf-nWL">
+                                        <rect key="frame" x="0.0" y="527" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0000_Layer-20.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="signoutButtonAction:" destination="npW-YR-nEN" eventType="touchUpInside" id="Qvp-BU-dYe"/>
+                                            <action selector="signoutButtonAction:" destination="qja-4M-7Hc" eventType="touchUpInside" id="uf1-W2-SxY"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jgJ-Wb-Xei">
+                                        <rect key="frame" x="0.0" y="527" width="300" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="ctG-MR-xqk"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="jEs-sD-R7p"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.95294117647058818" green="0.97254901960784312" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -13413,7 +13776,9 @@ mal funcionamiento de las transacciones POS.</string>
                             <constraint firstItem="U7K-yV-C5t" firstAttribute="top" secondItem="XE1-eJ-caC" secondAttribute="bottom" id="TB4-TK-IZ6"/>
                             <constraint firstItem="MM5-E6-zhc" firstAttribute="centerY" secondItem="qo6-Y3-rTP" secondAttribute="centerY" id="XbQ-yb-ubk"/>
                             <constraint firstItem="XE1-eJ-caC" firstAttribute="top" secondItem="qo6-Y3-rTP" secondAttribute="top" id="XdL-LP-XWn"/>
+                            <constraint firstItem="wBC-PQ-vFz" firstAttribute="leading" secondItem="qo6-Y3-rTP" secondAttribute="leading" constant="-300" id="Xv4-15-Mkq"/>
                             <constraint firstAttribute="trailing" secondItem="0XF-fR-JL3" secondAttribute="trailing" id="ZD6-oo-zo3"/>
+                            <constraint firstAttribute="bottom" secondItem="wBC-PQ-vFz" secondAttribute="bottom" id="ZL1-fD-d21"/>
                             <constraint firstItem="MM5-E6-zhc" firstAttribute="centerX" secondItem="qo6-Y3-rTP" secondAttribute="centerX" id="aDm-cJ-gDl"/>
                             <constraint firstItem="XE1-eJ-caC" firstAttribute="leading" secondItem="qo6-Y3-rTP" secondAttribute="leading" id="bOA-8S-gt0"/>
                             <constraint firstItem="0XF-fR-JL3" firstAttribute="top" secondItem="nHa-lR-SXL" secondAttribute="bottom" id="bcv-aJ-aPc"/>
@@ -13422,6 +13787,7 @@ mal funcionamiento de las transacciones POS.</string>
                             <constraint firstItem="Ykc-aB-6EL" firstAttribute="top" secondItem="0XF-fR-JL3" secondAttribute="bottom" id="e3g-oF-YeH"/>
                             <constraint firstItem="0XF-fR-JL3" firstAttribute="leading" secondItem="qo6-Y3-rTP" secondAttribute="leading" id="el2-kS-alo"/>
                             <constraint firstAttribute="trailing" secondItem="Ykc-aB-6EL" secondAttribute="trailing" id="h90-Gv-AWy"/>
+                            <constraint firstItem="wBC-PQ-vFz" firstAttribute="top" secondItem="XE1-eJ-caC" secondAttribute="bottom" id="jEh-Ur-7Gn"/>
                             <constraint firstItem="qo6-Y3-rTP" firstAttribute="bottom" secondItem="oNa-j9-QYp" secondAttribute="bottom" id="kBd-BU-eVh"/>
                             <constraint firstItem="oNa-j9-QYp" firstAttribute="top" secondItem="UAk-M6-Fld" secondAttribute="bottom" id="mBS-Ad-QGv"/>
                             <constraint firstItem="qo6-Y3-rTP" firstAttribute="trailing" secondItem="U7K-yV-C5t" secondAttribute="trailing" id="nZE-bk-lxR"/>
@@ -13434,18 +13800,28 @@ mal funcionamiento de las transacciones POS.</string>
                         <viewLayoutGuide key="safeArea" id="qo6-Y3-rTP"/>
                     </view>
                     <connections>
+                        <outlet property="SidePanel" destination="wBC-PQ-vFz" id="FSl-eO-Y88"/>
                         <outlet property="TransV" destination="UAk-M6-Fld" id="hOZ-Jr-2Zl"/>
                         <outlet property="assignturnoAlertView" destination="MM5-E6-zhc" id="gWF-sD-5Cp"/>
+                        <outlet property="canceltransactionButton" destination="GgO-74-Qg0" id="pLB-Rp-Z0o"/>
                         <outlet property="cashierlistTableView" destination="NrT-RO-Dp1" id="c31-EH-6Us"/>
                         <outlet property="cashierlistTableViewHeightConstraint" destination="D0K-jM-k2b" id="CAQ-E1-1Ye"/>
                         <outlet property="completeInsertShiftAlertView" destination="o7M-v3-DyR" id="fIj-DI-b4T"/>
+                        <outlet property="configButton" destination="9im-z6-eau" id="4EF-hj-WBd"/>
+                        <outlet property="homeButton" destination="MC3-sW-0hB" id="yax-LQ-LV0"/>
+                        <outlet property="newtransactionButton" destination="r8J-7j-lnA" id="Jep-D3-Rnf"/>
+                        <outlet property="reportButton" destination="LRU-Zz-pGS" id="I9x-nr-bve"/>
                         <outlet property="selectcashierButton" destination="T9E-bN-Xg4" id="QIs-m8-f6f"/>
                         <outlet property="shiftlistTableView" destination="eCC-p2-0Mp" id="hAR-eV-4Jm"/>
                         <outlet property="switchButton" destination="aPV-k7-Gwi" id="G9i-zT-IAg"/>
+                        <outlet property="turnoButton" destination="GMz-h1-nbl" id="xDI-qm-Sts"/>
+                        <outlet property="usuarioButton" destination="Dvv-EX-aax" id="IQa-cC-MUA"/>
                         <segue destination="d8D-n5-YfO" kind="presentation" identifier="assignshifttohome_segue" id="ZZY-bd-QXh"/>
                         <segue destination="WyZ-oE-TfI" kind="presentation" identifier="assignshifttosearchshift_segue" id="cBP-Ph-8a9"/>
                         <segue destination="BU5-oH-Dg7" kind="presentation" identifier="assignshifttocloseshift_segue" id="VI1-Lg-iw4"/>
                         <segue destination="qja-4M-7Hc" kind="presentation" identifier="assignshifttoshiftlist_segue" id="U5K-YZ-Smj"/>
+                        <segue destination="APy-JS-0hp" kind="presentation" identifier="assignshifttouseradmin_segue" id="Qdb-A5-IHW"/>
+                        <segue destination="5Z4-mn-8hx" kind="presentation" identifier="assignshifttowelcome_segue" id="ZFe-7j-RLI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jcg-0y-PwA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -14064,19 +14440,19 @@ mal funcionamiento de las transacciones POS.</string>
         <segue reference="D9R-AI-944"/>
         <segue reference="yf9-sf-dlg"/>
         <segue reference="cB3-i3-ZTn"/>
-        <segue reference="iXa-z2-ZnQ"/>
+        <segue reference="c2u-eF-LWn"/>
         <segue reference="Wxn-gR-MTe"/>
         <segue reference="Hd1-eZ-QA3"/>
-        <segue reference="XZZ-XI-9Ei"/>
-        <segue reference="VwE-5X-ZSC"/>
-        <segue reference="cBP-Ph-8a9"/>
-        <segue reference="QSL-jv-wfa"/>
+        <segue reference="u63-Ve-mA7"/>
+        <segue reference="mRi-t2-K02"/>
+        <segue reference="ryk-l3-l3n"/>
+        <segue reference="y1I-Gf-tzI"/>
         <segue reference="V6I-pk-HHA"/>
-        <segue reference="6Fy-iT-S7z"/>
+        <segue reference="eLc-Ye-xqu"/>
         <segue reference="zzn-x8-4xL"/>
-        <segue reference="UHC-Iq-8At"/>
+        <segue reference="Lcq-Df-uKr"/>
         <segue reference="oSC-O4-CSe"/>
-        <segue reference="Srs-VG-dz2"/>
-        <segue reference="MXZ-vI-Ph6"/>
+        <segue reference="SQ9-67-Fzs"/>
+        <segue reference="1vm-Oj-j90"/>
     </inferredMetricsTieBreakers>
 </document>

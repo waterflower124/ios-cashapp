@@ -200,16 +200,24 @@
 //            NSDate *date = [dateFormatter dateFromString:@"2019-01-12 19:06:33"];
 //            [dateFormatter setDateFormat:@"dd/MM/yyyy hh:mm a"];
 //            NSString *newDate = [dateFormatter stringFromDate:date];
-            NSDate *date;
-            NSString *newDate;
+            NSDate *fechaInicio_date, *fechaFin_date;
+            NSString *fechaInicio, *fechaFin;
             
             if(jsonArray.count > 0) {
                 for(int i = 0; i < jsonArray.count; i ++) {
                     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-                    date = [dateFormatter dateFromString:jsonArray[i][@"fechaInicio"]];
+                    fechaInicio_date = [dateFormatter dateFromString:jsonArray[i][@"fechaInicio"]];
+                    if(jsonArray[i][@"fechaFin"] != (NSString*)[NSNull null]) {
+                        fechaFin_date = [dateFormatter dateFromString:jsonArray[i][@"fechaFin"]];
+                    }
                     [dateFormatter setDateFormat:@"dd/MM/yyyy hh:mm a"];
-                    newDate = [dateFormatter stringFromDate:date];
-                    shift = @[jsonArray[i][@"codeShift"], jsonArray[i][@"idUser"], jsonArray[i][@"username"], jsonArray[i][@"nombres"],  jsonArray[i][@"apellidos"], newDate, jsonArray[i][@"fechaFin"], jsonArray[i][@"estado"]];
+                    fechaInicio = [dateFormatter stringFromDate:fechaInicio_date];
+                    if(jsonArray[i][@"fechaFin"] != (NSString*)[NSNull null]) {
+                        fechaFin = [dateFormatter stringFromDate:fechaFin_date];
+                    } else {
+                        fechaFin = @"------";
+                    }
+                    shift = @[jsonArray[i][@"codeShift"], jsonArray[i][@"idUser"], jsonArray[i][@"username"], jsonArray[i][@"nombres"],  jsonArray[i][@"apellidos"], fechaInicio, fechaFin, jsonArray[i][@"estado"], jsonArray[i][@"turnoCod"]];
                     [self.shift_array insertObject: shift atIndex: i];
                 }
                 [self.shiftlistTableView reloadData];
@@ -254,7 +262,7 @@
         }
         cell.codeShiftLabel.text = self.shift_array[indexPath.row][0];
         if([self.shift_array[indexPath.row][7] isEqualToString:@"0"]) {
-            cell.estadoLabel.text = @"Estado: Carrado";
+            cell.estadoLabel.text = @"Estado: Cerrado";
             cell.estadoLabel.backgroundColor = UIColor.grayColor;
         } else {
             cell.estadoLabel.text = @"Estado: Abierto";
@@ -262,11 +270,7 @@
         }
         cell.usernameLabel.text = self.shift_array[indexPath.row][2];
         cell.fachaInicioLabel.text = self.shift_array[indexPath.row][5];
-        if(self.shift_array[indexPath.row][6] == (NSString*)[NSNull null]) {
-            cell.fachaFinLabel.text = @"---";
-        } else {
-            cell.fachaFinLabel.text = self.shift_array[indexPath.row][6];
-        }
+        cell.fachaFinLabel.text = self.shift_array[indexPath.row][6];
         return cell;
     
 }

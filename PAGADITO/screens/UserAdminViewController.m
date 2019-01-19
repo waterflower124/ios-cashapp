@@ -14,6 +14,7 @@
 #import "EditUserViewController.h"
 #import "DeleteUserViewController.h"
 #import "SearchUserViewController.h"
+#import "../SecondViewController.h"
 
 @interface UserAdminViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -324,6 +325,9 @@
         SearchUserViewController *SearchUserVC;
         SearchUserVC = [segue destinationViewController];
         SearchUserVC.user_array = self.user_array;
+    } else if([segue.identifier isEqualToString:@"useradmintohome_segue"]) {
+        SecondViewController *SecondVC;
+        SecondVC = [segue destinationViewController];
     }
 }
 
@@ -344,6 +348,24 @@
     
 }
 
+- (IBAction)backButtonAction:(id)sender {
+    [self performSegueWithIdentifier:@"useradmintohome_segue" sender:self];
+}
+- (IBAction)homeButtonAction:(id)sender {
+    [self performSegueWithIdentifier:@"useradmintohome_segue" sender:self];
+}
+
+- (IBAction)usuarioButtonAction:(id)sender {
+    [TransV setHidden:YES];
+    [UIView transitionWithView:SidePanel duration:0.2 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        
+        CGRect frame = self->SidePanel.frame;
+        frame.origin.x = -self->SidePanel.frame.size.width;
+        self->SidePanel.frame = frame;
+        
+    } completion:nil];
+}
+
 -(void)displayAlertView: (NSString *)header :(NSString *)message {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:header message:message preferredStyle:UIAlertControllerStyleAlert];
     
@@ -353,4 +375,5 @@
     [alert addAction:actionOK];
     [self presentViewController:alert animated:YES completion:nil];
 }
+
 @end

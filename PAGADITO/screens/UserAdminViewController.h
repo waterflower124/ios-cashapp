@@ -25,6 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *sessionInfoLabel;
 @property (weak, nonatomic) IBOutlet UITableView *usersTableView;
 
+- (IBAction)backButtonAction:(id)sender;
+
+
 @property (weak, nonatomic) IBOutlet UIButton *createuserbutton;
 @property (weak, nonatomic) IBOutlet UIButton *deleteuserButton;
 @property (weak, nonatomic) IBOutlet UIButton *edituserButton;
@@ -43,7 +46,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *turnoButton;
 @property (weak, nonatomic) IBOutlet UIButton *canceltransactionButton;
 @property (weak, nonatomic) IBOutlet UIButton *newtransactionButton;
-
+- (IBAction)homeButtonAction:(id)sender;
+- (IBAction)usuarioButtonAction:(id)sender;
 
 
 @end

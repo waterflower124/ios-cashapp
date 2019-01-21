@@ -731,6 +731,7 @@ mal funcionamiento de las transacciones POS.</string>
                                         <connections>
                                             <action selector="backButtonAction:" destination="XKq-6y-rr8" eventType="touchUpInside" id="6hA-lD-yro"/>
                                             <action selector="backButtonAction:" destination="BU5-oH-Dg7" eventType="touchUpInside" id="JeN-8k-0nw"/>
+                                            <action selector="backButtonAction:" destination="ttg-Am-tA8" eventType="touchUpInside" id="c5f-fC-k9g"/>
                                             <action selector="backButtonAction:" destination="qja-4M-7Hc" eventType="touchUpInside" id="jmp-To-ahM"/>
                                         </connections>
                                     </button>
@@ -745,46 +746,7 @@ mal funcionamiento de las transacciones POS.</string>
                                                 <attributes>
                                                     <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <font key="NSFont" size="24" name=".SFNSDisplay"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                        <tabStops>
-                                                            <textTab alignment="left" location="28">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="56">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="84">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="112">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="140">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="168">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="196">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="224">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="252">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="280">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="308">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="336">
-                                                                <options/>
-                                                            </textTab>
-                                                        </tabStops>
-                                                    </paragraphStyle>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                                 </attributes>
                                             </fragment>
                                         </attributedString>
@@ -801,6 +763,7 @@ mal funcionamiento de las transacciones POS.</string>
                                         </state>
                                         <connections>
                                             <action selector="buttonPressed:" destination="APy-JS-0hp" eventType="touchUpInside" id="6ki-N0-Kbm"/>
+                                            <action selector="menuButtonAction:" destination="ttg-Am-tA8" eventType="touchUpInside" id="N6j-vL-Pbg"/>
                                             <action selector="menuButtonAction:" destination="BU5-oH-Dg7" eventType="touchUpInside" id="sOD-hg-oMe"/>
                                         </connections>
                                     </button>
@@ -1000,7 +963,7 @@ mal funcionamiento de las transacciones POS.</string>
                                         <rect key="frame" x="0.0" y="0.0" width="315" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="Selecciona un rol de usuario">
+                                        <state key="normal" title="Selecciona tipo de moneda">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
                                         <connections>
@@ -1018,10 +981,137 @@ mal funcionamiento de las transacciones POS.</string>
                                     <constraint firstItem="gPa-fy-8tP" firstAttribute="top" secondItem="0D1-LA-DBA" secondAttribute="top" id="cEV-Iz-uBb"/>
                                 </constraints>
                             </view>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IGG-b2-UIv">
+                                <rect key="frame" x="30" y="475" width="315" height="120"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="efF-ss-dum"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="fTo-0W-rmA">
+                                        <rect key="frame" x="0.0" y="28" width="315" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fTo-0W-rmA" id="kRm-P6-G1j">
+                                            <rect key="frame" x="0.0" y="0.0" width="315" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <view hidden="YES" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uEo-Ms-VLA">
+                                <rect key="frame" x="0.0" y="80" width="375" height="587"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h6v-dO-MON">
+                                <rect key="frame" x="-300" y="80" width="300" height="587"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BHL-Fm-ddR">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0007_Layer-8.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="homeButtonAction:" destination="d8D-n5-YfO" eventType="touchUpInside" id="DEw-oO-X5i"/>
+                                            <action selector="homeButtonAction:" destination="ttg-Am-tA8" eventType="touchUpInside" id="U66-QZ-wKp"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QHU-Sr-VFx">
+                                        <rect key="frame" x="0.0" y="60" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0013_Layer-10.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XOa-zg-G5b">
+                                        <rect key="frame" x="0.0" y="120" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="5" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0011_Configuración.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="configButtonAction:" destination="d8D-n5-YfO" eventType="touchUpInside" id="1Eg-sg-hMg"/>
+                                            <action selector="configButtonAction:" destination="ttg-Am-tA8" eventType="touchUpInside" id="MAk-MQ-hMx"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K0J-q5-Lfb">
+                                        <rect key="frame" x="0.0" y="180" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0008_Layer-15-copy-2.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="usuarioButtonAction:" destination="ttg-Am-tA8" eventType="touchUpInside" id="1Wp-EO-GBe"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NmM-Wa-1I6">
+                                        <rect key="frame" x="0.0" y="240" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0001_Layer-17.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="turnoButtonAction:" destination="d8D-n5-YfO" eventType="touchUpInside" id="cbG-P3-seP"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xFw-A4-5lK">
+                                        <rect key="frame" x="0.0" y="300" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0005_$.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZaA-MH-B0Z">
+                                        <rect key="frame" x="0.0" y="360" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0003_Layer-16.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j9f-uP-hZH">
+                                        <rect key="frame" x="0.0" y="527" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="Pagadito_0000_Layer-20.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="signoutButtonAction:" destination="ttg-Am-tA8" eventType="touchUpInside" id="bUB-Zk-gli"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xiE-kb-ywx">
+                                        <rect key="frame" x="0.0" y="527" width="300" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="gJ8-hS-BxH"/>
+                                    <constraint firstAttribute="width" constant="300" id="uzc-H6-Q2W"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.95294117647058818" green="0.97254901960784312" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="uEo-Ms-VLA" firstAttribute="leading" secondItem="h6v-dO-MON" secondAttribute="trailing" id="1kt-dA-S41"/>
                             <constraint firstItem="dPU-TD-D2S" firstAttribute="leading" secondItem="RdJ-Ju-NtV" secondAttribute="leading" id="2Od-JJ-anO"/>
+                            <constraint firstAttribute="bottom" secondItem="h6v-dO-MON" secondAttribute="bottom" id="3Gz-L5-l8d"/>
                             <constraint firstItem="dPU-TD-D2S" firstAttribute="top" secondItem="RdJ-Ju-NtV" secondAttribute="top" id="4Wb-zY-PTv"/>
                             <constraint firstItem="RdJ-Ju-NtV" firstAttribute="trailing" secondItem="4if-Kx-7DF" secondAttribute="trailing" constant="30" id="4yz-4B-a4x"/>
                             <constraint firstItem="yS6-uF-dPV" firstAttribute="top" secondItem="V2H-ud-sp1" secondAttribute="bottom" constant="5" id="6u9-Q3-ICi"/>
@@ -1031,6 +1121,9 @@ mal funcionamiento de las transacciones POS.</string>
                             <constraint firstItem="vTq-wv-o4s" firstAttribute="leading" secondItem="RdJ-Ju-NtV" secondAttribute="leading" constant="30" id="FeL-Eo-btC"/>
                             <constraint firstItem="PoN-aX-LWt" firstAttribute="leading" secondItem="RdJ-Ju-NtV" secondAttribute="leading" constant="30" id="G2D-Hy-Xec"/>
                             <constraint firstItem="RdJ-Ju-NtV" firstAttribute="trailing" secondItem="yS6-uF-dPV" secondAttribute="trailing" constant="30" id="JtL-tL-SWa"/>
+                            <constraint firstItem="uEo-Ms-VLA" firstAttribute="trailing" secondItem="RdJ-Ju-NtV" secondAttribute="trailing" id="K1z-aY-Kzj"/>
+                            <constraint firstItem="IGG-b2-UIv" firstAttribute="top" secondItem="0D1-LA-DBA" secondAttribute="bottom" id="MDU-dA-gQV"/>
+                            <constraint firstItem="IGG-b2-UIv" firstAttribute="leading" secondItem="RdJ-Ju-NtV" secondAttribute="leading" constant="30" id="Ne2-jC-MgS"/>
                             <constraint firstItem="ctJ-45-LwQ" firstAttribute="top" secondItem="4if-Kx-7DF" secondAttribute="bottom" constant="20" id="Oyc-lB-gEi"/>
                             <constraint firstItem="4if-Kx-7DF" firstAttribute="top" secondItem="PoN-aX-LWt" secondAttribute="bottom" constant="5" id="Reo-UR-WQZ"/>
                             <constraint firstItem="rct-Co-0oX" firstAttribute="top" secondItem="c9y-dm-Mv8" secondAttribute="bottom" constant="30" id="TMj-8m-U4Q"/>
@@ -1042,20 +1135,42 @@ mal funcionamiento de las transacciones POS.</string>
                             <constraint firstItem="Eov-i5-1JD" firstAttribute="top" secondItem="ctJ-45-LwQ" secondAttribute="bottom" constant="15" id="fB5-4l-hnw"/>
                             <constraint firstItem="V2H-ud-sp1" firstAttribute="leading" secondItem="RdJ-Ju-NtV" secondAttribute="leading" constant="30" id="fiV-t3-4Ag"/>
                             <constraint firstItem="RdJ-Ju-NtV" firstAttribute="trailing" secondItem="V2H-ud-sp1" secondAttribute="trailing" constant="30" id="fux-R0-Ial"/>
+                            <constraint firstItem="RdJ-Ju-NtV" firstAttribute="bottom" secondItem="uEo-Ms-VLA" secondAttribute="bottom" id="h3A-Dh-Wq0"/>
                             <constraint firstItem="dPU-TD-D2S" firstAttribute="trailing" secondItem="RdJ-Ju-NtV" secondAttribute="trailing" id="h3W-dS-pVq"/>
                             <constraint firstItem="Eov-i5-1JD" firstAttribute="leading" secondItem="I7i-Mf-Kdr" secondAttribute="leading" id="hSH-hd-VmT"/>
                             <constraint firstItem="8pN-O4-clD" firstAttribute="leading" secondItem="RdJ-Ju-NtV" secondAttribute="leading" constant="30" id="hlq-76-LhZ"/>
+                            <constraint firstItem="uEo-Ms-VLA" firstAttribute="top" secondItem="dPU-TD-D2S" secondAttribute="bottom" id="kQp-bv-iht"/>
                             <constraint firstItem="0D1-LA-DBA" firstAttribute="leading" secondItem="RdJ-Ju-NtV" secondAttribute="leading" constant="30" id="mg9-n8-RYR"/>
                             <constraint firstItem="PoN-aX-LWt" firstAttribute="top" secondItem="0D1-LA-DBA" secondAttribute="bottom" constant="5" id="pcJ-jz-Wqc"/>
+                            <constraint firstItem="RdJ-Ju-NtV" firstAttribute="trailing" secondItem="IGG-b2-UIv" secondAttribute="trailing" constant="30" id="pkC-DK-Ryo"/>
                             <constraint firstItem="yS6-uF-dPV" firstAttribute="leading" secondItem="RdJ-Ju-NtV" secondAttribute="leading" constant="30" id="qwV-4e-x1b"/>
                             <constraint firstItem="ctJ-45-LwQ" firstAttribute="leading" secondItem="RdJ-Ju-NtV" secondAttribute="leading" constant="40" id="r2m-pR-TCZ"/>
+                            <constraint firstItem="h6v-dO-MON" firstAttribute="leading" secondItem="RdJ-Ju-NtV" secondAttribute="leading" constant="-300" id="rQR-dx-R1e"/>
                             <constraint firstItem="8pN-O4-clD" firstAttribute="top" secondItem="vTq-wv-o4s" secondAttribute="bottom" constant="10" id="rXl-3j-7BZ"/>
                             <constraint firstItem="0D1-LA-DBA" firstAttribute="top" secondItem="yS6-uF-dPV" secondAttribute="bottom" constant="5" id="vNC-IP-0jw"/>
                             <constraint firstItem="4if-Kx-7DF" firstAttribute="leading" secondItem="RdJ-Ju-NtV" secondAttribute="leading" constant="30" id="vgc-Q2-h6U"/>
+                            <constraint firstItem="h6v-dO-MON" firstAttribute="top" secondItem="dPU-TD-D2S" secondAttribute="bottom" id="xq8-qm-KnM"/>
                             <constraint firstItem="RdJ-Ju-NtV" firstAttribute="trailing" secondItem="0D1-LA-DBA" secondAttribute="trailing" constant="30" id="zBU-m9-eP5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RdJ-Ju-NtV"/>
                     </view>
+                    <connections>
+                        <outlet property="SidePanel" destination="h6v-dO-MON" id="D3O-VF-eWv"/>
+                        <outlet property="TransV" destination="uEo-Ms-VLA" id="Gk2-dp-x4b"/>
+                        <outlet property="canceltransactionButton" destination="xFw-A4-5lK" id="jd7-re-ahG"/>
+                        <outlet property="configButton" destination="XOa-zg-G5b" id="59p-zj-0oX"/>
+                        <outlet property="homeButton" destination="BHL-Fm-ddR" id="RgB-qG-yL8"/>
+                        <outlet property="logoImageView" destination="rct-Co-0oX" id="wuh-f8-TO3"/>
+                        <outlet property="newtransactionButton" destination="ZaA-MH-B0Z" id="cSr-NG-7lT"/>
+                        <outlet property="reportButton" destination="QHU-Sr-VFx" id="1b2-Ds-xdz"/>
+                        <outlet property="sessionInfoLabel" destination="TT9-Nf-Bdv" id="xNU-dC-ZrB"/>
+                        <outlet property="turnoButton" destination="NmM-Wa-1I6" id="Hh9-rI-srX"/>
+                        <outlet property="usuarioButton" destination="K0J-q5-Lfb" id="kgR-Vo-xKf"/>
+                        <segue destination="yT9-pw-3FR" kind="presentation" identifier="informationcomercialtosystemconfig_segue" id="mHU-jz-SJH"/>
+                        <segue destination="d8D-n5-YfO" kind="presentation" identifier="informationcomercialtohome_segue" id="vrx-Hg-wVT"/>
+                        <segue destination="APy-JS-0hp" kind="presentation" identifier="informationcomercialtouseradmin_segue" id="I6e-Rf-6AT"/>
+                        <segue destination="5Z4-mn-8hx" kind="presentation" identifier="informationcomercialtowelcome_segue" id="jJO-py-Ohc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bpg-bH-Pab" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1507,46 +1622,7 @@ mal funcionamiento de las transacciones POS.</string>
                                                 <attributes>
                                                     <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <font key="NSFont" size="24" name=".SFNSDisplay"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                        <tabStops>
-                                                            <textTab alignment="left" location="28">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="56">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="84">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="112">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="140">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="168">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="196">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="224">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="252">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="280">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="308">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="336">
-                                                                <options/>
-                                                            </textTab>
-                                                        </tabStops>
-                                                    </paragraphStyle>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                                 </attributes>
                                             </fragment>
                                         </attributedString>
@@ -1645,7 +1721,8 @@ mal funcionamiento de las transacciones POS.</string>
                                             <constraint firstAttribute="height" constant="50" id="GzA-ur-54u"/>
                                             <constraint firstAttribute="width" constant="255" id="bjq-Im-ckb"/>
                                         </constraints>
-                                        <string key="text">Tu contraseña ha sido reestablecida con éxito</string>
+                                        <string key="text">Tu contraseña ha sido 
+reestablecida con éxito</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" red="0.46274509800000002" green="0.46274509800000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1754,46 +1831,7 @@ mal funcionamiento de las transacciones POS.</string>
                                                 <attributes>
                                                     <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <font key="NSFont" size="24" name=".SFNSDisplay"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                        <tabStops>
-                                                            <textTab alignment="left" location="28">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="56">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="84">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="112">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="140">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="168">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="196">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="224">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="252">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="280">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="308">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="336">
-                                                                <options/>
-                                                            </textTab>
-                                                        </tabStops>
-                                                    </paragraphStyle>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                                 </attributes>
                                             </fragment>
                                         </attributedString>
@@ -1853,7 +1891,8 @@ mal funcionamiento de las transacciones POS.</string>
                                     <constraint firstAttribute="width" constant="260" id="8xE-At-gEM"/>
                                     <constraint firstAttribute="height" constant="55" id="T4U-wt-dny"/>
                                 </constraints>
-                                <string key="text">Ingresa el código WSK de tu Pagadito POS</string>
+                                <string key="text">Ingresa el código WSK de tu 
+Pagadito POS</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.13725490196078433" green="0.52941176470588236" blue="0.84313725490196079" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1878,7 +1917,9 @@ mal funcionamiento de las transacciones POS.</string>
                                             <constraint firstAttribute="width" constant="255" id="iU2-0x-Uqv"/>
                                             <constraint firstAttribute="height" constant="80" id="jM0-JC-4JI"/>
                                         </constraints>
-                                        <string key="text">WSK no encontrado.  Introduce un WSK válido o contacta a soporte</string>
+                                        <string key="text">WSK no encontrado.  
+Introduce un WSK válido 
+o contacta a soporte</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" red="0.46274509803921571" green="0.46274509803921571" blue="0.46274509803921571" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -15260,8 +15301,6 @@ mal funcionamiento de las transacciones POS.</string>
         <image name="wsk_response_fail_icon.png" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Uw2-EW-ngD"/>
-        <segue reference="OtL-eo-as1"/>
         <segue reference="L35-3n-3Ti"/>
         <segue reference="7OW-Kf-U3H"/>
         <segue reference="e76-cs-Nyg"/>
@@ -15271,19 +15310,19 @@ mal funcionamiento de las transacciones POS.</string>
         <segue reference="ZY0-Ah-Urh"/>
         <segue reference="3ax-so-uZt"/>
         <segue reference="IFn-GB-61X"/>
-        <segue reference="t6x-v6-QLl"/>
+        <segue reference="I6e-Rf-6AT"/>
         <segue reference="Wxn-gR-MTe"/>
         <segue reference="Hd1-eZ-QA3"/>
         <segue reference="0UB-4q-i86"/>
-        <segue reference="i2L-KL-cp4"/>
+        <segue reference="vrx-Hg-wVT"/>
         <segue reference="mm5-66-luM"/>
-        <segue reference="1YI-ML-KJt"/>
+        <segue reference="QSL-jv-wfa"/>
         <segue reference="V6I-pk-HHA"/>
-        <segue reference="xZR-O9-J92"/>
+        <segue reference="8TB-nb-JmB"/>
         <segue reference="zzn-x8-4xL"/>
-        <segue reference="XVa-NO-9ls"/>
+        <segue reference="mcD-Fu-Y45"/>
         <segue reference="oSC-O4-CSe"/>
-        <segue reference="Zim-v3-fnk"/>
+        <segue reference="mHU-jz-SJH"/>
         <segue reference="db4-ab-WBO"/>
     </inferredMetricsTieBreakers>
 </document>

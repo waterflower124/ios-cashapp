@@ -13,6 +13,7 @@
 #import "screens/WelcomeViewController.h"
 #import "screens/ShiftListViewController.h"
 #import "AFNetworking.h"
+#import "screens/SystemConfigurationViewController.h"
 
 @interface SecondViewController ()
 @property(strong, nonatomic)NSString *userFullNameText;
@@ -333,7 +334,7 @@
 - (IBAction)DashboardButton2Action:(id)sender {
     Global *globals = [Global sharedInstance];
     if([globals.idPrivilegio isEqualToString:@"1"]) {
-        
+        [self performSegueWithIdentifier:@"hometoconfigure_segue" sender:self];
     } else if([globals.idPrivilegio isEqualToString:@"2"]) {
         [self performSegueWithIdentifier:@"hometoshiftlist_segue" sender:self];
     } else if([globals.idPrivilegio isEqualToString:@"4"]) {
@@ -377,6 +378,9 @@
     } else if([segue.identifier isEqualToString:@"hometoshiftlist_segue"]) {
         ShiftListViewController *ShiftListVC;
         ShiftListVC = [segue destinationViewController];
+    } else if([segue.identifier isEqualToString:@"hometoconfigure_segue"]) {
+        SystemConfigurationViewController *SystemConfigurationVC;
+        SystemConfigurationVC = [segue destinationViewController];
     }
 }
 
@@ -406,6 +410,10 @@
 
 - (IBAction)cerraturnoButtonAction:(id)sender {
     [self closeShiftCode];
+}
+
+- (IBAction)configButtonAction:(id)sender {
+    [self performSegueWithIdentifier:@"hometoconfigure_segue" sender:self];
 }
 
 -(void)closeShiftCode {

@@ -58,6 +58,7 @@
 - (IBAction)homeButtonAction:(id)sender;
 - (IBAction)turnoButtonAction:(id)sender;
 - (IBAction)cerraturnoButtonAction:(id)sender;
+- (IBAction)configButtonAction:(id)sender;
 
 
 

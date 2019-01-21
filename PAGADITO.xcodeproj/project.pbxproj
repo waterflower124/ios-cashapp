@@ -22,6 +22,8 @@
 		2329E15121F579B000CD8EB2 /* ResetPasswordWSKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2329E15021F579B000CD8EB2 /* ResetPasswordWSKViewController.m */; };
 		2329E15321F5814C00CD8EB2 /* wsk_response_fail_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2329E15221F5814B00CD8EB2 /* wsk_response_fail_icon.png */; };
 		2329E15621F585FC00CD8EB2 /* ResetPasswordConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2329E15521F585FC00CD8EB2 /* ResetPasswordConfirmViewController.m */; };
+		2329E15921F5B00F00CD8EB2 /* SystemConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2329E15821F5B00F00CD8EB2 /* SystemConfigurationViewController.m */; };
+		2329E15C21F5CFA200CD8EB2 /* InformationComercialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2329E15B21F5CFA200CD8EB2 /* InformationComercialViewController.m */; };
 		2337175D21EA48F4003D7D15 /* user_supervisor_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2337175C21EA48EC003D7D15 /* user_supervisor_icon.png */; };
 		2337175F21EA493B003D7D15 /* user_cajero_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2337175E21EA493A003D7D15 /* user_cajero_icon.png */; };
 		2337176221EA4D6D003D7D15 /* UserListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2337176121EA4D6D003D7D15 /* UserListTableViewCell.m */; };
@@ -187,6 +189,10 @@
 		2329E15221F5814B00CD8EB2 /* wsk_response_fail_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wsk_response_fail_icon.png; sourceTree = "<group>"; };
 		2329E15421F585FC00CD8EB2 /* ResetPasswordConfirmViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResetPasswordConfirmViewController.h; sourceTree = "<group>"; };
 		2329E15521F585FC00CD8EB2 /* ResetPasswordConfirmViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResetPasswordConfirmViewController.m; sourceTree = "<group>"; };
+		2329E15721F5B00F00CD8EB2 /* SystemConfigurationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SystemConfigurationViewController.h; sourceTree = "<group>"; };
+		2329E15821F5B00F00CD8EB2 /* SystemConfigurationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SystemConfigurationViewController.m; sourceTree = "<group>"; };
+		2329E15A21F5CFA200CD8EB2 /* InformationComercialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InformationComercialViewController.h; sourceTree = "<group>"; };
+		2329E15B21F5CFA200CD8EB2 /* InformationComercialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InformationComercialViewController.m; sourceTree = "<group>"; };
 		2337175C21EA48EC003D7D15 /* user_supervisor_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_supervisor_icon.png; sourceTree = "<group>"; };
 		2337175E21EA493A003D7D15 /* user_cajero_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_cajero_icon.png; sourceTree = "<group>"; };
 		2337176021EA4D6D003D7D15 /* UserListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserListTableViewCell.h; sourceTree = "<group>"; };
@@ -541,6 +547,10 @@
 				2329E15021F579B000CD8EB2 /* ResetPasswordWSKViewController.m */,
 				2329E15421F585FC00CD8EB2 /* ResetPasswordConfirmViewController.h */,
 				2329E15521F585FC00CD8EB2 /* ResetPasswordConfirmViewController.m */,
+				2329E15721F5B00F00CD8EB2 /* SystemConfigurationViewController.h */,
+				2329E15821F5B00F00CD8EB2 /* SystemConfigurationViewController.m */,
+				2329E15A21F5CFA200CD8EB2 /* InformationComercialViewController.h */,
+				2329E15B21F5CFA200CD8EB2 /* InformationComercialViewController.m */,
 			);
 			path = screens;
 			sourceTree = "<group>";
@@ -908,12 +918,14 @@
 				234503B521F1C8850057C772 /* SearchShiftViewController.m in Sources */,
 				2329E15621F585FC00CD8EB2 /* ResetPasswordConfirmViewController.m in Sources */,
 				3A09261C21BAAA5900333F1A /* ViewController.m in Sources */,
+				2329E15921F5B00F00CD8EB2 /* SystemConfigurationViewController.m in Sources */,
 				2337176221EA4D6D003D7D15 /* UserListTableViewCell.m in Sources */,
 				2329E15121F579B000CD8EB2 /* ResetPasswordWSKViewController.m in Sources */,
 				2352F92C21ECD2D0003F106A /* SearchUserViewController.m in Sources */,
 				234503BE21F1D9A90057C772 /* CloseShiftTableViewCell.m in Sources */,
 				234503AC21F175800057C772 /* AssignShiftViewController.m in Sources */,
 				232096B121E261C700C93E3B /* UserCreationViewController.m in Sources */,
+				2329E15C21F5CFA200CD8EB2 /* InformationComercialViewController.m in Sources */,
 				3A09262721BAAA5A00333F1A /* main.m in Sources */,
 				2328843821E3DEB200E5E7C1 /* WelcomeViewController.m in Sources */,
 				23682F4121EE2B56002BC7D7 /* DeletTableViewCell.m in Sources */,

@@ -6378,6 +6378,9 @@ mal funcionamiento de las transacciones POS.</string>
                                         <state key="normal" title="Edit Shift">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="closeShiftButtonAction:" destination="d8D-n5-YfO" eventType="touchUpInside" id="mgw-an-WyB"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qli-xa-jfo">
                                         <rect key="frame" x="30" y="495" width="315" height="50"/>
@@ -6543,6 +6546,9 @@ mal funcionamiento de las transacciones POS.</string>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" image="sidemenu_cerrarturnoButton_icon.png"/>
+                                        <connections>
+                                            <action selector="cerraturnoButtonAction:" destination="d8D-n5-YfO" eventType="touchUpInside" id="HJ9-et-2PW"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -14440,19 +14446,19 @@ mal funcionamiento de las transacciones POS.</string>
         <segue reference="D9R-AI-944"/>
         <segue reference="yf9-sf-dlg"/>
         <segue reference="cB3-i3-ZTn"/>
-        <segue reference="c2u-eF-LWn"/>
+        <segue reference="5o7-2G-f9V"/>
         <segue reference="Wxn-gR-MTe"/>
         <segue reference="Hd1-eZ-QA3"/>
-        <segue reference="u63-Ve-mA7"/>
-        <segue reference="mRi-t2-K02"/>
+        <segue reference="hlc-HD-HAu"/>
+        <segue reference="VwE-5X-ZSC"/>
         <segue reference="ryk-l3-l3n"/>
-        <segue reference="y1I-Gf-tzI"/>
+        <segue reference="QSL-jv-wfa"/>
         <segue reference="V6I-pk-HHA"/>
-        <segue reference="eLc-Ye-xqu"/>
+        <segue reference="Edt-ev-liM"/>
         <segue reference="zzn-x8-4xL"/>
-        <segue reference="Lcq-Df-uKr"/>
+        <segue reference="l4h-nI-1dW"/>
         <segue reference="oSC-O4-CSe"/>
-        <segue reference="SQ9-67-Fzs"/>
-        <segue reference="1vm-Oj-j90"/>
+        <segue reference="Srs-VG-dz2"/>
+        <segue reference="x5O-4m-db2"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -12,11 +12,15 @@
 #import "screens/NewTransactionViewController.h"
 #import "screens/WelcomeViewController.h"
 #import "screens/ShiftListViewController.h"
+#import "AFNetworking.h"
 
 @interface SecondViewController ()
 @property(strong, nonatomic)NSString *userFullNameText;
 @property(strong, nonatomic)NSString *dateTimeLabelText;
 @property(strong, nonatomic)NSString *sessionInfoLabelText;
+
+@property(strong, nonatomic)UIView *overlayView;
+@property(strong, nonatomic)UIActivityIndicatorView * activityIndicator;
 
 @end
 
@@ -260,6 +264,12 @@
         [self.cerraturnoButton setHidden:YES];
         ///////////////////////////////
         
+        self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+        self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        self.activityIndicator.center = self.overlayView.center;
+        [self.overlayView addSubview:self.activityIndicator];
+        
     }
 }
 
@@ -374,6 +384,11 @@
 - (IBAction)signoutButtonAction:(id)sender {
     [self performSegueWithIdentifier:@"hometowelcome_segue" sender:self];
 }
+
+- (IBAction)closeShiftButtonAction:(id)sender {
+    NSLog(@"33333");
+    [self closeShiftCode];
+}
 - (IBAction)homeButtonAction:(id)sender {
     [TransV setHidden:YES];
     [UIView transitionWithView:SidePanel duration:0.2 options:UIViewAnimationOptionCurveEaseIn animations:^{
@@ -387,5 +402,67 @@
 
 - (IBAction)turnoButtonAction:(id)sender {
     [self performSegueWithIdentifier:@"hometoshiftlist_segue" sender:self];
+}
+
+- (IBAction)cerraturnoButtonAction:(id)sender {
+    [self closeShiftCode];
+}
+
+-(void)closeShiftCode {
+    Global *globals = [Global sharedInstance];
+    
+    [self.activityIndicator startAnimating];
+    [self.view addSubview:self.overlayView];
+    
+    NSDictionary *param = @{@"param": @{
+                                          @"idUser": globals.idUser,
+                                          @"turnoCod": globals.turnoCod,
+                                          }};
+    
+    NSError *error;
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:param options:0 error:&error];
+    NSString *string = [[NSString alloc]initWithData:postData encoding:NSUTF8StringEncoding];
+    
+    NSDictionary *parameters = @{
+                                 @"method": @"closeShift",
+                                 @"param": string
+                                 };
+    AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
+    sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects: @"application/json", nil];
+    [sessionManager POST: @"http://ninjahosting.us/web_api/service.php" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        [self.activityIndicator stopAnimating];
+        [self.overlayView removeFromSuperview];
+        
+        NSError *jsonError;
+        NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&jsonError];
+        BOOL status = [jsonResponse[@"status"] boolValue];
+        if(status) {
+            [self performSegueWithIdentifier:@"hometowelcome_segue" sender:self];
+        } else {
+            [self displayAlertView:@"Notice!" :@"An error has occurred. Please contact support" :@"fail"];
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [self.activityIndicator stopAnimating];
+        [self.overlayView removeFromSuperview];
+        [self displayAlertView:@"Warning!" :@"Network error." :@"network error"];
+    }];
+}
+
+-(void)displayAlertView: (NSString *)header :(NSString *)message :(NSString *)status{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:header message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIApplication *actionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//        if([status isEqualToString:@"closeShift"]) {
+//
+//        } else {
+//
+//        }
+    }];
+    [alert addAction:actionOK];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 @end

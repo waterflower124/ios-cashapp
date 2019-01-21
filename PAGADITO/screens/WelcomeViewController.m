@@ -190,7 +190,7 @@
             [self performSegueWithIdentifier:@"logintohome_segue" sender:self];
             
         } else {
-            [self displayAlertView:@"Warning" :@"Signin information is incorrect. Please input valid information"];
+            [self displayAlertView:@"Warning" :@"You can't login. The cashier's shift wasn't assigned."];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];

@@ -41,6 +41,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *priv3CurrentTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priv3ShiftCodeLabel;
 - (IBAction)signoutButtonAction:(id)sender;
+- (IBAction)closeShiftButtonAction:(id)sender;
+
 
 ////  side menu buttons  //////
 @property (weak, nonatomic) IBOutlet UIButton *homeButton;
@@ -55,6 +57,7 @@
 
 - (IBAction)homeButtonAction:(id)sender;
 - (IBAction)turnoButtonAction:(id)sender;
+- (IBAction)cerraturnoButtonAction:(id)sender;
 
 
 

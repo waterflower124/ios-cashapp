@@ -190,7 +190,7 @@
                                  @"method": @"insertSystemUsers",
                                  @"param": string
                                  };
-//    NSLog(@"%@", parameters);
+    NSLog(@"%@", parameters);
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
     sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];

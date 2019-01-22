@@ -73,17 +73,16 @@ Global *globals;
     sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects: @"application/json", nil];
     [sessionManager POST: @"http://ninjahosting.us/web_api/service.php" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
+
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
-        
+
         NSError *jsonError;
         NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&jsonError];
-        
+
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
-        NSLog(@"popopopopopopopoa");
-        
+
         NSString *statusValue = jsonResponse[@"status"];
         NSInteger statusInt = [statusValue integerValue];
         if(statusInt == 1) {

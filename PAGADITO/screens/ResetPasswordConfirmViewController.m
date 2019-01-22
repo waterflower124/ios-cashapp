@@ -44,6 +44,16 @@
     self.activityIndicator.center = self.overlayView.center;
     [self.overlayView addSubview:self.activityIndicator];
     
+    //// dismiss keyboard  //////////
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
+    tap.cancelsTouchesInView = NO;
+    
+}
+
+-(void)dismissKeyboard
+{
+    [self.view endEditing:YES];
 }
 
 - (IBAction)saveButtonAction:(id)sender {

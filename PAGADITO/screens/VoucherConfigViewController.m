@@ -1,66 +1,58 @@
 //
-//  InformationComercialViewController.m
+//  VoucherConfigViewController.m
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/21.
+//  Created by Water Flower on 2019/1/23.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
-#import "InformationComercialViewController.h"
-#import "AFNetworking.h"
+#import "VoucherConfigViewController.h"
 #import "Global.h"
-#import "SystemConfigurationViewController.h"
-#import "../SecondViewController.h"
+#import "AFNetworking.h"
 #import "WelcomeViewController.h"
-#import "UserAdminViewController.h"
 
-@interface InformationComercialViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface VoucherConfigViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property(strong, nonatomic)NSString *sessionInfoLabelText;
-@property(strong, nonatomic)NSMutableArray *currencyNameArray;
-@property(strong, nonatomic)NSMutableArray *currencyUnitArray;
-@property(strong, nonatomic)NSString *comercial_name;
-@property(strong, nonatomic)NSString *terminal_name;
-@property(strong, nonatomic)NSString *selected_currency;
-@property(strong, nonatomic)NSString *trade_number;
-@property(strong, nonatomic)NSString *trade_email;
+@property(strong, nonatomic)NSString *mensajeVoucherText;
 
 @property(strong, nonatomic)UIView *overlayView;
 @property(strong, nonatomic)UIActivityIndicatorView * activityIndicator;
 
 @end
 
-@implementation InformationComercialViewController
-@synthesize logoImageView, TransV, SidePanel, sessionInfoLabel, currencyTableView, comercial_nameLabel, terminal_nameLabel, selectCurrencyButton, trade_numberLabel, trade_emailLabel;
+@implementation VoucherConfigViewController
+@synthesize TransV, SidePanel, sessionInfoLabel, logoImageView, mensajeVoucherTextField;
 @synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     Global *globals = [Global sharedInstance];
-    
-    /////  initialization ////
-    self.currencyNameArray = [[NSMutableArray alloc] initWithObjects:@"($) Dólares Americanos", @"(Q) Quetzales", @"(L) Lempiras", @"(C$) Córdobas", @"(₡) Colones Costarricenses", @"(B/.) Balboas", @"(RD$) Pesos Dominicanos", nil];
-    self.currencyUnitArray = [[NSMutableArray alloc] initWithObjects:@"USD", @"GTQ", @"HNL", @"NIO", @"CRC", @"PAB", @"DOP", nil];
-    
-    self.comercial_nameLabel.text = globals.nombreComercio;
-    self.comercial_name = globals.nombreComercio;
-    self.terminal_nameLabel.text = globals.nombreTerminal;
-    self.terminal_name = globals.nombreTerminal;
-    for(int i = 0; i < self.currencyUnitArray.count; i ++) {
-        if([self.currencyUnitArray[i] isEqualToString:globals.moneda]) {
-            [selectCurrencyButton setTitle:self.currencyNameArray[i] forState:UIControlStateNormal];
-            self.selected_currency = globals.moneda;
-            break;
-        }
-        self.selected_currency = @"";
+    ////////// initialization  ///////////
+    if(globals.mensajeVoucher == (NSString *)[NSNull null]) {
+        self.mensajeVoucherTextField.text = @"";
+        self.mensajeVoucherText = @"";
+    } else {
+        self.mensajeVoucherTextField.text = globals.mensajeVoucher;
+        self.mensajeVoucherText = globals.mensajeVoucher;
     }
     
-    self.trade_numberLabel.text = globals.numeroRegistro;
-    self.trade_number = globals.numeroRegistro;
-    self.trade_emailLabel.text = globals.emailComercio;
-    self.trade_email = globals.emailComercio;
+    /////  dismiss keyboard  ///////////
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
+    tap.cancelsTouchesInView = NO;
     
+    ////////////////  TransV tapp event     ///////////////
+    UITapGestureRecognizer *tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideSidePanel:)];
+    tapper.numberOfTapsRequired = 1;
+    [TransV addGestureRecognizer:tapper];
+    
+    /////////   logo image view tap event ////////
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(logoImageViewTapDetected)];
+    singleTap.numberOfTapsRequired = 1;
+    [logoImageView setUserInteractionEnabled:YES];
+    [logoImageView addGestureRecognizer:singleTap];
     
     ///////////// logo image load   ///////////
     if(globals.logo_imagePath.length != 0 ) {
@@ -72,22 +64,6 @@
             logoImageView.image = logo_image;
         }
     }
-    
-    /////  dismiss keyboard  ///////////
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
-    [self.view addGestureRecognizer:tap];
-    tap.cancelsTouchesInView = NO;
-    
-    /////////   logo image view tap event ////////
-    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(logoImageViewTapDetected)];
-    singleTap.numberOfTapsRequired = 1;
-    [logoImageView setUserInteractionEnabled:YES];
-    [logoImageView addGestureRecognizer:singleTap];
-    
-    ////////////////  TransV tapp event     ///////////////
-    UITapGestureRecognizer *tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideSidePanel:)];
-    tapper.numberOfTapsRequired = 1;
-    [TransV addGestureRecognizer:tapper];
     
     //session info label
     self.sessionInfoLabelText = [NSString stringWithFormat:@"%@ / %@", globals.username, globals.nombreComercio];
@@ -197,13 +173,24 @@
         newtransactiolineView.backgroundColor = [UIColor lightGrayColor];
         [self.newtransactionButton addSubview:newtransactiolineView];
     }
-    
-    
 }
 
 -(void)dismissKeyboard
 {
     [self.view endEditing:YES];
+}
+
+-(void)hideSidePanel:(UIGestureRecognizer *)gesture{
+    if (gesture.state == UIGestureRecognizerStateEnded) {
+        [TransV setHidden:YES];
+        [UIView transitionWithView:SidePanel duration:0.2 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            
+            CGRect frame = self->SidePanel.frame;
+            frame.origin.x = -self->SidePanel.frame.size.width;
+            self->SidePanel.frame = frame;
+            
+        } completion:nil];
+    }
 }
 
 -(void)logoImageViewTapDetected {
@@ -272,56 +259,11 @@
     }
 }
 
--(void)hideSidePanel:(UIGestureRecognizer *)gesture{
-    if (gesture.state == UIGestureRecognizerStateEnded) {
-        [TransV setHidden:YES];
-        [UIView transitionWithView:SidePanel duration:0.2 options:UIViewAnimationOptionCurveEaseIn animations:^{
-            
-            CGRect frame = self->SidePanel.frame;
-            frame.origin.x = -self->SidePanel.frame.size.width;
-            self->SidePanel.frame = frame;
-            
-        } completion:nil];
-        
-    }
-}
-
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqualToString:@"informationcomercialtowelcome_segue"]) {
+    if([segue.identifier isEqualToString:@"voucherconfigtowelcome_segue"]) {
         WelcomeViewController *WelcomeVC;
         WelcomeVC = [segue destinationViewController];
-    } else if([segue.identifier isEqualToString:@"informationcomercialtohome_segue"]) {
-        SecondViewController *SecondVC;
-        SecondVC = [segue destinationViewController];
-    } else if([segue.identifier isEqualToString:@"informationcomercialtosystemconfig_segue"]) {
-        SystemConfigurationViewController *SystemConfigureVC;
-        SystemConfigureVC = [segue destinationViewController];
-    } else if([segue.identifier isEqualToString:@"informationcomercialtouseradmin_segue"]) {
-        UserAdminViewController *UserAdminVC;
-        UserAdminVC = [segue destinationViewController];
     }
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.currencyNameArray.count;
-}
-
--(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if(cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
-    cell.textLabel.text = self.currencyNameArray[indexPath.row];
-    return cell;
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [selectCurrencyButton setTitle:self.currencyNameArray[indexPath.row] forState:UIControlStateNormal];
-    [currencyTableView setHidden:YES ];
-    
-    self.selected_currency = self.currencyUnitArray[indexPath.row];
-    
 }
 
 - (IBAction)menuButtonAction:(id)sender {
@@ -346,82 +288,36 @@
     }
 }
 
-- (IBAction)selectCurrencyButtonAction:(id)sender {
-    if([self.currencyTableView isHidden]) {
-        [self.currencyTableView setHidden:NO];
-    } else {
-        [self.currencyTableView setHidden:YES];
-    }
-}
-
-- (IBAction)backButtonAction:(id)sender {
-    [self performSegueWithIdentifier:@"informationcomercialtosystemconfig_segue" sender:self];
-}
-
-- (IBAction)homeButtonAction:(id)sender {
-    [self performSegueWithIdentifier:@"informationcomercialtohome_segue" sender:self];
-}
-
-- (IBAction)configButtonAction:(id)sender {
-    [self performSegueWithIdentifier:@"informationcomercialtosystemconfig_segue" sender:self];
-}
-
-- (IBAction)usuarioButtonAction:(id)sender {
-    [self performSegueWithIdentifier:@"informationcomercialtouseradmin_segue" sender:self];
-}
-
 - (IBAction)signoutButtonAction:(id)sender {
-    [self performSegueWithIdentifier:@"informationcomercialtowelcome_segue" sender:self];
+    [self performSegueWithIdentifier:@"voucherconfigtowelcome_segue" sender:self];
 }
 
-- (IBAction)continuButtonAction:(id)sender {
-    self.comercial_name = self.comercial_nameLabel.text;
-    self.terminal_name= self.terminal_nameLabel.text;
-    self.trade_number = self.trade_numberLabel.text;
-    self.trade_email = self.trade_emailLabel.text;
-    if(self.comercial_name.length == 0) {
-        [self displayAlertView:@"Warning!" :@"Please input comercial name."];
+- (IBAction)saveButtonAction:(id)sender {
+    self.mensajeVoucherText = self.mensajeVoucherTextField.text;
+    if(self.mensajeVoucherText.length == 0) {
+        [self displayAlertView:@"Warning!" :@"Please input message."];
         return;
     }
-    if(self.terminal_name.length == 0) {
-        [self displayAlertView:@"Warning!" :@"Please input terminal name."];
-        return;
-    }
-    if(self.trade_number.length == 0) {
-        [self displayAlertView:@"Warning!" :@"Please input your phone number."];
-        return;
-    }
-    if(self.trade_email.length == 0) {
-        [self displayAlertView:@"Warning!" :@"Please input your email address."];
-        return;
+    if(self.mensajeVoucherText.length > 150) {
+        [self displayAlertView:@"Warning!" :@"Message have to be less than 150 characters."];
     }
     
     [self.activityIndicator startAnimating];
     [self.view addSubview:self.overlayView];
     
     Global *globals = [Global sharedInstance];
-    NSDictionary *comercio = @{
-                               @"nombreComercio": self.comercial_name,
-                               @"emailComercio": self.trade_email,
-                               @"numeroRegistro": self.trade_number,
-                               @"idComercio": globals.idComercio
-                               };
-    NSDictionary *dispositivo = @{
-                                  @"nombreTerminal": self.terminal_name,
-                                  @"moneda": self.selected_currency,
+    NSDictionary *mensajeVoucher = @{
+                                  @"mensajeVoucher": self.mensajeVoucherText,
                                   @"userModification": globals.username,
                                   @"idDispositivo": globals.idDispositivo
                                   };
-    NSDictionary *param = @{
-                            @"comercio": comercio,
-                            @"dispositivo": dispositivo,
-                            };
+
     NSError *error;
-    NSData *paramData = [NSJSONSerialization dataWithJSONObject:param options:0 error:&error];
+    NSData *paramData = [NSJSONSerialization dataWithJSONObject:mensajeVoucher options:0 error:&error];
     NSString *paramString = [[NSString alloc]initWithData:paramData encoding:NSUTF8StringEncoding];
     
     NSDictionary *parameters = @{
-                                 @"method": @"updateSetCommerceInformation",
+                                 @"method": @"updateSetVoucherMessage",
                                  @"param": paramString
                                  };
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
@@ -435,25 +331,17 @@
         
         NSError *jsonError;
         NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&jsonError];
-        NSLog(@"%@", jsonResponse);
         BOOL status = [jsonResponse[@"status"] boolValue];
         if(status) {
-            /////   modify global variables  ////////
-            globals.nombreComercio = self.comercial_name;
-            globals.nombreTerminal = self.terminal_name;
-            globals.moneda = self.selected_currency;
-            globals.numeroRegistro = self.trade_number;
-            globals.emailComercio = self.trade_email;
-            /////////////////////////////
-            [self displayAlertView:@"Congratulations!" :@"UPDATE SUCCESSFUL!"];
+            globals.mensajeVoucher = self.mensajeVoucherText;
+            [self displayAlertView:@"Success!" :@"UPDATE SUCCESSFUL!"];
         } else {
-            [self displayAlertView:@"Warning!" :@"FAILED UPDATE, CONTACT SUPPORT!"];
+            [self displayAlertView:@"Warning!" :@"FAILED UPDATE. PLEASE CONTACT SUPPORT!"];
         }
-        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
-        [self displayAlertView:@"Warning!" :@"Network error!"];
+        [self displayAlertView:@"Warning!!" :@"Network error."];
     }];
 }
 
@@ -467,9 +355,5 @@
     [alert addAction:actionOK];
     [self presentViewController:alert animated:YES completion:nil];
 }
-
-
-
-
 
 @end

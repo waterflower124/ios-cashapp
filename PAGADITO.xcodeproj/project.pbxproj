@@ -136,6 +136,10 @@
 		2352F92E21ECE13B003F106A /* system_config.png in Resources */ = {isa = PBXBuildFile; fileRef = 2352F92D21ECE13A003F106A /* system_config.png */; };
 		2352F93021ECE2DA003F106A /* assign_shift.png in Resources */ = {isa = PBXBuildFile; fileRef = 2352F92F21ECE2D8003F106A /* assign_shift.png */; };
 		23682F4121EE2B56002BC7D7 /* DeletTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23682F4021EE2B56002BC7D7 /* DeletTableViewCell.m */; };
+		23B49FFB21F71BBE00BAAD37 /* ConexionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B49FFA21F71BBE00BAAD37 /* ConexionViewController.m */; };
+		23B49FFE21F7916300BAAD37 /* VoucherConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B49FFD21F7916300BAAD37 /* VoucherConfigViewController.m */; };
+		23B4A00121F7A34900BAAD37 /* ReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B4A00021F7A34900BAAD37 /* ReportViewController.m */; };
+		23B4A00421F7AEDB00BAAD37 /* ShiftReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B4A00321F7AEDB00BAAD37 /* ShiftReportViewController.m */; };
 		3A09261921BAAA5900333F1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A09261821BAAA5900333F1A /* AppDelegate.m */; };
 		3A09261C21BAAA5900333F1A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A09261B21BAAA5900333F1A /* ViewController.m */; };
 		3A09261F21BAAA5900333F1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A09261D21BAAA5900333F1A /* Main.storyboard */; };
@@ -321,6 +325,14 @@
 		2352F92F21ECE2D8003F106A /* assign_shift.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = assign_shift.png; sourceTree = "<group>"; };
 		23682F3F21EE2B56002BC7D7 /* DeletTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeletTableViewCell.h; sourceTree = "<group>"; };
 		23682F4021EE2B56002BC7D7 /* DeletTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeletTableViewCell.m; sourceTree = "<group>"; };
+		23B49FF921F71BBE00BAAD37 /* ConexionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConexionViewController.h; sourceTree = "<group>"; };
+		23B49FFA21F71BBE00BAAD37 /* ConexionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConexionViewController.m; sourceTree = "<group>"; };
+		23B49FFC21F7916300BAAD37 /* VoucherConfigViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VoucherConfigViewController.h; sourceTree = "<group>"; };
+		23B49FFD21F7916300BAAD37 /* VoucherConfigViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VoucherConfigViewController.m; sourceTree = "<group>"; };
+		23B49FFF21F7A34900BAAD37 /* ReportViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReportViewController.h; sourceTree = "<group>"; };
+		23B4A00021F7A34900BAAD37 /* ReportViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReportViewController.m; sourceTree = "<group>"; };
+		23B4A00221F7AEDB00BAAD37 /* ShiftReportViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShiftReportViewController.h; sourceTree = "<group>"; };
+		23B4A00321F7AEDB00BAAD37 /* ShiftReportViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShiftReportViewController.m; sourceTree = "<group>"; };
 		2A63F08DE9CEED364D00A01B /* Pods_PAGADITO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PAGADITO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A09261421BAAA5900333F1A /* PAGADITO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PAGADITO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A09261721BAAA5900333F1A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -551,6 +563,14 @@
 				2329E15821F5B00F00CD8EB2 /* SystemConfigurationViewController.m */,
 				2329E15A21F5CFA200CD8EB2 /* InformationComercialViewController.h */,
 				2329E15B21F5CFA200CD8EB2 /* InformationComercialViewController.m */,
+				23B49FF921F71BBE00BAAD37 /* ConexionViewController.h */,
+				23B49FFA21F71BBE00BAAD37 /* ConexionViewController.m */,
+				23B49FFC21F7916300BAAD37 /* VoucherConfigViewController.h */,
+				23B49FFD21F7916300BAAD37 /* VoucherConfigViewController.m */,
+				23B49FFF21F7A34900BAAD37 /* ReportViewController.h */,
+				23B4A00021F7A34900BAAD37 /* ReportViewController.m */,
+				23B4A00221F7AEDB00BAAD37 /* ShiftReportViewController.h */,
+				23B4A00321F7AEDB00BAAD37 /* ShiftReportViewController.m */,
 			);
 			path = screens;
 			sourceTree = "<group>";
@@ -915,10 +935,13 @@
 				3A64430121C3484B00F392DD /* SecondViewController.m in Sources */,
 				234503B821F1CE6E0057C772 /* CloseShiftViewController.m in Sources */,
 				2345039A21EF5B840057C772 /* ShiftListTableViewCell.m in Sources */,
+				23B49FFE21F7916300BAAD37 /* VoucherConfigViewController.m in Sources */,
 				234503B521F1C8850057C772 /* SearchShiftViewController.m in Sources */,
 				2329E15621F585FC00CD8EB2 /* ResetPasswordConfirmViewController.m in Sources */,
 				3A09261C21BAAA5900333F1A /* ViewController.m in Sources */,
+				23B4A00421F7AEDB00BAAD37 /* ShiftReportViewController.m in Sources */,
 				2329E15921F5B00F00CD8EB2 /* SystemConfigurationViewController.m in Sources */,
+				23B4A00121F7A34900BAAD37 /* ReportViewController.m in Sources */,
 				2337176221EA4D6D003D7D15 /* UserListTableViewCell.m in Sources */,
 				2329E15121F579B000CD8EB2 /* ResetPasswordWSKViewController.m in Sources */,
 				2352F92C21ECD2D0003F106A /* SearchUserViewController.m in Sources */,
@@ -926,6 +949,7 @@
 				234503AC21F175800057C772 /* AssignShiftViewController.m in Sources */,
 				232096B121E261C700C93E3B /* UserCreationViewController.m in Sources */,
 				2329E15C21F5CFA200CD8EB2 /* InformationComercialViewController.m in Sources */,
+				23B49FFB21F71BBE00BAAD37 /* ConexionViewController.m in Sources */,
 				3A09262721BAAA5A00333F1A /* main.m in Sources */,
 				2328843821E3DEB200E5E7C1 /* WelcomeViewController.m in Sources */,
 				23682F4121EE2B56002BC7D7 /* DeletTableViewCell.m in Sources */,

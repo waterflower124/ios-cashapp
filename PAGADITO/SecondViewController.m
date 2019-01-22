@@ -56,8 +56,14 @@
     self.sessionInfoLabelText = [NSString stringWithFormat:@"%@ / %@", globals.username, globals.nombreComercio];
     sessionInfoLabel.text = self.sessionInfoLabelText;
     
-    //set dashborad buttons background image according to priviledge ID
+    //////////// init for activity indicator  /////////
+    self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityIndicator.center = self.overlayView.center;
+    [self.overlayView addSubview:self.activityIndicator];
     
+    //set dashborad buttons background image according to priviledge ID
     if([globals.idPrivilegio isEqualToString:@"1"]) {
         [DashboardButton2 setImage:[UIImage imageNamed: @"system_config"] forState:UIControlStateNormal];
         [DashboardButton4 setImage:[UIImage imageNamed: @"Pagadito_0000_Capa-4"] forState:UIControlStateNormal];
@@ -264,13 +270,7 @@
         
         [self.cerraturnoButton setHidden:YES];
         ///////////////////////////////
-        
-        self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
-        self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        self.activityIndicator.center = self.overlayView.center;
-        [self.overlayView addSubview:self.activityIndicator];
-        
+ 
     }
 }
 

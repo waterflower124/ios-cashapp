@@ -14,7 +14,7 @@
 @synthesize selected_language;
 @synthesize macAddress, uid, wsk, private_key, initialization_vector, office_id, terminal_id, logo_image, logo_imagePath;
 
-@synthesize username, idPrivilegio, nombreCompleto, idUser, idDispositivo, login_wsk, login_uid, llaveCifrado, cifradoIV, moneda, nombreComercio, nombreTerminal, numeroRegistro, emailComercio, currency, idComercio, branchid, terminalid, ambiente;
+@synthesize username, idPrivilegio, nombreCompleto, idUser, idDispositivo, login_wsk, login_uid, llaveCifrado, cifradoIV, moneda, nombreComercio, nombreTerminal, numeroRegistro, mensajeVoucher, emailComercio, currency, idComercio, branchid, terminalid, ambiente;
 
 @synthesize turnoCod,codeShift,idTurno;
 

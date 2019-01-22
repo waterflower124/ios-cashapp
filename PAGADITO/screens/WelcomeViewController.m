@@ -126,7 +126,8 @@
             globals.nombreComercio = jsonResponse[@"nombreComercio"];
             globals.nombreTerminal = jsonResponse[@"nombreTerminal"];
             globals.emailComercio = jsonResponse[@"emailComercio"];
-            globals.numeroRegistro = jsonResponse[@"test123Registro"];
+            globals.numeroRegistro = jsonResponse[@"numeroRegistro"];
+            globals.mensajeVoucher = jsonResponse[@"mensajeVoucher"];
             globals.idComercio = jsonResponse[@"idComercio"];
             globals.branchid = jsonResponse[@"branchid"];
             globals.terminalid = jsonResponse[@"terminalid"];

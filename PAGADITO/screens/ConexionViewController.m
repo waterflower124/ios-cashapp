@@ -1,88 +1,58 @@
 //
-//  InformationComercialViewController.m
+//  ConexionViewController.m
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/21.
+//  Created by Water Flower on 2019/1/22.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
-#import "InformationComercialViewController.h"
-#import "AFNetworking.h"
+#import "ConexionViewController.h"
 #import "Global.h"
-#import "SystemConfigurationViewController.h"
-#import "../SecondViewController.h"
+#import "AFNetworking.h"
 #import "WelcomeViewController.h"
-#import "UserAdminViewController.h"
 
-@interface InformationComercialViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface ConexionViewController ()
 
 @property(strong, nonatomic)NSString *sessionInfoLabelText;
-@property(strong, nonatomic)NSMutableArray *currencyNameArray;
-@property(strong, nonatomic)NSMutableArray *currencyUnitArray;
-@property(strong, nonatomic)NSString *comercial_name;
-@property(strong, nonatomic)NSString *terminal_name;
-@property(strong, nonatomic)NSString *selected_currency;
-@property(strong, nonatomic)NSString *trade_number;
-@property(strong, nonatomic)NSString *trade_email;
+@property(strong, nonatomic)NSString *uidText;
+@property(strong, nonatomic)NSString *wskText;
+@property(strong, nonatomic)NSString *idSecursalText;
+@property(strong, nonatomic)NSString *idTerminalText;
+@property(strong, nonatomic)NSString *LlaveprivadaText;
+@property(strong, nonatomic)NSString *vectorText;
 
 @property(strong, nonatomic)UIView *overlayView;
 @property(strong, nonatomic)UIActivityIndicatorView * activityIndicator;
 
 @end
 
-@implementation InformationComercialViewController
-@synthesize logoImageView, TransV, SidePanel, sessionInfoLabel, currencyTableView, comercial_nameLabel, terminal_nameLabel, selectCurrencyButton, trade_numberLabel, trade_emailLabel;
+@implementation ConexionViewController
 @synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
+@synthesize SidePanel, TransV, sessionInfoLabel, uidTextField, wskTextField, idSecursalTextField, idTerminalTextField, LlaveprivadaTextField, vectorTextField;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     Global *globals = [Global sharedInstance];
     
-    /////  initialization ////
-    self.currencyNameArray = [[NSMutableArray alloc] initWithObjects:@"($) Dólares Americanos", @"(Q) Quetzales", @"(L) Lempiras", @"(C$) Córdobas", @"(₡) Colones Costarricenses", @"(B/.) Balboas", @"(RD$) Pesos Dominicanos", nil];
-    self.currencyUnitArray = [[NSMutableArray alloc] initWithObjects:@"USD", @"GTQ", @"HNL", @"NIO", @"CRC", @"PAB", @"DOP", nil];
-    
-    self.comercial_nameLabel.text = globals.nombreComercio;
-    self.comercial_name = globals.nombreComercio;
-    self.terminal_nameLabel.text = globals.nombreTerminal;
-    self.terminal_name = globals.nombreTerminal;
-    for(int i = 0; i < self.currencyUnitArray.count; i ++) {
-        if([self.currencyUnitArray[i] isEqualToString:globals.moneda]) {
-            [selectCurrencyButton setTitle:self.currencyNameArray[i] forState:UIControlStateNormal];
-            self.selected_currency = globals.moneda;
-            break;
-        }
-        self.selected_currency = @"";
-    }
-    
-    self.trade_numberLabel.text = globals.numeroRegistro;
-    self.trade_number = globals.numeroRegistro;
-    self.trade_emailLabel.text = globals.emailComercio;
-    self.trade_email = globals.emailComercio;
-    
-    
-    ///////////// logo image load   ///////////
-    if(globals.logo_imagePath.length != 0 ) {
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        BOOL isFileExist = [fileManager fileExistsAtPath:globals.logo_imagePath];
-        UIImage *logo_image;
-        if(isFileExist) {
-            logo_image = [[UIImage alloc] initWithContentsOfFile:globals.logo_imagePath];
-            logoImageView.image = logo_image;
-        }
-    }
+    ///////// initialize   //////////
+    self.uidTextField.text = globals.login_uid;
+    self.uidText = globals.login_uid;
+    self.wskTextField.text = globals.login_wsk;
+    self.wskText = globals.login_wsk;
+    self.idSecursalTextField.text = globals.branchid;
+    self.idSecursalText = globals.branchid;
+    self.idTerminalTextField.text = globals.terminalid;
+    self.idTerminalText = globals.terminalid;
+    self.LlaveprivadaTextField.text = globals.llaveCifrado;
+    self.LlaveprivadaText = globals.llaveCifrado;
+    self.vectorTextField.text = globals.cifradoIV;
+    self.vectorText = globals.cifradoIV;
     
     /////  dismiss keyboard  ///////////
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
     tap.cancelsTouchesInView = NO;
-    
-    /////////   logo image view tap event ////////
-    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(logoImageViewTapDetected)];
-    singleTap.numberOfTapsRequired = 1;
-    [logoImageView setUserInteractionEnabled:YES];
-    [logoImageView addGestureRecognizer:singleTap];
     
     ////////////////  TransV tapp event     ///////////////
     UITapGestureRecognizer *tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideSidePanel:)];
@@ -197,79 +167,11 @@
         newtransactiolineView.backgroundColor = [UIColor lightGrayColor];
         [self.newtransactionButton addSubview:newtransactiolineView];
     }
-    
-    
 }
 
 -(void)dismissKeyboard
 {
     [self.view endEditing:YES];
-}
-
--(void)logoImageViewTapDetected {
-    
-    UIAlertController *logoImageAlertView = [UIAlertController alertControllerWithTitle:@"Choose Image" message:@"Pick Image from:" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction* gallery = [UIAlertAction
-                              actionWithTitle:@"Gallery"
-                              style:UIAlertActionStyleDefault
-                              handler:^(UIAlertAction * action)
-                              {
-                                  UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-                                  imagePicker.delegate = self;
-                                  imagePicker.allowsEditing = YES;
-                                  imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-                                  [self presentViewController:imagePicker animated:YES completion:nil];
-                              }];
-    
-    UIAlertAction* camera = [UIAlertAction
-                             actionWithTitle:@"Camera"
-                             style:UIAlertActionStyleDefault
-                             handler:^(UIAlertAction * action)
-                             {
-                                 UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-                                 imagePicker.delegate = self;
-                                 imagePicker.allowsEditing = YES;
-                                 imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-                                 [self presentViewController:imagePicker animated:YES completion:nil];
-                             }];
-    
-    UIAlertAction* cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel"
-                             style:UIAlertActionStyleDefault
-                             handler:^(UIAlertAction * action)
-                             {
-                                 NSLog(@"Cancel     ");
-                             }];
-    
-    [logoImageAlertView addAction:gallery] ;
-    [logoImageAlertView addAction:camera];
-    [logoImageAlertView addAction:cancel];
-    [self presentViewController:logoImageAlertView animated:YES completion:nil];
-    
-}
-
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
-    UIImage *selectedImage = info[UIImagePickerControllerEditedImage];
-    self.logoImageView.image = selectedImage;
-    [picker dismissViewControllerAnimated:YES completion:nil];
-    
-    
-    NSString *stringPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"pagadito"];
-    // New Folder is your folder name
-    NSError *error = nil;
-    if (![[NSFileManager defaultManager] fileExistsAtPath:stringPath])
-        [[NSFileManager defaultManager] createDirectoryAtPath:stringPath withIntermediateDirectories:NO attributes:nil error:&error];
-    
-    NSString *fileName = [stringPath stringByAppendingFormat:@"/pagadito_logo.png"];
-    NSData *imageData = UIImagePNGRepresentation(selectedImage);
-    //    NSLog(@"Image size:: %lu::", (unsigned long)[imageData length]);
-    if([imageData length] < 2 * 1024 * 1024) {
-        [imageData writeToFile:fileName atomically:YES];
-        Global *globals = [Global sharedInstance];
-        globals.logo_imagePath = fileName;
-    } else {
-        [self displayAlertView:@"Warning!" :@"Logo Image have to be less than 2MB. Please select another image"];
-    }
 }
 
 -(void)hideSidePanel:(UIGestureRecognizer *)gesture{
@@ -282,46 +184,7 @@
             self->SidePanel.frame = frame;
             
         } completion:nil];
-        
     }
-}
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqualToString:@"informationcomercialtowelcome_segue"]) {
-        WelcomeViewController *WelcomeVC;
-        WelcomeVC = [segue destinationViewController];
-    } else if([segue.identifier isEqualToString:@"informationcomercialtohome_segue"]) {
-        SecondViewController *SecondVC;
-        SecondVC = [segue destinationViewController];
-    } else if([segue.identifier isEqualToString:@"informationcomercialtosystemconfig_segue"]) {
-        SystemConfigurationViewController *SystemConfigureVC;
-        SystemConfigureVC = [segue destinationViewController];
-    } else if([segue.identifier isEqualToString:@"informationcomercialtouseradmin_segue"]) {
-        UserAdminViewController *UserAdminVC;
-        UserAdminVC = [segue destinationViewController];
-    }
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.currencyNameArray.count;
-}
-
--(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if(cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
-    cell.textLabel.text = self.currencyNameArray[indexPath.row];
-    return cell;
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [selectCurrencyButton setTitle:self.currencyNameArray[indexPath.row] forState:UIControlStateNormal];
-    [currencyTableView setHidden:YES ];
-    
-    self.selected_currency = self.currencyUnitArray[indexPath.row];
-    
 }
 
 - (IBAction)menuButtonAction:(id)sender {
@@ -346,53 +209,47 @@
     }
 }
 
-- (IBAction)selectCurrencyButtonAction:(id)sender {
-    if([self.currencyTableView isHidden]) {
-        [self.currencyTableView setHidden:NO];
-    } else {
-        [self.currencyTableView setHidden:YES];
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqualToString:@"conexiontowelcome_segue"]) {
+        WelcomeViewController *WelcomeVC;
+        WelcomeVC = [segue destinationViewController];
     }
-}
-
-- (IBAction)backButtonAction:(id)sender {
-    [self performSegueWithIdentifier:@"informationcomercialtosystemconfig_segue" sender:self];
-}
-
-- (IBAction)homeButtonAction:(id)sender {
-    [self performSegueWithIdentifier:@"informationcomercialtohome_segue" sender:self];
-}
-
-- (IBAction)configButtonAction:(id)sender {
-    [self performSegueWithIdentifier:@"informationcomercialtosystemconfig_segue" sender:self];
-}
-
-- (IBAction)usuarioButtonAction:(id)sender {
-    [self performSegueWithIdentifier:@"informationcomercialtouseradmin_segue" sender:self];
 }
 
 - (IBAction)signoutButtonAction:(id)sender {
-    [self performSegueWithIdentifier:@"informationcomercialtowelcome_segue" sender:self];
+    [self performSegueWithIdentifier:@"conexiontowelcome_segue" sender:self];
 }
 
-- (IBAction)continuButtonAction:(id)sender {
-    self.comercial_name = self.comercial_nameLabel.text;
-    self.terminal_name= self.terminal_nameLabel.text;
-    self.trade_number = self.trade_numberLabel.text;
-    self.trade_email = self.trade_emailLabel.text;
-    if(self.comercial_name.length == 0) {
-        [self displayAlertView:@"Warning!" :@"Please input comercial name."];
+- (IBAction)saveButtonAction:(id)sender {
+    self.uidText = self.uidTextField.text;
+    self.wskText = self.wskTextField.text;
+    self.idSecursalText = self.idSecursalTextField.text;
+    self.idTerminalText = self.idTerminalTextField.text;
+    self.LlaveprivadaText = self.LlaveprivadaTextField.text;
+    self.vectorText = self.vectorTextField.text;
+    
+    if(self.uidText.length == 0) {
+        [self displayAlertView:@"Warning!" :@"Please input uid."];
         return;
     }
-    if(self.terminal_name.length == 0) {
-        [self displayAlertView:@"Warning!" :@"Please input terminal name."];
+    if(self.wskText.length == 0) {
+        [self displayAlertView:@"Warning!" :@"Please input wsk."];
         return;
     }
-    if(self.trade_number.length == 0) {
-        [self displayAlertView:@"Warning!" :@"Please input your phone number."];
+    if(self.idSecursalText.length == 0) {
+        [self displayAlertView:@"Warning!" :@"Please input uid."];
         return;
     }
-    if(self.trade_email.length == 0) {
-        [self displayAlertView:@"Warning!" :@"Please input your email address."];
+    if(self.idTerminalText.length == 0) {
+        [self displayAlertView:@"Warning!" :@"Please input uid."];
+        return;
+    }
+    if(self.LlaveprivadaText.length == 0) {
+        [self displayAlertView:@"Warning!" :@"Please input uid."];
+        return;
+    }
+    if(self.vectorText.length == 0) {
+        [self displayAlertView:@"Warning!" :@"Please input uid."];
         return;
     }
     
@@ -401,14 +258,15 @@
     
     Global *globals = [Global sharedInstance];
     NSDictionary *comercio = @{
-                               @"nombreComercio": self.comercial_name,
-                               @"emailComercio": self.trade_email,
-                               @"numeroRegistro": self.trade_number,
+                               @"uid": self.uidText,
+                               @"wsk": self.wskText,
+                               @"llaveCifrado": self.LlaveprivadaText,
+                               @"cifradoIV": self.vectorText,
                                @"idComercio": globals.idComercio
                                };
     NSDictionary *dispositivo = @{
-                                  @"nombreTerminal": self.terminal_name,
-                                  @"moneda": self.selected_currency,
+                                  @"branchid": self.idSecursalText,
+                                  @"terminalid": self.idTerminalText,
                                   @"userModification": globals.username,
                                   @"idDispositivo": globals.idDispositivo
                                   };
@@ -439,11 +297,12 @@
         BOOL status = [jsonResponse[@"status"] boolValue];
         if(status) {
             /////   modify global variables  ////////
-            globals.nombreComercio = self.comercial_name;
-            globals.nombreTerminal = self.terminal_name;
-            globals.moneda = self.selected_currency;
-            globals.numeroRegistro = self.trade_number;
-            globals.emailComercio = self.trade_email;
+            globals.login_uid = self.uidText;
+            globals.login_wsk = self.wskText;
+            globals.branchid = self.idSecursalText;
+            globals.terminalid = self.idTerminalText;
+            globals.llaveCifrado = self.LlaveprivadaText;
+            globals.cifradoIV = self.vectorText;
             /////////////////////////////
             [self displayAlertView:@"Congratulations!" :@"UPDATE SUCCESSFUL!"];
         } else {
@@ -455,8 +314,24 @@
         [self.overlayView removeFromSuperview];
         [self displayAlertView:@"Warning!" :@"Network error!"];
     }];
+    
 }
 
+- (IBAction)cancelChangeButtonAction:(id)sender {
+    Global *globals = [Global sharedInstance];
+    self.uidTextField.text = globals.login_uid;
+    self.uidText = globals.login_uid;
+    self.wskTextField.text = globals.login_wsk;
+    self.wskText = globals.login_wsk;
+    self.idSecursalTextField.text = globals.branchid;
+    self.idSecursalText = globals.branchid;
+    self.idTerminalTextField.text = globals.terminalid;
+    self.idTerminalText = globals.terminalid;
+    self.LlaveprivadaTextField.text = globals.llaveCifrado;
+    self.LlaveprivadaText = globals.llaveCifrado;
+    self.vectorTextField.text = globals.cifradoIV;
+    self.vectorText = globals.cifradoIV;
+}
 
 -(void)displayAlertView: (NSString *)header :(NSString *)message {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:header message:message preferredStyle:UIAlertControllerStyleAlert];
@@ -467,9 +342,5 @@
     [alert addAction:actionOK];
     [self presentViewController:alert animated:YES completion:nil];
 }
-
-
-
-
 
 @end

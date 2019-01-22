@@ -37,6 +37,7 @@
     NSString *nombreComercio;
     NSString *nombreTerminal;
     NSString *numeroRegistro;
+    NSString *mensajeVoucher;
     NSString *emailComercio;
     NSString *currency;
     NSString *idComercio;
@@ -79,6 +80,7 @@
 @property(strong, nonatomic, readwrite) NSString *nombreComercio;
 @property(strong, nonatomic, readwrite) NSString *nombreTerminal;
 @property(strong, nonatomic, readwrite) NSString *numeroRegistro;
+@property(strong, nonatomic, readwrite) NSString *mensajeVoucher;
 @property(strong, nonatomic, readwrite) NSString *emailComercio;
 @property(strong, nonatomic, readwrite) NSString *currency;
 @property(strong, nonatomic, readwrite) NSString *idComercio;

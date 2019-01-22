@@ -161,7 +161,7 @@
             
             NSError *jsonError;
             NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&jsonError];
-
+            NSLog(@"%@", jsonResponse);
             BOOL status = [jsonResponse[@"status"] boolValue];
             if(status) {
                 [self displayAlertView:@"Congratulations!" :@"INSTALLATION SUCCESSFUL!"];
@@ -172,7 +172,7 @@
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [self.activityIndicator stopAnimating];
             [self.overlayView removeFromSuperview];
-            NSLog(@"bbbb %@", error);
+            [self displayAlertView:@"Warning!" :@"Network error!"];
         }];
         
     }

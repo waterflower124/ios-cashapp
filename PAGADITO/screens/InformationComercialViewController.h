@@ -16,8 +16,18 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIView *TransV;
 @property (weak, nonatomic) IBOutlet UILabel *sessionInfoLabel;
 
+@property (weak, nonatomic) IBOutlet UITableView *currencyTableView;
+@property (weak, nonatomic) IBOutlet UITextField *comercial_nameLabel;
+@property (weak, nonatomic) IBOutlet UITextField *terminal_nameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *selectCurrencyButton;
+@property (weak, nonatomic) IBOutlet UITextField *trade_numberLabel;
+@property (weak, nonatomic) IBOutlet UITextField *trade_emailLabel;
+
+
 - (IBAction)backButtonAction:(id)sender;
 - (IBAction)menuButtonAction:(id)sender;
+- (IBAction)selectCurrencyButtonAction:(id)sender;
+
 
 
 @property (weak, nonatomic) IBOutlet UIView *SidePanel;
@@ -32,6 +42,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)configButtonAction:(id)sender;
 - (IBAction)usuarioButtonAction:(id)sender;
 - (IBAction)signoutButtonAction:(id)sender;
+
+
+- (IBAction)continuButtonAction:(id)sender;
 
 @end
 

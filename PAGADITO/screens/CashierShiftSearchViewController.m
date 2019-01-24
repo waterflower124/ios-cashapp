@@ -41,6 +41,11 @@
     
     Global *globals = [Global sharedInstance];
     
+    ////  dismiss keyboard   //////
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
+    tap.cancelsTouchesInView = NO;
+    
     /////////  TransV  tanp event   /////////
     UITapGestureRecognizer *tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideSidePanel:)];
     tapper.numberOfTapsRequired = 1;
@@ -248,7 +253,11 @@
         [self displayAlertView:@"Warning!" :@"Network error."];
     }];
     ////////////
-    
+}
+
+-(void)dismissKeyboard
+{
+    [self.view endEditing:YES];
 }
 
 -(void)hideSidePanel:(UIGestureRecognizer *)gesture{

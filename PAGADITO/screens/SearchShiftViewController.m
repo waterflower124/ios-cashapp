@@ -42,6 +42,10 @@
     ////   add event whenever search text view text is changed
     [self.searchwordTextView addTarget:self action:@selector(searchWordTextViewDidChange) forControlEvents:UIControlEventEditingChanged];
     
+    ///////  dismiss keyboard  //////
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
+    
     ////  array copy  /////
     self.showShiftArray = [[NSMutableArray alloc] initWithArray: self.shift_array copyItems:YES];
     
@@ -154,6 +158,11 @@
     tapper.numberOfTapsRequired = 1;
     [TransV addGestureRecognizer:tapper];
     //////////////////////////////
+}
+
+-(void)dismissKeyboard
+{
+    [self.view endEditing:YES];
 }
 
 -(void)hideSidePanel:(UIGestureRecognizer *)gesture{

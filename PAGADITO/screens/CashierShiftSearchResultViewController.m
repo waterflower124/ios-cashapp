@@ -1,43 +1,36 @@
 //
-//  CashierShiftSearchViewController.m
+//  CashierShiftSearchResultViewController.m
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/23.
+//  Created by Water Flower on 2019/1/24.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
-#import "CashierShiftSearchViewController.h"
+#import "CashierShiftSearchResultViewController.h"
 #import "Global.h"
 #import "AFNetworking.h"
 #import "WelcomeViewController.h"
-#import "../tableviewcells/CashierShiftSearchTableViewCell.h"
-#import "CashierShiftSearchResultViewController.h"
 
-@interface CashierShiftSearchViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface CashierShiftSearchResultViewController ()
 
 @property(strong, nonatomic)NSString *sessionInfoLabelText;
-@property(strong, nonatomic)NSMutableArray *cashier_array;
-@property(nonatomic)NSInteger selected_cashier_index;
-@property(strong, nonatomic)NSString *codigoText;
-
-@property(strong, nonatomic)NSString *startDateString;
-@property(strong, nonatomic)NSString *closeDateString;
 
 @property(strong, nonatomic)UIView *overlayView;
 @property(strong, nonatomic)UIActivityIndicatorView * activityIndicator;
 
 @end
 
-@implementation CashierShiftSearchViewController
-@synthesize TransV, SidePanel, sessionInfoLabel, cashierTableView, selectcashierButton, codigoTextView, startDatePicker, closeDatePicker;
+@implementation CashierShiftSearchResultViewController
+@synthesize fecha_inicio, fecha_fin, userCajero, codeShift;
+@synthesize TransV, SidePanel, sessionInfoLabel;
 @synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    ///  init   //////
-    self.cashier_array = [[NSMutableArray alloc] init];
-    self.selected_cashier_index = 0;
+    NSLog(@"fecha_inicio: %@:", fecha_inicio);
+    NSLog(@"fecha_fin: %@:", fecha_fin);
+    NSLog(@"userCajero: %@:", userCajero);
+    NSLog(@"codeShift: %@:", codeShift);
     
     Global *globals = [Global sharedInstance];
     
@@ -196,59 +189,6 @@
         [self.newtransactionButton addSubview:newtransactiolineView];
         
     }
-    
-    /////////  get user pos  ////////
-    [self.activityIndicator startAnimating];
-    [self.view addSubview:self.overlayView];
-    
-    NSDictionary *infoComercio = @{@"infoComercio": @{
-                                        @"idComercio": globals.idComercio,
-                                        }};
-    NSError *error;
-    NSData *postData = [NSJSONSerialization dataWithJSONObject:infoComercio options:0 error:&error];
-    NSString *string = [[NSString alloc]initWithData:postData encoding:NSUTF8StringEncoding];
-    NSDictionary *parameters = @{
-                                 @"method": @"getUsersPOS",
-                                 @"param": string
-                                 };
-    AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
-    sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects: @"application/json", nil];
-    [sessionManager POST: @"http://ninjahosting.us/web_api/service.php" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        [self.activityIndicator stopAnimating];
-        [self.overlayView removeFromSuperview];
-        
-        NSError *jsonError;
-        NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&jsonError];
-        
-        Boolean status = [jsonResponse[@"status"] boolValue];
-        if(status) {
-            NSMutableArray *jsonArray = jsonResponse[@"getUsersPOS"];
-            NSArray *cashier = [[NSArray alloc] init];
-            
-            if(jsonArray.count > 0) {
-                for(int i = 0; i < jsonArray.count; i ++) {
-                    cashier = @[jsonArray[i][@"idUser"], jsonArray[i][@"username"], jsonArray[i][@"removeAt"]];
-                    [self.cashier_array insertObject: cashier atIndex: i];
-                }
-                cashier = @[@"-1", @"No Select", @"1"];
-                [self.cashier_array insertObject:cashier atIndex:0];
-                [self.cashierTableView reloadData];
-            } else {
-                [self displayAlertView:@"Notice" :@"There is no shifts."];
-            }
-        } else {
-            [self displayAlertView:@"Warning!" :@"An error occured. Please contact support."];
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [self.activityIndicator stopAnimating];
-        [self.overlayView removeFromSuperview];
-        [self displayAlertView:@"Warning!" :@"Network error."];
-    }];
-    ////////////
-    
 }
 
 -(void)hideSidePanel:(UIGestureRecognizer *)gesture{
@@ -265,47 +205,10 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqualToString:@"cahiershiftsearchtowelcome_segue"]) {
+    if([segue.identifier isEqualToString:@"cashiershiftsearchresulttowelcome_segue"]) {
         WelcomeViewController *WelcomeVC;
         WelcomeVC = [segue destinationViewController];
-    } else if([segue.identifier isEqualToString:@"cashiershiftsearchtocashiershiftsearchresult_segue"]) {
-        CashierShiftSearchResultViewController *CashierShiftSearchResultVC;
-        CashierShiftSearchResultVC = [segue destinationViewController];
-        CashierShiftSearchResultVC.fecha_inicio = self.startDateString;
-        CashierShiftSearchResultVC.fecha_fin = self.closeDateString;
-        if(self.selected_cashier_index == 0) {
-            CashierShiftSearchResultVC.userCajero = @"";
-        } else {
-            CashierShiftSearchResultVC.userCajero = self.cashier_array[self.selected_cashier_index][0];
-        }
-        CashierShiftSearchResultVC.codeShift = self.codigoText;
-            
     }
-    
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.cashier_array.count;
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CashierShiftSearchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cashiershifttableviewcell"];
-    if(cell == nil) {
-        cell = [[CashierShiftSearchTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cashiershifttableviewcell"];
-    }
-    cell.usernameLabel.text = self.cashier_array[indexPath.row][1];
-    if([self.cashier_array[indexPath.row][2] isEqualToString:@"1"]) {
-        [cell.closestatusImageView setHidden:YES];
-    } else {
-        [cell.closestatusImageView setHidden:NO];
-    }
-    return cell;
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.selected_cashier_index = indexPath.row;
-    [selectcashierButton setTitle:self.cashier_array[indexPath.row][1] forState:UIControlStateNormal];
-    [self.cashierTableView setHidden:YES];
 }
 
 - (IBAction)menuButtonAction:(id)sender {
@@ -330,49 +233,7 @@
     }
 }
 
-- (IBAction)selectcashierButtonAction:(id)sender {
-    if(self.cashier_array.count > 0) {
-        if([self.cashierTableView isHidden]) {
-            [self.cashierTableView setHidden:NO];
-        } else {
-            [self.cashierTableView setHidden:YES];
-        }
-    }
-}
-
 - (IBAction)signoutButtonAction:(id)sender {
-    [self performSegueWithIdentifier:@"cahiershiftsearchtowelcome_segue" sender:self];
+    [self performSegueWithIdentifier:@"cashiershiftsearchresulttowelcome_segue" sender:self];
 }
-
-- (IBAction)searchButtonAction:(id)sender {
-    self.codigoText = self.codigoTextView.text;
-    if(self.codigoText.length > 10) {
-        [self displayAlertView:@"Warning!" :@"Código have to be less than 10 characters."];
-        return;
-    }
-    NSLocale *locale = [NSLocale currentLocale];
-    self.startDatePicker.locale = locale;
-    NSDate *startDate = [self.startDatePicker date];
-    NSDate *closeDate = [self.closeDatePicker date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    self.startDateString = [dateFormatter stringFromDate:startDate];
-    self.closeDateString = [dateFormatter stringFromDate:closeDate];
-    
-    [self performSegueWithIdentifier:@"cashiershiftsearchtocashiershiftsearchresult_segue" sender:self];
-}
-
-
-
--(void)displayAlertView: (NSString *)header :(NSString *)message {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:header message:message preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIApplication *actionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"");
-    }];
-    [alert addAction:actionOK];
-    [self presentViewController:alert animated:YES completion:nil];
-}
-
-
 @end

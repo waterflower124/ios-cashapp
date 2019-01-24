@@ -8492,6 +8492,7 @@ o contacta a soporte</string>
                         <outlet property="turnoButton" destination="Sm8-fA-9wy" id="0Vf-8H-Ap2"/>
                         <outlet property="usuarioButton" destination="nzd-LQ-hso" id="x0a-Lk-rea"/>
                         <segue destination="5Z4-mn-8hx" kind="presentation" identifier="cahiershiftsearchtowelcome_segue" id="6dS-Gp-qOT"/>
+                        <segue destination="4CB-cV-rqT" kind="presentation" identifier="cashiershiftsearchtocashiershiftsearchresult_segue" id="Ng2-3v-POk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G1S-cQ-q7x" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -11061,10 +11062,10 @@ o contacta a soporte</string>
             </objects>
             <point key="canvasLocation" x="4233" y="2810"/>
         </scene>
-        <!--Second View Controller-->
+        <!--Cashier Shift Search Result View Controller-->
         <scene sceneID="0ph-6z-DhM">
             <objects>
-                <viewController id="4CB-cV-rqT" customClass="SecondViewController" sceneMemberID="viewController">
+                <viewController id="4CB-cV-rqT" customClass="CashierShiftSearchResultViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bPM-xH-KWt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -11084,7 +11085,7 @@ o contacta a soporte</string>
                                     <attributedString key="attributedTitle"/>
                                 </state>
                                 <connections>
-                                    <action selector="buttonPressed:" destination="4CB-cV-rqT" eventType="touchUpInside" id="ID4-kP-nZO"/>
+                                    <action selector="menuButtonAction:" destination="4CB-cV-rqT" eventType="touchUpInside" id="nmT-lV-t6z"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RLs-bf-mAJ">
@@ -11718,7 +11719,7 @@ o contacta a soporte</string>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gk3-QX-FNd">
-                                <rect key="frame" x="25" y="645" width="99" height="17"/>
+                                <rect key="frame" x="22" y="645" width="102" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Sesión iniciada:">
@@ -11771,12 +11772,12 @@ o contacta a soporte</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view hidden="YES" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bP2-FV-P3Y">
-                                <rect key="frame" x="0.0" y="80" width="375" height="587"/>
+                                <rect key="frame" x="79" y="80" width="375" height="587"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zcb-B7-PU1">
-                                <rect key="frame" x="-300" y="80" width="300" height="587"/>
+                                <rect key="frame" x="0.0" y="80" width="300" height="587"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wBC-RF-zxk">
@@ -11835,6 +11836,9 @@ o contacta a soporte</string>
                                         <state key="normal" image="Pagadito_0001_Layer-17.png">
                                             <attributedString key="attributedTitle"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="qja-4M-7Hc" kind="show" id="jZm-gp-tyG"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Niu-Mq-vLd">
                                         <rect key="frame" x="0.0" y="299" width="300" height="60"/>
@@ -11869,39 +11873,9 @@ o contacta a soporte</string>
                                             <attributedString key="attributedTitle"/>
                                         </state>
                                         <connections>
-                                            <segue destination="5Z4-mn-8hx" kind="show" id="YEK-a4-vIo"/>
+                                            <action selector="signoutButtonAction:" destination="4CB-cV-rqT" eventType="touchUpInside" id="gss-AW-cUJ"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Hm-Cp-bbY">
-                                        <rect key="frame" x="0.0" y="59" width="300" height="1"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ble-JM-aQK">
-                                        <rect key="frame" x="0.0" y="118" width="300" height="1"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7wF-8E-xIf">
-                                        <rect key="frame" x="0.0" y="179" width="300" height="1"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Lp-GL-mTQ">
-                                        <rect key="frame" x="0.0" y="238" width="300" height="1"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tq8-CN-Mp9">
-                                        <rect key="frame" x="0.0" y="359" width="300" height="1"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yri-jG-jGk">
-                                        <rect key="frame" x="0.0" y="299" width="300" height="1"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fu8-jK-6fT">
                                         <rect key="frame" x="0.0" y="527" width="300" height="1"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -11915,14 +11889,22 @@ o contacta a soporte</string>
                         <viewLayoutGuide key="safeArea" id="MWE-us-jho"/>
                     </view>
                     <connections>
-                        <outlet property="MenuBtn" destination="bys-hJ-pyz" id="df8-8N-ae5"/>
-                        <outlet property="SidePanel" destination="zcb-B7-PU1" id="ShS-jz-oYW"/>
-                        <outlet property="TransV" destination="bP2-FV-P3Y" id="EVt-ej-uR8"/>
+                        <outlet property="SidePanel" destination="zcb-B7-PU1" id="38v-ZN-DAF"/>
+                        <outlet property="TransV" destination="bP2-FV-P3Y" id="UaJ-Xi-6h5"/>
+                        <outlet property="canceltransactionButton" destination="Niu-Mq-vLd" id="i1N-Do-214"/>
+                        <outlet property="configButton" destination="8eP-5U-HoW" id="DYT-Cy-bq6"/>
+                        <outlet property="homeButton" destination="wBC-RF-zxk" id="myA-9z-qNF"/>
+                        <outlet property="newtransactionButton" destination="qze-iv-tI0" id="uOV-8w-EtQ"/>
+                        <outlet property="reportButton" destination="tui-6Q-SGT" id="G6K-29-e3F"/>
+                        <outlet property="sessionInfoLabel" destination="5zw-Gs-tSS" id="NpE-CR-d7t"/>
+                        <outlet property="turnoButton" destination="qBn-4G-XKW" id="ryC-Gf-s9R"/>
+                        <outlet property="usuarioButton" destination="zbg-Sl-eKP" id="Jf6-wE-1WE"/>
+                        <segue destination="5Z4-mn-8hx" kind="presentation" identifier="cashiershiftsearchresulttowelcome_segue" id="bhI-cM-wSQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Ae-ew-xIl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5313" y="839"/>
+            <point key="canvasLocation" x="5312.8000000000002" y="838.83058470764627"/>
         </scene>
         <!--Transactions View Controller-->
         <scene sceneID="aaF-C0-HQl">
@@ -14391,23 +14373,23 @@ o contacta a soporte</string>
         <segue reference="e76-cs-Nyg"/>
         <segue reference="3TK-Ke-iOO"/>
         <segue reference="DFb-lS-2Hg"/>
-        <segue reference="gDn-G1-FRB"/>
+        <segue reference="7bX-it-LPg"/>
         <segue reference="ZY0-Ah-Urh"/>
         <segue reference="3ax-so-uZt"/>
         <segue reference="IFn-GB-61X"/>
-        <segue reference="XiX-x4-MHI"/>
-        <segue reference="Wxn-gR-MTe"/>
-        <segue reference="xGE-zO-q7t"/>
-        <segue reference="pb5-F5-9pQ"/>
-        <segue reference="pab-KF-uQk"/>
+        <segue reference="OYz-qQ-He5"/>
+        <segue reference="upf-uW-nS6"/>
+        <segue reference="r3A-ru-vJx"/>
+        <segue reference="qEk-5R-VPk"/>
+        <segue reference="aTq-hH-pul"/>
         <segue reference="ryk-l3-l3n"/>
-        <segue reference="UDO-fI-gl3"/>
+        <segue reference="jZm-gp-tyG"/>
         <segue reference="3gc-ek-hpZ"/>
-        <segue reference="gZg-DN-wVl"/>
+        <segue reference="9cq-P2-12i"/>
         <segue reference="zzn-x8-4xL"/>
-        <segue reference="0kq-Cg-V8g"/>
+        <segue reference="zKH-5I-ifN"/>
         <segue reference="oSC-O4-CSe"/>
-        <segue reference="qEM-ep-jst"/>
-        <segue reference="6dS-Gp-qOT"/>
+        <segue reference="UMe-ID-AOl"/>
+        <segue reference="bhI-cM-wSQ"/>
     </inferredMetricsTieBreakers>
 </document>

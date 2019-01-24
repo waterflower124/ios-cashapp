@@ -127,8 +127,6 @@ bool isTerminal_name = false;
     
 }
 
-
-
 -(void) parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary<NSString *,NSString *> *)attributeDict {
     
     //////   this part is for getting office data
@@ -326,7 +324,7 @@ bool isTerminal_name = false;
         
         NSDictionary *terminal = @{
                                    @"branch_office_id": self.storeID_list[indexPath.row],
-                                   @"terminals_type_id": @"10",
+                                   @"terminals_type_id": @"20",
                                    };
         
         NSData *terminalData = [NSJSONSerialization dataWithJSONObject:terminal options:0 error:&error];

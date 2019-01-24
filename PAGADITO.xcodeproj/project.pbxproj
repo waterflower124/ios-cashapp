@@ -140,6 +140,12 @@
 		23B49FFE21F7916300BAAD37 /* VoucherConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B49FFD21F7916300BAAD37 /* VoucherConfigViewController.m */; };
 		23B4A00121F7A34900BAAD37 /* ReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B4A00021F7A34900BAAD37 /* ReportViewController.m */; };
 		23B4A00421F7AEDB00BAAD37 /* ShiftReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B4A00321F7AEDB00BAAD37 /* ShiftReportViewController.m */; };
+		23B4A00721F8065400BAAD37 /* ShiftReportTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B4A00621F8065400BAAD37 /* ShiftReportTableViewCell.m */; };
+		23B4A00A21F81E0A00BAAD37 /* TransactionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B4A00921F81E0A00BAAD37 /* TransactionsViewController.m */; };
+		23B4A00D21F87B5500BAAD37 /* CashierShiftSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B4A00C21F87B5500BAAD37 /* CashierShiftSearchViewController.m */; };
+		23B4A00F21F8B0B400BAAD37 /* cashier_shift_close_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 23B4A00E21F8B0B300BAAD37 /* cashier_shift_close_icon.png */; };
+		23B4A01221F8B15900BAAD37 /* CashierShiftSearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B4A01121F8B15900BAAD37 /* CashierShiftSearchTableViewCell.m */; };
+		23B4A01521F8F0C100BAAD37 /* TransactionsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B4A01421F8F0C100BAAD37 /* TransactionsTableViewCell.m */; };
 		3A09261921BAAA5900333F1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A09261821BAAA5900333F1A /* AppDelegate.m */; };
 		3A09261C21BAAA5900333F1A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A09261B21BAAA5900333F1A /* ViewController.m */; };
 		3A09261F21BAAA5900333F1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A09261D21BAAA5900333F1A /* Main.storyboard */; };
@@ -333,6 +339,17 @@
 		23B4A00021F7A34900BAAD37 /* ReportViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReportViewController.m; sourceTree = "<group>"; };
 		23B4A00221F7AEDB00BAAD37 /* ShiftReportViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShiftReportViewController.h; sourceTree = "<group>"; };
 		23B4A00321F7AEDB00BAAD37 /* ShiftReportViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShiftReportViewController.m; sourceTree = "<group>"; };
+		23B4A00521F8065400BAAD37 /* ShiftReportTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShiftReportTableViewCell.h; sourceTree = "<group>"; };
+		23B4A00621F8065400BAAD37 /* ShiftReportTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShiftReportTableViewCell.m; sourceTree = "<group>"; };
+		23B4A00821F81E0A00BAAD37 /* TransactionsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionsViewController.h; sourceTree = "<group>"; };
+		23B4A00921F81E0A00BAAD37 /* TransactionsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionsViewController.m; sourceTree = "<group>"; };
+		23B4A00B21F87B5500BAAD37 /* CashierShiftSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CashierShiftSearchViewController.h; sourceTree = "<group>"; };
+		23B4A00C21F87B5500BAAD37 /* CashierShiftSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CashierShiftSearchViewController.m; sourceTree = "<group>"; };
+		23B4A00E21F8B0B300BAAD37 /* cashier_shift_close_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cashier_shift_close_icon.png; sourceTree = "<group>"; };
+		23B4A01021F8B15900BAAD37 /* CashierShiftSearchTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CashierShiftSearchTableViewCell.h; sourceTree = "<group>"; };
+		23B4A01121F8B15900BAAD37 /* CashierShiftSearchTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CashierShiftSearchTableViewCell.m; sourceTree = "<group>"; };
+		23B4A01321F8F0C100BAAD37 /* TransactionsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionsTableViewCell.h; sourceTree = "<group>"; };
+		23B4A01421F8F0C100BAAD37 /* TransactionsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionsTableViewCell.m; sourceTree = "<group>"; };
 		2A63F08DE9CEED364D00A01B /* Pods_PAGADITO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PAGADITO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A09261421BAAA5900333F1A /* PAGADITO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PAGADITO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A09261721BAAA5900333F1A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -402,6 +419,12 @@
 				2345039921EF5B840057C772 /* ShiftListTableViewCell.m */,
 				234503BC21F1D9A90057C772 /* CloseShiftTableViewCell.h */,
 				234503BD21F1D9A90057C772 /* CloseShiftTableViewCell.m */,
+				23B4A00521F8065400BAAD37 /* ShiftReportTableViewCell.h */,
+				23B4A00621F8065400BAAD37 /* ShiftReportTableViewCell.m */,
+				23B4A01021F8B15900BAAD37 /* CashierShiftSearchTableViewCell.h */,
+				23B4A01121F8B15900BAAD37 /* CashierShiftSearchTableViewCell.m */,
+				23B4A01321F8F0C100BAAD37 /* TransactionsTableViewCell.h */,
+				23B4A01421F8F0C100BAAD37 /* TransactionsTableViewCell.m */,
 			);
 			path = tableviewcells;
 			sourceTree = "<group>";
@@ -409,6 +432,7 @@
 		233E549021DFD1B700279DB1 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				23B4A00E21F8B0B300BAAD37 /* cashier_shift_close_icon.png */,
 				2329E15221F5814B00CD8EB2 /* wsk_response_fail_icon.png */,
 				2329E14D21F56ED200CD8EB2 /* reset_password_logo.png */,
 				2329E14B21F25FFA00CD8EB2 /* insert_shift_ok_message_icon.png */,
@@ -571,6 +595,10 @@
 				23B4A00021F7A34900BAAD37 /* ReportViewController.m */,
 				23B4A00221F7AEDB00BAAD37 /* ShiftReportViewController.h */,
 				23B4A00321F7AEDB00BAAD37 /* ShiftReportViewController.m */,
+				23B4A00821F81E0A00BAAD37 /* TransactionsViewController.h */,
+				23B4A00921F81E0A00BAAD37 /* TransactionsViewController.m */,
+				23B4A00B21F87B5500BAAD37 /* CashierShiftSearchViewController.h */,
+				23B4A00C21F87B5500BAAD37 /* CashierShiftSearchViewController.m */,
 			);
 			path = screens;
 			sourceTree = "<group>";
@@ -829,6 +857,7 @@
 				233E553021DFD1B800279DB1 /* Pagadito_0001s_0017_Capa-2.png in Resources */,
 				2329E14E21F56ED300CD8EB2 /* reset_password_logo.png in Resources */,
 				233E550221DFD1B800279DB1 /* Pagadito_0000s_0003_Nueva-Transacción--.png in Resources */,
+				23B4A00F21F8B0B400BAAD37 /* cashier_shift_close_icon.png in Resources */,
 				233E551221DFD1B800279DB1 /* Pagadito_0000s_0009_Layer-50.png in Resources */,
 				233E552A21DFD1B800279DB1 /* Pagadito_0001s_0005_Layer-98.png in Resources */,
 				233E552221DFD1B800279DB1 /* Pagadito_0001_Layer-43.png in Resources */,
@@ -928,6 +957,7 @@
 			files = (
 				2337176521EA8599003D7D15 /* InsertUserViewController.m in Sources */,
 				23296F8A21E9EBB10013AAC8 /* UserAdminViewController.m in Sources */,
+				23B4A01221F8B15900BAAD37 /* CashierShiftSearchTableViewCell.m in Sources */,
 				2352F92921EC493D003F106A /* NewTransactionViewController.m in Sources */,
 				232096B421E35FCF00C93E3B /* LastCommercialInfoViewController.m in Sources */,
 				2337176B21EC20D2003D7D15 /* EditUserViewController.m in Sources */,
@@ -937,9 +967,12 @@
 				2345039A21EF5B840057C772 /* ShiftListTableViewCell.m in Sources */,
 				23B49FFE21F7916300BAAD37 /* VoucherConfigViewController.m in Sources */,
 				234503B521F1C8850057C772 /* SearchShiftViewController.m in Sources */,
+				23B4A00A21F81E0A00BAAD37 /* TransactionsViewController.m in Sources */,
+				23B4A01521F8F0C100BAAD37 /* TransactionsTableViewCell.m in Sources */,
 				2329E15621F585FC00CD8EB2 /* ResetPasswordConfirmViewController.m in Sources */,
 				3A09261C21BAAA5900333F1A /* ViewController.m in Sources */,
 				23B4A00421F7AEDB00BAAD37 /* ShiftReportViewController.m in Sources */,
+				23B4A00D21F87B5500BAAD37 /* CashierShiftSearchViewController.m in Sources */,
 				2329E15921F5B00F00CD8EB2 /* SystemConfigurationViewController.m in Sources */,
 				23B4A00121F7A34900BAAD37 /* ReportViewController.m in Sources */,
 				2337176221EA4D6D003D7D15 /* UserListTableViewCell.m in Sources */,
@@ -956,6 +989,7 @@
 				232096AC21E12FBE00C93E3B /* Global.m in Sources */,
 				2337176821EAF273003D7D15 /* DeleteUserViewController.m in Sources */,
 				3A09261921BAAA5900333F1A /* AppDelegate.m in Sources */,
+				23B4A00721F8065400BAAD37 /* ShiftReportTableViewCell.m in Sources */,
 				2352F92621EC469F003F106A /* ReportsViewController.m in Sources */,
 				2337176E21EC2CF7003D7D15 /* EditUserScreenViewController.m in Sources */,
 				232096A321E081B700C93E3B /* SelectStoreTerminalViewController.m in Sources */,

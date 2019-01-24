@@ -113,9 +113,11 @@ int role_int = -1;
          
          [self stopActivityIndicator];
          
-         NSString *statusValue = jsonResponse[@"status"];
+         BOOL status = [jsonResponse[@"status"] boolValue];
          
-         if([statusValue isEqualToString:@"false"]) {
+         if(status) {
+             [self displayAlertView:@"Warning!" :@"Username is not available. Please try again with another username"];
+         } else {
              if(role_int == 4) {
                  NSDictionary *dataUserDic = @{@"nombres":self.name, @"apellidos":self.lastname, @"idPrivilegio":@"4", @"username":self.username, @"password":self.password, @"shiftEveryday":self.checkStatus, @"codigoAprobacion":@""};
                  [self.infoUserArray addObject:dataUserDic];
@@ -164,9 +166,7 @@ int role_int = -1;
              self.usernameTextField.text = @"";
              self.passwordTextField.text = @"";
              self.confirmpwdTextField.text = @"";
-         } else if([statusValue isEqualToString:@"true"]){
-             [self displayAlertView:@"Warning!" :@"Username is not available. Please try again with another username"];
-         }
+         } 
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
          [self stopActivityIndicator];
          [self displayAlertView:@"Warning!" :@"Network error."];

@@ -43,7 +43,7 @@
     
     
     self.selected_user = self.user_array[selected_index];
-    NSLog(@"%@", self.user_array);
+//    NSLog(@"%@", self.user_array);
     NSLog(@"%@", self.selected_user);
     if([self.selected_user[3] isEqualToString:@"Supervisor"]) {
         self.roleTableArray = [[NSMutableArray alloc] initWithObjects:@"Supervisor", nil];
@@ -130,14 +130,16 @@
     
     Global *globals = [Global sharedInstance];
     NSDictionary *editUser = @{@"editUser": @{
-                                          @"nombre":self.firstname_text,
+                                          @"nombres":self.firstname_text,
                                           @"apellidos": self.lastname_text,
                                           @"username": self.usertname_text,
                                           @"password": self.password_text,
                                           @"idDispositivo": globals.idDispositivo,
+                                          @"idUser": self.selected_user[0],
                                           @"shiftEveryday": self.shiftEveryday,
                                           @"codigoAprobacion": self.pincode_text
                                           }};
+    NSLog(@"%@", editUser);
     NSError *error;
     NSData *postData = [NSJSONSerialization dataWithJSONObject:editUser options:0 error:&error];
     NSString *string = [[NSString alloc]initWithData:postData encoding:NSUTF8StringEncoding];
@@ -158,7 +160,7 @@
         
         NSError *jsonError;
         NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&jsonError];
-        
+        NSLog(@"%@", jsonResponse);
         BOOL status = [jsonResponse[@"status"] boolValue];
         if(status) {
             [self displayAlertView:@"Success!" :@"The user edited succesfully."];

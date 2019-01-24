@@ -1,39 +1,47 @@
 //
-//  ShiftReportViewController.m
+//  TransactionsViewController.m
 //  PAGADITO
 //
 //  Created by Water Flower on 2019/1/23.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
-#import "ShiftReportViewController.h"
+#import "TransactionsViewController.h"
 #import "Global.h"
 #import "AFNetworking.h"
 #import "WelcomeViewController.h"
-#import "../tableviewcells/ShiftReportTableViewCell.h"
-#import "TransactionsViewController.h"
+#import "../tableviewcells/TransactionsTableViewCell.h"
 
-@interface ShiftReportViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface TransactionsViewController ()<UITableViewDelegate, UITableViewDataSource, NSXMLParserDelegate>
 
 @property(strong, nonatomic)NSString *sessionInfoLabelText;
-@property(strong, nonatomic)NSMutableArray *shift_array;
 
 @property(strong, nonatomic)UIView *overlayView;
 @property(strong, nonatomic)UIActivityIndicatorView * activityIndicator;
 
-@property(nonatomic)NSInteger selected_cell_index;
+@property(strong, nonatomic)NSMutableArray *transaction_array;
+@property(strong, nonatomic)NSArray *transaction;
+
+@property (strong, nonatomic) NSXMLParser *xmlTransactionsParser;
+@property(strong, nonatomic) NSString *transaction_status;
+@property(strong, nonatomic) NSString *transaction_token;
+@property(strong, nonatomic) NSString *transaction_ern;
+@property(strong, nonatomic) NSString *transaction_amount;
+@property(strong, nonatomic) NSString *transaction_datetime;
+@property(strong, nonatomic) NSString *transaction_reference;
 
 @end
 
-@implementation ShiftReportViewController
-@synthesize TransV, SidePanel, sessionInfoLabel, shiftListTableView;
+@implementation TransactionsViewController
+@synthesize sourceVC, shift_code;
+@synthesize TransV, SidePanel, sessionInfoLabel, turnocodigoLabel, transactionTableView;
 @synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    ///////  shift array initialize  ////
-    self.shift_array = [[NSMutableArray alloc] init];
+    //////  init transaction array  //////
+    self.transaction_array = [[NSMutableArray alloc] init];
     
     Global *globals = [Global sharedInstance];
     
@@ -193,22 +201,36 @@
         
     }
     
-    ///////  get all shifts   /////////
+    ////////   get transactions  /////////
     [self.activityIndicator startAnimating];
     [self.view addSubview:self.overlayView];
-    NSDictionary *infoShift = @{@"infoShift": @{
-                                          @"idDispositivo": globals.idDispositivo,
-                                          @"CloseShiftTable": @"1",
-                                          }};
-    
-    NSError *error;
-    NSData *postData = [NSJSONSerialization dataWithJSONObject:infoShift options:0 error:&error];
-    NSString *string = [[NSString alloc]initWithData:postData encoding:NSUTF8StringEncoding];
-    
-    NSDictionary *parameters = @{
-                                 @"method": @"getAllShift",
-                                 @"param": string
-                                 };
+    NSDictionary *parameters;
+    if([self.sourceVC isEqualToString:@"ShiftReportVC"]) {
+        NSDictionary *credentials = @{
+                                        @"uid": globals.login_uid,
+                                        @"wsk": globals.login_wsk,
+                                        @"ambiente": globals.ambiente
+                                    };
+        NSDictionary *terminal = @{
+                                      @"branch_office_id": globals.branchid,
+                                      @"terminal_id": globals.terminalid
+                                    };
+        
+        NSError *error;
+        NSData *credentialsPostData = [NSJSONSerialization dataWithJSONObject:credentials options:0 error:&error];
+        NSString *credentialsString = [[NSString alloc]initWithData:credentialsPostData encoding:NSUTF8StringEncoding];
+        
+        NSData *terminalPostData = [NSJSONSerialization dataWithJSONObject:terminal options:0 error:&error];
+        NSString *terminalString = [[NSString alloc]initWithData:terminalPostData encoding:NSUTF8StringEncoding];
+        
+       parameters = @{
+                         @"method": @"get_terminal_transactions_by_shift_mobil",
+                         @"credentials": credentialsString,
+                         @"terminal": terminalString,
+                         @"shift_code": self.shift_code,
+                         @"typeReport": @"2"
+                     };
+    }
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
     sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -220,46 +242,28 @@
         
         NSError *jsonError;
         NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&jsonError];
-        Boolean status = [jsonResponse[@"status"] boolValue];
-        if(status) {
-            NSMutableArray *jsonArray = jsonResponse[@"getAllShift"];
-            NSArray *shift = [[NSArray alloc] init];
-            
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 
-            NSDate *fechaInicio_date, *fechaFin_date;
-            NSString *fechaInicio, *fechaFin;
+        NSString *numberString = jsonResponse[@"value"][@"num_transactions"];
+        NSInteger transactionCount = [numberString integerValue];
+        if(transactionCount > 0) {
+            self.turnocodigoLabel.text = jsonResponse[@"value"][@"shift_code"];
             
-            if(jsonArray.count > 0) {
-                for(int i = 0; i < jsonArray.count; i ++) {
-                    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-                    fechaInicio_date = [dateFormatter dateFromString:jsonArray[i][@"fechaInicio"]];
-                    if(jsonArray[i][@"fechaFin"] != (NSString*)[NSNull null]) {
-                        fechaFin_date = [dateFormatter dateFromString:jsonArray[i][@"fechaFin"]];
-                    }
-                    [dateFormatter setDateFormat:@"dd/MM/yyyy hh:mm a"];
-                    fechaInicio = [dateFormatter stringFromDate:fechaInicio_date];
-                    if(jsonArray[i][@"fechaFin"] != (NSString*)[NSNull null]) {
-                        fechaFin = [dateFormatter stringFromDate:fechaFin_date];
-                    } else {
-                        fechaFin = @"------";
-                    }
-                    shift = @[jsonArray[i][@"codeShift"], jsonArray[i][@"username"], jsonArray[i][@"nombres"],  jsonArray[i][@"apellidos"], fechaInicio, fechaFin, jsonArray[i][@"turnoCod"]];
-                    [self.shift_array insertObject: shift atIndex: i];
-                }
-                [self.shiftListTableView reloadData];
-            } else {
-                [self displayAlertView:@"Notice" :@"There is no shifts."];
-            }
+            NSString *xml_string = jsonResponse[@"value"][@"xml_transactions"];
+            NSData *xmlData = [xml_string dataUsingEncoding:NSUTF8StringEncoding];
+            self.xmlTransactionsParser = [[NSXMLParser alloc] initWithData:xmlData];
+            self.xmlTransactionsParser.delegate = self;
+            
+            [self.xmlTransactionsParser parse];
+            
         } else {
-            [self displayAlertView:@"Warning!" :@"An error occured. Please contact support."];
+            [self displayAlertView:@"Notice!" :@"No transactions found."];
         }
-        
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
-        [self displayAlertView:@"Warning!" :@"Network error."];
+//        [self displayAlertView:@"Warning!" :@"Network error."];
+        NSLog(@"errororororor");
     }];
     ////////////
     
@@ -278,40 +282,119 @@
     }
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqualToString:@"shiftreporttowelcome_segue"]) {
-        WelcomeViewController *WelcomeVC;
-        WelcomeVC = [segue destinationViewController];
-    } else if([segue.identifier isEqualToString:@"shiftreporttotransactions_segue"]) {
-        TransactionsViewController *TransactionsVC;
-        TransactionsVC = [segue destinationViewController];
-        TransactionsVC.shift_code = self.shift_array[self.selected_cell_index][6];
-        TransactionsVC.sourceVC = @"ShiftReportVC";
+bool isTerminal_transaction = false;
+bool isTransaction = false;
+bool isTransaction_status = false;
+bool isTransaction_token = false;
+bool isTransaction_ern = false;
+bool isTransaction_amount = false;
+bool isTransaction_datetime = false;
+bool isTransaction_reference = false;
+-(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary<NSString *,NSString *> *)attributeDict {
+    if([elementName isEqualToString:@"terminal_transactions"]) {
+        isTerminal_transaction = true;
+    }
+    if(isTerminal_transaction && [elementName isEqualToString:@"transaction"]) {
+        isTransaction = true;
+    }
+    if(isTransaction && [elementName isEqualToString:@"transaction_status"]) {
+        isTransaction_status = true;
+    }
+    if(isTransaction && [elementName isEqualToString:@"transaction_token"]) {
+        isTransaction_token = true;
+    }
+    if(isTransaction && [elementName isEqualToString:@"transaction_ern"]) {
+        isTransaction_ern = true;
+    }
+    if(isTransaction && [elementName isEqualToString:@"transaction_amount"]) {
+        isTransaction_amount = true;
+    }
+    if(isTransaction && [elementName isEqualToString:@"transaction_datetime"]) {
+        isTransaction_datetime = true;
+    }
+    if(isTransaction && [elementName isEqualToString:@"transaction_reference"]) {
+        isTransaction_reference = true;
+    }
+}
+
+-(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
+    if([elementName isEqualToString:@"terminal_transactions"]) {
+        [self.transactionTableView reloadData];
+    }
+    if([elementName isEqualToString:@"transaction"]) {
+        self.transaction = [[NSArray alloc] init];
+        self.transaction = @[self.transaction_status, self.transaction_token, self.transaction_ern, self.transaction_amount, self.transaction_datetime, self.transaction_reference];
+        [self.transaction_array addObject:self.transaction];
+        isTransaction = false;
+    }
+    if([elementName isEqualToString:@"transaction_status"]) {
+        isTransaction_status = false;
+    }
+    if([elementName isEqualToString:@"transaction_token"]) {
+        isTransaction_token = false;
+    }
+    if([elementName isEqualToString:@"transaction_ern"]) {
+        isTransaction_ern = false;
+    }
+    if([elementName isEqualToString:@"transaction_amount"]) {
+        isTransaction_amount = false;
+    }
+    if([elementName isEqualToString:@"transaction_datetime"]) {
+        isTransaction_datetime = false;
+    }
+    if([elementName isEqualToString:@"transaction_reference"]) {
+        isTransaction_reference = false;
+    }
+}
+
+-(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
+    if(isTransaction && isTransaction_status) {
+        self.transaction_status = string;
+    }
+    if(isTransaction && isTransaction_token) {
+        self.transaction_token = string;
+    }
+    if(isTransaction && isTransaction_ern) {
+        self.transaction_ern = string;
+    }
+    if(isTransaction && isTransaction_amount) {
+        self.transaction_amount = string;
+    }
+    if(isTransaction && isTransaction_datetime) {
+        self.transaction_datetime = string;
+    }
+    if(isTransaction && isTransaction_reference) {
+        self.transaction_reference = string;
     }
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.shift_array.count;
+    return self.transaction_array.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ShiftReportTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"shifttableviewcell"];
+    TransactionsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"transactionstableviewcell"];
     if(cell == nil) {
-        cell = [[ShiftReportTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"shifttablecell"];
+        cell = [[TransactionsTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"transactionstableviewcell"];
     }
-    cell.codeShiftLabel.text = self.shift_array[indexPath.row][0];
-    cell.fechaInicioLabel.text = self.shift_array[indexPath.row][4];
-    cell.fechaFinLabel.text = self.shift_array[indexPath.row][5];
-    cell.usernameLabel.text = self.shift_array[indexPath.row][1];
-    cell.turnoCodButton.tag = indexPath.row;
-    [cell.turnoCodButton addTarget:self action:@selector(turnoCodButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    NSString *amountLabelText = [NSString stringWithFormat:@"$%@", self.transaction_array[indexPath.row][3]];
+    cell.transaction_amountLabel.text = amountLabelText;
+    cell.transaction_ernLabel.text = self.transaction_array[indexPath.row][2];
+    cell.transaction_datetimeLabel.text = self.transaction_array[indexPath.row][4];
+    cell.transaction_referenceLabel.text = self.transaction_array[indexPath.row][5];
+    cell.transaction_statusLabel.text = self.transaction_array[indexPath.row][0];
     return cell;
 }
 
--(void)turnoCodButtonAction:(id)sender {
-    UIButton *senderButton = (UIButton *)sender;
-    self.selected_cell_index = senderButton.tag;
-    [self performSegueWithIdentifier:@"shiftreporttotransactions_segue" sender:self];
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqualToString:@"transactionstowelcome_segue"]) {
+        WelcomeViewController *WelcomeVC;
+        WelcomeVC = [segue destinationViewController];
+    }
+}
+
+- (IBAction)signoutButtonAction:(id)sender {
+    [self performSegueWithIdentifier:@"transactionstowelcome_segue" sender:self];
 }
 
 - (IBAction)menuButtonAction:(id)sender {
@@ -336,18 +419,15 @@
     }
 }
 
-- (IBAction)signoutButtonAction:(id)sender {
-    [self performSegueWithIdentifier:@"shiftreporttowelcome_segue" sender:self];
-}
 
 -(void)displayAlertView: (NSString *)header :(NSString *)message {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:header message:message preferredStyle:UIAlertControllerStyleAlert];
-    
     UIApplication *actionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"");
+        NSLog(@"OK action");
     }];
     [alert addAction:actionOK];
     [self presentViewController:alert animated:YES completion:nil];
 }
+
 
 @end

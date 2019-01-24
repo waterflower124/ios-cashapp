@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) IBOutlet UIView *TransV;
 @property (weak, nonatomic) IBOutlet UITableView *shiftlistTableView;
+@property (weak, nonatomic) IBOutlet UILabel *sessionInfoLabel;
 
 - (IBAction)backButtonAction:(id)sender;
 - (IBAction)menuButtonAction:(id)sender;

@@ -33,8 +33,8 @@
 @end
 
 @implementation TransactionsViewController
-@synthesize sourceVC, shift_code;
-@synthesize TransV, SidePanel, sessionInfoLabel, turnocodigoLabel, transactionTableView;
+@synthesize sourceVC, shift_code, start_datetime, finish_datetime;
+@synthesize TransV, SidePanel, sessionInfoLabel, turnocodigoLabel, turnocodigoTitleLabel, transactionTableView;
 @synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
 
 - (void)viewDidLoad {
@@ -205,7 +205,7 @@
     [self.activityIndicator startAnimating];
     [self.view addSubview:self.overlayView];
     NSDictionary *parameters;
-    if([self.sourceVC isEqualToString:@"ShiftReportVC"]) {
+    if([self.sourceVC isEqualToString:@"ShiftReportVC"] || [self.sourceVC isEqualToString:@"CashierShiftSearchVC"]) {
         NSDictionary *credentials = @{
                                         @"uid": globals.login_uid,
                                         @"wsk": globals.login_wsk,
@@ -230,6 +230,37 @@
                          @"shift_code": self.shift_code,
                          @"typeReport": @"2"
                      };
+    } else if([self.sourceVC isEqualToString:@"TransactionReportVC"]) {
+        NSDictionary *credentials = @{
+                                      @"uid": globals.login_uid,
+                                      @"wsk": globals.login_wsk,
+                                      @"ambiente": globals.ambiente
+                                      };
+        NSDictionary *terminal = @{
+                                   @"branch_office_id": globals.branchid,
+                                   @"terminal_id": globals.terminalid
+                                   };
+        NSDictionary *period = @{
+                                   @"start_datetime": self.start_datetime,
+                                   @"finish_datetime": self.finish_datetime
+                                   };
+        NSLog(@"%@", period);
+        NSError *error;
+        NSData *credentialsPostData = [NSJSONSerialization dataWithJSONObject:credentials options:0 error:&error];
+        NSString *credentialsString = [[NSString alloc]initWithData:credentialsPostData encoding:NSUTF8StringEncoding];
+        
+        NSData *terminalPostData = [NSJSONSerialization dataWithJSONObject:terminal options:0 error:&error];
+        NSString *terminalString = [[NSString alloc]initWithData:terminalPostData encoding:NSUTF8StringEncoding];
+        
+        NSData *periodPostData = [NSJSONSerialization dataWithJSONObject:period options:0 error:&error];
+        NSString *periodString = [[NSString alloc]initWithData:periodPostData encoding:NSUTF8StringEncoding];
+        
+        parameters = @{
+                       @"method": @"get_terminal_transaction_mobil",
+                       @"credentials": credentialsString,
+                       @"terminal": terminalString,
+                       @"period": periodString
+                       };
     }
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -242,11 +273,18 @@
         
         NSError *jsonError;
         NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&jsonError];
-
+        NSLog(@"%@", jsonResponse);
         NSString *numberString = jsonResponse[@"value"][@"num_transactions"];
         NSInteger transactionCount = [numberString integerValue];
         if(transactionCount > 0) {
-            self.turnocodigoLabel.text = jsonResponse[@"value"][@"shift_code"];
+            if([self.sourceVC isEqualToString:@"ShiftReportVC"] || [self.sourceVC isEqualToString:@"CashierShiftSearchVC"]) {
+                [self.turnocodigoTitleLabel setHidden:NO];
+                [self.turnocodigoLabel setHidden:NO];
+                self.turnocodigoLabel.text = jsonResponse[@"value"][@"shift_code"];
+            } else if([self.sourceVC isEqualToString:@"TransactionReportVC"]) {
+                [self.turnocodigoTitleLabel setHidden:YES];
+                [self.turnocodigoLabel setHidden:YES];
+            }
             
             NSString *xml_string = jsonResponse[@"value"][@"xml_transactions"];
             NSData *xmlData = [xml_string dataUsingEncoding:NSUTF8StringEncoding];
@@ -262,7 +300,7 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
-//        [self displayAlertView:@"Warning!" :@"Network error."];
+        [self displayAlertView:@"Warning!" :@"Network error."];
         NSLog(@"errororororor");
     }];
     ////////////

@@ -14,12 +14,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(strong, nonatomic)NSString *sourceVC;
 @property(strong, nonatomic)NSString *shift_code;
+@property(strong, nonatomic)NSString *start_datetime;
+@property(strong, nonatomic)NSString *finish_datetime;
 
 
 @property (weak, nonatomic) IBOutlet UIView *TransV;
 @property (weak, nonatomic) IBOutlet UIView *SidePanel;
 @property (weak, nonatomic) IBOutlet UILabel *sessionInfoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *turnocodigoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *turnocodigoTitleLabel;
 @property (weak, nonatomic) IBOutlet UITableView *transactionTableView;
 
 - (IBAction)menuButtonAction:(id)sender;

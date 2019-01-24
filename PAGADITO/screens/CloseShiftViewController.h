@@ -17,11 +17,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIView *TransV;
 @property (weak, nonatomic) IBOutlet UITableView *shiftlistTableView;
 @property (weak, nonatomic) IBOutlet UIView *SidePanel;
+@property (weak, nonatomic) IBOutlet UILabel *sessionInfoLabel;
 
 
 - (IBAction)backButtonAction:(id)sender;
 - (IBAction)menuButtonAction:(id)sender;
-- (IBAction)mainmenuSearchShiftButtonAcUsution:(id)sender;
+//- (IBAction)mainmenuSearchShiftButtonAcUsution:(id)sender;
 - (IBAction)mainmenuAssignShiftButtonAction:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIView *closeshiftAlertView;

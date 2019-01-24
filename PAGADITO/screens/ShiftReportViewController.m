@@ -294,6 +294,10 @@
     return self.shift_array.count;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 100;
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ShiftReportTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"shifttableviewcell"];
     if(cell == nil) {

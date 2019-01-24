@@ -1,36 +1,25 @@
 //
-//  EditUserViewController.h
+//  TransactionsReportViewController.h
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/14.
+//  Created by Water Flower on 2019/1/24.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-
 NS_ASSUME_NONNULL_BEGIN
 
-@interface EditUserViewController : UIViewController{
-    
-    IBOutlet UIView *TransV;
-    IBOutlet UIView *SidePanel;
-    IBOutlet UIButton *MenuBtn;
-    
-}
+@interface TransactionsReportViewController : UIViewController
 
-@property(nonatomic)IBOutlet UIButton *MenuBtn;
-@property(nonatomic)IBOutlet UIView *SidePanel;
-@property(nonatomic)IBOutlet UIView *TransV;
-
-@property (weak, nonatomic) IBOutlet UITableView *usersTableView;
+@property (weak, nonatomic) IBOutlet UIView *TransV;
+@property (weak, nonatomic) IBOutlet UIView *SidePanel;
 @property (weak, nonatomic) IBOutlet UILabel *sessionInfoLabel;
+@property (weak, nonatomic) IBOutlet UIDatePicker *startDatePicker;
+@property (weak, nonatomic) IBOutlet UIDatePicker *finishDatePicker;
 
-@property(strong, nonatomic)NSMutableArray *user_array;
 
-- (IBAction)createUserButtonAction:(id)sender;
-- (IBAction)deleteUserButtonAction:(id)sender;
-- (IBAction)searchUserButtonAction:(id)sender;
+- (IBAction)menuButtonAction:(id)sender;
 
 
 @property (weak, nonatomic) IBOutlet UIButton *homeButton;
@@ -40,6 +29,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *turnoButton;
 @property (weak, nonatomic) IBOutlet UIButton *canceltransactionButton;
 @property (weak, nonatomic) IBOutlet UIButton *newtransactionButton;
+
+- (IBAction)signoutButtonAction:(id)sender;
+
+- (IBAction)todaytransactionButtonAction:(id)sender;
+- (IBAction)generatereportButtonAction:(id)sender;
+
 
 @end
 

@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic)IBOutlet UIView *SidePanel;
 @property(nonatomic)IBOutlet UIView *TransV;
 @property (weak, nonatomic) IBOutlet UITableView *usersTableView;
+@property (weak, nonatomic) IBOutlet UILabel *sessionInfoLabel;
 
 
 @property(strong, nonatomic)NSMutableArray *user_array;

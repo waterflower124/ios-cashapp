@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) IBOutlet UITableView *usersTableView;
 @property (weak, nonatomic) IBOutlet UITextField *searchWordTextView;
+@property (weak, nonatomic) IBOutlet UILabel *sessionInfoLabel;
 
 
 @property (weak, nonatomic) IBOutlet UIButton *homeButton;

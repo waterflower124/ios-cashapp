@@ -20,6 +20,7 @@
 
 @property(strong, nonatomic)NSString *searchWord;
 @property(strong, nonatomic)NSMutableArray *showShiftArray;
+@property(strong, nonatomic)NSString *sessionInfoLabelText;
 
 @end
 
@@ -27,19 +28,23 @@
 @synthesize shift_array;
 @synthesize shiftlistTableView;
 @synthesize searchwordTextView;
-@synthesize TransV;
+@synthesize TransV, sessionInfoLabel;
 @synthesize SidePanel, homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    Global *globals = [Global sharedInstance];
+    //session info label
+    self.sessionInfoLabelText = [NSString stringWithFormat:@"%@ / %@", globals.username, globals.nombreComercio];
+    sessionInfoLabel.text = self.sessionInfoLabelText;
+    
     ////   add event whenever search text view text is changed
     [self.searchwordTextView addTarget:self action:@selector(searchWordTextViewDidChange) forControlEvents:UIControlEventEditingChanged];
     
     ////  array copy  /////
     self.showShiftArray = [[NSMutableArray alloc] initWithArray: self.shift_array copyItems:YES];
     
-    Global *globals = [Global sharedInstance];
     ///////////////   side menu buttons configure   /////////////////
     if([globals.idPrivilegio isEqualToString:@"2"]) {
         CGRect homeButtonFrame = self.homeButton.frame;

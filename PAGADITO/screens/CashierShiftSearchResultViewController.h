@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIView *TransV;
 @property (weak, nonatomic) IBOutlet UIView *SidePanel;
 @property (weak, nonatomic) IBOutlet UILabel *sessionInfoLabel;
+@property (weak, nonatomic) IBOutlet UITableView *shiftListTableView;
+@property (weak, nonatomic) IBOutlet UILabel *shiftarrayCountLabel;
 
 - (IBAction)menuButtonAction:(id)sender;
 

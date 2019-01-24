@@ -1,39 +1,35 @@
 //
-//  CashierShiftSearchResultViewController.m
+//  TransactionsReportViewController.m
 //  PAGADITO
 //
 //  Created by Water Flower on 2019/1/24.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
-#import "CashierShiftSearchResultViewController.h"
+#import "TransactionsReportViewController.h"
 #import "Global.h"
 #import "AFNetworking.h"
 #import "WelcomeViewController.h"
-#import "../tableviewcells/ShiftReportTableViewCell.h"
 #import "TransactionsViewController.h"
 
-@interface CashierShiftSearchResultViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface TransactionsReportViewController ()
 
 @property(strong, nonatomic)NSString *sessionInfoLabelText;
-@property(strong, nonatomic)NSMutableArray *shift_array;
-@property(nonatomic)NSInteger selected_cell_index;
+@property(strong, nonatomic)NSString *start_datetime;
+@property(strong, nonatomic)NSString *finish_datetime;
 
 @property(strong, nonatomic)UIView *overlayView;
 @property(strong, nonatomic)UIActivityIndicatorView * activityIndicator;
 
 @end
 
-@implementation CashierShiftSearchResultViewController
-@synthesize fecha_inicio, fecha_fin, userCajero, codeShift;
-@synthesize TransV, SidePanel, sessionInfoLabel, shiftListTableView, shiftarrayCountLabel;
+@implementation TransactionsReportViewController
+@synthesize TransV, SidePanel, sessionInfoLabel, startDatePicker, finishDatePicker;
 @synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    ///////  shift array initialize  ////
-    self.shift_array = [[NSMutableArray alloc] init];
     
     Global *globals = [Global sharedInstance];
     
@@ -192,82 +188,6 @@
         [self.newtransactionButton addSubview:newtransactiolineView];
         
     }
-    
-    ///////  get all shifts   /////////
-    [self.activityIndicator startAnimating];
-    [self.view addSubview:self.overlayView];
-    NSDictionary *infoShift = @{@"infoShift": @{
-                                        @"idDispositivo": globals.idDispositivo,
-                                        @"fecha_inicio": self.fecha_inicio,
-                                        @"fecha_fin": self.fecha_fin,
-                                        @"userCajero": self.userCajero,
-                                        @"codeShift": self.codeShift,
-                                        @"CloseShiftTable": @"2",
-                                        }};
-    
-    NSError *error;
-    NSData *postData = [NSJSONSerialization dataWithJSONObject:infoShift options:0 error:&error];
-    NSString *string = [[NSString alloc]initWithData:postData encoding:NSUTF8StringEncoding];
-    
-    NSDictionary *parameters = @{
-                                 @"method": @"getAllShift",
-                                 @"param": string
-                                 };
-    AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
-    sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects: @"application/json", nil];
-    [sessionManager POST: @"http://ninjahosting.us/web_api/service.php" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        [self.activityIndicator stopAnimating];
-        [self.overlayView removeFromSuperview];
-        
-        NSError *jsonError;
-        NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&jsonError];
-        Boolean status = [jsonResponse[@"status"] boolValue];
-        if(status) {
-            NSMutableArray *jsonArray = jsonResponse[@"getAllShift"];
-            NSArray *shift = [[NSArray alloc] init];
-            
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            
-            NSDate *fechaInicio_date, *fechaFin_date;
-            NSString *fechaInicio, *fechaFin;
-            
-            if(jsonArray.count > 0) {
-                for(int i = 0; i < jsonArray.count; i ++) {
-                    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-                    fechaInicio_date = [dateFormatter dateFromString:jsonArray[i][@"fechaInicio"]];
-                    if(jsonArray[i][@"fechaFin"] != (NSString*)[NSNull null]) {
-                        fechaFin_date = [dateFormatter dateFromString:jsonArray[i][@"fechaFin"]];
-                    }
-                    [dateFormatter setDateFormat:@"dd/MM/yyyy hh:mm a"];
-                    fechaInicio = [dateFormatter stringFromDate:fechaInicio_date];
-                    if(jsonArray[i][@"fechaFin"] != (NSString*)[NSNull null]) {
-                        fechaFin = [dateFormatter stringFromDate:fechaFin_date];
-                    } else {
-                        fechaFin = @"------";
-                    }
-                    shift = @[jsonArray[i][@"codeShift"], jsonArray[i][@"username"], jsonArray[i][@"nombres"],  jsonArray[i][@"apellidos"], fechaInicio, fechaFin, jsonArray[i][@"turnoCod"]];
-                    [self.shift_array insertObject: shift atIndex: i];
-                }
-                self.shiftarrayCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)jsonArray.count];
-                [self.shiftListTableView reloadData];
-            } else {
-                [self displayAlertView:@"Notice" :@"There is no shifts."];
-            }
-        } else {
-            [self displayAlertView:@"Notice" :@"There is no shifts."];
-//            [self displayAlertView:@"Warning!" :@"An error occured. Please contact support."];
-        }
-        
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [self.activityIndicator stopAnimating];
-        [self.overlayView removeFromSuperview];
-        [self displayAlertView:@"Warning!" :@"Network error."];
-    }];
-    ////////////
 }
 
 -(void)hideSidePanel:(UIGestureRecognizer *)gesture{
@@ -283,42 +203,16 @@
     }
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.shift_array.count;
-}
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 100;
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ShiftReportTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"shifttableviewcell"];
-    if(cell == nil) {
-        cell = [[ShiftReportTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"shifttablecell"];
-    }
-    cell.codeShiftLabel.text = self.shift_array[indexPath.row][0];
-    cell.fechaInicioLabel.text = self.shift_array[indexPath.row][4];
-    cell.fechaFinLabel.text = self.shift_array[indexPath.row][5];
-    cell.usernameLabel.text = self.shift_array[indexPath.row][1];
-    cell.turnoCodButton.tag = indexPath.row;
-    [cell.turnoCodButton addTarget:self action:@selector(turnoCodButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    return cell;
-}
-
--(void)turnoCodButtonAction:(id)sender {
-    UIButton *senderButton = (UIButton *)sender;
-    self.selected_cell_index = senderButton.tag;
-    [self performSegueWithIdentifier:@"cashiershiftsearchtotransaction_segue" sender:self];
-}
-
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqualToString:@"cashiershiftsearchresulttowelcome_segue"]) {
+    if([segue.identifier isEqualToString:@"transactionreporttowelcome_segue"]) {
         WelcomeViewController *WelcomeVC;
         WelcomeVC = [segue destinationViewController];
-    } else if([segue.identifier isEqualToString:@"cashiershiftsearchtotransaction_segue"]) {
-        TransactionsViewController *TransactionsVC;
-        TransactionsVC = [segue destinationViewController];
-        TransactionsVC.shift_code = self.shift_array[self.selected_cell_index][6];
-        TransactionsVC.sourceVC = @"CashierShiftSearchVC";
+    } else if([segue.identifier isEqualToString:@"transactionreporttotransaction_segue"]) {
+        TransactionsViewController *TransactionVC;
+        TransactionVC = [segue destinationViewController];
+        TransactionVC.sourceVC = @"TransactionReportVC";
+        TransactionVC.start_datetime = self.start_datetime;
+        TransactionVC.finish_datetime = self.finish_datetime;
     }
 }
 
@@ -343,22 +237,29 @@
         } completion:nil];
     }
 }
-
 - (IBAction)signoutButtonAction:(id)sender {
-    [self performSegueWithIdentifier:@"cashiershiftsearchresulttowelcome_segue" sender:self];
+    [self performSegueWithIdentifier:@"transactionreporttowelcome_segue" sender:self];
 }
 
-
-
--(void)displayAlertView: (NSString *)header :(NSString *)message {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:header message:message preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIApplication *actionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"");
-    }];
-    [alert addAction:actionOK];
-    [self presentViewController:alert animated:YES completion:nil];
+- (IBAction)todaytransactionButtonAction:(id)sender {
+    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *currentDate = [dateFormatter stringFromDate:[NSDate date]];
+    self.start_datetime = [[NSString alloc]initWithFormat:@"%@ 00:00:00", currentDate];
+    self.finish_datetime = [[NSString alloc]initWithFormat:@"%@ 23:59:59", currentDate];
+    [self performSegueWithIdentifier:@"transactionreporttotransaction_segue" sender:self];
 }
 
-
+- (IBAction)generatereportButtonAction:(id)sender {
+    NSDate *startDate = [self.startDatePicker date];
+    NSDate *finishDate = [self.finishDatePicker date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *startDateString = [dateFormatter stringFromDate:startDate];
+    NSString *finishDateString = [dateFormatter stringFromDate:finishDate];
+    self.start_datetime = [[NSString alloc]initWithFormat:@"%@ 00:00:00", startDateString];
+    self.finish_datetime = [[NSString alloc]initWithFormat:@"%@ 00:00:00", finishDateString];
+    [self performSegueWithIdentifier:@"transactionreporttotransaction_segue" sender:self];
+   
+}
 @end

@@ -20,6 +20,7 @@
 
 @property(strong, nonatomic)NSMutableArray *deleting_user;
 @property(nonatomic)NSInteger deleting_user_tableview_index;
+@property(strong, nonatomic)NSString *sessionInfoLabelText;
 
 @property(strong, nonatomic)UIView *overlayView;
 @property(strong, nonatomic)UIActivityIndicatorView * activityIndicator;
@@ -27,7 +28,7 @@
 @end
 
 @implementation DeleteUserViewController
-@synthesize SidePanel,MenuBtn,TransV;
+@synthesize SidePanel,MenuBtn,TransV, sessionInfoLabel;
 @synthesize user_array;
 @synthesize usersTableView;
 @synthesize deleteAlertView, deleteUserNameLabel;
@@ -37,6 +38,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    Global *globals = [Global sharedInstance];
+    //session info label
+    self.sessionInfoLabelText = [NSString stringWithFormat:@"%@ / %@", globals.username, globals.nombreComercio];
+    sessionInfoLabel.text = self.sessionInfoLabelText;
+    
+    /////////
+    
     UITapGestureRecognizer *tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideSidePanel:)];
     tapper.numberOfTapsRequired = 1;
     
@@ -44,7 +52,6 @@
    
     [self.usersTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
-    Global *globals = [Global sharedInstance];
     ////////////  side menu buttons configure //////////////////
     if([globals.idPrivilegio isEqualToString:@"1"]) {
         CGRect homeButtonFrame = self.homeButton.frame;

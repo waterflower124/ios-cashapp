@@ -19,11 +19,12 @@
 @property(strong, nonatomic)NSString *searchWord;
 @property(strong, nonatomic)NSString *userFullName;
 @property(strong, nonatomic)NSString *user_name;
+@property(strong, nonatomic)NSString *sessionInfoLabelText;
 
 @end
 
 @implementation SearchUserViewController
-@synthesize SidePanel,MenuBtn,TransV;
+@synthesize SidePanel,MenuBtn,TransV, sessionInfoLabel;
 @synthesize user_array;
 
 @synthesize usersTableView, searchWordTextView;
@@ -31,6 +32,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    Global *globals = [Global sharedInstance];
+    //session info label
+    self.sessionInfoLabelText = [NSString stringWithFormat:@"%@ / %@", globals.username, globals.nombreComercio];
+    sessionInfoLabel.text = self.sessionInfoLabelText;
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
@@ -48,7 +54,6 @@
     ////   add event whenever search text view text is changed
     [self.searchWordTextView addTarget:self action:@selector(searchWordTextViewDidChange) forControlEvents:UIControlEventEditingChanged];
     
-    Global *globals = [Global sharedInstance];
     ////////////  side menu buttons configure //////////////////
     if([globals.idPrivilegio isEqualToString:@"1"]) {
         CGRect homeButtonFrame = self.homeButton.frame;

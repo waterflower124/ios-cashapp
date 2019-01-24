@@ -21,6 +21,7 @@
 
 @property(strong, nonatomic)NSMutableArray *closing_shift;
 @property(nonatomic)NSInteger closing_shift_index;
+@property(strong, nonatomic)NSString *sessionInfoLabelText;
 
 @property(strong, nonatomic)UIView *overlayView;
 @property(strong, nonatomic)UIActivityIndicatorView * activityIndicator;
@@ -29,20 +30,25 @@
 
 @implementation CloseShiftViewController
 @synthesize shift_array;
-@synthesize TransV, shiftlistTableView, SidePanel;
+@synthesize TransV, shiftlistTableView, SidePanel, sessionInfoLabel;
 @synthesize closeshiftAlertView, alertMessageLabel;
 @synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    Global *globals = [Global sharedInstance];
+    //session info label
+    self.sessionInfoLabelText = [NSString stringWithFormat:@"%@ / %@", globals.username, globals.nombreComercio];
+    sessionInfoLabel.text = self.sessionInfoLabelText;
+    
+    /////////////////////////
     self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     self.activityIndicator.center = self.overlayView.center;
     [self.overlayView addSubview:self.activityIndicator];
     
-    Global *globals = [Global sharedInstance];
     ///////////////   side menu buttons configure   /////////////////
     if([globals.idPrivilegio isEqualToString:@"2"]) {
         CGRect homeButtonFrame = self.homeButton.frame;

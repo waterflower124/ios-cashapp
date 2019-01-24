@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITextField *searchwordTextView;
 
 @property (weak, nonatomic) IBOutlet UIView *TransV;
+@property (weak, nonatomic) IBOutlet UILabel *sessionInfoLabel;
 
 
 /////////  side menu buttons   ////////////

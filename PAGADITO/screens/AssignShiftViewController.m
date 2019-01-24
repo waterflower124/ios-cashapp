@@ -25,18 +25,25 @@
 
 @property(strong, nonatomic)NSString *selected_cashierUserID;
 @property(strong, nonatomic)NSString *shifEveryday;
+@property(strong, nonatomic)NSString *sessionInfoLabelText;
 
 @end
 
 @implementation AssignShiftViewController
 @synthesize shift_array;
-@synthesize TransV, shiftlistTableView;
+@synthesize TransV, shiftlistTableView, sessionInfoLabel;
 @synthesize assignturnoAlertView, selectcashierButton, cashierlistTableView, switchButton, cashierlistTableViewHeightConstraint;
 @synthesize completeInsertShiftAlertView;
 @synthesize SidePanel, homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    Global *globals = [Global sharedInstance];
+    //session info label
+    self.sessionInfoLabelText = [NSString stringWithFormat:@"%@ / %@", globals.username, globals.nombreComercio];
+    sessionInfoLabel.text = self.sessionInfoLabelText;
+    
     
     self.cashier_array = [[NSMutableArray alloc] init];
     self.selected_cashierUserID = @"";
@@ -50,7 +57,6 @@
     
     [self getCashierDisplayView];
     
-    Global *globals = [Global sharedInstance];
     ///////////////   side menu buttons configure   /////////////////
     if([globals.idPrivilegio isEqualToString:@"2"]) {
         CGRect homeButtonFrame = self.homeButton.frame;

@@ -69,6 +69,18 @@
     self.username = usernameTextField.text;
     self.password = passwordTextField.text;
     
+//    NSString *aa = @"2018-04-16 20:48:40 -0600";
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    NSDate *bbb;
+//    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZZ"];
+//    bbb = [dateFormatter dateFromString:aa];
+//    [dateFormatter setDateFormat:@"dd/MM/yyyy hh:mm a"];
+//    NSString *cc = [dateFormatter stringFromDate:bbb];
+//
+//    NSLog(@"%@", cc);
+    
+    
+    
     if(self.username.length == 0) {
         [self displayAlertView:@"Warning!" :@"Please input your username"];
         return;
@@ -81,39 +93,39 @@
         [self displayAlertView:@"Warning!" :@"Password have to be at least 5 characters"];
         return;
     }
-    
+
     Global *globals = [Global sharedInstance];
-    
+
     [self.activityIndicator startAnimating];
     [self.view addSubview:self.overlayView];
-    
+
     NSDictionary *initLogin = @{@"initLogin": @{
                                           @"username": self.username,
                                           @"password": self.password,
                                           @"mac": globals.macAddress
                                           }};
-    
+
     NSError *error;
     NSData *postData = [NSJSONSerialization dataWithJSONObject:initLogin options:0 error:&error];
     NSString *postString = [[NSString alloc]initWithData:postData encoding:NSUTF8StringEncoding];
-    
+
     NSDictionary *parameters = @{
                                  @"method": @"initLogin",
                                  @"param": postString
                                  };
-    
+
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
     sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects: @"application/json", nil];
     [sessionManager POST: @"http://ninjahosting.us/web_api/service.php" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
+
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
-        
+
         NSError *jsonError;
         NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&jsonError];
-        
+
         BOOL status = [jsonResponse[@"status"] boolValue];
         if(status) {
             globals.username = jsonResponse[@"username"];
@@ -136,13 +148,13 @@
             globals.moneda = jsonResponse[@"moneda"];
             globals.currency = jsonResponse[@"currency"];
             globals.ambiente = jsonResponse[@"ambiente"];
-            
+
             if([globals.idPrivilegio isEqualToString:@"3"]) {
                 [self getShiftCode];
             } else {
                 [self performSegueWithIdentifier:@"logintohome_segue" sender:self];
             }
-            
+
         } else {
             [self displayAlertView:@"Warning" :@"Signin information is incorrect. Please input valid information"];
         }

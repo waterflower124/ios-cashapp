@@ -279,7 +279,7 @@
     NSString *paramString = [[NSString alloc]initWithData:paramData encoding:NSUTF8StringEncoding];
     
     NSDictionary *parameters = @{
-                                 @"method": @"updateSetCommerceInformation",
+                                 @"method": @"updateSetCommerceConnection",
                                  @"param": paramString
                                  };
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];

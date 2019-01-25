@@ -55,6 +55,19 @@
     [logoImageView addGestureRecognizer:singleTap];
     
     ///////////// logo image load   ///////////
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+//                                                         NSUserDomainMask, YES);
+//    NSString *documentsDirectory = [paths objectAtIndex:0];
+//    NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png", @"pagadito/pagadito_logo"]];
+//    BOOL fileExists=[[NSFileManager defaultManager] fileExistsAtPath:imagePath];
+//
+//    if(fileExists) {
+//        UIImage *fetchImage = [UIImage imageWithContentsOfFile:imagePath];
+//        logoImageView.image = fetchImage;
+//    }else {
+//        NSLog(@"121212121:  %@",imagePath);
+//    }
+    
     if(globals.logo_imagePath.length != 0 ) {
         NSFileManager *fileManager = [NSFileManager defaultManager];
         BOOL isFileExist = [fileManager fileExistsAtPath:globals.logo_imagePath];
@@ -254,6 +267,7 @@
         [imageData writeToFile:fileName atomically:YES];
         Global *globals = [Global sharedInstance];
         globals.logo_imagePath = fileName;
+        NSLog(@"qwqwqwqw:  %@", globals.logo_imagePath);
     } else {
         [self displayAlertView:@"Warning!" :@"Logo Image have to be less than 2MB. Please select another image"];
     }

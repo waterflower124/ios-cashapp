@@ -52,6 +52,21 @@ Global *globals;
     self.pickerView_language.dataSource = self;
     self.pickerView_language.delegate = self;
     
+    ///////////// logo image load   ///////////
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png", @"pagadito/pagadito_logo"]];
+    BOOL fileExists=[[NSFileManager defaultManager] fileExistsAtPath:imagePath];
+    
+    if(fileExists) {
+        globals.logo_imagePath = imagePath;
+    }else {
+        globals.logo_imagePath = @"";
+    }
+    
+    //////////////////////////////////////////
+    
     self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];

@@ -10,6 +10,7 @@
 #import "AFNetworking.h"
 #import "Global.h"
 #import "UserCreationViewController.h"
+#import "MultiLanguage.h"
 
 @interface SelectStoreTerminalViewController () <UITableViewDelegate, UITableViewDataSource, NSXMLParserDelegate>
 
@@ -27,6 +28,7 @@
 @synthesize storeTableView, selectStoreButton, terminalTableView, selectTerminalButton;
 @synthesize xmlStoreParser, xmlTerminalParser;
 @synthesize storeTableViewHeightConstraint, terminalTableViewHeightConstraint;
+@synthesize titleLabel, selectStoreCommentLabel, selectTerminalCommentLabel, commentLabel, continueButton;
 
 bool isBranchOffices = false;
 bool isOffice = false;
@@ -45,6 +47,18 @@ bool isTerminal_name = false;
 //    self.store_list = [[NSMutableArray alloc] initWithObjects: @"store1", @"store2", @"store3", @"store4", @"store5", @"store6", @"store7", @"store8", nil];
 //    self.terminal_list = [[NSMutableArray alloc] initWithObjects: @"terminal1", @"terminal2", @"terminal3", @"terminal4", @"terminal5", @"terminal6", @"terminal7", nil];
     
+    Global *globals = [Global sharedInstance];
+    ///////   multilanuage setting   ////////
+    MultiLanguage *multiLanguage = [MultiLanguage sharedInstance];
+    self.titleLabel.text = multiLanguage.selectstoreVC_titleText[globals.selected_language];
+    self.selectStoreCommentLabel.text = multiLanguage.selectstoreVC_selectStoreCommentText[globals.selected_language];
+    [self.selectStoreButton setTitle:multiLanguage.selectstoreVC_selectStoreButtonText[globals.selected_language] forState:UIControlStateNormal];
+    self.selectTerminalCommentLabel.text = multiLanguage.selectstoreVC_selectTerminalCommentText[globals.selected_language];
+    [self.selectTerminalButton setTitle:multiLanguage.selectstoreVC_selectTerminalButtonText[globals.selected_language] forState:UIControlStateNormal];
+    self.commentLabel.text = multiLanguage.selectstoreVC_CommentText[globals.selected_language];
+    [self.continueButton setTitle:multiLanguage.selectstoreVC_continueButtonText[globals.selected_language] forState:UIControlStateNormal];
+    //////////////////////////////////////////
+    
     self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -59,7 +73,7 @@ bool isTerminal_name = false;
     self.terminal_list = [[NSMutableArray alloc] init];
     self.terminalID_list = [[NSMutableArray alloc] init];
     
-    Global *globals = [Global sharedInstance];
+    
     globals.office_id = @"";
     
     [terminalTableView setHidden:YES ];

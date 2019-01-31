@@ -27,6 +27,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)selectCurrencyButtonAction:(id)sender;
 - (IBAction)continueButtonAction:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *commentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *imagecommentLabel;
+@property (weak, nonatomic) IBOutlet UIButton *continuButton;
+
 
 @end
 

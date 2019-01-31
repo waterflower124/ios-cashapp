@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "AFNetworking.h"
 #import "Global.h"
+#import "MultiLanguage.h"
 #import "SelectStoreTerminalViewController.h"
 
 @interface LoginViewController ()
@@ -21,7 +22,7 @@
 //Global *globals;
 
 @implementation LoginViewController
-@synthesize emailTextFiled, passwordTextField;
+@synthesize emailTextFiled, passwordTextField, comment1Label, comment2Label, signinButton, forgotpasswordButton, explainLabel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,15 +30,23 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
     
-//    globals = [Global sharedInstance];
-    
     self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     self.activityIndicator.center = self.overlayView.center;
     [self.overlayView addSubview:self.activityIndicator];
-
     
+    /////  multi language configure  ////
+    Global *globals = [Global sharedInstance];
+    MultiLanguage *multiLanguage = [MultiLanguage sharedInstance];
+    
+    self.emailTextFiled.placeholder = multiLanguage.signinVC_username[globals.selected_language];
+    self.passwordTextField.placeholder = multiLanguage.signinVC_password[globals.selected_language];
+    self.comment1Label.text = multiLanguage.signinVC_comment1LabelText[globals.selected_language];
+    self.comment2Label.text = multiLanguage.signinVC_comment2LabelText[globals.selected_language];
+    [self.signinButton setTitle:multiLanguage.signinVC_signinButtonText[globals.selected_language] forState:UIControlStateNormal];
+    [self.forgotpasswordButton setTitle:multiLanguage.signinVC_forgotpasswordText[globals.selected_language] forState:UIControlStateNormal];
+    self.explainLabel.text = multiLanguage.signinVC_explain[globals.selected_language];
 }
 
 

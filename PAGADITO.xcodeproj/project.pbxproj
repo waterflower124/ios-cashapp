@@ -33,7 +33,6 @@
 		2337176E21EC2CF7003D7D15 /* EditUserScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2337176D21EC2CF7003D7D15 /* EditUserScreenViewController.m */; };
 		233E54EB21DFD1B800279DB1 /* Pagadito01_0001s_0002_Layer-108.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E549121DFD1B700279DB1 /* Pagadito01_0001s_0002_Layer-108.png */; };
 		233E54EC21DFD1B800279DB1 /* Pagadito_0000_Cancelar.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E549221DFD1B700279DB1 /* Pagadito_0000_Cancelar.png */; };
-		233E54ED21DFD1B800279DB1 /* Pagadito_0000_Capa-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E549321DFD1B700279DB1 /* Pagadito_0000_Capa-4.png */; };
 		233E54EE21DFD1B800279DB1 /* Pagadito_0000_Layer-20.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E549421DFD1B700279DB1 /* Pagadito_0000_Layer-20.png */; };
 		233E54EF21DFD1B800279DB1 /* Pagadito_0000_Layer-44.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E549521DFD1B700279DB1 /* Pagadito_0000_Layer-44.png */; };
 		233E54F021DFD1B800279DB1 /* Pagadito_0000_Ok.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E549621DFD1B700279DB1 /* Pagadito_0000_Ok.png */; };
@@ -84,7 +83,6 @@
 		233E551D21DFD1B800279DB1 /* Pagadito_0000s_0035_Layer-88-copy-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E54C321DFD1B700279DB1 /* Pagadito_0000s_0035_Layer-88-copy-3.png */; };
 		233E551E21DFD1B800279DB1 /* Pagadito_0000s_0036_Layer-88.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E54C421DFD1B700279DB1 /* Pagadito_0000s_0036_Layer-88.png */; };
 		233E551F21DFD1B800279DB1 /* Pagadito_0001_Anular.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E54C521DFD1B700279DB1 /* Pagadito_0001_Anular.png */; };
-		233E552021DFD1B800279DB1 /* Pagadito_0001_Capa-5.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E54C621DFD1B700279DB1 /* Pagadito_0001_Capa-5.png */; };
 		233E552121DFD1B800279DB1 /* Pagadito_0001_Layer-17.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E54C721DFD1B700279DB1 /* Pagadito_0001_Layer-17.png */; };
 		233E552221DFD1B800279DB1 /* Pagadito_0001_Layer-43.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E54C821DFD1B700279DB1 /* Pagadito_0001_Layer-43.png */; };
 		233E552321DFD1B800279DB1 /* Pagadito_0001s_0000_Cancelar.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E54C921DFD1B700279DB1 /* Pagadito_0001s_0000_Cancelar.png */; };
@@ -105,9 +103,7 @@
 		233E553221DFD1B800279DB1 /* Pagadito_0001s_0020_+.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E54D821DFD1B700279DB1 /* Pagadito_0001s_0020_+.png */; };
 		233E553321DFD1B800279DB1 /* Pagadito_0001s_0021_Layer-89.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E54D921DFD1B700279DB1 /* Pagadito_0001s_0021_Layer-89.png */; };
 		233E553421DFD1B800279DB1 /* Pagadito_0001s_0022_Layer-109.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E54DA21DFD1B700279DB1 /* Pagadito_0001s_0022_Layer-109.png */; };
-		233E553521DFD1B800279DB1 /* Pagadito_0002_Capa-6.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E54DB21DFD1B700279DB1 /* Pagadito_0002_Capa-6.png */; };
 		233E553621DFD1B800279DB1 /* Pagadito_0002_Continuar--.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E54DC21DFD1B700279DB1 /* Pagadito_0002_Continuar--.png */; };
-		233E553721DFD1B800279DB1 /* Pagadito_0003_Capa-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E54DD21DFD1B700279DB1 /* Pagadito_0003_Capa-7.png */; };
 		233E553821DFD1B800279DB1 /* Pagadito_0003_Layer-16.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E54DE21DFD1B700279DB1 /* Pagadito_0003_Layer-16.png */; };
 		233E553921DFD1B800279DB1 /* Pagadito_0003_Layer-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E54DF21DFD1B700279DB1 /* Pagadito_0003_Layer-2.png */; };
 		233E553A21DFD1B800279DB1 /* Pagadito_0003_Layer-42.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E54E021DFD1B700279DB1 /* Pagadito_0003_Layer-42.png */; };
@@ -135,8 +131,19 @@
 		2352F92621EC469F003F106A /* ReportsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2352F92521EC469F003F106A /* ReportsViewController.m */; };
 		2352F92921EC493D003F106A /* NewTransactionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2352F92821EC493D003F106A /* NewTransactionViewController.m */; };
 		2352F92C21ECD2D0003F106A /* SearchUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2352F92B21ECD2D0003F106A /* SearchUserViewController.m */; };
-		2352F92E21ECE13B003F106A /* system_config.png in Resources */ = {isa = PBXBuildFile; fileRef = 2352F92D21ECE13A003F106A /* system_config.png */; };
-		2352F93021ECE2DA003F106A /* assign_shift.png in Resources */ = {isa = PBXBuildFile; fileRef = 2352F92F21ECE2D8003F106A /* assign_shift.png */; };
+		2356F43322021ACC0011DD42 /* MultiLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2356F43222021ACC0011DD42 /* MultiLanguage.m */; };
+		2356F43C2202F4420011DD42 /* dashboard_report_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 2356F4342202F4300011DD42 /* dashboard_report_en.png */; };
+		2356F43D2202F4420011DD42 /* dashboard_report_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 2356F4352202F4330011DD42 /* dashboard_report_sp.png */; };
+		2356F43E2202F4420011DD42 /* dashboard_voidtransaction_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 2356F4362202F4350011DD42 /* dashboard_voidtransaction_en.png */; };
+		2356F43F2202F4420011DD42 /* dashboard_user_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 2356F4372202F4370011DD42 /* dashboard_user_en.png */; };
+		2356F4402202F4420011DD42 /* dashboard_user_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 2356F4382202F4390011DD42 /* dashboard_user_sp.png */; };
+		2356F4412202F4420011DD42 /* dashboard_voidtransaction_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 2356F4392202F43C0011DD42 /* dashboard_voidtransaction_sp.png */; };
+		2356F4422202F4420011DD42 /* dashboard_newtransaction_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 2356F43A2202F43D0011DD42 /* dashboard_newtransaction_en.png */; };
+		2356F4432202F4420011DD42 /* dashboard_newtransaction_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 2356F43B2202F4400011DD42 /* dashboard_newtransaction_sp.png */; };
+		2356F44622030A910011DD42 /* dashboard_systemconfig_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 2356F44422030A8D0011DD42 /* dashboard_systemconfig_sp.png */; };
+		2356F44722030A910011DD42 /* dashboard_systemconfig_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 2356F44522030A8F0011DD42 /* dashboard_systemconfig_en.png */; };
+		2356F44A22030C850011DD42 /* dashboard_assignshift_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 2356F44822030C800011DD42 /* dashboard_assignshift_sp.png */; };
+		2356F44B22030C850011DD42 /* dashboard_assignshift_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 2356F44922030C820011DD42 /* dashboard_assignshift_en.png */; };
 		23682F4121EE2B56002BC7D7 /* DeletTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23682F4021EE2B56002BC7D7 /* DeletTableViewCell.m */; };
 		23B49FFB21F71BBE00BAAD37 /* ConexionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B49FFA21F71BBE00BAAD37 /* ConexionViewController.m */; };
 		23B49FFE21F7916300BAAD37 /* VoucherConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B49FFD21F7916300BAAD37 /* VoucherConfigViewController.m */; };
@@ -219,7 +226,6 @@
 		2337176D21EC2CF7003D7D15 /* EditUserScreenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditUserScreenViewController.m; sourceTree = "<group>"; };
 		233E549121DFD1B700279DB1 /* Pagadito01_0001s_0002_Layer-108.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pagadito01_0001s_0002_Layer-108.png"; sourceTree = "<group>"; };
 		233E549221DFD1B700279DB1 /* Pagadito_0000_Cancelar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pagadito_0000_Cancelar.png; sourceTree = "<group>"; };
-		233E549321DFD1B700279DB1 /* Pagadito_0000_Capa-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pagadito_0000_Capa-4.png"; sourceTree = "<group>"; };
 		233E549421DFD1B700279DB1 /* Pagadito_0000_Layer-20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pagadito_0000_Layer-20.png"; sourceTree = "<group>"; };
 		233E549521DFD1B700279DB1 /* Pagadito_0000_Layer-44.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pagadito_0000_Layer-44.png"; sourceTree = "<group>"; };
 		233E549621DFD1B700279DB1 /* Pagadito_0000_Ok.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pagadito_0000_Ok.png; sourceTree = "<group>"; };
@@ -270,7 +276,6 @@
 		233E54C321DFD1B700279DB1 /* Pagadito_0000s_0035_Layer-88-copy-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pagadito_0000s_0035_Layer-88-copy-3.png"; sourceTree = "<group>"; };
 		233E54C421DFD1B700279DB1 /* Pagadito_0000s_0036_Layer-88.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pagadito_0000s_0036_Layer-88.png"; sourceTree = "<group>"; };
 		233E54C521DFD1B700279DB1 /* Pagadito_0001_Anular.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pagadito_0001_Anular.png; sourceTree = "<group>"; };
-		233E54C621DFD1B700279DB1 /* Pagadito_0001_Capa-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pagadito_0001_Capa-5.png"; sourceTree = "<group>"; };
 		233E54C721DFD1B700279DB1 /* Pagadito_0001_Layer-17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pagadito_0001_Layer-17.png"; sourceTree = "<group>"; };
 		233E54C821DFD1B700279DB1 /* Pagadito_0001_Layer-43.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pagadito_0001_Layer-43.png"; sourceTree = "<group>"; };
 		233E54C921DFD1B700279DB1 /* Pagadito_0001s_0000_Cancelar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pagadito_0001s_0000_Cancelar.png; sourceTree = "<group>"; };
@@ -291,9 +296,7 @@
 		233E54D821DFD1B700279DB1 /* Pagadito_0001s_0020_+.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pagadito_0001s_0020_+.png"; sourceTree = "<group>"; };
 		233E54D921DFD1B700279DB1 /* Pagadito_0001s_0021_Layer-89.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pagadito_0001s_0021_Layer-89.png"; sourceTree = "<group>"; };
 		233E54DA21DFD1B700279DB1 /* Pagadito_0001s_0022_Layer-109.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pagadito_0001s_0022_Layer-109.png"; sourceTree = "<group>"; };
-		233E54DB21DFD1B700279DB1 /* Pagadito_0002_Capa-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pagadito_0002_Capa-6.png"; sourceTree = "<group>"; };
 		233E54DC21DFD1B700279DB1 /* Pagadito_0002_Continuar--.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pagadito_0002_Continuar--.png"; sourceTree = "<group>"; };
-		233E54DD21DFD1B700279DB1 /* Pagadito_0003_Capa-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pagadito_0003_Capa-7.png"; sourceTree = "<group>"; };
 		233E54DE21DFD1B700279DB1 /* Pagadito_0003_Layer-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pagadito_0003_Layer-16.png"; sourceTree = "<group>"; };
 		233E54DF21DFD1B700279DB1 /* Pagadito_0003_Layer-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pagadito_0003_Layer-2.png"; sourceTree = "<group>"; };
 		233E54E021DFD1B700279DB1 /* Pagadito_0003_Layer-42.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pagadito_0003_Layer-42.png"; sourceTree = "<group>"; };
@@ -333,8 +336,20 @@
 		2352F92821EC493D003F106A /* NewTransactionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewTransactionViewController.m; sourceTree = "<group>"; };
 		2352F92A21ECD2D0003F106A /* SearchUserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchUserViewController.h; sourceTree = "<group>"; };
 		2352F92B21ECD2D0003F106A /* SearchUserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchUserViewController.m; sourceTree = "<group>"; };
-		2352F92D21ECE13A003F106A /* system_config.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = system_config.png; sourceTree = "<group>"; };
-		2352F92F21ECE2D8003F106A /* assign_shift.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = assign_shift.png; sourceTree = "<group>"; };
+		2356F43122021ACC0011DD42 /* MultiLanguage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MultiLanguage.h; sourceTree = "<group>"; };
+		2356F43222021ACC0011DD42 /* MultiLanguage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MultiLanguage.m; sourceTree = "<group>"; };
+		2356F4342202F4300011DD42 /* dashboard_report_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard_report_en.png; sourceTree = "<group>"; };
+		2356F4352202F4330011DD42 /* dashboard_report_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard_report_sp.png; sourceTree = "<group>"; };
+		2356F4362202F4350011DD42 /* dashboard_voidtransaction_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard_voidtransaction_en.png; sourceTree = "<group>"; };
+		2356F4372202F4370011DD42 /* dashboard_user_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard_user_en.png; sourceTree = "<group>"; };
+		2356F4382202F4390011DD42 /* dashboard_user_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard_user_sp.png; sourceTree = "<group>"; };
+		2356F4392202F43C0011DD42 /* dashboard_voidtransaction_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard_voidtransaction_sp.png; sourceTree = "<group>"; };
+		2356F43A2202F43D0011DD42 /* dashboard_newtransaction_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard_newtransaction_en.png; sourceTree = "<group>"; };
+		2356F43B2202F4400011DD42 /* dashboard_newtransaction_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard_newtransaction_sp.png; sourceTree = "<group>"; };
+		2356F44422030A8D0011DD42 /* dashboard_systemconfig_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard_systemconfig_sp.png; sourceTree = "<group>"; };
+		2356F44522030A8F0011DD42 /* dashboard_systemconfig_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard_systemconfig_en.png; sourceTree = "<group>"; };
+		2356F44822030C800011DD42 /* dashboard_assignshift_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard_assignshift_sp.png; sourceTree = "<group>"; };
+		2356F44922030C820011DD42 /* dashboard_assignshift_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard_assignshift_en.png; sourceTree = "<group>"; };
 		23682F3F21EE2B56002BC7D7 /* DeletTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeletTableViewCell.h; sourceTree = "<group>"; };
 		23682F4021EE2B56002BC7D7 /* DeletTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeletTableViewCell.m; sourceTree = "<group>"; };
 		23B49FF921F71BBE00BAAD37 /* ConexionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConexionViewController.h; sourceTree = "<group>"; };
@@ -438,6 +453,18 @@
 		233E549021DFD1B700279DB1 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				2356F44922030C820011DD42 /* dashboard_assignshift_en.png */,
+				2356F44822030C800011DD42 /* dashboard_assignshift_sp.png */,
+				2356F44522030A8F0011DD42 /* dashboard_systemconfig_en.png */,
+				2356F44422030A8D0011DD42 /* dashboard_systemconfig_sp.png */,
+				2356F43A2202F43D0011DD42 /* dashboard_newtransaction_en.png */,
+				2356F43B2202F4400011DD42 /* dashboard_newtransaction_sp.png */,
+				2356F4342202F4300011DD42 /* dashboard_report_en.png */,
+				2356F4352202F4330011DD42 /* dashboard_report_sp.png */,
+				2356F4372202F4370011DD42 /* dashboard_user_en.png */,
+				2356F4382202F4390011DD42 /* dashboard_user_sp.png */,
+				2356F4362202F4350011DD42 /* dashboard_voidtransaction_en.png */,
+				2356F4392202F43C0011DD42 /* dashboard_voidtransaction_sp.png */,
 				23B4A00E21F8B0B300BAAD37 /* cashier_shift_close_icon.png */,
 				2329E15221F5814B00CD8EB2 /* wsk_response_fail_icon.png */,
 				2329E14D21F56ED200CD8EB2 /* reset_password_logo.png */,
@@ -446,15 +473,12 @@
 				2345039B21F074130057C772 /* cashierlist_arrow_icon.png */,
 				2315460321EEE7260025E711 /* assignshift_logout_icon.png */,
 				2315460121EEE68A0025E711 /* assignshift_icon.png */,
-				2352F92F21ECE2D8003F106A /* assign_shift.png */,
-				2352F92D21ECE13A003F106A /* system_config.png */,
 				2337175C21EA48EC003D7D15 /* user_supervisor_icon.png */,
 				2337175E21EA493A003D7D15 /* user_cajero_icon.png */,
 				2328843921E4E88F00E5E7C1 /* pagadito_0000_logo.png */,
 				232096AD21E25DED00C93E3B /* Pagadito_0000s_0001_button_yellow.png */,
 				233E549121DFD1B700279DB1 /* Pagadito01_0001s_0002_Layer-108.png */,
 				233E549221DFD1B700279DB1 /* Pagadito_0000_Cancelar.png */,
-				233E549321DFD1B700279DB1 /* Pagadito_0000_Capa-4.png */,
 				233E549421DFD1B700279DB1 /* Pagadito_0000_Layer-20.png */,
 				233E549521DFD1B700279DB1 /* Pagadito_0000_Layer-44.png */,
 				233E549621DFD1B700279DB1 /* Pagadito_0000_Ok.png */,
@@ -505,7 +529,6 @@
 				233E54C321DFD1B700279DB1 /* Pagadito_0000s_0035_Layer-88-copy-3.png */,
 				233E54C421DFD1B700279DB1 /* Pagadito_0000s_0036_Layer-88.png */,
 				233E54C521DFD1B700279DB1 /* Pagadito_0001_Anular.png */,
-				233E54C621DFD1B700279DB1 /* Pagadito_0001_Capa-5.png */,
 				233E54C721DFD1B700279DB1 /* Pagadito_0001_Layer-17.png */,
 				233E54C821DFD1B700279DB1 /* Pagadito_0001_Layer-43.png */,
 				233E54C921DFD1B700279DB1 /* Pagadito_0001s_0000_Cancelar.png */,
@@ -526,9 +549,7 @@
 				233E54D821DFD1B700279DB1 /* Pagadito_0001s_0020_+.png */,
 				233E54D921DFD1B700279DB1 /* Pagadito_0001s_0021_Layer-89.png */,
 				233E54DA21DFD1B700279DB1 /* Pagadito_0001s_0022_Layer-109.png */,
-				233E54DB21DFD1B700279DB1 /* Pagadito_0002_Capa-6.png */,
 				233E54DC21DFD1B700279DB1 /* Pagadito_0002_Continuar--.png */,
-				233E54DD21DFD1B700279DB1 /* Pagadito_0003_Capa-7.png */,
 				233E54DE21DFD1B700279DB1 /* Pagadito_0003_Layer-16.png */,
 				233E54DF21DFD1B700279DB1 /* Pagadito_0003_Layer-2.png */,
 				233E54E021DFD1B700279DB1 /* Pagadito_0003_Layer-42.png */,
@@ -609,6 +630,8 @@
 				233EDBFA21F96FDC00B35DF4 /* CashierShiftSearchResultViewController.m */,
 				234BDECF21F9BA8700B2C944 /* TransactionsReportViewController.h */,
 				234BDED021F9BA8700B2C944 /* TransactionsReportViewController.m */,
+				2356F43122021ACC0011DD42 /* MultiLanguage.h */,
+				2356F43222021ACC0011DD42 /* MultiLanguage.m */,
 			);
 			path = screens;
 			sourceTree = "<group>";
@@ -787,7 +810,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2352F93021ECE2DA003F106A /* assign_shift.png in Resources */,
 				233E552821DFD1B800279DB1 /* Pagadito_0001s_0003_Iniciar-sesión--.png in Resources */,
 				233E550B21DFD1B800279DB1 /* Pagadito_0000s_0007_Guardar-.png in Resources */,
 				233E553E21DFD1B800279DB1 /* Pagadito_0008_Layer-15-copy-2.png in Resources */,
@@ -801,18 +823,19 @@
 				233E550A21DFD1B800279DB1 /* Pagadito_0000s_0007_Cerrar-sesión--.png in Resources */,
 				233E552521DFD1B800279DB1 /* Pagadito_0001s_0001_Eliminar.png in Resources */,
 				233E553221DFD1B800279DB1 /* Pagadito_0001s_0020_+.png in Resources */,
-				233E552021DFD1B800279DB1 /* Pagadito_0001_Capa-5.png in Resources */,
 				233E552E21DFD1B800279DB1 /* Pagadito_0001s_0009_Layer-88.png in Resources */,
-				233E553721DFD1B800279DB1 /* Pagadito_0003_Capa-7.png in Resources */,
 				233E54FF21DFD1B800279DB1 /* Pagadito_0000s_0002_Layer-90.png in Resources */,
 				233E54FD21DFD1B800279DB1 /* Pagadito_0000s_0002_1.png in Resources */,
 				233E54F821DFD1B800279DB1 /* Pagadito_0000s_0001_Iniciar-sesión--.png in Resources */,
+				2356F4412202F4420011DD42 /* dashboard_voidtransaction_sp.png in Resources */,
 				2329E14C21F25FFB00CD8EB2 /* insert_shift_ok_message_icon.png in Resources */,
 				233E54EC21DFD1B800279DB1 /* Pagadito_0000_Cancelar.png in Resources */,
 				233E551B21DFD1B800279DB1 /* Pagadito_0000s_0021__.png in Resources */,
 				233E550521DFD1B800279DB1 /* Pagadito_0000s_0005_Layer-90.png in Resources */,
 				233E551121DFD1B800279DB1 /* Pagadito_0000s_0009_Layer-47.png in Resources */,
 				234503A021F082D30057C772 /* sidemenu_cerrarturnoButton_icon.png in Resources */,
+				2356F44B22030C850011DD42 /* dashboard_assignshift_en.png in Resources */,
+				2356F44A22030C850011DD42 /* dashboard_assignshift_sp.png in Resources */,
 				233E553D21DFD1B800279DB1 /* Pagadito_0007_Layer-8.png in Resources */,
 				233E554421DFD1B800279DB1 /* PagaditoR_0001_fondo.png in Resources */,
 				233E550321DFD1B800279DB1 /* Pagadito_0000s_0004_Enviar-E-Mail-.png in Resources */,
@@ -831,7 +854,6 @@
 				2345039C21F074140057C772 /* cashierlist_arrow_icon.png in Resources */,
 				2328843A21E4E89000E5E7C1 /* pagadito_0000_logo.png in Resources */,
 				2337175F21EA493B003D7D15 /* user_cajero_icon.png in Resources */,
-				233E54ED21DFD1B800279DB1 /* Pagadito_0000_Capa-4.png in Resources */,
 				233E554121DFD1B800279DB1 /* Pagadito_0015_Layer-6.png in Resources */,
 				233E552321DFD1B800279DB1 /* Pagadito_0001s_0000_Cancelar.png in Resources */,
 				233E550021DFD1B800279DB1 /* Pagadito_0000s_0002_Layer-92.png in Resources */,
@@ -849,13 +871,15 @@
 				233E553C21DFD1B800279DB1 /* Pagadito_0005_$.png in Resources */,
 				233E553621DFD1B800279DB1 /* Pagadito_0002_Continuar--.png in Resources */,
 				233E551A21DFD1B800279DB1 /* Pagadito_0000s_0020_123.png in Resources */,
-				233E553521DFD1B800279DB1 /* Pagadito_0002_Capa-6.png in Resources */,
 				233E551D21DFD1B800279DB1 /* Pagadito_0000s_0035_Layer-88-copy-3.png in Resources */,
 				233E551521DFD1B800279DB1 /* Pagadito_0000s_0012_9.png in Resources */,
+				2356F43D2202F4420011DD42 /* dashboard_report_sp.png in Resources */,
 				233E54F421DFD1B800279DB1 /* Pagadito_0000s_0000_Layer-83.png in Resources */,
 				2315460221EEE68B0025E711 /* assignshift_icon.png in Resources */,
+				2356F43E2202F4420011DD42 /* dashboard_voidtransaction_en.png in Resources */,
 				233E553321DFD1B800279DB1 /* Pagadito_0001s_0021_Layer-89.png in Resources */,
 				233E554221DFD1B800279DB1 /* Pagadito_0016_Layer-2.png in Resources */,
+				2356F44722030A910011DD42 /* dashboard_systemconfig_en.png in Resources */,
 				233E552F21DFD1B800279DB1 /* Pagadito_0001s_0016_Capa-1.png in Resources */,
 				233E553B21DFD1B800279DB1 /* Pagadito_0004_Layer-11-copy-4.png in Resources */,
 				233E552421DFD1B800279DB1 /* Pagadito_0001s_0000_Shape-1-copy.png in Resources */,
@@ -873,10 +897,13 @@
 				233E552221DFD1B800279DB1 /* Pagadito_0001_Layer-43.png in Resources */,
 				233E553821DFD1B800279DB1 /* Pagadito_0003_Layer-16.png in Resources */,
 				233E551E21DFD1B800279DB1 /* Pagadito_0000s_0036_Layer-88.png in Resources */,
+				2356F43F2202F4420011DD42 /* dashboard_user_en.png in Resources */,
 				233E54F521DFD1B800279DB1 /* Pagadito_0000s_0000s_0001_Layer-41.png in Resources */,
 				233E550621DFD1B800279DB1 /* Pagadito_0000s_0006_0.png in Resources */,
-				2352F92E21ECE13B003F106A /* system_config.png in Resources */,
+				2356F4402202F4420011DD42 /* dashboard_user_sp.png in Resources */,
 				233E551321DFD1B800279DB1 /* Pagadito_0000s_0010_5.png in Resources */,
+				2356F4422202F4420011DD42 /* dashboard_newtransaction_en.png in Resources */,
+				2356F44622030A910011DD42 /* dashboard_systemconfig_sp.png in Resources */,
 				233E550721DFD1B800279DB1 /* Pagadito_0000s_0006_Layer-88.png in Resources */,
 				233E553121DFD1B800279DB1 /* Pagadito_0001s_0019_Layer-64.png in Resources */,
 				233E551F21DFD1B800279DB1 /* Pagadito_0001_Anular.png in Resources */,
@@ -886,10 +913,12 @@
 				3A09261F21BAAA5900333F1A /* Main.storyboard in Resources */,
 				233E54F621DFD1B800279DB1 /* Pagadito_0000s_0000s_0014_-Guardar-y-continuar--.png in Resources */,
 				233E552721DFD1B800279DB1 /* Pagadito_0001s_0002_Layer-108.png in Resources */,
+				2356F43C2202F4420011DD42 /* dashboard_report_en.png in Resources */,
 				233E54EF21DFD1B800279DB1 /* Pagadito_0000_Layer-44.png in Resources */,
 				233E554321DFD1B800279DB1 /* PagaditoR_0000_Layer-17.png in Resources */,
 				233E553A21DFD1B800279DB1 /* Pagadito_0003_Layer-42.png in Resources */,
 				233E551921DFD1B800279DB1 /* Pagadito_0000s_0015_7.png in Resources */,
+				2356F4432202F4420011DD42 /* dashboard_newtransaction_sp.png in Resources */,
 				233E551C21DFD1B800279DB1 /* Pagadito_0000s_0025_Generar-reporte.png in Resources */,
 				233E54FB21DFD1B800279DB1 /* Pagadito_0000s_0001_Modificar-Búsqueda.png in Resources */,
 				233E54FC21DFD1B800279DB1 /* Pagadito_0000s_0001_Procesar-transacción--.png in Resources */,
@@ -986,6 +1015,7 @@
 				23B4A00D21F87B5500BAAD37 /* CashierShiftSearchViewController.m in Sources */,
 				2329E15921F5B00F00CD8EB2 /* SystemConfigurationViewController.m in Sources */,
 				23B4A00121F7A34900BAAD37 /* ReportViewController.m in Sources */,
+				2356F43322021ACC0011DD42 /* MultiLanguage.m in Sources */,
 				2337176221EA4D6D003D7D15 /* UserListTableViewCell.m in Sources */,
 				2329E15121F579B000CD8EB2 /* ResetPasswordWSKViewController.m in Sources */,
 				2352F92C21ECD2D0003F106A /* SearchUserViewController.m in Sources */,

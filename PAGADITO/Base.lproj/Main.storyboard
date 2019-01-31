@@ -123,12 +123,17 @@
                                 <attributedString key="attributedText"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="nickname"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1D5-Gc-yB7">
-                                <rect key="frame" x="54" y="420" width="267" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1D5-Gc-yB7">
+                                <rect key="frame" x="63" y="426" width="250" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="Pagadito_0001s_0003_Iniciar-sesión--.png">
-                                    <attributedString key="attributedTitle"/>
+                                <color key="backgroundColor" red="0.99607843139999996" green="0.74901960779999999" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Continuar">
+                                    <color key="titleColor" red="1" green="0.98431372549999996" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="22"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="SigninButtonAction:" destination="5Z4-mn-8hx" eventType="touchUpInside" id="AKd-JE-pVV"/>
                                 </connections>
@@ -161,7 +166,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m0B-PN-Ou4">
-                                <rect key="frame" x="100" y="278" width="173" height="28"/>
+                                <rect key="frame" x="54" y="278" width="267" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Tuk POS APP">
@@ -187,8 +192,12 @@
                         <viewLayoutGuide key="safeArea" id="Pi5-Ed-gqv"/>
                     </view>
                     <connections>
+                        <outlet property="appnameLabel" destination="m0B-PN-Ou4" id="zse-tU-PuP"/>
+                        <outlet property="forgetpasswordButton" destination="euC-3r-Ijl" id="yJD-qw-R8f"/>
                         <outlet property="logoImageView" destination="i6s-al-Kva" id="EQ8-Ji-eoi"/>
                         <outlet property="passwordTextField" destination="KxS-WB-x22" id="QKk-Sb-DGQ"/>
+                        <outlet property="signinButton" destination="1D5-Gc-yB7" id="DAG-kq-ZyS"/>
+                        <outlet property="titleLabel" destination="dQX-NG-fer" id="bOp-gJ-pET"/>
                         <outlet property="usernameTextField" destination="fK2-S0-NnZ" id="e78-Cm-JO6"/>
                         <segue destination="d8D-n5-YfO" kind="presentation" identifier="logintohome_segue" id="VwE-5X-ZSC"/>
                     </connections>
@@ -6994,12 +7003,17 @@ o contacta a soporte</string>
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VPI-x0-uQr">
-                                <rect key="frame" x="55" y="558" width="266" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VPI-x0-uQr">
+                                <rect key="frame" x="61" y="558" width="250" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="Pagadito_0000s_0007_Cerrar-sesión--.png">
-                                    <attributedString key="attributedTitle"/>
+                                <color key="backgroundColor" red="0.99607843139999996" green="0.74901960779999999" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Cerrar Sesión">
+                                    <color key="titleColor" red="1" green="0.98431372549999996" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="22"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="5Z4-mn-8hx" kind="show" id="x5O-4m-db2"/>
                                 </connections>
@@ -7037,6 +7051,20 @@ o contacta a soporte</string>
                                 <rect key="frame" x="0.0" y="640" width="375" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fha-jG-2dY">
+                                <rect key="frame" x="113" y="181" width="150" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Atajos">
+                                        <attributes>
+                                            <color key="NSColor" red="0.42952291280353105" green="0.44517369923857864" blue="0.44275366243722714" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <font key="NSFont" metaFont="system" size="18"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0sw-7f-zNI">
                                 <rect key="frame" x="9" y="645" width="116" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -7068,7 +7096,7 @@ o contacta a soporte</string>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CJN-xh-nv9">
                                 <rect key="frame" x="25" y="234" width="156" height="144"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="Pagadito_0001_Capa-5.png">
+                                <state key="normal" image="dashboard_report_sp.png">
                                     <attributedString key="attributedTitle"/>
                                 </state>
                                 <connections>
@@ -7079,7 +7107,7 @@ o contacta a soporte</string>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XLk-4E-yzV">
                                 <rect key="frame" x="194" y="234" width="156" height="144"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="Pagadito_0000_Capa-4.png">
+                                <state key="normal" image="dashboard_user_sp.png">
                                     <attributedString key="attributedTitle"/>
                                 </state>
                                 <connections>
@@ -7089,7 +7117,7 @@ o contacta a soporte</string>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rcG-2L-06c">
                                 <rect key="frame" x="25" y="388" width="156" height="144"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="Pagadito_0002_Capa-6.png">
+                                <state key="normal" image="dashboard_voidtransaction_sp.png">
                                     <attributedString key="attributedTitle"/>
                                 </state>
                                 <connections>
@@ -7100,27 +7128,13 @@ o contacta a soporte</string>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FNS-P4-7xp">
                                 <rect key="frame" x="194" y="388" width="156" height="144"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="Pagadito_0003_Capa-7.png">
+                                <state key="normal" image="dashboard_newtransaction_sp.png">
                                     <attributedString key="attributedTitle"/>
                                 </state>
                                 <connections>
                                     <action selector="DashboardButton4Action:" destination="d8D-n5-YfO" eventType="touchUpInside" id="ZSh-h6-yBR"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fha-jG-2dY">
-                                <rect key="frame" x="149" y="181" width="79" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Atajos">
-                                        <attributes>
-                                            <color key="NSColor" red="0.42952291280353105" green="0.44517369923857864" blue="0.44275366243722714" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            <font key="NSFont" metaFont="system" size="18"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mJH-pt-rb5">
                                 <rect key="frame" x="0.0" y="80" width="375" height="560"/>
                                 <subviews>
@@ -7237,8 +7251,8 @@ o contacta a soporte</string>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3go-jg-uRG">
-                                <rect key="frame" x="-2" y="80" width="300" height="587"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3go-jg-uRG">
+                                <rect key="frame" x="-300" y="80" width="300" height="587"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SAT-yE-HHo">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
@@ -7381,6 +7395,7 @@ o contacta a soporte</string>
                         <outlet property="canceltransactionButton" destination="IPN-qn-rRk" id="eLG-hq-rBD"/>
                         <outlet property="cerraturnoButton" destination="tAe-Xa-lhN" id="Zro-ML-RUV"/>
                         <outlet property="configButton" destination="39A-hB-Du5" id="Aa8-II-DOX"/>
+                        <outlet property="contactsupportButton" destination="Tsq-mc-ssa" id="Nbh-Hy-2Ud"/>
                         <outlet property="dateTimeLabel" destination="kLu-fx-HeF" id="Wwr-zC-fzZ"/>
                         <outlet property="homeButton" destination="SAT-yE-HHo" id="CCo-Rf-Ydu"/>
                         <outlet property="logoutButton" destination="gVt-LY-OyI" id="R2Z-l3-Ly2"/>
@@ -7392,6 +7407,9 @@ o contacta a soporte</string>
                         <outlet property="privilidgeID3DashboardView" destination="mJH-pt-rb5" id="pJL-41-VEn"/>
                         <outlet property="reportButton" destination="yL0-bg-S7a" id="M8K-fW-czC"/>
                         <outlet property="sessionInfoLabel" destination="CWD-zF-rsa" id="4Wt-H6-ZOy"/>
+                        <outlet property="sessioncommentLabel" destination="0sw-7f-zNI" id="ipE-0d-jzY"/>
+                        <outlet property="shorcutLabel" destination="fha-jG-2dY" id="cc1-gw-7um"/>
+                        <outlet property="signoutButton" destination="VPI-x0-uQr" id="UIm-MN-Ra4"/>
                         <outlet property="turnoButton" destination="I5X-Hr-lCI" id="ofk-NW-KJ5"/>
                         <outlet property="userFullNameLabel" destination="jDP-QD-HM3" id="sbV-HS-CHz"/>
                         <outlet property="usuarioButton" destination="Ygg-KR-6zV" id="acK-RJ-qID"/>
@@ -11972,22 +11990,27 @@ o contacta a soporte</string>
                                 <attributedString key="attributedText"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S8i-0i-Gkz">
-                                <rect key="frame" x="54" y="577" width="267" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="Pagadito_0001s_0003_Iniciar-sesión--.png">
-                                    <attributedString key="attributedTitle"/>
-                                </state>
-                                <connections>
-                                    <action selector="LoginButtonAction:" destination="OBP-SC-OoB" eventType="touchUpInside" id="Agp-ZV-p4S"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbF-lq-WNF">
                                 <rect key="frame" x="115" y="629" width="145" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Olvidé mi contraseña">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S8i-0i-Gkz">
+                                <rect key="frame" x="62" y="581" width="250" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.99607843137254903" green="0.74901960784313726" blue="0.0078431372549019607" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Inicia sesión">
+                                    <color key="titleColor" red="1" green="0.98431372549019602" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="22"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="LoginButtonAction:" destination="OBP-SC-OoB" eventType="touchUpInside" id="Agp-ZV-p4S"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -12004,14 +12027,19 @@ o contacta a soporte</string>
                         <viewLayoutGuide key="safeArea" id="UlG-fO-jQN"/>
                     </view>
                     <connections>
+                        <outlet property="comment1Label" destination="Jb0-gN-Jps" id="Uoc-lB-2yT"/>
+                        <outlet property="comment2Label" destination="ueA-ie-FOV" id="djk-5P-L7m"/>
                         <outlet property="emailTextFiled" destination="2Wz-Ti-oKB" id="9wh-vN-gtn"/>
+                        <outlet property="explainLabel" destination="Ybj-cE-g1c" id="XN3-9i-bOl"/>
+                        <outlet property="forgotpasswordButton" destination="dbF-lq-WNF" id="EnB-jF-pQr"/>
                         <outlet property="passwordTextField" destination="3ZN-UL-0Vf" id="tq4-qN-8Dq"/>
+                        <outlet property="signinButton" destination="S8i-0i-Gkz" id="0db-em-Gje"/>
                         <segue destination="2Wt-5j-spN" kind="presentation" identifier="logintoselect_segue" id="u4j-r1-HxG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nqi-Ll-vaV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="976.5" y="-146.5"/>
+            <point key="canvasLocation" x="975.20000000000005" y="-147.07646176911544"/>
         </scene>
         <!--Select Store Terminal View Controller-->
         <scene sceneID="64V-hl-UnW">
@@ -12044,87 +12072,64 @@ o contacta a soporte</string>
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4t5-VX-g5J">
-                                <rect key="frame" x="30" y="113" width="283" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4t5-VX-g5J">
+                                <rect key="frame" x="30" y="109" width="315" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
-                                    <fragment>
-                                        <string key="content">Elige la sucursal donde utilizarás tu
-</string>
+                                    <fragment content="Elige la sucursal donde utilizarás tu ">
                                         <attributes>
                                             <color key="NSColor" red="0.32287989154255886" green="0.52176101835370103" blue="0.82729219543147203" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <font key="NSFont" metaFont="system" size="18"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yi1-ap-9d7">
-                                <rect key="frame" x="30" y="138" width="81" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <attributedString key="attributedText">
                                     <fragment content="POS App:">
                                         <attributes>
-                                            <color key="NSColor" red="0.32287989154255886" green="0.52176101835370103" blue="0.82729219543147203" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            <font key="NSFont" metaFont="system" size="18"/>
+                                            <color key="NSColor" red="0.32288" green="0.52176" blue="0.82728999999999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <font key="NSFont" size="18" name="HelveticaNeue"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVp-S0-Xdq">
-                                <rect key="frame" x="30" y="233" width="315" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVp-S0-Xdq">
+                                <rect key="frame" x="30" y="233" width="315" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="Asigna una terminal para realizar tus">
+                                    <fragment content="Asigna una terminal para realizar tus ">
                                         <attributes>
                                             <color key="NSColor" red="0.32287989154255886" green="0.52176101835370103" blue="0.82729219543147203" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <font key="NSFont" metaFont="system" size="18"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFQ-EB-2wg">
-                                <rect key="frame" x="55" y="368" width="266" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Si no ves una sucursal o terminal">
-                                        <attributes>
-                                            <color key="NSColor" red="0.48318210127397798" green="0.49581444923332268" blue="0.50295447335025378" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            <font key="NSFont" metaFont="system" size="18"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fpd-gG-whd">
-                                <rect key="frame" x="44" y="392" width="288" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="disponible, debes configurarla aquí.">
-                                        <attributes>
-                                            <color key="NSColor" red="0.48318210127397798" green="0.49581444923332268" blue="0.50295447335025378" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            <font key="NSFont" metaFont="system" size="18"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ode-nE-ULb">
-                                <rect key="frame" x="30" y="258" width="118" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <attributedString key="attributedText">
                                     <fragment content="transacciones:">
                                         <attributes>
-                                            <color key="NSColor" red="0.32287989154255886" green="0.52176101835370103" blue="0.82729219543147203" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            <font key="NSFont" metaFont="system" size="18"/>
+                                            <color key="NSColor" red="0.32288" green="0.52176" blue="0.82728999999999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <font key="NSFont" size="18" name="HelveticaNeue"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFQ-EB-2wg">
+                                <rect key="frame" x="30" y="368" width="315" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Si no ves una sucursal o terminal ">
+                                        <attributes>
+                                            <color key="NSColor" red="0.48318210127397798" green="0.49581444923332268" blue="0.50295447335025378" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <font key="NSFont" metaFont="system" size="18"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="disponible, debes configurarla aquí.">
+                                        <attributes>
+                                            <color key="NSColor" red="0.48318" green="0.49580999999999997" blue="0.50295000000000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <font key="NSFont" size="18" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -12140,12 +12145,17 @@ o contacta a soporte</string>
                                     <segue destination="OBP-SC-OoB" kind="show" id="mvb-xt-TA0"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E0H-vf-WR8">
-                                <rect key="frame" x="54" y="448" width="267" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0H-vf-WR8">
+                                <rect key="frame" x="63" y="458" width="250" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="Pagadito_0002_Continuar--.png">
-                                    <attributedString key="attributedTitle"/>
+                                <color key="backgroundColor" red="0.99607843139999996" green="0.74901960779999999" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Continuar">
+                                    <color key="titleColor" red="1" green="0.98431372549999996" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="22"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="continueButtonAction:" destination="2Wt-5j-spN" eventType="touchUpInside" id="pFb-nO-zPF"/>
                                     <segue destination="BLN-M7-ivG" kind="presentation" identifier="logintoselect_segue" id="X7W-o2-g0m"/>
@@ -12179,7 +12189,7 @@ o contacta a soporte</string>
                                     <action selector="selectTerminalButtonAction:" destination="2Wt-5j-spN" eventType="touchUpInside" id="jOA-cX-O2a"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AHD-Q0-liv">
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AHD-Q0-liv">
                                 <rect key="frame" x="30" y="330" width="315" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -12200,7 +12210,7 @@ o contacta a soporte</string>
                                     <outlet property="delegate" destination="2Wt-5j-spN" id="uFh-0I-48H"/>
                                 </connections>
                             </tableView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gCC-H0-i5f">
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gCC-H0-i5f">
                                 <rect key="frame" x="30" y="210" width="315" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -12240,12 +12250,17 @@ o contacta a soporte</string>
                         <viewLayoutGuide key="safeArea" id="ndi-bn-VIX"/>
                     </view>
                     <connections>
+                        <outlet property="commentLabel" destination="DFQ-EB-2wg" id="gLP-VD-4SZ"/>
+                        <outlet property="continueButton" destination="E0H-vf-WR8" id="atW-tQ-ZVB"/>
                         <outlet property="selectStoreButton" destination="OBk-AY-IpD" id="Yff-pn-SYu"/>
+                        <outlet property="selectStoreCommentLabel" destination="4t5-VX-g5J" id="9tY-6B-XcG"/>
                         <outlet property="selectTerminalButton" destination="ery-wR-08j" id="kG5-yq-HY8"/>
+                        <outlet property="selectTerminalCommentLabel" destination="hVp-S0-Xdq" id="J78-E5-eMB"/>
                         <outlet property="storeTableView" destination="gCC-H0-i5f" id="aK7-pQ-mZG"/>
                         <outlet property="storeTableViewHeightConstraint" destination="fZg-n5-uNd" id="6rb-Np-gke"/>
                         <outlet property="terminalTableView" destination="AHD-Q0-liv" id="Smj-Oy-Pgl"/>
                         <outlet property="terminalTableViewHeightConstraint" destination="DQx-EX-YDH" id="dcf-eu-CZL"/>
+                        <outlet property="titleLabel" destination="6nS-1v-Z1r" id="jZh-mT-zO7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jgI-FD-yt2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -12299,7 +12314,7 @@ o contacta a soporte</string>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7JE-1U-B1c">
-                                <rect key="frame" x="108" y="36" width="159" height="28"/>
+                                <rect key="frame" x="62" y="36" width="283" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <attributedString key="attributedText">
@@ -12307,7 +12322,7 @@ o contacta a soporte</string>
                                         <attributes>
                                             <color key="NSColor" red="0.95372503995895386" green="0.97213262319564819" blue="0.99215561151504517" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <font key="NSFont" metaFont="system" size="24"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -12318,12 +12333,16 @@ o contacta a soporte</string>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HUY-b7-9uU">
-                                <rect key="frame" x="55" y="608" width="267" height="44"/>
+                                <rect key="frame" x="38" y="614" width="300" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name=".SFNSText" family=".SF NS Text" pointSize="18"/>
-                                <state key="normal" title="Continuar" backgroundImage="Pagadito_0000s_0001_button_yellow.png">
+                                <color key="backgroundColor" red="0.99607843139999996" green="0.74901960779999999" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Continuar">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="22"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="continueButtonAction:" destination="BLN-M7-ivG" eventType="touchUpInside" id="Elw-NC-6Xs"/>
                                 </connections>
@@ -12369,41 +12388,28 @@ o contacta a soporte</string>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BEf-ht-mKa">
                                 <rect key="frame" x="30" y="310" width="315" height="40"/>
                                 <subviews>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TRs-1V-Fzf">
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TRs-1V-Fzf">
                                         <rect key="frame" x="0.0" y="2" width="49" height="36"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="47" id="Y5t-g2-KLh"/>
-                                        </constraints>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
                                             <action selector="switchAction:" destination="BLN-M7-ivG" eventType="valueChanged" id="bR7-Xc-fcc"/>
                                         </connections>
                                     </switch>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dDV-vU-Z46">
-                                        <rect key="frame" x="65" y="2" width="250" height="17"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="17" id="3Ag-as-dcd"/>
-                                        </constraints>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dDV-vU-Z46">
+                                        <rect key="frame" x="65" y="-2" width="250" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <attributedString key="attributedText">
-                                            <fragment content="Asignar nuevo turno automaticamente">
+                                            <fragment content="Asignar nuevo turno automaticamente ">
                                                 <attributes>
                                                     <color key="NSColor" red="0.32156862745098036" green="0.52156862745098043" blue="0.82745098039215681" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <font key="NSFont" metaFont="system" size="14"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
-                                        </attributedString>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIm-sN-odD">
-                                        <rect key="frame" x="65" y="21" width="250" height="17"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="17" id="Qmr-0F-HqT"/>
-                                        </constraints>
-                                        <attributedString key="attributedText">
                                             <fragment content="todos los días.">
                                                 <attributes>
-                                                    <color key="NSColor" red="0.32287989154255886" green="0.52176101835370103" blue="0.82729219543147203" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    <font key="NSFont" metaFont="system" size="14"/>
+                                                    <color key="NSColor" red="0.32288" green="0.52176" blue="0.82728999999999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <font key="NSFont" size="14" name="HelveticaNeue"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
@@ -12413,14 +12419,10 @@ o contacta a soporte</string>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="dDV-vU-Z46" firstAttribute="leading" secondItem="TRs-1V-Fzf" secondAttribute="trailing" constant="18" id="Ukg-qX-SD0"/>
-                                    <constraint firstAttribute="bottom" secondItem="uIm-sN-odD" secondAttribute="bottom" constant="2" id="iB7-yy-wtL"/>
-                                    <constraint firstItem="uIm-sN-odD" firstAttribute="top" secondItem="dDV-vU-Z46" secondAttribute="bottom" constant="2" id="ikp-Z5-z1K"/>
                                     <constraint firstAttribute="height" constant="40" id="inC-Fh-hXA"/>
-                                    <constraint firstItem="uIm-sN-odD" firstAttribute="leading" secondItem="TRs-1V-Fzf" secondAttribute="trailing" constant="18" id="nzy-1c-bf1"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hMd-DX-bNW">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hMd-DX-bNW">
                                 <rect key="frame" x="30" y="308" width="315" height="40"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a1l-44-pVB">
@@ -12432,8 +12434,9 @@ o contacta a soporte</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PIN de autorización:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRH-5G-Of3">
-                                        <rect key="frame" x="75" y="10" width="154" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PIN de autorización:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRH-5G-Of3">
+                                        <rect key="frame" x="33" y="10" width="196" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.32156862745098036" green="0.52156862745098043" blue="0.82745098039215681" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -12442,12 +12445,9 @@ o contacta a soporte</string>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="7qs-bi-iQa"/>
-                                    <constraint firstItem="a1l-44-pVB" firstAttribute="leading" secondItem="yRH-5G-Of3" secondAttribute="trailing" constant="6" id="AAf-xu-3oO"/>
                                     <constraint firstAttribute="trailing" secondItem="a1l-44-pVB" secondAttribute="trailing" id="GIQ-cT-dOE"/>
-                                    <constraint firstItem="yRH-5G-Of3" firstAttribute="top" secondItem="hMd-DX-bNW" secondAttribute="top" constant="10" id="QIl-dO-aw7"/>
                                     <constraint firstItem="a1l-44-pVB" firstAttribute="top" secondItem="hMd-DX-bNW" secondAttribute="top" id="Yub-hD-OWG"/>
                                     <constraint firstAttribute="bottom" secondItem="a1l-44-pVB" secondAttribute="bottom" id="p79-6I-KBd"/>
-                                    <constraint firstAttribute="bottom" secondItem="yRH-5G-Of3" secondAttribute="bottom" constant="9" id="rGT-ys-nvd"/>
                                 </constraints>
                             </view>
                             <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TKn-Nw-Eab">
@@ -12491,17 +12491,20 @@ o contacta a soporte</string>
                     </view>
                     <connections>
                         <outlet property="checkBoxUIView" destination="BEf-ht-mKa" id="Vm2-UT-Bp3"/>
+                        <outlet property="checkboxCommentLabel" destination="dDV-vU-Z46" id="QPH-Wd-4k9"/>
                         <outlet property="confirmpwdTextField" destination="O5P-Yk-aea" id="yuE-vl-aj1"/>
                         <outlet property="continueButton" destination="HUY-b7-9uU" id="cLD-0T-2sd"/>
                         <outlet property="lastnameTextField" destination="abl-0d-7XM" id="wVL-qJ-8Sq"/>
                         <outlet property="nameTextField" destination="mPS-4J-bjP" id="4y9-Q2-lYt"/>
                         <outlet property="passwordTextField" destination="K1P-QY-YI4" id="sj3-N6-8K2"/>
+                        <outlet property="pincodeCommentLabel" destination="yRH-5G-Of3" id="vKy-hq-w5e"/>
                         <outlet property="pincodeTextField" destination="a1l-44-pVB" id="TTo-4D-1u6"/>
                         <outlet property="pincodeUIView" destination="hMd-DX-bNW" id="zZi-ca-wkD"/>
                         <outlet property="roleTableView" destination="TKn-Nw-Eab" id="L0N-lr-aXd"/>
                         <outlet property="roleTableViewHeightConstraint" destination="qMx-86-VSo" id="u32-cM-daL"/>
                         <outlet property="selectRoleButton" destination="dX7-SA-FV4" id="FSr-CX-iZb"/>
                         <outlet property="switchButton" destination="TRs-1V-Fzf" id="zKg-y5-dlO"/>
+                        <outlet property="titleLabel" destination="7JE-1U-B1c" id="UaD-zr-Koc"/>
                         <outlet property="usernameTextField" destination="8GW-qk-Aoc" id="lBm-CI-6K6"/>
                         <segue destination="lZY-O8-ELh" kind="presentation" identifier="creationtolast_segue" id="Uw2-EW-ngD"/>
                     </connections>
@@ -13630,7 +13633,7 @@ o contacta a soporte</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pgv-Yt-4kg">
-                                <rect key="frame" x="30" y="120" width="271" height="21"/>
+                                <rect key="frame" x="30" y="120" width="306" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Personaliza tu Pagadito POS App">
@@ -13690,12 +13693,17 @@ o contacta a soporte</string>
                                 <attributedString key="attributedText"/>
                                 <textInputTraits key="textInputTraits" textContentType="nickname"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r7E-We-hck">
-                                <rect key="frame" x="54" y="608" width="267" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r7E-We-hck">
+                                <rect key="frame" x="63" y="611" width="250" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="Pagadito_0002_Continuar--.png">
-                                    <attributedString key="attributedTitle"/>
+                                <color key="backgroundColor" red="0.99607843139999996" green="0.74901960779999999" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="23"/>
+                                <state key="normal" title="Continuar">
+                                    <color key="titleColor" red="1" green="0.98431372549999996" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="22"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="continueButtonAction:" destination="lZY-O8-ELh" eventType="touchUpInside" id="OBK-Rh-fR7"/>
                                 </connections>
@@ -13705,7 +13713,7 @@ o contacta a soporte</string>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZM-aq-cEM">
-                                <rect key="frame" x="66" y="36" width="243" height="28"/>
+                                <rect key="frame" x="66" y="36" width="279" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <attributedString key="attributedText">
@@ -13713,7 +13721,7 @@ o contacta a soporte</string>
                                         <attributes>
                                             <color key="NSColor" red="0.95372503995895386" green="0.97213262319564819" blue="0.99215561151504517" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <font key="NSFont" metaFont="system" size="24"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -13766,7 +13774,7 @@ o contacta a soporte</string>
                                     <constraint firstAttribute="trailing" secondItem="vuO-Qh-sDX" secondAttribute="trailing" constant="10" id="ZeU-c7-2Pr"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mf1-cT-eYs">
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mf1-cT-eYs">
                                 <rect key="frame" x="30" y="497" width="315" height="120"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -13813,13 +13821,17 @@ o contacta a soporte</string>
                         <viewLayoutGuide key="safeArea" id="1ma-ZJ-Acg"/>
                     </view>
                     <connections>
+                        <outlet property="commentLabel" destination="pgv-Yt-4kg" id="mLO-03-UDb"/>
                         <outlet property="commercialEmailTextField" destination="fmQ-R8-LdO" id="BjL-wh-r9O"/>
                         <outlet property="commercialNameTextField" destination="jS7-HC-9Xe" id="bF6-6h-H8X"/>
                         <outlet property="commercialNumberTextField" destination="asC-4B-fH7" id="xeA-T3-XEF"/>
+                        <outlet property="continuButton" destination="r7E-We-hck" id="mrm-5y-UqK"/>
                         <outlet property="currencyTableView" destination="Mf1-cT-eYs" id="Oil-mO-Nuv"/>
+                        <outlet property="imagecommentLabel" destination="nNH-sq-z2i" id="6rI-jb-OG0"/>
                         <outlet property="logoImageView" destination="c4X-yn-tvj" id="8rV-Vh-QKr"/>
                         <outlet property="selectCurrencyButton" destination="UT4-mn-2uU" id="FJy-49-gk6"/>
                         <outlet property="terminalNameTextField" destination="IEy-lE-mVG" id="ccR-AP-NpJ"/>
+                        <outlet property="titleLabel" destination="dZM-aq-cEM" id="o14-q1-1WO"/>
                         <segue destination="5Z4-mn-8hx" kind="presentation" identifier="lasttowelcome_segue" id="db4-ab-WBO"/>
                     </connections>
                 </viewController>
@@ -13833,7 +13845,6 @@ o contacta a soporte</string>
         <image name="PagaditoR_0000_Layer-17.png" width="192" height="38"/>
         <image name="PagaditoR_0001_fondo.png" width="360" height="640"/>
         <image name="Pagadito_0000_Cancelar.png" width="139" height="34"/>
-        <image name="Pagadito_0000_Capa-4.png" width="156" height="144"/>
         <image name="Pagadito_0000_Layer-20.png" width="166" height="32"/>
         <image name="Pagadito_0000_Layer-44.png" width="30" height="24"/>
         <image name="Pagadito_0000_Ok.png" width="267" height="44"/>
@@ -13848,7 +13859,6 @@ o contacta a soporte</string>
         <image name="Pagadito_0000s_0001_Layer-94.png" width="300" height="44"/>
         <image name="Pagadito_0000s_0001_Modificar-Búsqueda.png" width="149" height="31"/>
         <image name="Pagadito_0000s_0001_Procesar-transacción--.png" width="267" height="44"/>
-        <image name="Pagadito_0000s_0001_button_yellow.png" width="267" height="44"/>
         <image name="Pagadito_0000s_0002_1.png" width="70" height="70"/>
         <image name="Pagadito_0000s_0002_Anular-Transacción-.png" width="267" height="44"/>
         <image name="Pagadito_0000s_0002_Layer-90.png" width="30" height="29"/>
@@ -13862,7 +13872,6 @@ o contacta a soporte</string>
         <image name="Pagadito_0000s_0006_Layer-88.png" width="300" height="44"/>
         <image name="Pagadito_0000s_0006_Seleccionar.png" width="113" height="31"/>
         <image name="Pagadito_0000s_0007_2.png" width="70" height="70"/>
-        <image name="Pagadito_0000s_0007_Cerrar-sesión--.png" width="266" height="44"/>
         <image name="Pagadito_0000s_0007_Guardar-.png" width="267" height="44"/>
         <image name="Pagadito_0000s_0007_Layer-91-copy.png" width="300" height="44"/>
         <image name="Pagadito_0000s_0007_Ver-transacciones-de-hoy.png" width="266" height="44"/>
@@ -13883,14 +13892,12 @@ o contacta a soporte</string>
         <image name="Pagadito_0000s_0035_Layer-88-copy-3.png" width="350" height="98"/>
         <image name="Pagadito_0000s_0036_Layer-88.png" width="350" height="98"/>
         <image name="Pagadito_0001_Anular.png" width="139" height="34"/>
-        <image name="Pagadito_0001_Capa-5.png" width="156" height="144"/>
         <image name="Pagadito_0001_Layer-17.png" width="106" height="37"/>
         <image name="Pagadito_0001_Layer-43.png" width="360" height="58"/>
         <image name="Pagadito_0001s_0000_Shape-1-copy.png" width="20" height="12"/>
         <image name="Pagadito_0001s_0001_Eliminar.png" width="139" height="34"/>
         <image name="Pagadito_0001s_0001_Layer-110.png" width="360" height="640"/>
         <image name="Pagadito_0001s_0002_Layer-108.png" width="360" height="22"/>
-        <image name="Pagadito_0001s_0003_Iniciar-sesión--.png" width="267" height="44"/>
         <image name="Pagadito_0001s_0004_Layer-100.png" width="34" height="34"/>
         <image name="Pagadito_0001s_0005_Layer-98.png" width="33" height="33"/>
         <image name="Pagadito_0001s_0006_Layer-96.png" width="30" height="33"/>
@@ -13900,9 +13907,7 @@ o contacta a soporte</string>
         <image name="Pagadito_0001s_0017_Capa-2.png" width="350" height="99"/>
         <image name="Pagadito_0001s_0020_+.png" width="41" height="35"/>
         <image name="Pagadito_0001s_0022_Layer-109.png" width="82" height="48"/>
-        <image name="Pagadito_0002_Capa-6.png" width="156" height="144"/>
         <image name="Pagadito_0002_Continuar--.png" width="267" height="44"/>
-        <image name="Pagadito_0003_Capa-7.png" width="156" height="144"/>
         <image name="Pagadito_0003_Layer-16.png" width="209" height="30"/>
         <image name="Pagadito_0003_Layer-2.png" width="343" height="134"/>
         <image name="Pagadito_0003_Layer-42.png" width="360" height="640"/>
@@ -13915,6 +13920,10 @@ o contacta a soporte</string>
         <image name="assignshift_logout_icon.png" width="37" height="36"/>
         <image name="cashier_shift_close_icon.png" width="48" height="48"/>
         <image name="cashierlist_arrow_icon.png" width="28" height="15"/>
+        <image name="dashboard_newtransaction_sp.png" width="156" height="144"/>
+        <image name="dashboard_report_sp.png" width="156" height="144"/>
+        <image name="dashboard_user_sp.png" width="156" height="144"/>
+        <image name="dashboard_voidtransaction_sp.png" width="156" height="144"/>
         <image name="insert_shift_ok_message_icon.png" width="30" height="30"/>
         <image name="reset_password_logo.png" width="257" height="229"/>
         <image name="sidemenu_cerrarturnoButton_icon.png" width="160" height="29"/>
@@ -13922,28 +13931,28 @@ o contacta a soporte</string>
         <image name="wsk_response_fail_icon.png" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hO8-wg-cUF"/>
+        <segue reference="e5t-5z-f4H"/>
         <segue reference="hZQ-nt-5jT"/>
         <segue reference="e76-cs-Nyg"/>
-        <segue reference="3TK-Ke-iOO"/>
+        <segue reference="u4j-r1-HxG"/>
         <segue reference="DFb-lS-2Hg"/>
-        <segue reference="1vS-uD-AiC"/>
-        <segue reference="D9R-AI-944"/>
-        <segue reference="DY4-rm-prt"/>
-        <segue reference="cB3-i3-ZTn"/>
-        <segue reference="I6e-Rf-6AT"/>
-        <segue reference="upf-uW-nS6"/>
-        <segue reference="xGE-zO-q7t"/>
-        <segue reference="pb5-F5-9pQ"/>
-        <segue reference="vrx-Hg-wVT"/>
+        <segue reference="gDn-G1-FRB"/>
+        <segue reference="ggG-WD-r8D"/>
+        <segue reference="4J5-oD-WY6"/>
+        <segue reference="IFn-GB-61X"/>
+        <segue reference="5o7-2G-f9V"/>
+        <segue reference="Wxn-gR-MTe"/>
+        <segue reference="Hd1-eZ-QA3"/>
+        <segue reference="hlc-HD-HAu"/>
+        <segue reference="Htw-fC-Xx6"/>
         <segue reference="cBP-Ph-8a9"/>
-        <segue reference="UDO-fI-gl3"/>
+        <segue reference="QSL-jv-wfa"/>
         <segue reference="V6I-pk-HHA"/>
-        <segue reference="gZg-DN-wVl"/>
+        <segue reference="Edt-ev-liM"/>
         <segue reference="zzn-x8-4xL"/>
-        <segue reference="0kq-Cg-V8g"/>
+        <segue reference="l4h-nI-1dW"/>
         <segue reference="oSC-O4-CSe"/>
-        <segue reference="mHU-jz-SJH"/>
-        <segue reference="jJO-py-Ohc"/>
+        <segue reference="n5g-SP-sEF"/>
+        <segue reference="MXZ-vI-Ph6"/>
     </inferredMetricsTieBreakers>
 </document>

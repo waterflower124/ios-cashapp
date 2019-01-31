@@ -11,7 +11,8 @@
 
 @interface Global : NSObject
 {
-    int *selected_language;
+
+    NSInteger selected_language;
     NSString *macAddress;
     NSString *uid;
     NSString *wsk;
@@ -56,7 +57,7 @@
 
 + (Global *)sharedInstance;
 
-@property(nonatomic, assign) int *selected_language;
+@property(nonatomic, readwrite) NSInteger selected_language;
 @property(strong, nonatomic, readwrite) NSString *macAddress;
 @property(strong, nonatomic, readwrite) NSString *uid;
 @property(strong, nonatomic, readwrite) NSString *wsk;

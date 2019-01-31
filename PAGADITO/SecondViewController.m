@@ -33,6 +33,7 @@
 @synthesize priv3logoImageView, priv3FullNameLabel, priv3CurrentTimeLabel, priv3ShiftCodeLabel;
 
 @synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton, cerraturnoButton;
+@synthesize shorcutLabel, sessioncommentLabel, contactsupportButton, signoutButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,11 +44,30 @@
     
     Global *globals = [Global sharedInstance];
     // user full name label setting
-    self.userFullNameText = [NSString stringWithFormat:@"¡Bienvenido, %@!", globals.nombreCompleto];
+    if(globals.selected_language == 0) {
+        self.userFullNameText = [NSString stringWithFormat:@"¡Bienvenido, %@!", globals.nombreCompleto];
+        self.shorcutLabel.text = @"Atajos";
+        self.sessioncommentLabel.text = @"Sesión iniciada:";
+        [self.contactsupportButton setTitle:@"Contactar a soporte" forState:UIControlStateNormal];
+        [self.signoutButton setTitle:@"Cerrar Sesión" forState:UIControlStateNormal];
+    } else {
+        self.userFullNameText = [NSString stringWithFormat:@"Welcome, %@!", globals.nombreCompleto];
+         self.shorcutLabel.text = @"Shortcuts";
+        self.sessioncommentLabel.text = @"Session started:";
+        [self.contactsupportButton setTitle:@"Contact support" forState:UIControlStateNormal];
+        [self.signoutButton setTitle:@"Log out" forState:UIControlStateNormal];
+    }
     userFullNameLabel.text = self.userFullNameText;
     
     //current date and time setting
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    if(globals.selected_language == 0) {
+        NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"es_SV"];
+        [dateFormatter setLocale:locale];
+    } else {
+        NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en"];
+        [dateFormatter setLocale:locale];
+    }
     [dateFormatter setDateFormat:@"dd MMMM yyyy - HH:mm a"];
     self.dateTimeLabelText = [dateFormatter stringFromDate:[NSDate date]];
     dateTimeLabel.text = self.dateTimeLabelText;
@@ -65,8 +85,17 @@
     
     //set dashborad buttons background image according to priviledge ID
     if([globals.idPrivilegio isEqualToString:@"1"]) {
-        [DashboardButton2 setImage:[UIImage imageNamed: @"system_config"] forState:UIControlStateNormal];
-        [DashboardButton4 setImage:[UIImage imageNamed: @"Pagadito_0000_Capa-4"] forState:UIControlStateNormal];
+        if(globals.selected_language == 0) {
+            [DashboardButton1 setImage:[UIImage imageNamed: @"dashboard_report_sp"] forState:UIControlStateNormal];
+            [DashboardButton2 setImage:[UIImage imageNamed: @"dashboard_systemconfig_sp"] forState:UIControlStateNormal];
+            [DashboardButton3 setImage:[UIImage imageNamed: @"dashboard_voidtransaction_sp"] forState:UIControlStateNormal];
+            [DashboardButton4 setImage:[UIImage imageNamed: @"dashboard_user_sp"] forState:UIControlStateNormal];
+        } else {
+            [DashboardButton1 setImage:[UIImage imageNamed: @"dashboard_report_en"] forState:UIControlStateNormal];
+            [DashboardButton2 setImage:[UIImage imageNamed: @"dashboard_systemconfig_en"] forState:UIControlStateNormal];
+            [DashboardButton3 setImage:[UIImage imageNamed: @"dashboard_voidtransaction_en"] forState:UIControlStateNormal];
+            [DashboardButton4 setImage:[UIImage imageNamed: @"dashboard_user_en"] forState:UIControlStateNormal];
+        }
         
         ///////  side menu button config   ////////////
         CGRect homeButtonFrame = self.homeButton.frame;
@@ -107,8 +136,19 @@
         [self.cerraturnoButton setHidden:YES];
         ////////////////////////////////////////////
     } else if([globals.idPrivilegio isEqualToString:@"2"]) {
-        [DashboardButton2 setImage:[UIImage imageNamed: @"assign_shift"] forState:UIControlStateNormal];
-        [DashboardButton4 setImage:[UIImage imageNamed: @"Pagadito_0000_Capa-4"] forState:UIControlStateNormal];
+        
+        if(globals.selected_language == 0) {
+            [DashboardButton1 setImage:[UIImage imageNamed: @"dashboard_report_sp"] forState:UIControlStateNormal];
+            [DashboardButton2 setImage:[UIImage imageNamed: @"dashboard_assignshift_sp"] forState:UIControlStateNormal];
+            [DashboardButton3 setImage:[UIImage imageNamed: @"dashboard_voidtransaction_sp"] forState:UIControlStateNormal];
+            [DashboardButton4 setImage:[UIImage imageNamed: @"dashboard_user_sp"] forState:UIControlStateNormal];
+        } else {
+            [DashboardButton1 setImage:[UIImage imageNamed: @"dashboard_report_en"] forState:UIControlStateNormal];
+            [DashboardButton2 setImage:[UIImage imageNamed: @"dashboard_assignshift_sp"] forState:UIControlStateNormal];
+            [DashboardButton3 setImage:[UIImage imageNamed: @"dashboard_voidtransaction_en"] forState:UIControlStateNormal];
+            [DashboardButton4 setImage:[UIImage imageNamed: @"dashboard_user_en"] forState:UIControlStateNormal];
+        }
+        
         
         ///////  side menu button config   ////////////
         CGRect homeButtonFrame = self.homeButton.frame;
@@ -210,6 +250,18 @@
         [self.turnoButton setHidden:YES];
         
     } else if([globals.idPrivilegio isEqualToString:@"4"]) {
+        
+        if(globals.selected_language == 0) {
+            [DashboardButton1 setImage:[UIImage imageNamed: @"dashboard_report_sp"] forState:UIControlStateNormal];
+            [DashboardButton2 setImage:[UIImage imageNamed: @"dashboard_user_sp"] forState:UIControlStateNormal];
+            [DashboardButton3 setImage:[UIImage imageNamed: @"dashboard_voidtransaction_sp"] forState:UIControlStateNormal];
+            [DashboardButton4 setImage:[UIImage imageNamed: @"dashboard_newtransaction_sp"] forState:UIControlStateNormal];
+        } else {
+            [DashboardButton1 setImage:[UIImage imageNamed: @"dashboard_report_en"] forState:UIControlStateNormal];
+            [DashboardButton2 setImage:[UIImage imageNamed: @"dashboard_user_en"] forState:UIControlStateNormal];
+            [DashboardButton3 setImage:[UIImage imageNamed: @"dashboard_voidtransaction_en"] forState:UIControlStateNormal];
+            [DashboardButton4 setImage:[UIImage imageNamed: @"dashboard_newtransaction_en"] forState:UIControlStateNormal];
+        }
         
         ///////  side menu button config   ////////////
         CGRect homeButtonFrame = self.homeButton.frame;

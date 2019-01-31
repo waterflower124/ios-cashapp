@@ -60,6 +60,12 @@
 - (IBAction)cerraturnoButtonAction:(id)sender;
 - (IBAction)configButtonAction:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UILabel *shorcutLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sessioncommentLabel;
+@property (weak, nonatomic) IBOutlet UIButton *contactsupportButton;
+@property (weak, nonatomic) IBOutlet UIButton *signoutButton;
+
+
 
 
 @end

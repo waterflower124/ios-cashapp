@@ -14,6 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) IBOutlet UITextField *emailTextFiled;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UILabel *comment1Label;
+@property (weak, nonatomic) IBOutlet UILabel *comment2Label;
+@property (weak, nonatomic) IBOutlet UIButton *signinButton;
+@property (weak, nonatomic) IBOutlet UIButton *forgotpasswordButton;
+@property (weak, nonatomic) IBOutlet UILabel *explainLabel;
+
 
 - (IBAction)LoginButtonAction:(id)sender;
 

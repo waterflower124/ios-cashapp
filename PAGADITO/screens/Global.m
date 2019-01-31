@@ -17,7 +17,7 @@
 @synthesize username, idPrivilegio, nombreCompleto, idUser, idDispositivo, login_wsk, login_uid, llaveCifrado, cifradoIV, moneda, nombreComercio, nombreTerminal, numeroRegistro, mensajeVoucher, emailComercio, currency, idComercio, branchid, terminalid, ambiente;
 
 @synthesize turnoCod,codeShift,idTurno;
-
+    
 + (Global *)sharedInstance {
     static dispatch_once_t onceToken;
     static Global *instance = nil;
@@ -30,7 +30,7 @@
 -(id)init {
     self = [super init];
     if(self) {
-        uid = nil;
+//        uid = nil;
     }
     return self;
 }

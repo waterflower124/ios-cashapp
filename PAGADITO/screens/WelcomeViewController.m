@@ -25,7 +25,7 @@
 
 @synthesize logoImageView;
 @synthesize usernameTextField, passwordTextField;
-
+@synthesize titleLabel, appnameLabel, signinButton, forgetpasswordButton;
 
 
 - (void)viewDidLoad {
@@ -58,6 +58,22 @@
     self.activityIndicator.center = self.overlayView.center;
     [self.overlayView addSubview:self.activityIndicator];
     
+    if(globals.selected_language == 0) {
+        self.titleLabel.text = @"¡Bienvenido!";
+        self.appnameLabel.text = @"Tuk POS APP";
+        self.usernameTextField.placeholder = @"Usuario";
+        self.passwordTextField.placeholder = @"Contraseña";
+        [self.signinButton setTitle:@"Inicia sesión" forState:UIControlStateNormal];
+        [self.forgetpasswordButton setTitle:@"Olvidé mi contraseña" forState:UIControlStateNormal];
+    } else {
+        self.titleLabel.text = @"Welcome!";
+        self.appnameLabel.text = @"<Comercio> POS APP";
+        self.usernameTextField.placeholder = @"Username";
+        self.passwordTextField.placeholder = @"Password";
+        [self.signinButton setTitle:@"Sign In" forState:UIControlStateNormal];
+        [self.forgetpasswordButton setTitle:@"Forgot password" forState:UIControlStateNormal];
+    }
+
 }
 
 -(void)dismissKeyboard

@@ -43,9 +43,34 @@
 
 @synthesize logoImageView, commercialNameTextField, commercialEmailTextField, commercialNumberTextField, terminalNameTextField, currencyTableView, selectCurrencyButton;
 @synthesize infoUsuario;
+@synthesize titleLabel, commentLabel, imagecommentLabel, continuButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    ///////////   language setting  ////////
+    Global *globals = [Global sharedInstance];
+    if(globals.selected_language == 0) {
+        self.titleLabel.text = @"Información Comercial";
+        self.commentLabel.text = @"Personaliza tu Pagadito POS App";
+        self.imagecommentLabel.text = @"Logo imagen";
+        self.commercialNameTextField.placeholder = @"Nombre Comercial";
+        self.terminalNameTextField.placeholder = @"Nombre de Terminal POS";
+        [self.selectCurrencyButton setTitle:@"Selecciona una moneda" forState:UIControlStateNormal];
+        self.commercialNumberTextField.placeholder = @"Número de Registro (RUC)";
+        self.commercialEmailTextField.placeholder = @"Email del Comercio";
+        [self.continuButton setTitle:@"Continuar" forState:UIControlStateNormal];
+    } else {
+        self.titleLabel.text = @"Merchant Information";
+        self.commentLabel.text = @"Personalize your Pagadito POS APP";
+        self.imagecommentLabel.text = @"Logo image";
+        self.commercialNameTextField.placeholder = @"Business Name";
+        self.terminalNameTextField.placeholder = @"POS Terminal Name";
+        [self.selectCurrencyButton setTitle:@"Select Currency" forState:UIControlStateNormal];
+        self.commercialNumberTextField.placeholder = @"Business Registration Number";
+        self.commercialEmailTextField.placeholder = @"Business Email";
+        [self.continuButton setTitle:@"Continue" forState:UIControlStateNormal];
+    }
+    /////////////////////////////
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];

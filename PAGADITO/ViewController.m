@@ -32,6 +32,7 @@
 Global *globals;
 
 @implementation ViewController
+@synthesize pickerView_language;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -51,6 +52,13 @@ Global *globals;
     language = @[@"Español",@"English"];
     self.pickerView_language.dataSource = self;
     self.pickerView_language.delegate = self;
+    
+    ///////  language picker setting
+    NSUserDefaults *userdefault = [NSUserDefaults standardUserDefaults];
+    if([[[userdefault dictionaryRepresentation] allKeys] containsObject:@"selected_language"]) {
+            globals.selected_language = [[NSUserDefaults standardUserDefaults] integerForKey:@"selected_language"];
+        }
+    [self.pickerView_language selectRow:globals.selected_language inComponent:0 animated:YES];
     
     ///////////// logo image load   ///////////
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
@@ -74,7 +82,7 @@ Global *globals;
     [self.overlayView addSubview:self.activityIndicator];
     [self.activityIndicator startAnimating];
     [self.view addSubview:self.overlayView];
-    
+
     self.macAddress =[self getMacAddress];
     globals.macAddress = self.macAddress;
     NSLog(@"%@", globals.macAddress);
@@ -82,7 +90,7 @@ Global *globals;
                                  @"method": @"initSystem",
                                  @"param": self.macAddress
                                  };
-    
+
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
     sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -101,6 +109,11 @@ Global *globals;
         NSString *statusValue = jsonResponse[@"status"];
         NSInteger statusInt = [statusValue integerValue];
         if(statusInt == 1) {
+            NSUserDefaults *userdefault = [NSUserDefaults standardUserDefaults];
+            if([[[userdefault dictionaryRepresentation] allKeys] containsObject:@"selected_language"]) {
+                globals.selected_language = [[NSUserDefaults standardUserDefaults] integerForKey:@"selected_language"];
+            }
+            NSLog(@"ppppp::::  %ld]]]]]] ", (long)globals.selected_language);
             [self performSegueWithIdentifier:@"firsttowelcome_segue" sender:self];
         } else if(statusInt == 2){
 
@@ -150,9 +163,11 @@ Global *globals;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
-    self.pv_txt.text = language[row];
+//    self.pv_txt.text = language[row];
     
     globals.selected_language = row;
+    [[NSUserDefaults standardUserDefaults] setInteger:row forKey:@"selected_language"];
+    
 }
 
 

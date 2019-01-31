@@ -9,6 +9,8 @@
 #import "UserCreationViewController.h"
 #import "LastCommercialInfoViewController.h"
 #import "AFNetworking.h"
+#import "Global.h"
+#import "MultiLanguage.h"
 
 @interface UserCreationViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -40,12 +42,15 @@
 @synthesize nameTextField, lastnameTextField, usernameTextField, passwordTextField, confirmpwdTextField;
 @synthesize selectRoleButton, continueButton, switchButton, checkBoxUIView, pincodeUIView, pincodeTextField;
 @synthesize roleTableViewHeightConstraint;
+@synthesize titleLabel, checkboxCommentLabel, pincodeCommentLabel;
 
 int role_int = -1;
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    Global *globals = [Global sharedInstance];
+    MultiLanguage *multiLanguage = [MultiLanguage sharedInstance];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
@@ -54,13 +59,27 @@ int role_int = -1;
     role_int = -1;
     self.checkStatus = @"1";
     self.infoUserArray = [[NSMutableArray alloc] init];
-    self.role_list = [[NSMutableArray alloc] initWithObjects:@"Administrador", @"Administrador Único", nil];
+//    self.role_list = [[NSMutableArray alloc] initWithObjects:@"Administrador", @"Administrador Único", nil];
+    self.role_list = multiLanguage.usercreationVC_role_list[globals.selected_language];
     
     roleTableViewHeightConstraint.constant = 40 * self.role_list.count;
     
     [roleTableView setHidden:YES];
     [checkBoxUIView setHidden:YES];
     [pincodeUIView setHidden:YES];
+    
+    /////  multi language configure  ////
+    
+    self.titleLabel.text = multiLanguage.usercreationVC_titleText[globals.selected_language];
+    [self.selectRoleButton setTitle:multiLanguage.usercreationVC_selectRoleButtonText[globals.selected_language] forState:UIControlStateNormal];
+    self.checkboxCommentLabel.text = multiLanguage.usercreationVC_checkboxcommentLabelText[globals.selected_language];
+    self.pincodeCommentLabel.text = multiLanguage.usercreationVC_pincodecommentLabelText[globals.selected_language];
+    self.nameTextField.placeholder = multiLanguage.usercreationVC_firstnameTextFieldPlaceholder[globals.selected_language];
+    self.lastnameTextField.placeholder = multiLanguage.usercreationVC_lastTextFieldPlaceholder[globals.selected_language];
+    self.usernameTextField.placeholder = multiLanguage.usercreationVC_usernameTextFieldPlaceholder[globals.selected_language];
+    self.passwordTextField.placeholder = multiLanguage.usercreationVC_passwordTextFieldPlaceholder[globals.selected_language];
+    self.confirmpwdTextField.placeholder = multiLanguage.usercreationVC_confirmTextFieldPlaceholder[globals.selected_language];
+    [self.continueButton setTitle:multiLanguage.usercreationVC_continueButtonText[globals.selected_language] forState:UIControlStateNormal];
 }
 
 -(void)dismissKeyboard
@@ -69,6 +88,9 @@ int role_int = -1;
 }
 
 - (IBAction)continueButtonAction:(id)sender {
+    
+    Global *globals = [Global sharedInstance];
+    MultiLanguage *multiLanguage = [MultiLanguage sharedInstance];
     
     if(role_int == -1) {
         [self displayAlertView:@"Warning!" :@"Please select one of user role."];
@@ -141,9 +163,15 @@ int role_int = -1;
                  NSDictionary *dataUserDic = @{@"nombres":self.name, @"apellidos":self.lastname, @"idPrivilegio":@"2", @"username":self.username, @"password":self.password, @"shiftEveryday":@"0", @"codigoAprobacion":self.pin_code};
                  [self.infoUserArray addObject:dataUserDic];
                  role_int = 3;
-                 [self.selectRoleButton setTitle:@"Cajero" forState:UIControlStateNormal];
-                 [self.continueButton setTitle:@"Guardar y continuar" forState:UIControlStateNormal];
-                 self.role_list = [[NSMutableArray alloc] initWithObjects:@"Cajero", nil];
+                 if(globals.selected_language == 0) {
+                     [self.selectRoleButton setTitle:@"Cajero" forState:UIControlStateNormal];
+                     [self.continueButton setTitle:@"Guardar y continuar" forState:UIControlStateNormal];
+                     self.role_list = [[NSMutableArray alloc] initWithObjects:@"Cajero", nil];
+                 } else {
+                     [self.selectRoleButton setTitle:@"Cashier" forState:UIControlStateNormal];
+                     [self.continueButton setTitle:@"Save and Continue" forState:UIControlStateNormal];
+                     self.role_list = [[NSMutableArray alloc] initWithObjects:@"Cashier", nil];
+                 }
                  [self.roleTableView reloadData];
                  self.roleTableViewHeightConstraint.constant = 40 * self.role_list.count;
                  [self.pincodeUIView setHidden:YES];
@@ -213,12 +241,14 @@ int role_int = -1;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Global *globals = [Global sharedInstance];
+    MultiLanguage *multiLanguage = [MultiLanguage sharedInstance];
     [selectRoleButton setTitle:self.role_list[indexPath.row] forState:UIControlStateNormal];
     [roleTableView setHidden:YES];
     if(indexPath.row == 0) {
         if((role_int == -1) || (role_int == 4)) {// select adiministrator
             role_int = 1;
-            [continueButton setTitle:@"Guardar y crear otro usuario" forState:UIControlStateNormal];
+            [continueButton setTitle:multiLanguage.usercreationVC_admincontinueButtonText[globals.selected_language] forState:UIControlStateNormal];
             [checkBoxUIView setHidden:YES];
         }
     } else if(indexPath.row == 1) { // select administrator unico
@@ -226,7 +256,7 @@ int role_int = -1;
         [checkBoxUIView setHidden:NO];
         [switchButton setOn:YES];
         self.checkStatus = @"1";
-        [continueButton setTitle:@"Guardar y continuar" forState:UIControlStateNormal];
+        [continueButton setTitle:multiLanguage.usercreationVC_unicocontinueButtonText[globals.selected_language] forState:UIControlStateNormal];
     }
 }
 

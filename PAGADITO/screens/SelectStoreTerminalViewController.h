@@ -29,6 +29,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (IBAction)continueButtonAction:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *selectStoreCommentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *selectTerminalCommentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *commentLabel;
+@property (weak, nonatomic) IBOutlet UIButton *continueButton;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

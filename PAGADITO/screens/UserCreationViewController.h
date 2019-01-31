@@ -35,6 +35,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)selectRoleButtonAction:(id)sender;
 - (IBAction)switchAction:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *checkboxCommentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *pincodeCommentLabel;
+
+
 
 @end
 

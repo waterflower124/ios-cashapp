@@ -31,6 +31,7 @@
 @implementation CashierShiftSearchViewController
 @synthesize TransV, SidePanel, sessionInfoLabel, cashierTableView, selectcashierButton, codigoTextView, startDatePicker, closeDatePicker;
 @synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
+@synthesize titleLabel, maincommentLabel, startdatecommentLabel, enddatecommentLabel, codecommentLabel, cashiercommentLabel, searchButton, sessioncommentLabel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,6 +41,29 @@
     self.selected_cashier_index = 0;
     
     Global *globals = [Global sharedInstance];
+    if(globals.selected_language == 0) {
+        self.titleLabel.text = @"Turno de cajeros";
+        self.maincommentLabel.text = @"Buscar Turnos";
+        self.startdatecommentLabel.text = @"Fecha de inicio:";
+        self.enddatecommentLabel.text = @"Fecha de cierre:";
+        self.codecommentLabel.text = @"Código:";
+        self.codigoTextView.placeholder = @"Escriba el código";
+        self.cashiercommentLabel.text = @"Cajero:";
+        [self.selectcashierButton setTitle:@"" forState:UIControlStateNormal];
+        [self.searchButton setTitle:@"" forState:UIControlStateNormal];
+        self.sessioncommentLabel.text = @"Sesión iniciada:";
+    } else {
+        self.titleLabel.text = @"Search Cashier Shift";
+        self.maincommentLabel.text = @"Search Shift";
+        self.startdatecommentLabel.text = @"Start date:";
+        self.enddatecommentLabel.text = @"End date:";
+        self.codecommentLabel.text = @"Shift code:";
+        self.codigoTextView.placeholder = @"Write the code";
+        self.cashiercommentLabel.text = @"Cashier:";
+        [self.selectcashierButton setTitle:@"Select cashier" forState:UIControlStateNormal];
+        [self.searchButton setTitle:@"Search" forState:UIControlStateNormal];
+        self.sessioncommentLabel.text = @"Session started:";
+    }
     
     ////  dismiss keyboard   //////
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
@@ -238,7 +262,11 @@
                     cashier = @[jsonArray[i][@"idUser"], jsonArray[i][@"username"], jsonArray[i][@"removeAt"]];
                     [self.cashier_array insertObject: cashier atIndex: i];
                 }
-                cashier = @[@"-1", @"No Select", @"1"];
+                if(globals.selected_language == 0) {
+                    cashier = @[@"-1", @"No Seleccionar", @"1"];
+                } else {
+                    cashier = @[@"-1", @"No Select", @"1"];
+                }
                 [self.cashier_array insertObject:cashier atIndex:0];
                 [self.cashierTableView reloadData];
             } else {
@@ -359,14 +387,16 @@
         [self displayAlertView:@"Warning!" :@"Código have to be less than 10 characters."];
         return;
     }
-    NSLocale *locale = [NSLocale currentLocale];
-    self.startDatePicker.locale = locale;
+//    NSLocale *locale = [NSLocale currentLocale];
+//    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"es_SV"];
+//    self.startDatePicker.locale = locale;
     NSDate *startDate = [self.startDatePicker date];
     NSDate *closeDate = [self.closeDatePicker date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     self.startDateString = [dateFormatter stringFromDate:startDate];
     self.closeDateString = [dateFormatter stringFromDate:closeDate];
+    NSLog(@"%@", self.startDateString);
     
     [self performSegueWithIdentifier:@"cashiershiftsearchtocashiershiftsearchresult_segue" sender:self];
 }

@@ -28,6 +28,7 @@
 @synthesize fecha_inicio, fecha_fin, userCajero, codeShift;
 @synthesize TransV, SidePanel, sessionInfoLabel, shiftListTableView, shiftarrayCountLabel;
 @synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
+@synthesize titleLabel, countLabel, modifysearchButton, sessioncommentLabel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,6 +37,17 @@
     self.shift_array = [[NSMutableArray alloc] init];
     
     Global *globals = [Global sharedInstance];
+    if(globals.selected_language == 0) {
+        self.titleLabel.text = @"Reporte de turno";
+        self.countLabel.text = @"turnos encontrados";
+        [self.modifysearchButton setTitle:@"Modificar Búsqueda" forState:UIControlStateNormal];
+        self.sessioncommentLabel.text = @"Sesión iniciada:";
+    } else {
+        self.titleLabel.text = @"Shift Report";
+        self.countLabel.text = @"shifts found";
+        [self.modifysearchButton setTitle:@"Modify Search" forState:UIControlStateNormal];
+        self.sessioncommentLabel.text = @"Session started:";
+    }
     
     /////////  TransV  tanp event   /////////
     UITapGestureRecognizer *tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideSidePanel:)];
@@ -291,6 +303,7 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    Global *globals = [Global sharedInstance];
     ShiftReportTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"shifttableviewcell"];
     if(cell == nil) {
         cell = [[ShiftReportTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"shifttablecell"];
@@ -301,6 +314,17 @@
     cell.usernameLabel.text = self.shift_array[indexPath.row][1];
     cell.turnoCodButton.tag = indexPath.row;
     [cell.turnoCodButton addTarget:self action:@selector(turnoCodButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    if(globals.selected_language == 0) {
+        cell.shiftcodecommentLabel.text = @"Código de turno:";
+        cell.fechadeiniciocommentLabel.text = @"Fecha de inicio:";
+        cell.fechadecierrecommentLabel.text = @"Fecha de cierre:";
+        cell.usernamecommentLabel.text = @"Cajero:";
+    } else {
+        cell.shiftcodecommentLabel.text = @"Shift code:";
+        cell.fechadeiniciocommentLabel.text = @"Date start:";
+        cell.fechadecierrecommentLabel.text = @"Date end:";
+        cell.usernamecommentLabel.text = @"Cashier:";
+    }
     return cell;
 }
 

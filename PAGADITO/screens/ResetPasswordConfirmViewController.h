@@ -23,6 +23,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)successAlertViewOKButtonAction:(id)sender;
 - (IBAction)backButtonAction:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *commentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *successcommentLabel;
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
 
 @end
 

@@ -28,6 +28,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)reportButtonAction:(id)sender;
 - (IBAction)signoutButtonAction:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *maincommentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sessioncommentLabel;
+@property (weak, nonatomic) IBOutlet UIButton *cashiershiftButton;
+@property (weak, nonatomic) IBOutlet UIButton *transactionlistButton;
+@property (weak, nonatomic) IBOutlet UIButton *contactsupportButton;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

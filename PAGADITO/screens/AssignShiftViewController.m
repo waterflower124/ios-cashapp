@@ -24,6 +24,7 @@
 @property(strong, nonatomic)UIActivityIndicatorView * activityIndicator;
 
 @property(strong, nonatomic)NSString *selected_cashierUserID;
+@property(strong, nonatomic)NSString *selected_cashierUsername;
 @property(strong, nonatomic)NSString *shifEveryday;
 @property(strong, nonatomic)NSString *sessionInfoLabelText;
 
@@ -35,11 +36,43 @@
 @synthesize assignturnoAlertView, selectcashierButton, cashierlistTableView, switchButton, cashierlistTableViewHeightConstraint;
 @synthesize completeInsertShiftAlertView;
 @synthesize SidePanel, homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
+@synthesize titleLabel, searchButtonLabel, assignButtonlabel, closeButtonLabel, codeheadLabel, timedateheadLabel, usernameheadLabel, sessioncommentLabel, assignturnoAlertViewTitleLabel, checkboxcommentLabel, cancelButton, assignButton, completeAlertViewCommentLabel, completeAlertViewContinueButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     Global *globals = [Global sharedInstance];
+    if(globals.selected_language == 0) {
+        self.titleLabel.text = @"Listado de turnos";
+        self.closeButtonLabel.text = @"Cerrar";
+        self.assignButtonlabel.text = @"Asignar";
+        self.searchButtonLabel.text = @"Buscar";
+        self.codeheadLabel.text = @"Codigo";
+        self.usernameheadLabel.text = @"Usuario";
+        self.timedateheadLabel.text = @"Fecha/hora";
+        self.sessioncommentLabel.text = @"Sesión iniciada:";
+        self.assignturnoAlertViewTitleLabel.text = @"Asignar Turno";
+        self.checkboxcommentLabel.text = @"Asignar nuevo turno automaticaments todos los dias.";
+        [self.cancelButton setTitle:@"Cancelar" forState:UIControlStateNormal];
+        [self.assignButton setTitle:@"Asignar" forState:UIControlStateNormal];
+        [self.completeAlertViewContinueButton setTitle:@"Continuar" forState:UIControlStateNormal];
+        [selectcashierButton setTitle:@"Cajero selecto" forState:UIControlStateNormal];
+    } else {
+        self.titleLabel.text = @"Shift List";
+        self.closeButtonLabel.text = @"Close";
+        self.assignButtonlabel.text = @"Assign";
+        self.searchButtonLabel.text = @"Search";
+        self.codeheadLabel.text = @"Code";
+        self.usernameheadLabel.text = @"Username";
+        self.timedateheadLabel.text = @"Time/Date";
+        self.sessioncommentLabel.text = @"Session started:";
+        self.assignturnoAlertViewTitleLabel.text = @"Assign Shift";
+        self.checkboxcommentLabel.text = @"Assign new shift automaticaments every day.";
+        [self.cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
+        [self.assignButton setTitle:@"Assign" forState:UIControlStateNormal];
+        [self.completeAlertViewContinueButton setTitle:@"Continue" forState:UIControlStateNormal];
+        [selectcashierButton setTitle:@"Select Cashier" forState:UIControlStateNormal];
+    }
     //session info label
     self.sessionInfoLabelText = [NSString stringWithFormat:@"%@ / %@", globals.username, globals.nombreComercio];
     sessionInfoLabel.text = self.sessionInfoLabelText;
@@ -250,6 +283,7 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    Global *globals = [Global sharedInstance];
     if(tableView == shiftlistTableView) {
         ShiftListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"shifttablecell"];
         if(cell == nil) {
@@ -257,15 +291,31 @@
         }
         cell.codeShiftLabel.text = self.shift_array[indexPath.row][0];
         if([self.shift_array[indexPath.row][7] isEqualToString:@"0"]) {
-            cell.estadoLabel.text = @"Estado: Cerrado";
+            if(globals.selected_language == 0) {
+                cell.estadoLabel.text = @"Estado: Cerrado";
+            } else {
+                cell.estadoLabel.text = @"Status: Closed";
+            }
             cell.estadoLabel.backgroundColor = UIColor.grayColor;
         } else {
-            cell.estadoLabel.text = @"Estado: Abierto";
+            if(globals.selected_language == 0) {
+                cell.estadoLabel.text = @"Estado: Abierto";
+            } else {
+                cell.estadoLabel.text = @"Status: Open";
+            }
             cell.estadoLabel.backgroundColor = UIColor.greenColor;
         }
         cell.usernameLabel.text = self.shift_array[indexPath.row][2];
         cell.fachaInicioLabel.text = self.shift_array[indexPath.row][5];
         cell.fachaFinLabel.text = self.shift_array[indexPath.row][6];
+        
+        if(globals.selected_language == 0) {
+            cell.fechaInicio_commentLabel.text = @"Inicio:";
+            cell.Fin_commentLabel.text = @"Fin:";
+        } else {
+            cell.fechaInicio_commentLabel.text = @"Start:";
+            cell.Fin_commentLabel.text = @"End:";
+        }
         
         return cell;
     } else {
@@ -290,6 +340,7 @@
     if(tableView == self.cashierlistTableView) {
         [self.selectcashierButton setTitle:self.cashier_array[indexPath.row][1] forState:UIControlStateNormal];
         self.selected_cashierUserID = self.cashier_array[indexPath.row][0];
+        self.selected_cashierUsername = self.cashier_array[indexPath.row][1];
         [self.cashierlistTableView setHidden:YES];
     }
 }
@@ -390,6 +441,13 @@
         NSString *status1 = jsonResponse[@"status1"];
         if([status1 isEqualToString:@"1"]) {
             [self.TransV setHidden:NO];
+            if(globals.selected_language == 0) {
+                NSString *alertMessage = [NSString stringWithFormat:@"Haz asignado exitosamente un turno a %@?", self.selected_cashierUsername];
+                self.completeAlertViewCommentLabel.text = alertMessage;
+            } else {
+                NSString *alertMessage = [NSString stringWithFormat:@"You have successfully assigned a shift to %@?", self.selected_cashierUsername];
+                self.completeAlertViewCommentLabel.text = alertMessage;
+            }
             [self.completeInsertShiftAlertView setHidden:NO];
             
         } else if([status1 isEqualToString:@"0"]) {

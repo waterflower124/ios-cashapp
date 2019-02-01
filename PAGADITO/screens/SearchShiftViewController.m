@@ -30,11 +30,33 @@
 @synthesize searchwordTextView;
 @synthesize TransV, sessionInfoLabel;
 @synthesize SidePanel, homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
+@synthesize titleLabel, closeshiftButtonLabel, assignshiftButtonLabel, searchshiftButtonLabel, codeheadLabel, usernameheadLabel, timedateheadLabel, sessioncommentLabel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     Global *globals = [Global sharedInstance];
+    if(globals.selected_language == 0) {
+        self.titleLabel.text = @"Listado de turnos";
+        self.closeshiftButtonLabel.text = @"Cerrar";
+        self.assignshiftButtonLabel.text = @"Asignar";
+        self.searchshiftButtonLabel.text = @"Buscar";
+        self.codeheadLabel.text = @"Codigo";
+        self.usernameheadLabel.text = @"Usuario";
+        self.timedateheadLabel.text = @"Fecha/hora";
+        self.sessioncommentLabel.text = @"Sesión iniciada:";
+        searchwordTextView.placeholder = @"Buscar...";
+    } else {
+        self.titleLabel.text = @"Shift List";
+        self.closeshiftButtonLabel.text = @"Close";
+        self.assignshiftButtonLabel.text = @"Assign";
+        self.searchshiftButtonLabel.text = @"Search";
+        self.codeheadLabel.text = @"Code";
+        self.usernameheadLabel.text = @"Username";
+        self.timedateheadLabel.text = @"Time/Date";
+        self.sessioncommentLabel.text = @"Session started:";
+        searchwordTextView.placeholder = @"Search...";
+    }
     //session info label
     self.sessionInfoLabelText = [NSString stringWithFormat:@"%@ / %@", globals.username, globals.nombreComercio];
     sessionInfoLabel.text = self.sessionInfoLabelText;
@@ -183,21 +205,37 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    Global *globals = [Global sharedInstance];
     ShiftListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"shifttablecell"];
     if(cell == nil) {
         cell = [[ShiftListTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"shifttablecell"];
     }
     cell.codeShiftLabel.text = self.showShiftArray[indexPath.row][0];
-    if([self.showShiftArray[indexPath.row][7] isEqualToString:@"0"]) {
-        cell.estadoLabel.text = @"Estado: Cerrado";
+    if([self.shift_array[indexPath.row][7] isEqualToString:@"0"]) {
+        if(globals.selected_language == 0) {
+            cell.estadoLabel.text = @"Estado: Cerrado";
+        } else {
+            cell.estadoLabel.text = @"Status: Closed";
+        }
         cell.estadoLabel.backgroundColor = UIColor.grayColor;
     } else {
-        cell.estadoLabel.text = @"Estado: Abierto";
+        if(globals.selected_language == 0) {
+            cell.estadoLabel.text = @"Estado: Abierto";
+        } else {
+            cell.estadoLabel.text = @"Status: Open";
+        }
         cell.estadoLabel.backgroundColor = UIColor.greenColor;
     }
     cell.usernameLabel.text = self.showShiftArray[indexPath.row][2];
     cell.fachaInicioLabel.text = self.showShiftArray[indexPath.row][5];
     cell.fachaFinLabel.text = self.showShiftArray[indexPath.row][6];
+    if(globals.selected_language == 0) {
+        cell.fechaInicio_commentLabel.text = @"Inicio:";
+        cell.Fin_commentLabel.text = @"Fin:";
+    } else {
+        cell.fechaInicio_commentLabel.text = @"Start:";
+        cell.Fin_commentLabel.text = @"End:";
+    }
     return cell;
 }
 

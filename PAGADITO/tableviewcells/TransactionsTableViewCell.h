@@ -18,6 +18,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *transaction_referenceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *transaction_statusLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *amountcommentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *erncommentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *fechacommentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *referencecommentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *statuscommentLabel;
+
+
 
 @end
 

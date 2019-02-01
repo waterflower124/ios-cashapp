@@ -25,7 +25,6 @@
 		2329E15921F5B00F00CD8EB2 /* SystemConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2329E15821F5B00F00CD8EB2 /* SystemConfigurationViewController.m */; };
 		2329E15C21F5CFA200CD8EB2 /* InformationComercialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2329E15B21F5CFA200CD8EB2 /* InformationComercialViewController.m */; };
 		2337175D21EA48F4003D7D15 /* user_supervisor_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2337175C21EA48EC003D7D15 /* user_supervisor_icon.png */; };
-		2337175F21EA493B003D7D15 /* user_cajero_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2337175E21EA493A003D7D15 /* user_cajero_icon.png */; };
 		2337176221EA4D6D003D7D15 /* UserListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2337176121EA4D6D003D7D15 /* UserListTableViewCell.m */; };
 		2337176521EA8599003D7D15 /* InsertUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2337176421EA8599003D7D15 /* InsertUserViewController.m */; };
 		2337176821EAF273003D7D15 /* DeleteUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2337176721EAF273003D7D15 /* DeleteUserViewController.m */; };
@@ -128,6 +127,8 @@
 		234503B821F1CE6E0057C772 /* CloseShiftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 234503B721F1CE6E0057C772 /* CloseShiftViewController.m */; };
 		234503BE21F1D9A90057C772 /* CloseShiftTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 234503BD21F1D9A90057C772 /* CloseShiftTableViewCell.m */; };
 		234BDED121F9BA8700B2C944 /* TransactionsReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 234BDED021F9BA8700B2C944 /* TransactionsReportViewController.m */; };
+		2351BBC122036F11004F6A58 /* user_cajero_icon_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 2351BBBF22036F0C004F6A58 /* user_cajero_icon_sp.png */; };
+		2351BBC222036F11004F6A58 /* user_cajero_icon_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 2351BBC022036F0D004F6A58 /* user_cajero_icon_en.png */; };
 		2352F92621EC469F003F106A /* ReportsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2352F92521EC469F003F106A /* ReportsViewController.m */; };
 		2352F92921EC493D003F106A /* NewTransactionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2352F92821EC493D003F106A /* NewTransactionViewController.m */; };
 		2352F92C21ECD2D0003F106A /* SearchUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2352F92B21ECD2D0003F106A /* SearchUserViewController.m */; };
@@ -213,7 +214,6 @@
 		2329E15A21F5CFA200CD8EB2 /* InformationComercialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InformationComercialViewController.h; sourceTree = "<group>"; };
 		2329E15B21F5CFA200CD8EB2 /* InformationComercialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InformationComercialViewController.m; sourceTree = "<group>"; };
 		2337175C21EA48EC003D7D15 /* user_supervisor_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_supervisor_icon.png; sourceTree = "<group>"; };
-		2337175E21EA493A003D7D15 /* user_cajero_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_cajero_icon.png; sourceTree = "<group>"; };
 		2337176021EA4D6D003D7D15 /* UserListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserListTableViewCell.h; sourceTree = "<group>"; };
 		2337176121EA4D6D003D7D15 /* UserListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserListTableViewCell.m; sourceTree = "<group>"; };
 		2337176321EA8599003D7D15 /* InsertUserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InsertUserViewController.h; sourceTree = "<group>"; };
@@ -330,6 +330,8 @@
 		234503BD21F1D9A90057C772 /* CloseShiftTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CloseShiftTableViewCell.m; sourceTree = "<group>"; };
 		234BDECF21F9BA8700B2C944 /* TransactionsReportViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionsReportViewController.h; sourceTree = "<group>"; };
 		234BDED021F9BA8700B2C944 /* TransactionsReportViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionsReportViewController.m; sourceTree = "<group>"; };
+		2351BBBF22036F0C004F6A58 /* user_cajero_icon_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_cajero_icon_sp.png; sourceTree = "<group>"; };
+		2351BBC022036F0D004F6A58 /* user_cajero_icon_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_cajero_icon_en.png; sourceTree = "<group>"; };
 		2352F92421EC469F003F106A /* ReportsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReportsViewController.h; sourceTree = "<group>"; };
 		2352F92521EC469F003F106A /* ReportsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReportsViewController.m; sourceTree = "<group>"; };
 		2352F92721EC493D003F106A /* NewTransactionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewTransactionViewController.h; sourceTree = "<group>"; };
@@ -453,6 +455,8 @@
 		233E549021DFD1B700279DB1 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				2351BBC022036F0D004F6A58 /* user_cajero_icon_en.png */,
+				2351BBBF22036F0C004F6A58 /* user_cajero_icon_sp.png */,
 				2356F44922030C820011DD42 /* dashboard_assignshift_en.png */,
 				2356F44822030C800011DD42 /* dashboard_assignshift_sp.png */,
 				2356F44522030A8F0011DD42 /* dashboard_systemconfig_en.png */,
@@ -474,7 +478,6 @@
 				2315460321EEE7260025E711 /* assignshift_logout_icon.png */,
 				2315460121EEE68A0025E711 /* assignshift_icon.png */,
 				2337175C21EA48EC003D7D15 /* user_supervisor_icon.png */,
-				2337175E21EA493A003D7D15 /* user_cajero_icon.png */,
 				2328843921E4E88F00E5E7C1 /* pagadito_0000_logo.png */,
 				232096AD21E25DED00C93E3B /* Pagadito_0000s_0001_button_yellow.png */,
 				233E549121DFD1B700279DB1 /* Pagadito01_0001s_0002_Layer-108.png */,
@@ -853,7 +856,6 @@
 				233E550921DFD1B800279DB1 /* Pagadito_0000s_0007_2.png in Resources */,
 				2345039C21F074140057C772 /* cashierlist_arrow_icon.png in Resources */,
 				2328843A21E4E89000E5E7C1 /* pagadito_0000_logo.png in Resources */,
-				2337175F21EA493B003D7D15 /* user_cajero_icon.png in Resources */,
 				233E554121DFD1B800279DB1 /* Pagadito_0015_Layer-6.png in Resources */,
 				233E552321DFD1B800279DB1 /* Pagadito_0001s_0000_Cancelar.png in Resources */,
 				233E550021DFD1B800279DB1 /* Pagadito_0000s_0002_Layer-92.png in Resources */,
@@ -895,6 +897,7 @@
 				233E551221DFD1B800279DB1 /* Pagadito_0000s_0009_Layer-50.png in Resources */,
 				233E552A21DFD1B800279DB1 /* Pagadito_0001s_0005_Layer-98.png in Resources */,
 				233E552221DFD1B800279DB1 /* Pagadito_0001_Layer-43.png in Resources */,
+				2351BBC122036F11004F6A58 /* user_cajero_icon_sp.png in Resources */,
 				233E553821DFD1B800279DB1 /* Pagadito_0003_Layer-16.png in Resources */,
 				233E551E21DFD1B800279DB1 /* Pagadito_0000s_0036_Layer-88.png in Resources */,
 				2356F43F2202F4420011DD42 /* dashboard_user_en.png in Resources */,
@@ -910,6 +913,7 @@
 				233E54FA21DFD1B800279DB1 /* Pagadito_0000s_0001_Layer-94.png in Resources */,
 				2315460421EEE7280025E711 /* assignshift_logout_icon.png in Resources */,
 				233E553921DFD1B800279DB1 /* Pagadito_0003_Layer-2.png in Resources */,
+				2351BBC222036F11004F6A58 /* user_cajero_icon_en.png in Resources */,
 				3A09261F21BAAA5900333F1A /* Main.storyboard in Resources */,
 				233E54F621DFD1B800279DB1 /* Pagadito_0000s_0000s_0014_-Guardar-y-continuar--.png in Resources */,
 				233E552721DFD1B800279DB1 /* Pagadito_0001s_0002_Layer-108.png in Resources */,

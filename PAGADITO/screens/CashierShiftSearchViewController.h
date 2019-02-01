@@ -34,8 +34,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (IBAction)signoutButtonAction:(id)sender;
 
-
 - (IBAction)searchButtonAction:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *maincommentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *startdatecommentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *enddatecommentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *codecommentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *cashiercommentLabel;
+@property (weak, nonatomic) IBOutlet UIButton *searchButton;
+@property (weak, nonatomic) IBOutlet UILabel *sessioncommentLabel;
+
 
 @end
 

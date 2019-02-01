@@ -33,12 +33,33 @@
 @synthesize usersTableView;
 @synthesize deleteAlertView, deleteUserNameLabel;
 @synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
+@synthesize titleLabel, fullnameLabel, usernameLabel, roleLabel, cancelButton, removeButton, sessioncommentLabel;
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     Global *globals = [Global sharedInstance];
+    if(globals.selected_language == 0) {
+        self.titleLabel.text = @"Administrador de Usuario";
+        self.fullnameLabel.text = @"Nombre";
+        self.usernameLabel.text = @"Usuario";
+        self.roleLabel.text = @"Rol";
+        self.deletecommentLabel.text = @"Desliza a la izquierda el usuario que deseas eliminar.";
+        [self.cancelButton setTitle:@"Cancelar" forState:UIControlStateNormal];
+        [self.removeButton setTitle:@"Eliminar" forState:UIControlStateNormal];
+        self.sessioncommentLabel.text = @"Sesión iniciada:";
+    } else {
+        self.titleLabel.text = @"User Manager";
+        self.fullnameLabel.text = @"Name";
+        self.usernameLabel.text = @"Username";
+        self.roleLabel.text = @"Role";
+        self.deletecommentLabel.text = @"Swipe the user you want to delete to the left.";
+        [self.cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
+        [self.removeButton setTitle:@"Remove" forState:UIControlStateNormal];
+        self.sessioncommentLabel.text = @"Session started:";
+    }
+    
     //session info label
     self.sessionInfoLabelText = [NSString stringWithFormat:@"%@ / %@", globals.username, globals.nombreComercio];
     sessionInfoLabel.text = self.sessionInfoLabelText;
@@ -286,7 +307,7 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    Global *globals = [Global sharedInstance];
     DeletTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"deletusertableviewcell"];
     /*   set user full name and user name and image*/
     NSString *userfullname = [NSString stringWithFormat:@"%@ %@", self.user_array[indexPath.row][1], self.user_array[indexPath.row][2]];
@@ -295,7 +316,11 @@
     if([self.user_array[indexPath.row][3] isEqualToString:@"Supervisor"]) {/////supervisor
         cell.logoimageview.image = [UIImage imageNamed:@"user_supervisor_icon.png"];
     } else if([self.user_array[indexPath.row][3] isEqualToString:@"Cajero"]) {/////cajero
-        cell.logoimageview.image = [UIImage imageNamed:@"user_cajero_icon.png"];
+        if(globals.selected_language == 0) {
+            cell.logoimageview.image = [UIImage imageNamed:@"user_cajero_icon_sp.png"];
+        } else {
+            cell.logoimageview.image = [UIImage imageNamed:@"user_cajero_icon_en.png"];
+        }
     }
     [cell setCellIndex:indexPath.row];
     cell.delegate = self;
@@ -311,12 +336,18 @@
 }
 
 -(void) reloadDeleteTableViewData:(DeletTableViewCell *)sender :(NSInteger)index {
+    Global *globals = [Global sharedInstance];
     self.deleting_user = self.user_array[index];
     self.deleting_user_tableview_index = index;
     [self.user_array removeObjectAtIndex:index];
     [self.usersTableView reloadData];
-    NSString *usernameLabelText = [NSString stringWithFormat:@"al usuario %@?", self.deleting_user[4]];
-    deleteUserNameLabel.text = usernameLabelText;
+    if(globals.selected_language == 0) {
+        NSString *usernameLabelText = [NSString stringWithFormat:@"¿Seguro que desea eliminar al usuario %@?", self.deleting_user[4]];
+        deleteUserNameLabel.text = usernameLabelText;
+    } else {
+        NSString *usernameLabelText = [NSString stringWithFormat:@"Are you sure want to delete the user %@?", self.deleting_user[4]];
+        deleteUserNameLabel.text = usernameLabelText;
+    }
     [TransV setHidden:NO];
     [deleteAlertView setHidden:NO];
 }

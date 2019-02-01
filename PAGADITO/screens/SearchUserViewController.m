@@ -29,11 +29,27 @@
 
 @synthesize usersTableView, searchWordTextView;
 @synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
+@synthesize titleLabel, fullnameLabel, usernameLabel, roleLabel, sessioncommentLabel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     Global *globals = [Global sharedInstance];
+    if(globals.selected_language == 0) {
+        self.titleLabel.text = @"Administrador de Usuario";
+        self.fullnameLabel.text = @"Nombre";
+        self.usernameLabel.text = @"Usuario";
+        self.roleLabel.text = @"Rol";
+        self.searchWordTextView.placeholder = @"Buscar...";
+        self.sessioncommentLabel.text = @"Sesión iniciada:";
+    } else {
+        self.titleLabel.text = @"User Manager";
+        self.fullnameLabel.text = @"Name";
+        self.usernameLabel.text = @"Username";
+        self.roleLabel.text = @"Role";
+        self.searchWordTextView.placeholder = @"Search...";
+        self.sessioncommentLabel.text = @"Session started:";
+    }
     //session info label
     self.sessionInfoLabelText = [NSString stringWithFormat:@"%@ / %@", globals.username, globals.nombreComercio];
     sessionInfoLabel.text = self.sessionInfoLabelText;
@@ -295,6 +311,7 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    Global *globals = [Global sharedInstance];
     UserListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userlisttableviewcell"];
     /*   set user full name and user name and image*/
     NSString *userfullname = [NSString stringWithFormat:@"%@ %@", self.showUsersArray[indexPath.row][1], self.showUsersArray[indexPath.row][2]];
@@ -303,7 +320,12 @@
     if([self.showUsersArray[indexPath.row][3] isEqualToString:@"Supervisor"]) {/////supervisor
         cell.roleImageView.image = [UIImage imageNamed:@"user_supervisor_icon.png"];
     } else if([self.showUsersArray[indexPath.row][3] isEqualToString:@"Cajero"]) {/////cajero
-        cell.roleImageView.image = [UIImage imageNamed:@"user_cajero_icon.png"];    }
+        if(globals.selected_language == 0) {
+            cell.roleImageView.image = [UIImage imageNamed:@"user_cajero_icon_sp.png"];
+        } else {
+            cell.roleImageView.image = [UIImage imageNamed:@"user_cajero_icon_en.png"];
+        }
+    }
     
     return cell;
 }

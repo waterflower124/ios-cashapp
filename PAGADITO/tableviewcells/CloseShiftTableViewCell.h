@@ -21,6 +21,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *closeFachaFinLabel;
 @property (weak, nonatomic) IBOutlet UIView *closeShiftTableCellView;
 
+@property (weak, nonatomic) IBOutlet UILabel *fechaIniciocommentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *fechaFincommentLabel;
+
+
 @property(nonatomic)NSInteger cell_index;
 
 @property(nonatomic, assign) id<closeShiftTableViewCellDelegate> delegate;

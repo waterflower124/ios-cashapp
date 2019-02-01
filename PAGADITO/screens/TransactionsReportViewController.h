@@ -35,6 +35,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)todaytransactionButtonAction:(id)sender;
 - (IBAction)generatereportButtonAction:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *todaytransactionButton;
+@property (weak, nonatomic) IBOutlet UILabel *searchcommentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *startdatecommentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *enddatecommentLabel;
+@property (weak, nonatomic) IBOutlet UIButton *generatereportButton;
+@property (weak, nonatomic) IBOutlet UIButton *contactsupportButton;
+@property (weak, nonatomic) IBOutlet UILabel *sessioncommentLabel;
 
 @end
 

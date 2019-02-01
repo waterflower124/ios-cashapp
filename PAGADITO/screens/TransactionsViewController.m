@@ -36,6 +36,7 @@
 @synthesize sourceVC, shift_code, start_datetime, finish_datetime;
 @synthesize TransV, SidePanel, sessionInfoLabel, turnocodigoLabel, turnocodigoTitleLabel, transactionTableView;
 @synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
+@synthesize titleLabel, exportcommentLabel, sessioncommentLabel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,6 +45,17 @@
     self.transaction_array = [[NSMutableArray alloc] init];
     
     Global *globals = [Global sharedInstance];
+    if(globals.selected_language == 0) {
+        self.titleLabel.text = @"Transacciones";
+        self.turnocodigoTitleLabel.text = @"Turno código:";
+        self.exportcommentLabel.text = @"Exportar:";
+        self.sessioncommentLabel.text = @"Sesión iniciada:";
+    } else {
+        self.titleLabel.text = @"Transactions";
+        self.turnocodigoTitleLabel.text = @"Shift Code:";
+        self.exportcommentLabel.text = @"Export:";
+        self.sessioncommentLabel.text = @"Session started:";
+    }
     
     /////////  TransV  tanp event   /////////
     UITapGestureRecognizer *tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideSidePanel:)];
@@ -411,6 +423,7 @@ bool isTransaction_reference = false;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    Global *globals = [Global sharedInstance];
     TransactionsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"transactionstableviewcell"];
     if(cell == nil) {
         cell = [[TransactionsTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"transactionstableviewcell"];
@@ -421,6 +434,19 @@ bool isTransaction_reference = false;
     cell.transaction_datetimeLabel.text = self.transaction_array[indexPath.row][4];
     cell.transaction_referenceLabel.text = self.transaction_array[indexPath.row][5];
     cell.transaction_statusLabel.text = self.transaction_array[indexPath.row][0];
+    if(globals.selected_language == 0) {
+        cell.amountcommentLabel.text = @"Monto Total:";
+        cell.erncommentLabel.text = @"ERN:";
+        cell.fechacommentLabel.text = @"Fecha:";
+        cell.referencecommentLabel.text = @"Referncia de pago:";
+        cell.statuscommentLabel.text = @"Estado:";
+    } else {
+        cell.amountcommentLabel.text = @"Amount Charged:";
+        cell.erncommentLabel.text = @"ERN:";
+        cell.fechacommentLabel.text = @"Date:";
+        cell.referencecommentLabel.text = @"Pay Reference:";
+        cell.statuscommentLabel.text = @"Status:";
+    }
     return cell;
 }
 

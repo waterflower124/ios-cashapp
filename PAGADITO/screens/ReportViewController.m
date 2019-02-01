@@ -21,11 +21,31 @@
 
 @implementation ReportViewController
 @synthesize TransV, SidePanel, sessionInfoLabel, homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
+@synthesize titleLabel, maincommentLabel, cashiershiftButton, transactionlistButton, sessioncommentLabel, contactsupportButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     Global *globals = [Global sharedInstance];
+    if(globals.selected_language == 0) {
+        self.titleLabel.text = @"Reportes";
+        self.maincommentLabel.text = @"Elige un reporte";
+        /*
+        [self.cashiershiftButton setImage:[UIImage imageNamed: @"dashboard_report_en"] forState:UIControlStateNormal];
+        [self.transactionlistButton setImage:[UIImage imageNamed: @"dashboard_report_en"] forState:UIControlStateNormal];
+        */
+        [self.contactsupportButton setTitle:@"Contactar a Soporte" forState:UIControlStateNormal];
+        self.sessioncommentLabel.text = @"Sesión iniciada:";
+    } else {
+        self.titleLabel.text = @"Report";
+        self.maincommentLabel.text = @"Choose a report";
+        /*
+         [self.cashiershiftButton setImage:[UIImage imageNamed: @"dashboard_report_en"] forState:UIControlStateNormal];
+         [self.transactionlistButton setImage:[UIImage imageNamed: @"dashboard_report_en"] forState:UIControlStateNormal];
+         */
+        [self.contactsupportButton setTitle:@"Contact support" forState:UIControlStateNormal];
+        self.sessioncommentLabel.text = @"Session started:";
+    }
 
     /////////  TransV  tanp event   /////////
     UITapGestureRecognizer *tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideSidePanel:)];

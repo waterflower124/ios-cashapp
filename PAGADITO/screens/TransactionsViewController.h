@@ -37,6 +37,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (IBAction)signoutButtonAction:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *exportcommentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sessioncommentLabel;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

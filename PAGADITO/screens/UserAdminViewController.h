@@ -49,6 +49,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)homeButtonAction:(id)sender;
 - (IBAction)usuarioButtonAction:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *fullnameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *roleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sessioncommentLabel;
 
 @end
 

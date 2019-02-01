@@ -35,6 +35,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)switchViewAction:(id)sender;
 - (IBAction)SaveandContinueButtonAction:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *pincodecommentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *checkboxcommentLabel;
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

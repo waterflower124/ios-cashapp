@@ -9,6 +9,7 @@
 #import "ResetPasswordWSKViewController.h"
 #import "AFNetworking.h"
 #import "ResetPasswordConfirmViewController.h"
+#import "Global.h"
 
 
 @interface ResetPasswordWSKViewController ()
@@ -22,6 +23,7 @@
 
 @implementation ResetPasswordWSKViewController
 @synthesize wskTextField, TransV, failAlertView;
+@synthesize titleLabel, commentLabel, continueButton, failcommentLabel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,6 +44,19 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
     tap.cancelsTouchesInView = NO;
+    
+    Global *globals = [Global sharedInstance];
+    if(globals.selected_language == 0) {
+        self.titleLabel.text = @"Reestablecer Contraseña";
+        self.commentLabel.text = @"Ingresa el código WSK de tu Pagadito POS";
+        [self.continueButton setTitle:@"Continuar" forState:UIControlStateNormal];
+        self.failcommentLabel.text = @"WSK no encontrado.  Introduce un WSK válido o contacta a soporte.";
+    } else {
+        self.titleLabel.text = @"Restore Password";
+        self.commentLabel.text = @"Enter the WSK code of your Pegadito POS";
+        [self.continueButton setTitle:@"Continue" forState:UIControlStateNormal];
+        self.failcommentLabel.text = @"WSK not found. Enter a valid WSK or contact support.";
+    }
 }
 
 -(void)dismissKeyboard

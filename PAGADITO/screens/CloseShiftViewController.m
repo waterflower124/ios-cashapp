@@ -33,11 +33,37 @@
 @synthesize TransV, shiftlistTableView, SidePanel, sessionInfoLabel;
 @synthesize closeshiftAlertView, alertMessageLabel;
 @synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
+@synthesize titleLabel, closeshiftButtonLabel, assignshiftButtonLabel, searchshiftButtonLabel, codeheadLabel, usernameheadLabel, timedateheadLabel, removecommentLabel, removeButton, cancelButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     Global *globals = [Global sharedInstance];
+    if(globals.selected_language == 0) {
+        self.titleLabel.text = @"Listado de turnos";
+        self.closeshiftButtonLabel.text = @"Cerrar";
+        self.assignshiftButtonLabel.text = @"Asignar";
+        self.searchshiftButtonLabel.text = @"Buscar";
+        self.codeheadLabel.text = @"Codigo";
+        self.usernameheadLabel.text = @"Usuario";
+        self.timedateheadLabel.text = @"Fecha/hora";
+        self.sessioncommentLabel.text = @"Sesión iniciada:";
+        self.removecommentLabel.text = @"Desliza a la izquierda el turno que desea cerrar.";
+        [self.removeButton setTitle:@"Cerrar" forState:UIControlStateNormal];
+        [self.cancelButton setTitle:@"Cancelar" forState:UIControlStateNormal];
+    } else {
+        self.titleLabel.text = @"Shift List";
+        self.closeshiftButtonLabel.text = @"Close";
+        self.assignshiftButtonLabel.text = @"Assign";
+        self.searchshiftButtonLabel.text = @"Search";
+        self.codeheadLabel.text = @"Code";
+        self.usernameheadLabel.text = @"Username";
+        self.timedateheadLabel.text = @"Time/Date";
+        self.sessioncommentLabel.text = @"Session started:";
+        self.removecommentLabel.text = @"Swipe the shift you want to close to the left.";
+        [self.removeButton setTitle:@"Romove" forState:UIControlStateNormal];
+        [self.cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
+    }
     //session info label
     self.sessionInfoLabelText = [NSString stringWithFormat:@"%@ / %@", globals.username, globals.nombreComercio];
     sessionInfoLabel.text = self.sessionInfoLabelText;
@@ -179,21 +205,39 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    Global *globals = [Global sharedInstance];
     CloseShiftTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"closeshifttablecell"];
     if(cell == nil) {
         cell = [[CloseShiftTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"closeshifttablecell"];
     }
     cell.closeCodeShiftLabel.text = self.shift_array[indexPath.row][0];
     if([self.shift_array[indexPath.row][7] isEqualToString:@"0"]) {
-        cell.closeEstadoLabel.text = @"Estado: Cerrado";
+        if(globals.selected_language == 0) {
+            cell.closeEstadoLabel.text = @"Estado: Cerrado";
+        } else {
+            cell.closeEstadoLabel.text = @"Status: Closed";
+        }
         cell.closeEstadoLabel.backgroundColor = UIColor.grayColor;
     } else {
-        cell.closeEstadoLabel.text = @"Estado: Abierto";
+        if(globals.selected_language == 0) {
+            cell.closeEstadoLabel.text = @"Estado: Abierto";
+        } else {
+            cell.closeEstadoLabel.text = @"Status: Open";
+        }
         cell.closeEstadoLabel.backgroundColor = UIColor.greenColor;
     }
+
     cell.closeUsernameLabel.text = self.shift_array[indexPath.row][2];
     cell.closeFachaInicioLabel.text = self.shift_array[indexPath.row][5];
     cell.closeFachaFinLabel.text = self.shift_array[indexPath.row][6];
+    
+    if(globals.selected_language == 0) {
+        cell.fechaIniciocommentLabel.text = @"Inicio:";
+        cell.fechaFincommentLabel.text = @"Fin:";
+    } else {
+        cell.fechaIniciocommentLabel.text = @"Start:";
+        cell.fechaFincommentLabel.text = @"End:";
+    }
     
     [cell setCell_index:indexPath.row];
     cell.delegate = self;
@@ -270,13 +314,19 @@
 }
 
 -(void) reloadCloseShiftTableViewData:(CloseShiftTableViewCell *)sender :(NSInteger)index {
+    Global *globals = [Global sharedInstance];
     if([self.shift_array[index][7] isEqualToString:@"1"]) {
         self.closing_shift = self.shift_array[index];
         self.closing_shift_index = index;
         [self.shift_array removeObjectAtIndex:index];
         [self.shiftlistTableView reloadData];
-        NSString *alertMessage = [NSString stringWithFormat:@"¿Seguro que deseas cerrar el turno de %@?", self.closing_shift[2]];
-        self.alertMessageLabel.text = alertMessage;
+        if(globals.selected_language == 0) {
+            NSString *alertMessage = [NSString stringWithFormat:@"¿Seguro que deseas cerrar el turno de %@?", self.closing_shift[2]];
+            self.alertMessageLabel.text = alertMessage;
+        } else {
+            NSString *alertMessage = [NSString stringWithFormat:@"Are you sure you want to close the shift of %@?", self.closing_shift[2]];
+            self.alertMessageLabel.text = alertMessage;
+        }
         [self.TransV setHidden:NO];
         [self.closeshiftAlertView setHidden:NO];
     } else {

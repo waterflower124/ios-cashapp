@@ -9,6 +9,7 @@
 #import "ResetPasswordConfirmViewController.h"
 #import "AFNetworking.h"
 #import "WelcomeViewController.h"
+#import "Global.h"
 
 @interface ResetPasswordConfirmViewController ()
 @property(strong, nonatomic)UIView *overlayView;
@@ -22,6 +23,7 @@
 @implementation ResetPasswordConfirmViewController
 @synthesize idUser;
 @synthesize passwordTextField, confirmTextField, TransV, successAlertView;
+@synthesize titleLabel, commentLabel, successcommentLabel, saveButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -48,6 +50,21 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
     tap.cancelsTouchesInView = NO;
+    
+    Global *globals = [Global sharedInstance];
+    if(globals.selected_language == 0) {
+        self.titleLabel.text = @"Reestablecer Contraseña";
+        self.commentLabel.text = @"Ingresa tu nueva contraseña";
+        self.passwordTextField.placeholder = @"Nueva contraseña";
+        self.confirmTextField.placeholder = @"Confirmar contraseña";
+        [self.saveButton setTitle:@"Guardar" forState:UIControlStateNormal];
+    } else {
+        self.titleLabel.text = @"Reset Password";
+        self.commentLabel.text = @"Enter your new password";
+        self.passwordTextField.placeholder = @"New Password";
+        self.confirmTextField.placeholder = @"Confirm Password";
+        [self.saveButton setTitle:@"Save" forState:UIControlStateNormal];
+    }
     
 }
 

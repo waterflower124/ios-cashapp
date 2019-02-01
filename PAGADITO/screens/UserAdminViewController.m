@@ -32,10 +32,26 @@
 @synthesize usersTableView;
 @synthesize createuserbutton, deleteuserButton, edituserButton, searchuserButton;
 @synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
+@synthesize titleLabel, fullnameLabel, usernameLabel, roleLabel, sessioncommentLabel;
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    Global *globals = [Global sharedInstance];
+    if(globals.selected_language == 0) {
+        self.titleLabel.text = @"Administrador de Usuario";
+        self.fullnameLabel.text = @"Nombre";
+        self.usernameLabel.text = @"Usuario";
+        self.roleLabel.text = @"Rol";
+        self.sessioncommentLabel.text = @"Sesión iniciada:";
+    } else {
+        self.titleLabel.text = @"User Manager";
+        self.fullnameLabel.text = @"Name";
+        self.usernameLabel.text = @"Username";
+        self.roleLabel.text = @"Role";
+        self.sessioncommentLabel.text = @"Session started:";
+    }
     
     self.user_array = [[NSMutableArray alloc] init];
     [self.usersTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -44,7 +60,6 @@
     tapper.numberOfTapsRequired = 1;
     [TransV addGestureRecognizer:tapper];
     
-    Global *globals = [Global sharedInstance];
     //session info label
     self.sessionInfoLabelText = [NSString stringWithFormat:@"%@ / %@", globals.username, globals.nombreComercio];
     sessionInfoLabel.text = self.sessionInfoLabelText;
@@ -270,6 +285,7 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    Global *globals = [Global sharedInstance];
     UserListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userlisttableviewcell"];
     /*   set user full name and user name and image*/
     NSString *userfullname = [NSString stringWithFormat:@"%@ %@", self.user_array[indexPath.row][1], self.user_array[indexPath.row][2]];
@@ -278,7 +294,12 @@
     if([self.user_array[indexPath.row][3] isEqualToString:@"Supervisor"]) {/////supervisor
         cell.roleImageView.image = [UIImage imageNamed:@"user_supervisor_icon.png"];
     } else if([self.user_array[indexPath.row][3] isEqualToString:@"Cajero"]) {/////cajero
-        cell.roleImageView.image = [UIImage imageNamed:@"user_cajero_icon.png"];    }
+        if(globals.selected_language == 0) {
+            cell.roleImageView.image = [UIImage imageNamed:@"user_cajero_icon_sp.png"];
+        } else {
+            cell.roleImageView.image = [UIImage imageNamed:@"user_cajero_icon_en.png"];
+        }
+    }
     
     return cell;
 }

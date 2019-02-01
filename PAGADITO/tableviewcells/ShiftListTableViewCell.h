@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *fachaInicioLabel;
 @property (weak, nonatomic) IBOutlet UILabel *fachaFinLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *fechaInicio_commentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *Fin_commentLabel;
 
 @end
 

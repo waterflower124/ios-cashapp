@@ -26,12 +26,31 @@
 @implementation TransactionsReportViewController
 @synthesize TransV, SidePanel, sessionInfoLabel, startDatePicker, finishDatePicker;
 @synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
-
+@synthesize titleLabel, todaytransactionButton, searchcommentLabel, startdatecommentLabel, enddatecommentLabel, generatereportButton, contactsupportButton, sessioncommentLabel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     Global *globals = [Global sharedInstance];
+    if(globals.selected_language == 0) {
+        self.titleLabel.text = @"Reporte de transacciones";
+        [self.todaytransactionButton setTitle:@"Ver transacciones de hoy" forState:UIControlStateNormal];
+        self.searchcommentLabel.text = @"Buscar";
+        self.startdatecommentLabel.text = @"Fecha y hora de inicio:";
+        self.enddatecommentLabel.text = @"Fecha y hora de cierre:";
+        [self.generatereportButton setTitle:@"Generar reporte" forState:UIControlStateNormal];
+        [self.contactsupportButton setTitle:@"Contactar a Soporte" forState:UIControlStateNormal];
+        self.sessioncommentLabel.text = @"Sesión iniciada:";
+    } else {
+        self.titleLabel.text = @"Transactions Report";
+        [self.todaytransactionButton setTitle:@"View today´s transactions" forState:UIControlStateNormal];
+        self.searchcommentLabel.text = @"Search";
+        self.startdatecommentLabel.text = @"Start Date and Time:";
+        self.enddatecommentLabel.text = @"End Date and Time:";
+        [self.generatereportButton setTitle:@"Generate Report" forState:UIControlStateNormal];
+        [self.contactsupportButton setTitle:@"Contact Support" forState:UIControlStateNormal];
+        self.sessioncommentLabel.text = @"Session started:";
+    }
     
     /////////  TransV  tanp event   /////////
     UITapGestureRecognizer *tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideSidePanel:)];

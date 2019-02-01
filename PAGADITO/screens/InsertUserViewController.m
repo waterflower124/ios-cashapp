@@ -35,9 +35,35 @@
 @synthesize user_role;
 @synthesize roleSelectButton, checkBoxUIView, pincodeUIView, roleTableVIew, roleTableViewHeightConstraint, checkSwitchView;
 @synthesize firstnameTextView, lastnameTextView, usernameTextView, passwordTextView, confirmTextView, pincodeTextView;
+@synthesize titleLabel, pincodecommentLabel, checkboxcommentLabel, continuButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    Global *globals = [Global sharedInstance];
+    if(globals.selected_language == 0) {
+        self.titleLabel.text = @"Nuevo Usuario";
+        [self.roleSelectButton setTitle:@"Selecciona un rol de usuario" forState:UIControlStateNormal];
+        self.pincodecommentLabel.text = @"PIN de autorización:";
+        self.checkboxcommentLabel.text = @"Asignar nuevo turno automaticamente todos los días.";
+        self.firstnameTextView.placeholder = @"Nombres";
+        self.lastnameTextView.placeholder = @"Apellidos";
+        self.usernameTextView.placeholder = @"Usuario";
+        self.passwordTextView.placeholder = @"Contraseña";
+        self.confirmTextView.placeholder = @"Confirmar Contraseña";
+        [self.continuButton setTitle:@"Continuar" forState:UIControlStateNormal];
+    } else {
+        self.titleLabel.text = @"New User";
+        [self.roleSelectButton setTitle:@"Select User Priviledges" forState:UIControlStateNormal];
+        self.pincodecommentLabel.text = @"Authorization PIN:";
+        self.checkboxcommentLabel.text = @"Assign new shift automatically every day.";
+        self.firstnameTextView.placeholder = @"First Name";
+        self.lastnameTextView.placeholder = @"Last Name";
+        self.usernameTextView.placeholder = @"Username";
+        self.passwordTextView.placeholder = @"Password";
+        self.confirmTextView.placeholder = @"Confirm Password";
+        [self.continuButton setTitle:@"Continue" forState:UIControlStateNormal];
+    }
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
@@ -50,12 +76,20 @@
     [self.overlayView addSubview:self.activityIndicator];
     
     if([user_role isEqualToString:@"1"] || [user_role isEqualToString:@"4"]) {
-        self.roleTableArray = [[NSMutableArray alloc] initWithObjects:@"Supervisor", @"Cajero", nil];
+        if(globals.selected_language == 0) {
+            self.roleTableArray = [[NSMutableArray alloc] initWithObjects:@"Supervisor", @"Cajero", nil];
+        } else {
+            self.roleTableArray = [[NSMutableArray alloc] initWithObjects:@"Supervisor", @"Cashier", nil];
+        }
         self.roleTableValueArray = [[NSMutableArray alloc] initWithObjects:@"2", @"3", nil];
         [pincodeUIView setHidden:NO];
         [checkBoxUIView setHidden:YES];
     } else if([user_role isEqualToString:@"2"]) {
-        self.roleTableArray = [[NSMutableArray alloc] initWithObjects:@"Cajero", nil];
+        if(globals.selected_language == 0) {
+            self.roleTableArray = [[NSMutableArray alloc] initWithObjects:@"Cajero", nil];
+        } else {
+             self.roleTableArray = [[NSMutableArray alloc] initWithObjects:@"Cashier", nil];
+        }
         self.roleTableValueArray = [[NSMutableArray alloc] initWithObjects:@"3", nil];
         [pincodeUIView setHidden:YES];
         [checkBoxUIView setHidden:NO];

@@ -42,6 +42,16 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)turnoButtonAction:(id)sender;
 - (IBAction)signoutButtonAction:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *searchshiftButtonLabel;
+@property (weak, nonatomic) IBOutlet UILabel *assignshiftButtonLabel;
+@property (weak, nonatomic) IBOutlet UILabel *closeshiftButtonLabel;
+@property (weak, nonatomic) IBOutlet UILabel *codeheadLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timedateheadLabel;
+@property (weak, nonatomic) IBOutlet UILabel *usernameheadLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sessioncommentLabel;
+
+
 
 @end
 

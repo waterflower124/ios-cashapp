@@ -67,6 +67,7 @@
     ///////  dismiss keyboard  //////
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
+    tap.cancelsTouchesInView = NO;
     
     ////  array copy  /////
     self.showShiftArray = [[NSMutableArray alloc] initWithArray: self.shift_array copyItems:YES];

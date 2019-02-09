@@ -33,11 +33,36 @@
 @implementation InformationComercialViewController
 @synthesize logoImageView, TransV, SidePanel, sessionInfoLabel, currencyTableView, comercial_nameLabel, terminal_nameLabel, selectCurrencyButton, trade_numberLabel, trade_emailLabel;
 @synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
+@synthesize titleLabel, maincommentLabel, logoimagecommentLabel, continueButton, sessioncommentLabel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     Global *globals = [Global sharedInstance];
+    
+    if(globals.selected_language == 0) {
+        self.titleLabel.text = @"Información Comercial";
+        self.maincommentLabel.text = @"Personaliza tu Pagadito POS App";
+        self.logoimagecommentLabel.text = @"Logo imagen";
+        self.sessioncommentLabel.text = @"Sesión iniciada:";
+        [self.continueButton setTitle:@"Continuar" forState:UIControlStateNormal];
+        self.comercial_nameLabel.placeholder = @"Nombre Comercial";
+        self.terminal_nameLabel.placeholder = @"Nombre de Terminal POS";
+        [self.selectCurrencyButton setTitle:@"Selecciona tipo de moneda" forState:UIControlStateNormal];
+        self.trade_numberLabel.placeholder = @"Número del Comercio";
+        self.trade_emailLabel.placeholder = @"Email del Comercio";
+    } else {
+        self.titleLabel.text = @"Merchant Information";
+        self.maincommentLabel.text = @"Personalize your Pagadito POS APP";
+        self.logoimagecommentLabel.text = @"Logo image";
+        self.sessioncommentLabel.text = @"Session started:";
+        [self.continueButton setTitle:@"Continue" forState:UIControlStateNormal];
+        self.comercial_nameLabel.placeholder = @"Business Name";
+        self.terminal_nameLabel.placeholder = @"POS Terminal Name";
+        [self.selectCurrencyButton setTitle:@"Select Currency" forState:UIControlStateNormal];
+        self.trade_numberLabel.placeholder = @"Business Registration Number";
+        self.trade_emailLabel.placeholder = @"Business Email";
+    }
     
     /////  initialization ////
     self.currencyNameArray = [[NSMutableArray alloc] initWithObjects:@"($) Dólares Americanos", @"(Q) Quetzales", @"(L) Lempiras", @"(C$) Córdobas", @"(₡) Colones Costarricenses", @"(B/.) Balboas", @"(RD$) Pesos Dominicanos", nil];

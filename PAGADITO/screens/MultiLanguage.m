@@ -32,7 +32,7 @@
         //// sign in VC
         self.signinVC_comment1LabelText = [[NSMutableArray alloc] initWithObjects:@"Configuración Inicial", @"Pagadito POS", nil];
         self.signinVC_comment2LabelText = [[NSMutableArray alloc] initWithObjects:@"Pagadito POS", @"Initial Setup", nil];
-        self.signinVC_username = [[NSMutableArray alloc] initWithObjects:@"Usuario", @"Username", nil];
+        self.signinVC_username = [[NSMutableArray alloc] initWithObjects:@"Correo Electrónico", @"Email", nil];
         self.signinVC_password = [[NSMutableArray alloc] initWithObjects:@"Contraseña", @"Password", nil];
         self.signinVC_explain = [[NSMutableArray alloc] initWithObjects:@"Inicia sesión con tu cuenta Pagadito", @"Sign in with your Pagadito account information", nil];
         self.signinVC_signinButtonText = [[NSMutableArray alloc] initWithObjects:@"Inicia sesión", @"Sign In", nil];

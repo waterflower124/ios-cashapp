@@ -38,6 +38,16 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)cancelChangeButtonAction:(id)sender;
 
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *warningcommentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *conexioncredentialcommentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dataencryptioncommentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *keycommentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *vectorcommentLabel;
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
+@property (weak, nonatomic) IBOutlet UIButton *cancelchangeButton;
+@property (weak, nonatomic) IBOutlet UILabel *sessioncommentLabel;
+
 
 @end
 

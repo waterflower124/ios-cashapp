@@ -49,6 +49,8 @@ Global *globals;
     globals.logo_image = nil;
     globals.logo_imagePath = @"";
     
+    globals.signatureStatus = false;
+    
     language = @[@"Español",@"English"];
     self.pickerView_language.dataSource = self;
     self.pickerView_language.delegate = self;
@@ -74,6 +76,8 @@ Global *globals;
     }
     
     //////////////////////////////////////////
+//    self.macAddress =[self getMacAddress];
+//    globals.macAddress = self.macAddress;
     
     self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
@@ -83,6 +87,7 @@ Global *globals;
     [self.activityIndicator startAnimating];
     [self.view addSubview:self.overlayView];
 
+    globals.IPAddress = [self getIPAddress];
     self.macAddress =[self getMacAddress];
     globals.macAddress = self.macAddress;
     NSLog(@"%@", globals.macAddress);
@@ -113,7 +118,6 @@ Global *globals;
             if([[[userdefault dictionaryRepresentation] allKeys] containsObject:@"selected_language"]) {
                 globals.selected_language = [[NSUserDefaults standardUserDefaults] integerForKey:@"selected_language"];
             }
-            NSLog(@"ppppp::::  %ld]]]]]] ", (long)globals.selected_language);
             [self performSegueWithIdentifier:@"firsttowelcome_segue" sender:self];
         } else if(statusInt == 2){
 
@@ -216,6 +220,32 @@ Global *globals;
     // Error...
     NSLog(@"Error: %@", errorFlag);
     return nil;
+}
+
+// get the IP address of current-device
+- (NSString *)getIPAddress {
+    NSString *address = @"error";
+    struct ifaddrs *interfaces = NULL;
+    struct ifaddrs *temp_addr = NULL;
+    int success = 0;
+    // retrieve the current interfaces - returns 0 on success
+    success = getifaddrs(&interfaces);
+    if (success == 0) {
+        // Loop through linked list of interfaces
+        temp_addr = interfaces;
+        while(temp_addr != NULL) {
+            if(temp_addr->ifa_addr->sa_family == AF_INET) {
+                // Check if interface is en0 which is the wifi connection on the iPhone
+                if([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"]) {
+                    // Get NSString from C String
+                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
+                }
+            }
+            temp_addr = temp_addr->ifa_next;
+        }
+    }
+    freeifaddrs(interfaces);
+    return address;
 }
 
 @end

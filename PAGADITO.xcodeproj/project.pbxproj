@@ -118,6 +118,15 @@
 		233E554421DFD1B800279DB1 /* PagaditoR_0001_fondo.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E54EA21DFD1B700279DB1 /* PagaditoR_0001_fondo.png */; };
 		233E554821E046B300279DB1 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 233E554721E046B300279DB1 /* LoginViewController.m */; };
 		233EDBFB21F96FDC00B35DF4 /* CashierShiftSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 233EDBFA21F96FDC00B35DF4 /* CashierShiftSearchResultViewController.m */; };
+		23424CAE22082C5E00314773 /* comercialinfo_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 23424CAB22082C5800314773 /* comercialinfo_en.png */; };
+		23424CAF22082C5E00314773 /* voucherconfig_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 23424CAC22082C5A00314773 /* voucherconfig_en.png */; };
+		23424CB022082C5E00314773 /* connetioncredential_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 23424CAD22082C5C00314773 /* connetioncredential_en.png */; };
+		23424CB422082D7A00314773 /* connectioncredential_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 23424CB122082D7600314773 /* connectioncredential_sp.png */; };
+		23424CB522082D7A00314773 /* voucherconfig_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 23424CB222082D7700314773 /* voucherconfig_sp.png */; };
+		23424CB622082D7A00314773 /* comercialinfo_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 23424CB322082D7900314773 /* comercialinfo_sp.png */; };
+		23424CB922088CB600314773 /* ProcessTransactionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23424CB822088CB600314773 /* ProcessTransactionViewController.m */; };
+		23424CBC220CDF0300314773 /* TransactionResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23424CBB220CDF0300314773 /* TransactionResultViewController.m */; };
+		23424CBF220D0A3C00314773 /* TransactionResultSignatureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23424CBE220D0A3C00314773 /* TransactionResultSignatureView.m */; };
 		2345039A21EF5B840057C772 /* ShiftListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2345039921EF5B840057C772 /* ShiftListTableViewCell.m */; };
 		2345039C21F074140057C772 /* cashierlist_arrow_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2345039B21F074130057C772 /* cashierlist_arrow_icon.png */; };
 		234503A021F082D30057C772 /* sidemenu_cerrarturnoButton_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2345039F21F082D10057C772 /* sidemenu_cerrarturnoButton_icon.png */; };
@@ -146,6 +155,7 @@
 		2356F44A22030C850011DD42 /* dashboard_assignshift_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 2356F44822030C800011DD42 /* dashboard_assignshift_sp.png */; };
 		2356F44B22030C850011DD42 /* dashboard_assignshift_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 2356F44922030C820011DD42 /* dashboard_assignshift_en.png */; };
 		23682F4121EE2B56002BC7D7 /* DeletTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23682F4021EE2B56002BC7D7 /* DeletTableViewCell.m */; };
+		23B35E14220F32490064A7A6 /* transationresult_email_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 23B35E13220F32470064A7A6 /* transationresult_email_icon.png */; };
 		23B49FFB21F71BBE00BAAD37 /* ConexionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B49FFA21F71BBE00BAAD37 /* ConexionViewController.m */; };
 		23B49FFE21F7916300BAAD37 /* VoucherConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B49FFD21F7916300BAAD37 /* VoucherConfigViewController.m */; };
 		23B4A00121F7A34900BAAD37 /* ReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B4A00021F7A34900BAAD37 /* ReportViewController.m */; };
@@ -314,6 +324,18 @@
 		233E554721E046B300279DB1 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		233EDBF921F96FDC00B35DF4 /* CashierShiftSearchResultViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CashierShiftSearchResultViewController.h; sourceTree = "<group>"; };
 		233EDBFA21F96FDC00B35DF4 /* CashierShiftSearchResultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CashierShiftSearchResultViewController.m; sourceTree = "<group>"; };
+		23424CAB22082C5800314773 /* comercialinfo_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comercialinfo_en.png; sourceTree = "<group>"; };
+		23424CAC22082C5A00314773 /* voucherconfig_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = voucherconfig_en.png; sourceTree = "<group>"; };
+		23424CAD22082C5C00314773 /* connetioncredential_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connetioncredential_en.png; sourceTree = "<group>"; };
+		23424CB122082D7600314773 /* connectioncredential_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connectioncredential_sp.png; sourceTree = "<group>"; };
+		23424CB222082D7700314773 /* voucherconfig_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = voucherconfig_sp.png; sourceTree = "<group>"; };
+		23424CB322082D7900314773 /* comercialinfo_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comercialinfo_sp.png; sourceTree = "<group>"; };
+		23424CB722088CB600314773 /* ProcessTransactionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProcessTransactionViewController.h; sourceTree = "<group>"; };
+		23424CB822088CB600314773 /* ProcessTransactionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProcessTransactionViewController.m; sourceTree = "<group>"; };
+		23424CBA220CDF0300314773 /* TransactionResultViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionResultViewController.h; sourceTree = "<group>"; };
+		23424CBB220CDF0300314773 /* TransactionResultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionResultViewController.m; sourceTree = "<group>"; };
+		23424CBD220D0A3C00314773 /* TransactionResultSignatureView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionResultSignatureView.h; sourceTree = "<group>"; };
+		23424CBE220D0A3C00314773 /* TransactionResultSignatureView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TransactionResultSignatureView.m; path = PAGADITO/screens/TransactionResultSignatureView.m; sourceTree = SOURCE_ROOT; };
 		2345039821EF5B840057C772 /* ShiftListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShiftListTableViewCell.h; sourceTree = "<group>"; };
 		2345039921EF5B840057C772 /* ShiftListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShiftListTableViewCell.m; sourceTree = "<group>"; };
 		2345039B21F074130057C772 /* cashierlist_arrow_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cashierlist_arrow_icon.png; sourceTree = "<group>"; };
@@ -354,6 +376,7 @@
 		2356F44922030C820011DD42 /* dashboard_assignshift_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard_assignshift_en.png; sourceTree = "<group>"; };
 		23682F3F21EE2B56002BC7D7 /* DeletTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeletTableViewCell.h; sourceTree = "<group>"; };
 		23682F4021EE2B56002BC7D7 /* DeletTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeletTableViewCell.m; sourceTree = "<group>"; };
+		23B35E13220F32470064A7A6 /* transationresult_email_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transationresult_email_icon.png; sourceTree = "<group>"; };
 		23B49FF921F71BBE00BAAD37 /* ConexionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConexionViewController.h; sourceTree = "<group>"; };
 		23B49FFA21F71BBE00BAAD37 /* ConexionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConexionViewController.m; sourceTree = "<group>"; };
 		23B49FFC21F7916300BAAD37 /* VoucherConfigViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VoucherConfigViewController.h; sourceTree = "<group>"; };
@@ -455,6 +478,13 @@
 		233E549021DFD1B700279DB1 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				23B35E13220F32470064A7A6 /* transationresult_email_icon.png */,
+				23424CB322082D7900314773 /* comercialinfo_sp.png */,
+				23424CB122082D7600314773 /* connectioncredential_sp.png */,
+				23424CB222082D7700314773 /* voucherconfig_sp.png */,
+				23424CAB22082C5800314773 /* comercialinfo_en.png */,
+				23424CAD22082C5C00314773 /* connetioncredential_en.png */,
+				23424CAC22082C5A00314773 /* voucherconfig_en.png */,
 				2351BBC022036F0D004F6A58 /* user_cajero_icon_en.png */,
 				2351BBBF22036F0C004F6A58 /* user_cajero_icon_sp.png */,
 				2356F44922030C820011DD42 /* dashboard_assignshift_en.png */,
@@ -635,6 +665,12 @@
 				234BDED021F9BA8700B2C944 /* TransactionsReportViewController.m */,
 				2356F43122021ACC0011DD42 /* MultiLanguage.h */,
 				2356F43222021ACC0011DD42 /* MultiLanguage.m */,
+				23424CB722088CB600314773 /* ProcessTransactionViewController.h */,
+				23424CB822088CB600314773 /* ProcessTransactionViewController.m */,
+				23424CBA220CDF0300314773 /* TransactionResultViewController.h */,
+				23424CBB220CDF0300314773 /* TransactionResultViewController.m */,
+				23424CBD220D0A3C00314773 /* TransactionResultSignatureView.h */,
+				23424CBE220D0A3C00314773 /* TransactionResultSignatureView.m */,
 			);
 			path = screens;
 			sourceTree = "<group>";
@@ -818,6 +854,7 @@
 				233E553E21DFD1B800279DB1 /* Pagadito_0008_Layer-15-copy-2.png in Resources */,
 				233E552121DFD1B800279DB1 /* Pagadito_0001_Layer-17.png in Resources */,
 				233E553421DFD1B800279DB1 /* Pagadito_0001s_0022_Layer-109.png in Resources */,
+				23B35E14220F32490064A7A6 /* transationresult_email_icon.png in Resources */,
 				233E551721DFD1B800279DB1 /* Pagadito_0000s_0013_8.png in Resources */,
 				233E54F321DFD1B800279DB1 /* Pagadito_0000s_0000_Layer-48.png in Resources */,
 				233E551621DFD1B800279DB1 /* Pagadito_0000s_0012_Layer-78-copy.png in Resources */,
@@ -860,6 +897,7 @@
 				233E552321DFD1B800279DB1 /* Pagadito_0001s_0000_Cancelar.png in Resources */,
 				233E550021DFD1B800279DB1 /* Pagadito_0000s_0002_Layer-92.png in Resources */,
 				233E550E21DFD1B800279DB1 /* Pagadito_0000s_0008_3.png in Resources */,
+				23424CB022082C5E00314773 /* connetioncredential_en.png in Resources */,
 				233E550D21DFD1B800279DB1 /* Pagadito_0000s_0007_Ver-transacciones-de-hoy.png in Resources */,
 				3A09262121BAAA5A00333F1A /* Assets.xcassets in Resources */,
 				233E553F21DFD1B800279DB1 /* Pagadito_0011_Configuración.png in Resources */,
@@ -896,9 +934,11 @@
 				23B4A00F21F8B0B400BAAD37 /* cashier_shift_close_icon.png in Resources */,
 				233E551221DFD1B800279DB1 /* Pagadito_0000s_0009_Layer-50.png in Resources */,
 				233E552A21DFD1B800279DB1 /* Pagadito_0001s_0005_Layer-98.png in Resources */,
+				23424CB622082D7A00314773 /* comercialinfo_sp.png in Resources */,
 				233E552221DFD1B800279DB1 /* Pagadito_0001_Layer-43.png in Resources */,
 				2351BBC122036F11004F6A58 /* user_cajero_icon_sp.png in Resources */,
 				233E553821DFD1B800279DB1 /* Pagadito_0003_Layer-16.png in Resources */,
+				23424CB422082D7A00314773 /* connectioncredential_sp.png in Resources */,
 				233E551E21DFD1B800279DB1 /* Pagadito_0000s_0036_Layer-88.png in Resources */,
 				2356F43F2202F4420011DD42 /* dashboard_user_en.png in Resources */,
 				233E54F521DFD1B800279DB1 /* Pagadito_0000s_0000s_0001_Layer-41.png in Resources */,
@@ -912,6 +952,8 @@
 				233E551F21DFD1B800279DB1 /* Pagadito_0001_Anular.png in Resources */,
 				233E54FA21DFD1B800279DB1 /* Pagadito_0000s_0001_Layer-94.png in Resources */,
 				2315460421EEE7280025E711 /* assignshift_logout_icon.png in Resources */,
+				23424CAF22082C5E00314773 /* voucherconfig_en.png in Resources */,
+				23424CB522082D7A00314773 /* voucherconfig_sp.png in Resources */,
 				233E553921DFD1B800279DB1 /* Pagadito_0003_Layer-2.png in Resources */,
 				2351BBC222036F11004F6A58 /* user_cajero_icon_en.png in Resources */,
 				3A09261F21BAAA5900333F1A /* Main.storyboard in Resources */,
@@ -922,6 +964,7 @@
 				233E554321DFD1B800279DB1 /* PagaditoR_0000_Layer-17.png in Resources */,
 				233E553A21DFD1B800279DB1 /* Pagadito_0003_Layer-42.png in Resources */,
 				233E551921DFD1B800279DB1 /* Pagadito_0000s_0015_7.png in Resources */,
+				23424CAE22082C5E00314773 /* comercialinfo_en.png in Resources */,
 				2356F4432202F4420011DD42 /* dashboard_newtransaction_sp.png in Resources */,
 				233E551C21DFD1B800279DB1 /* Pagadito_0000s_0025_Generar-reporte.png in Resources */,
 				233E54FB21DFD1B800279DB1 /* Pagadito_0000s_0001_Modificar-Búsqueda.png in Resources */,
@@ -1002,17 +1045,20 @@
 				23296F8A21E9EBB10013AAC8 /* UserAdminViewController.m in Sources */,
 				23B4A01221F8B15900BAAD37 /* CashierShiftSearchTableViewCell.m in Sources */,
 				2352F92921EC493D003F106A /* NewTransactionViewController.m in Sources */,
+				23424CBC220CDF0300314773 /* TransactionResultViewController.m in Sources */,
 				232096B421E35FCF00C93E3B /* LastCommercialInfoViewController.m in Sources */,
 				2337176B21EC20D2003D7D15 /* EditUserViewController.m in Sources */,
 				234503B221F1C8120057C772 /* ShiftListViewController.m in Sources */,
 				3A64430121C3484B00F392DD /* SecondViewController.m in Sources */,
 				234503B821F1CE6E0057C772 /* CloseShiftViewController.m in Sources */,
 				2345039A21EF5B840057C772 /* ShiftListTableViewCell.m in Sources */,
+				23424CBF220D0A3C00314773 /* TransactionResultSignatureView.m in Sources */,
 				23B49FFE21F7916300BAAD37 /* VoucherConfigViewController.m in Sources */,
 				234503B521F1C8850057C772 /* SearchShiftViewController.m in Sources */,
 				234BDED121F9BA8700B2C944 /* TransactionsReportViewController.m in Sources */,
 				23B4A00A21F81E0A00BAAD37 /* TransactionsViewController.m in Sources */,
 				23B4A01521F8F0C100BAAD37 /* TransactionsTableViewCell.m in Sources */,
+				23424CB922088CB600314773 /* ProcessTransactionViewController.m in Sources */,
 				2329E15621F585FC00CD8EB2 /* ResetPasswordConfirmViewController.m in Sources */,
 				3A09261C21BAAA5900333F1A /* ViewController.m in Sources */,
 				23B4A00421F7AEDB00BAAD37 /* ShiftReportViewController.m in Sources */,

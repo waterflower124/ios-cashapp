@@ -1,59 +1,91 @@
 //
-//  NewTransactionViewController.m
+//  TransactionResultViewController.m
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/14.
+//  Created by Water Flower on 2019/2/8.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
-#import "NewTransactionViewController.h"
+#import "TransactionResultViewController.h"
 #import "Global.h"
-#import "ProcessTransactionViewController.h"
 #import "WelcomeViewController.h"
 
-@interface NewTransactionViewController ()
-
-@property(strong, nonatomic) NSString *amountText;
-@property(strong, nonatomic) NSString *amountFormatted;
-@property(nonatomic) Boolean pointClicked;
-@property(nonatomic) NSInteger decimalCount;
+@interface TransactionResultViewController ()
 
 @end
 
-@implementation NewTransactionViewController
-@synthesize SidePanel,MenuBtn,TransV;
-@synthesize amountTextField;
+@implementation TransactionResultViewController
+@synthesize dataTransaction;
+@synthesize SidePanel, TransV;
 @synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
-@synthesize titleLabel, amountTextFieldcommentLabel, continueButton, sessionInfocommentLabel, sessionInfoLabel;
+@synthesize dateLabel, transactionamountLabel, fullnameLabel, cardnumberLabel, emailTextField, userInfoLabel;
+@synthesize titleLabel, successcommentLabel, detailsLabel, fullnamecommentLabel, cardnumbercommentLabel, signcommentLabel, userInfocommentLabel, mainnewtransButton, maincanceltransButton, signatureclearButton, submitemailButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     Global *globals = [Global sharedInstance];
+    
     if(globals.selected_language == 0) {
-        self.titleLabel.text = @"Nueva Transacción";
-        self.amountTextFieldcommentLabel.text = @"Ingresa el monto a cobrar:";
-        [self.continueButton setTitle:@"Continuar" forState:UIControlStateNormal];
-        self.sessionInfocommentLabel.text = @"Sesión iniciada:";
+        self.titleLabel.text = @"Transacción procesada";
+        self.successcommentLabel.text = @"Transacción Exitosa";
+        self.detailsLabel.text = @"Detalles de la Transacción";
+        self.amountcommentLabel.text = @"Monto cobrado:";
+        self.fullnamecommentLabel.text = @"Nombre:";
+        self.cardnumbercommentLabel.text = @"# de la Tarjeta:";
+        self.emailTextField.placeholder = @"Correo Electrónico";
+        self.signcommentLabel.text = @"Firma";
+        self.userInfocommentLabel.text = @"Sesión iniciada:";
+        [self.mainnewtransButton setTitle:@"Nueva Transacción" forState:UIControlStateNormal];
+        [self.maincanceltransButton setTitle:@"Anular Transacción" forState:UIControlStateNormal];
+        [self.signatureclearButton setTitle:@"clara" forState:UIControlStateNormal];
+        [self.submitemailButton setTitle:@"Enviar E-Mail" forState:UIControlStateNormal];
     } else {
-        self.titleLabel.text = @"New Transaction";
-        self.amountTextFieldcommentLabel.text = @"Enter the amount receivable:";
-        [self.continueButton setTitle:@"Continue" forState:UIControlStateNormal];
-        self.sessionInfocommentLabel.text = @"Session started:";
+        self.titleLabel.text = @"Transaction Result";
+        self.successcommentLabel.text = @"Transaction Success";
+        self.detailsLabel.text = @"Transaction Detail";
+        self.amountcommentLabel.text = @"Charged Amount:";
+        self.fullnamecommentLabel.text = @"Name:";
+        self.cardnumbercommentLabel.text = @"# of the Card:";
+        self.emailTextField.placeholder = @"Email";
+        self.signcommentLabel.text = @"Sign";
+        self.userInfocommentLabel.text = @"Session started:";
+        [self.mainnewtransButton setTitle:@"New Transaction" forState:UIControlStateNormal];
+        [self.maincanceltransButton setTitle:@"Cancel Transaction" forState:UIControlStateNormal];
+        [self.signatureclearButton setTitle:@"clear" forState:UIControlStateNormal];
+        [self.submitemailButton setTitle:@"Submit E-Mail" forState:UIControlStateNormal];
     }
+    
+    //////  signature status variable  //////
+    globals.signatureStatus = false;
     
     //session info label
     NSString *sessionInfoLabelText = [NSString stringWithFormat:@"%@ / %@", globals.username, globals.nombreComercio];
-    self.sessionInfoLabel.text = sessionInfoLabelText;
+    self.userInfoLabel.text = sessionInfoLabelText;
     
-    ////   hide side menu panel tap event
+    /////   TransV tap event  /////////
     UITapGestureRecognizer *tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideSidePanel:)];
     tapper.numberOfTapsRequired = 1;
     [TransV addGestureRecognizer:tapper];
-
-    self.amountText = @"";
-    self.pointClicked = false;
-    self.decimalCount = 0;
+    
+    ///////  init    /////
+    self.dateLabel.text = self.dataTransaction[@"date"];
+    self.fullnameLabel.text = self.dataTransaction[@"name"];
+    self.cardnumberLabel.text = [NSString stringWithFormat:@"**** **** **** %@", self.dataTransaction[@"card"]];
+    
+    //////  init amount Label  //////
+    NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.dataTransaction[@"amount"]];
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    numberFormatter.locale = [NSLocale currentLocale];// this ensures the right separator behavior
+    numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+    numberFormatter.usesGroupingSeparator = YES;
+    [numberFormatter setGroupingSize:3];
+    [numberFormatter setMaximumFractionDigits:10];
+    /////////
+    
+    NSString * formattedString = [NSString stringWithFormat:@"%@", [numberFormatter stringForObjectValue:amountDecimal]];
+    self.transactionamountLabel.text = [NSString stringWithFormat:@"$%@", formattedString];
+    
     
     //set dashborad buttons background image according to priviledge ID
     if([globals.idPrivilegio isEqualToString:@"1"]) {
@@ -228,10 +260,9 @@
         UIView *newtransactiolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, newtransactionButton.frame.size.width, 1)];
         newtransactiolineView.backgroundColor = [UIColor lightGrayColor];
         [self.newtransactionButton addSubview:newtransactiolineView];
+    }
         
         ///////////////////////////////
-        
-    }
 }
 
 -(void)hideSidePanel:(UIGestureRecognizer *)gesture{
@@ -249,240 +280,66 @@
     }
 }
 
-
-
--(IBAction)buttonPressed:(id)sender{
-    Global *globals = [Global sharedInstance];
-    if (sender == MenuBtn) {
-        if([TransV isHidden]) {
-            [TransV setHidden:NO];
-            [UIView transitionWithView:SidePanel duration:0.2 options:UIViewAnimationOptionCurveEaseIn animations:^{
-                
-                CGRect frame = self->SidePanel.frame;
-                frame.origin.x = 0;
-                self->SidePanel.frame = frame;
-                
-            } completion:nil];
-        } else {
-            [TransV setHidden:YES];
-            [UIView transitionWithView:SidePanel duration:0.2 options:UIViewAnimationOptionCurveEaseIn animations:^{
-                
-                CGRect frame = self->SidePanel.frame;
-                frame.origin.x = -self->SidePanel.frame.size.width;
-                self->SidePanel.frame = frame;
-                
-            } completion:nil];
-        }
+- (IBAction)menuButtonAction:(id)sender {
+    if([TransV isHidden]) {
+        [TransV setHidden:NO];
+        [UIView transitionWithView:SidePanel duration:0.2 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            
+            CGRect frame = self->SidePanel.frame;
+            frame.origin.x = 0;
+            self->SidePanel.frame = frame;
+            
+        } completion:nil];
+    } else {
+        [TransV setHidden:YES];
+        [UIView transitionWithView:SidePanel duration:0.2 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            
+            CGRect frame = self->SidePanel.frame;
+            frame.origin.x = -self->SidePanel.frame.size.width;
+            self->SidePanel.frame = frame;
+            
+        } completion:nil];
     }
-}
-
--(void)displayAmountText: (NSString *)number {
-    if(self.decimalCount < 2) {
-        if([self.amountText isEqualToString:@"0"]) {
-            self.amountText = @"";
-        }
-        self.amountText = [NSString stringWithFormat:@"%@%@", self.amountText, number];
-        self.amountFormatted = [self convertString:self.self.amountText];
-        self.amountTextField.text = self.amountFormatted;
-        if(self.pointClicked) {
-            self.decimalCount = self.decimalCount + 1;
-        }
-    }
-}
-
-- (IBAction)oneButtonAction:(id)sender {
-//    if(self.amount - (int)self.amount > 0) {
-//        float deciamlpart = self.amount - (int)self.amount;
-//
-//    } else {
-//        self.amount = self.amount * 10 + 1;
-//    }
-//    [self displayTextField:self.amount];
-    
-//    if([self.amountText isEqualToString:@"0"]) {
-//        self.amountText = @"";
-//    }
-//    self.amountText = [NSString stringWithFormat:@"%@%@", self.amountText, @"1"];
-//    self.amountFormatted = [self convertString:self.self.amountText];
-//    self.amountTextField.text = self.amountFormatted;
-    [self displayAmountText:@"1"];
-}
-
-- (IBAction)twoButtonAction:(id)sender {
-//    if([self.amountText isEqualToString:@"0"]) {
-//        self.amountText = @"";
-//    }
-//    self.amountText = [NSString stringWithFormat:@"%@%@", self.amountText, @"2"];
-//    self.amountFormatted = [self convertString:self.self.amountText];
-//    self.amountTextField.text = self.amountFormatted;
-    [self displayAmountText:@"2"];
-}
-
-- (IBAction)threeButtonAction:(id)sender {
-//    if([self.amountText isEqualToString:@"0"]) {
-//        self.amountText = @"";
-//    }
-//    self.amountText = [NSString stringWithFormat:@"%@%@", self.amountText, @"3"];
-//    self.amountFormatted = [self convertString:self.self.amountText];
-//    self.amountTextField.text = self.amountFormatted;
-    [self displayAmountText:@"3"];
-}
-
-- (IBAction)fourButtonAction:(id)sender {
-//    if([self.amountText isEqualToString:@"0"]) {
-//        self.amountText = @"";
-//    }
-//    self.amountText = [NSString stringWithFormat:@"%@%@", self.amountText, @"4"];
-//    self.amountFormatted = [self convertString:self.self.amountText];
-//    self.amountTextField.text = self.amountFormatted;
-    [self displayAmountText:@"4"];
-}
-
-- (IBAction)fiveButtonAction:(id)sender {
-//    if([self.amountText isEqualToString:@"0"]) {
-//        self.amountText = @"";
-//    }
-//    self.amountText = [NSString stringWithFormat:@"%@%@", self.amountText, @"5"];
-//    self.amountFormatted = [self convertString:self.self.amountText];
-//    self.amountTextField.text = self.amountFormatted;
-    [self displayAmountText:@"5"];
-}
-
-- (IBAction)sixButtonAction:(id)sender {
-//    if([self.amountText isEqualToString:@"0"]) {
-//        self.amountText = @"";
-//    }
-//    self.amountText = [NSString stringWithFormat:@"%@%@", self.amountText, @"6"];
-//    self.amountFormatted = [self convertString:self.self.amountText];
-//    self.amountTextField.text = self.amountFormatted;
-    [self displayAmountText:@"6"];
-}
-
-- (IBAction)sevenButtonAction:(id)sender {
-//    if([self.amountText isEqualToString:@"0"]) {
-//        self.amountText = @"";
-//    }
-//    self.amountText = [NSString stringWithFormat:@"%@%@", self.amountText, @"7"];
-//    self.amountFormatted = [self convertString:self.self.amountText];
-//    self.amountTextField.text = self.amountFormatted;
-    [self displayAmountText:@"7"];
-}
-
-- (IBAction)eightButtonAction:(id)sender {
-//    if([self.amountText isEqualToString:@"0"]) {
-//        self.amountText = @"";
-//    }
-//    self.amountText = [NSString stringWithFormat:@"%@%@", self.amountText, @"8"];
-//    self.amountFormatted = [self convertString:self.self.amountText];
-//    self.amountTextField.text = self.amountFormatted;
-    [self displayAmountText:@"8"];
-}
-
-- (IBAction)nineButtonAction:(id)sender {
-//    if([self.amountText isEqualToString:@"0"]) {
-//        self.amountText = @"";
-//    }
-//    self.amountText = [NSString stringWithFormat:@"%@%@", self.amountText, @"9"];
-//    self.amountFormatted = [self convertString:self.self.amountText];
-//    self.amountTextField.text = self.amountFormatted;
-    [self displayAmountText:@"9"];
-}
-
-- (IBAction)zeroButtonAction:(id)sender {
-    if(self.decimalCount < 2) {
-        if([self.amountText isEqualToString:@"0"]) {
-            self.amountText = @"";
-        }
-        self.amountText = [NSString stringWithFormat:@"%@%@", self.amountText, @"0"];
-        if(self.pointClicked) {
-            self.amountFormatted = [NSString stringWithFormat:@"%@0", self.amountTextField.text];
-            self.amountTextField.text = self.amountFormatted;
-        } else {
-            self.amountFormatted = [self convertString:self.self.amountText];
-            self.amountTextField.text = self.amountFormatted;
-        }
-        if(self.pointClicked) {
-            self.decimalCount = self.decimalCount + 1;
-        }
-    }
-}
-
-- (IBAction)pointButtonAction:(id)sender {
-    if([self.amountText isEqualToString:@""]) {
-        self.amountText = @"0";
-    }
-    if(!self.pointClicked) {
-        self.amountText = [NSString stringWithFormat:@"%@%@", self.amountText, @"."];
-        self.amountFormatted = [self convertString:self.self.amountText];
-        self.amountTextField.text = [NSString stringWithFormat:@"%@.", self.amountFormatted];
-        self.pointClicked = true;
-    }
-}
-
-- (IBAction)clearButtonAction:(id)sender {
-    self.amountText = @"";
-    self.amountTextField.text = @"";
-    self.pointClicked = false;
-    self.decimalCount = 0;
-}
-
--(NSString *)convertString:(NSString *)amount_string {
-    NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:amount_string];
-    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-    numberFormatter.locale = [NSLocale currentLocale];// this ensures the right separator behavior
-    numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
-    numberFormatter.usesGroupingSeparator = YES;
-    [numberFormatter setGroupingSize:3];
-    [numberFormatter setMaximumFractionDigits:10];
-    
-    NSString * formattedString = [NSString stringWithFormat:@"%@", [numberFormatter stringForObjectValue:amountDecimal]];
-    return formattedString;
-    // example for writing the number object into a label
-//    self.amountTextField.text = [NSString stringWithFormat:@"%@", [numberFormatter stringForObjectValue:amountDecimal]];
-}
-
-- (IBAction)newtransationButtonAction:(id)sender {
-    [TransV setHidden:YES];
-    [TransV setHidden:YES];
-    [UIView transitionWithView:SidePanel duration:0.2 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        
-        CGRect frame = self->SidePanel.frame;
-        frame.origin.x = -self->SidePanel.frame.size.width;
-        self->SidePanel.frame = frame;
-        
-    } completion:nil];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqualToString:@"newtransactiontowelcome_segue"]) {
+    if([segue.identifier isEqualToString:@"transactionresulttowelcome_segue"]) {
         WelcomeViewController *WelcomeVC;
         WelcomeVC = [segue destinationViewController];
-    } else if([segue.identifier isEqualToString:@"newtranssactiontoprocesstransaction_segue"]) {
-        ProcessTransactionViewController *ProcessTransactionVC;
-        ProcessTransactionVC = [segue destinationViewController];
-        ProcessTransactionVC.transactionAmount = self.amountText;
     }
 }
 
 - (IBAction)signoutButtonAction:(id)sender {
-    [self performSegueWithIdentifier:@"newtransactiontowelcome_segue" sender:self];
+    [self performSegueWithIdentifier:@"transactionresulttowelcome_segue" sender:self];
 }
 
-- (IBAction)continueButtonAction:(id)sender {
-    if([self.amountText isEqualToString:@""]) {
-        [self displayAlertView:@"Warning!" :@"Please input transaction amount"];
+- (IBAction)emailSendButtonAction:(id)sender {
+    Global *globals = [Global sharedInstance];
+    
+    NSString *email = self.emailTextField.text;
+    
+    if(!globals.signatureStatus) {
+        [self displayAlertView:@"Warning!" :@"Please sign with your name." :@"nil"];
+    } else if([email isEqualToString:@""]) {
+        [self displayAlertView:@"Warning!" :@"Please input your email address." :@"nil"];
     } else {
-        [self performSegueWithIdentifier:@"newtranssactiontoprocesstransaction_segue" sender:self];
+        /*
+         request to server
+         globals.signatureStatus = false;
+         */
     }
 }
 
--(void)displayAlertView: (NSString *)header :(NSString *)message {
+-(void)displayAlertView: (NSString *)header :(NSString *)message :(NSString *) nextscreen {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:header message:message preferredStyle:UIAlertControllerStyleAlert];
     
     UIApplication *actionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"");
+//        if([nextscreen isEqualToString:@"transaction_result"]) {
+//            [self performSegueWithIdentifier:@"processtransactiontoresult_segue" sender:self];
+//        }
     }];
     [alert addAction:actionOK];
     [self presentViewController:alert animated:YES completion:nil];
 }
+
 @end

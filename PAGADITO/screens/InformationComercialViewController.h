@@ -46,6 +46,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (IBAction)continuButtonAction:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *maincommentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *logoimagecommentLabel;
+@property (weak, nonatomic) IBOutlet UIButton *continueButton;
+@property (weak, nonatomic) IBOutlet UILabel *sessioncommentLabel;
+
+
+
+
+
 @end
 
 NS_ASSUME_NONNULL_END

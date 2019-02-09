@@ -29,11 +29,33 @@
 @implementation ConexionViewController
 @synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
 @synthesize SidePanel, TransV, sessionInfoLabel, uidTextField, wskTextField, idSecursalTextField, idTerminalTextField, LlaveprivadaTextField, vectorTextField;
+@synthesize titleLabel, warningcommentLabel, conexioncredentialcommentLabel, dataencryptioncommentLabel, keycommentLabel, vectorcommentLabel, saveButton, cancelchangeButton, sessioncommentLabel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     Global *globals = [Global sharedInstance];
+    if(globals.selected_language == 0) {
+        self.titleLabel.text = @"Conexión";
+        self.warningcommentLabel.text = @"Advertencia: Datos erroneos causarán el mal funcionamiento de las transacciones POS.";
+        self.conexioncredentialcommentLabel.text = @"Credenciales de Conexión";
+        self.dataencryptioncommentLabel.text = @"Información de Encriptación de Datos";
+        self.keycommentLabel.text = @"Llave privada";
+        self.vectorcommentLabel.text = @"Vector de Inicialización";
+        [self.saveButton setTitle:@"Guardar" forState:UIControlStateNormal];
+        [self.cancelchangeButton setTitle:@"Descartar cambios" forState:UIControlStateNormal];
+        self.sessioncommentLabel.text = @"Sesión iniciada:";
+    } else {
+        self.titleLabel.text = @"Connection";
+        self.warningcommentLabel.text = @"Warning: Wrong data will cause POS transaction errors.";
+        self.conexioncredentialcommentLabel.text = @"Connection credentials";
+        self.dataencryptioncommentLabel.text = @"Data encryption information";
+        self.keycommentLabel.text = @"Private key";
+        self.vectorcommentLabel.text = @"Vector initialization";
+        [self.saveButton setTitle:@"Save" forState:UIControlStateNormal];
+        [self.cancelchangeButton setTitle:@"Discard changes" forState:UIControlStateNormal];
+        self.sessioncommentLabel.text = @"Session started:";
+    }
     
     ///////// initialize   //////////
     self.uidTextField.text = globals.login_uid;

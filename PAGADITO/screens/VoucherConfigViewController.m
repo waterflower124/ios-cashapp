@@ -24,11 +24,25 @@
 @implementation VoucherConfigViewController
 @synthesize TransV, SidePanel, sessionInfoLabel, logoImageView, mensajeVoucherTextField;
 @synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
+@synthesize titleLabel, customemessagecommentLabel, saveButton, charcountcommentLabel, sessioncommentLabel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     Global *globals = [Global sharedInstance];
+    if(globals.selected_language == 0) {
+        self.titleLabel.text = @"Configuración Voucher";
+        self.customemessagecommentLabel.text = @"Mensaje Personalizado";
+        self.charcountcommentLabel.text = @"(150 carácteres)";
+        [self.saveButton setTitle:@"Guardar" forState:UIControlStateNormal];
+        sessioncommentLabel.text = @"Sesión iniciada:";
+    } else {
+        self.titleLabel.text = @"Voucher Configuration";
+        self.customemessagecommentLabel.text = @"Personalize Message";
+        self.charcountcommentLabel.text = @"(150 characters)";
+        [self.saveButton setTitle:@"Save" forState:UIControlStateNormal];
+        sessioncommentLabel.text = @"Session started:";
+    }
     ////////// initialization  ///////////
     if(globals.mensajeVoucher == (NSString *)[NSNull null]) {
         self.mensajeVoucherTextField.text = @"";

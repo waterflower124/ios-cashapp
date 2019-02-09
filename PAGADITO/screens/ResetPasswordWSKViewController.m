@@ -34,6 +34,7 @@
     self.wskTextField.leftView = paddingView;
     wskTextField.leftViewMode = UITextFieldViewModeAlways;
     
+    //////. activity indicator  ///////
     self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];

@@ -18,11 +18,25 @@
 @implementation SystemConfigurationViewController
 @synthesize SidePanel, TransV, sessionInfoLabel;
 @synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
+@synthesize titleLabel, comercialinformationButton, conexionButton, voucherconfigButton, sessioncommentLabel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     Global *globals = [Global sharedInstance];
+    if(globals.selected_language == 0) {
+        self.titleLabel.text = @"Configuración de Sistema";
+        [self.comercialinformationButton setImage:[UIImage imageNamed: @"comercialinfo_sp"] forState:UIControlStateNormal];
+        [self.conexionButton setImage:[UIImage imageNamed: @"connectioncredential_sp"] forState:UIControlStateNormal];
+        [self.voucherconfigButton setImage:[UIImage imageNamed: @"voucherconfig_sp"] forState:UIControlStateNormal];
+        self.sessioncommentLabel.text = @"Sesión iniciada:";
+    } else {
+        self.titleLabel.text = @"System Configuration";
+        [self.comercialinformationButton setImage:[UIImage imageNamed: @"comercialinfo_en"] forState:UIControlStateNormal];
+        [self.conexionButton setImage:[UIImage imageNamed: @"connetioncredential_en"] forState:UIControlStateNormal];
+        [self.voucherconfigButton setImage:[UIImage imageNamed: @"voucherconfig_en"] forState:UIControlStateNormal];
+        self.sessioncommentLabel.text = @"Session started:";
+    }
     
     //set dashborad buttons background image according to priviledge ID
     if([globals.idPrivilegio isEqualToString:@"1"]) {

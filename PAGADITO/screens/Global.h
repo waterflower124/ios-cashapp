@@ -14,6 +14,7 @@
 
     NSInteger selected_language;
     NSString *macAddress;
+    NSString *IPAddress;
     NSString *uid;
     NSString *wsk;
     NSString *private_key;
@@ -52,6 +53,8 @@
     NSString *codeShift;
     NSString *idTurno;
     
+    BOOL signatureStatus;
+    
     
 }
 
@@ -59,6 +62,7 @@
 
 @property(nonatomic, readwrite) NSInteger selected_language;
 @property(strong, nonatomic, readwrite) NSString *macAddress;
+@property(strong, nonatomic, readwrite) NSString *IPAddress;
 @property(strong, nonatomic, readwrite) NSString *uid;
 @property(strong, nonatomic, readwrite) NSString *wsk;
 @property(strong, nonatomic, readwrite) NSString *private_key;
@@ -92,5 +96,7 @@
 @property(strong, nonatomic, readwrite) NSString *turnoCod;
 @property(strong, nonatomic, readwrite) NSString *codeShift;
 @property(strong, nonatomic, readwrite) NSString *idTurno;
+
+@property(nonatomic) BOOL signatureStatus;
 
 @end

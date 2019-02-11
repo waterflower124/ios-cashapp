@@ -55,6 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (IBAction)continueButtonAction:(id)sender;
 
+- (IBAction)menunewtransctionButtonAction:(id)sender;
 
 @end
 

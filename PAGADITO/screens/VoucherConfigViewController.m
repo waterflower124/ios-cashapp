@@ -47,6 +47,11 @@
     if(globals.mensajeVoucher == (NSString *)[NSNull null]) {
         self.mensajeVoucherTextField.text = @"";
         self.mensajeVoucherText = @"";
+        if(globals.selected_language == 0) {
+            self.mensajeVoucherTextField.placeholder = @"Inserte un mensaje personalizado";
+        } else {
+            self.mensajeVoucherTextField.placeholder = @"Insert a personalized message";
+        }
     } else {
         self.mensajeVoucherTextField.text = globals.mensajeVoucher;
         self.mensajeVoucherText = globals.mensajeVoucher;

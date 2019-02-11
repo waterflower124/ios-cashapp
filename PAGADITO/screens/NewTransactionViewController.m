@@ -476,6 +476,17 @@
     }
 }
 
+- (IBAction)menunewtransctionButtonAction:(id)sender {
+    [TransV setHidden:YES];
+    [UIView transitionWithView:SidePanel duration:0.2 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        
+        CGRect frame = self->SidePanel.frame;
+        frame.origin.x = -self->SidePanel.frame.size.width;
+        self->SidePanel.frame = frame;
+        
+    } completion:nil];
+}
+
 -(void)displayAlertView: (NSString *)header :(NSString *)message {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:header message:message preferredStyle:UIAlertControllerStyleAlert];
     

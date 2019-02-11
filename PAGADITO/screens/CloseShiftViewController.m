@@ -333,6 +333,7 @@
         [self displayAlertView:@"Warning!" :@"This shift has already closed." :@"deny"];
     }
 }
+
 - (IBAction)cancelCloseShiftButtonAction:(id)sender {
     [self.shift_array insertObject:self.closing_shift atIndex:self.closing_shift_index];
     [self.shiftlistTableView reloadData];

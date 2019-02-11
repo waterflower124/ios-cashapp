@@ -166,6 +166,8 @@
 		23B4A00F21F8B0B400BAAD37 /* cashier_shift_close_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 23B4A00E21F8B0B300BAAD37 /* cashier_shift_close_icon.png */; };
 		23B4A01221F8B15900BAAD37 /* CashierShiftSearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B4A01121F8B15900BAAD37 /* CashierShiftSearchTableViewCell.m */; };
 		23B4A01521F8F0C100BAAD37 /* TransactionsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B4A01421F8F0C100BAAD37 /* TransactionsTableViewCell.m */; };
+		23F321BC220F75CC002294C7 /* CancelTransactionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F321BB220F75CC002294C7 /* CancelTransactionViewController.m */; };
+		23F321BF2210E9FB002294C7 /* CancelTransactionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F321BE2210E9FB002294C7 /* CancelTransactionTableViewCell.m */; };
 		3A09261921BAAA5900333F1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A09261821BAAA5900333F1A /* AppDelegate.m */; };
 		3A09261C21BAAA5900333F1A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A09261B21BAAA5900333F1A /* ViewController.m */; };
 		3A09261F21BAAA5900333F1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A09261D21BAAA5900333F1A /* Main.storyboard */; };
@@ -396,6 +398,10 @@
 		23B4A01121F8B15900BAAD37 /* CashierShiftSearchTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CashierShiftSearchTableViewCell.m; sourceTree = "<group>"; };
 		23B4A01321F8F0C100BAAD37 /* TransactionsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionsTableViewCell.h; sourceTree = "<group>"; };
 		23B4A01421F8F0C100BAAD37 /* TransactionsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionsTableViewCell.m; sourceTree = "<group>"; };
+		23F321BA220F75CC002294C7 /* CancelTransactionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CancelTransactionViewController.h; sourceTree = "<group>"; };
+		23F321BB220F75CC002294C7 /* CancelTransactionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CancelTransactionViewController.m; sourceTree = "<group>"; };
+		23F321BD2210E9FB002294C7 /* CancelTransactionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CancelTransactionTableViewCell.h; sourceTree = "<group>"; };
+		23F321BE2210E9FB002294C7 /* CancelTransactionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CancelTransactionTableViewCell.m; sourceTree = "<group>"; };
 		2A63F08DE9CEED364D00A01B /* Pods_PAGADITO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PAGADITO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A09261421BAAA5900333F1A /* PAGADITO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PAGADITO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A09261721BAAA5900333F1A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -471,6 +477,8 @@
 				23B4A01121F8B15900BAAD37 /* CashierShiftSearchTableViewCell.m */,
 				23B4A01321F8F0C100BAAD37 /* TransactionsTableViewCell.h */,
 				23B4A01421F8F0C100BAAD37 /* TransactionsTableViewCell.m */,
+				23F321BD2210E9FB002294C7 /* CancelTransactionTableViewCell.h */,
+				23F321BE2210E9FB002294C7 /* CancelTransactionTableViewCell.m */,
 			);
 			path = tableviewcells;
 			sourceTree = "<group>";
@@ -671,6 +679,8 @@
 				23424CBB220CDF0300314773 /* TransactionResultViewController.m */,
 				23424CBD220D0A3C00314773 /* TransactionResultSignatureView.h */,
 				23424CBE220D0A3C00314773 /* TransactionResultSignatureView.m */,
+				23F321BA220F75CC002294C7 /* CancelTransactionViewController.h */,
+				23F321BB220F75CC002294C7 /* CancelTransactionViewController.m */,
 			);
 			path = screens;
 			sourceTree = "<group>";
@@ -1047,11 +1057,13 @@
 				2352F92921EC493D003F106A /* NewTransactionViewController.m in Sources */,
 				23424CBC220CDF0300314773 /* TransactionResultViewController.m in Sources */,
 				232096B421E35FCF00C93E3B /* LastCommercialInfoViewController.m in Sources */,
+				23F321BF2210E9FB002294C7 /* CancelTransactionTableViewCell.m in Sources */,
 				2337176B21EC20D2003D7D15 /* EditUserViewController.m in Sources */,
 				234503B221F1C8120057C772 /* ShiftListViewController.m in Sources */,
 				3A64430121C3484B00F392DD /* SecondViewController.m in Sources */,
 				234503B821F1CE6E0057C772 /* CloseShiftViewController.m in Sources */,
 				2345039A21EF5B840057C772 /* ShiftListTableViewCell.m in Sources */,
+				23F321BC220F75CC002294C7 /* CancelTransactionViewController.m in Sources */,
 				23424CBF220D0A3C00314773 /* TransactionResultSignatureView.m in Sources */,
 				23B49FFE21F7916300BAAD37 /* VoucherConfigViewController.m in Sources */,
 				234503B521F1C8850057C772 /* SearchShiftViewController.m in Sources */,

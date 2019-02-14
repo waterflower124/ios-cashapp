@@ -469,11 +469,25 @@
 }
 
 - (IBAction)continueButtonAction:(id)sender {
+    Global *globals = [Global sharedInstance];
     if([self.amountText isEqualToString:@""]) {
-        [self displayAlertView:@"Warning!" :@"Please input transaction amount"];
-    } else {
-        [self performSegueWithIdentifier:@"newtranssactiontoprocesstransaction_segue" sender:self];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese la cantidad a procesar."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please input transaction amount."];
+        }
+        return;
     }
+    if([self.amountText floatValue] > 50000) {
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"La cantidad a procesar debe ser menor a 50,000."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Transaction amount have to be less than 50,000."];
+        }
+        return;
+    }
+    
+    [self performSegueWithIdentifier:@"newtranssactiontoprocesstransaction_segue" sender:self];
 }
 
 - (IBAction)menunewtransctionButtonAction:(id)sender {

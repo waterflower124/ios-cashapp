@@ -425,34 +425,50 @@
 }
 
 - (IBAction)processtransactionButtonAction:(id)sender {
+    Global *globals = [Global sharedInstance];
     self.cardNumber = self.cardNameTextField.text;
     self.cardHolderName = self.cardNameTextField.text;
     self.CVV = self.CVVTextField.text;
     self.descriptiontxt = self.descriptionTextField.text;
     self.expire_date = [NSString stringWithFormat:@"%@%@", self.selected_year, self.selected_month];
     
-    self.cardNumber = @"5564362752814906";
-    self.cardHolderName = @"test holder name";
-    self.CVV = @"281";
+//    self.cardNumber = @"5564362752814906";
+//    self.cardHolderName = @"test holder name";
+//    self.CVV = @"281";
     
     if(self.cardNumber.length < 15 && self.cardNumber.length > 16) {
-        [self displayAlertView:@"Warning@" :@"Card number have to be 15 or 16 characters" :@"nil"];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Su tarjeta de crédito debe tener 15 o 16 dígitos." :@"nil"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Your credit card number must have 15 or 16 digits." :@"nil"];
+        }
         return;
     }
     if(self.cardHolderName.length == 0) {
-        [self displayAlertView:@"Warning!" :@"Please input name." :@"nil"];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese su nombre." :@"nil"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please input name." :@"nil"];
+        }
         return;
     }
     if(self.CVV.length < 3 && self.CVV.length > 4) {
-        [self displayAlertView:@"Warning!" :@"CVV have to be 15 or 16 characters" :@"nil"];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"El CVV debe tener entre 3 a 4 dígitos." :@"nil"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"CVV have to be 3 or 4 characters." :@"nil"];
+        }
         return;
     }
     if([self.selected_year isEqualToString:@""] || [self.selected_month isEqualToString:@""]) {
-        [self displayAlertView:@"Warning!" :@"Please select expire date." :@"nil"];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor seleccione fecha de expiración." :@"nil"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please select expire date." :@"nil"];
+        }
         return;
     }
     
-    Global *globals = [Global sharedInstance];
     
     [self.activityIndicator startAnimating];
     [self.view addSubview:self.overlayView];
@@ -537,24 +553,33 @@
             [self insertTransations:self.transactionAmount :jsonResponse[@"value"] :self.descriptiontxt];
             
         } else {
-            [self displayAlertView:@"Warning" :@"Transaction information is incorrect. Please input valid information" :@"nil"];
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Advertencia!" :@"La información para la transacción es incorrecta. Por favor ingrese información válida." :@"nil"];
+            } else {
+                [self displayAlertView:@"Warning!" :@"Transaction information is incorrect. Please input valid information" :@"nil"];
+            }
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
-        [self displayAlertView:@"Warning" :@"Network error." :@"nil"];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Error de red." :@"nil"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Network error." :@"nil"];
+        }
     }];
     
 }
 
 -(void)insertTransations: (NSString *)total_amount :(NSDictionary *)data :(NSString *)descripton_para {
     Global *globals = [Global sharedInstance];
+    NSLog(@"12345:  %@", total_amount);
     
     [self.activityIndicator startAnimating];
     [self.view addSubview:self.overlayView];
     
     NSDictionary *insertTransactions = @{
-                               @"total_amount": total_amount,
+                               @"total": total_amount,
                                @"ern": data[@"ern"],
                                @"referencia": data[@"reference"],
                                @"fecha": data[@"date_trans"],
@@ -588,21 +613,25 @@
         BOOL status = [jsonResponse[@"status"] boolValue];
         if(status) {
             if(globals.selected_language == 0) {
-                [self displayAlertView:@"¡Felicidades!" :@"Transacción almacenada exitosamente!." :@"transaction_result"];
+                [self displayAlertView:@"¡Felicidades!" :@"Transacción realizada exitosamente!." :@"transaction_result"];
             } else {
-                [self displayAlertView:@"Congratulations!" :@"Transaction saved sucessful!." :@"transaction_result"];
+                [self displayAlertView:@"Congratulations!" :@"Transaction successful!." :@"transaction_result"];
             }
         } else {
             if(globals.selected_language == 0) {
-                [self displayAlertView:@"Advertencia!" :@"Ha ocurrido un error la transacción no fue almacenada. Por favor comuníquese con soporte." :@"nil"];
+                [self displayAlertView:@"¡Advertencia!" :@"Ha ocurrido un error la transacción no fue ejecutada. Por favor comuníquese con soporte." :@"nil"];
             } else {
-                [self displayAlertView:@"Warning!" :@"An error has occurred the transaction no has been saved." :@"nil"];
+                [self displayAlertView:@"Warning!" :@"An error has ocurred during the transaction processing." :@"nil"];
             }
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
-        [self displayAlertView:@"Warning" :@"Network error." :@"nil"];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Error de red." :@"nil"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Network error." :@"nil"];
+        }
     }];
     
 }

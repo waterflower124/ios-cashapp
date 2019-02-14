@@ -24,6 +24,26 @@
 		2329E15621F585FC00CD8EB2 /* ResetPasswordConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2329E15521F585FC00CD8EB2 /* ResetPasswordConfirmViewController.m */; };
 		2329E15921F5B00F00CD8EB2 /* SystemConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2329E15821F5B00F00CD8EB2 /* SystemConfigurationViewController.m */; };
 		2329E15C21F5CFA200CD8EB2 /* InformationComercialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2329E15B21F5CFA200CD8EB2 /* InformationComercialViewController.m */; };
+		2336B2A922160839004CFC67 /* dash_report_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 2336B2A12216082C004CFC67 /* dash_report_sp.png */; };
+		2336B2AA22160839004CFC67 /* dash_users_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 2336B2A22216082E004CFC67 /* dash_users_sp.png */; };
+		2336B2AB22160839004CFC67 /* dash_newuser_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 2336B2A322160830004CFC67 /* dash_newuser_sp.png */; };
+		2336B2AC22160839004CFC67 /* dash_newuser_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 2336B2A422160832004CFC67 /* dash_newuser_en.png */; };
+		2336B2AD22160839004CFC67 /* dash_report_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 2336B2A522160834004CFC67 /* dash_report_en.png */; };
+		2336B2AE22160839004CFC67 /* dash_systemconfig_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 2336B2A622160835004CFC67 /* dash_systemconfig_en.png */; };
+		2336B2AF22160839004CFC67 /* dash_users_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 2336B2A722160836004CFC67 /* dash_users_en.png */; };
+		2336B2B122160985004CFC67 /* dash_systemconfig_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 2336B2B022160983004CFC67 /* dash_systemconfig_sp.png */; };
+		2336B2B62216141A004CFC67 /* dash_canceltransation_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 2336B2B222161413004CFC67 /* dash_canceltransation_sp.png */; };
+		2336B2B72216141A004CFC67 /* dash_canceltransation_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 2336B2B322161414004CFC67 /* dash_canceltransation_en.png */; };
+		2336B2B82216141A004CFC67 /* dash_assignshift_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 2336B2B422161416004CFC67 /* dash_assignshift_en.png */; };
+		2336B2B92216141A004CFC67 /* dash_assignshift_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 2336B2B522161418004CFC67 /* dash_assignshift_sp.png */; };
+		2336B2C222162D5B004CFC67 /* dash3_voidtransaction_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 2336B2BA22162D4D004CFC67 /* dash3_voidtransaction_en.png */; };
+		2336B2C322162D5B004CFC67 /* dash3_endshift_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 2336B2BB22162D4E004CFC67 /* dash3_endshift_en.png */; };
+		2336B2C422162D5B004CFC67 /* dash3_voidtransaction_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 2336B2BC22162D50004CFC67 /* dash3_voidtransaction_sp.png */; };
+		2336B2C522162D5B004CFC67 /* dash3_processtransaction_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 2336B2BD22162D52004CFC67 /* dash3_processtransaction_en.png */; };
+		2336B2C622162D5B004CFC67 /* dash3_endshift_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 2336B2BE22162D53004CFC67 /* dash3_endshift_sp.png */; };
+		2336B2C722162D5B004CFC67 /* dash3_signout_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 2336B2BF22162D55004CFC67 /* dash3_signout_en.png */; };
+		2336B2C822162D5B004CFC67 /* dash3_processtransaction_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 2336B2C022162D57004CFC67 /* dash3_processtransaction_sp.png */; };
+		2336B2C922162D5B004CFC67 /* dash3_signout_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 2336B2C122162D59004CFC67 /* dash3_signout_sp.png */; };
 		2337175D21EA48F4003D7D15 /* user_supervisor_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2337175C21EA48EC003D7D15 /* user_supervisor_icon.png */; };
 		2337176221EA4D6D003D7D15 /* UserListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2337176121EA4D6D003D7D15 /* UserListTableViewCell.m */; };
 		2337176521EA8599003D7D15 /* InsertUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2337176421EA8599003D7D15 /* InsertUserViewController.m */; };
@@ -225,6 +245,26 @@
 		2329E15821F5B00F00CD8EB2 /* SystemConfigurationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SystemConfigurationViewController.m; sourceTree = "<group>"; };
 		2329E15A21F5CFA200CD8EB2 /* InformationComercialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InformationComercialViewController.h; sourceTree = "<group>"; };
 		2329E15B21F5CFA200CD8EB2 /* InformationComercialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InformationComercialViewController.m; sourceTree = "<group>"; };
+		2336B2A12216082C004CFC67 /* dash_report_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dash_report_sp.png; sourceTree = "<group>"; };
+		2336B2A22216082E004CFC67 /* dash_users_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dash_users_sp.png; sourceTree = "<group>"; };
+		2336B2A322160830004CFC67 /* dash_newuser_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dash_newuser_sp.png; sourceTree = "<group>"; };
+		2336B2A422160832004CFC67 /* dash_newuser_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dash_newuser_en.png; sourceTree = "<group>"; };
+		2336B2A522160834004CFC67 /* dash_report_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dash_report_en.png; sourceTree = "<group>"; };
+		2336B2A622160835004CFC67 /* dash_systemconfig_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dash_systemconfig_en.png; sourceTree = "<group>"; };
+		2336B2A722160836004CFC67 /* dash_users_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dash_users_en.png; sourceTree = "<group>"; };
+		2336B2B022160983004CFC67 /* dash_systemconfig_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dash_systemconfig_sp.png; sourceTree = "<group>"; };
+		2336B2B222161413004CFC67 /* dash_canceltransation_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dash_canceltransation_sp.png; sourceTree = "<group>"; };
+		2336B2B322161414004CFC67 /* dash_canceltransation_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dash_canceltransation_en.png; sourceTree = "<group>"; };
+		2336B2B422161416004CFC67 /* dash_assignshift_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dash_assignshift_en.png; sourceTree = "<group>"; };
+		2336B2B522161418004CFC67 /* dash_assignshift_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dash_assignshift_sp.png; sourceTree = "<group>"; };
+		2336B2BA22162D4D004CFC67 /* dash3_voidtransaction_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dash3_voidtransaction_en.png; sourceTree = "<group>"; };
+		2336B2BB22162D4E004CFC67 /* dash3_endshift_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dash3_endshift_en.png; sourceTree = "<group>"; };
+		2336B2BC22162D50004CFC67 /* dash3_voidtransaction_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dash3_voidtransaction_sp.png; sourceTree = "<group>"; };
+		2336B2BD22162D52004CFC67 /* dash3_processtransaction_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dash3_processtransaction_en.png; sourceTree = "<group>"; };
+		2336B2BE22162D53004CFC67 /* dash3_endshift_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dash3_endshift_sp.png; sourceTree = "<group>"; };
+		2336B2BF22162D55004CFC67 /* dash3_signout_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dash3_signout_en.png; sourceTree = "<group>"; };
+		2336B2C022162D57004CFC67 /* dash3_processtransaction_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dash3_processtransaction_sp.png; sourceTree = "<group>"; };
+		2336B2C122162D59004CFC67 /* dash3_signout_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dash3_signout_sp.png; sourceTree = "<group>"; };
 		2337175C21EA48EC003D7D15 /* user_supervisor_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_supervisor_icon.png; sourceTree = "<group>"; };
 		2337176021EA4D6D003D7D15 /* UserListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserListTableViewCell.h; sourceTree = "<group>"; };
 		2337176121EA4D6D003D7D15 /* UserListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserListTableViewCell.m; sourceTree = "<group>"; };
@@ -486,6 +526,26 @@
 		233E549021DFD1B700279DB1 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				2336B2BB22162D4E004CFC67 /* dash3_endshift_en.png */,
+				2336B2BE22162D53004CFC67 /* dash3_endshift_sp.png */,
+				2336B2BD22162D52004CFC67 /* dash3_processtransaction_en.png */,
+				2336B2C022162D57004CFC67 /* dash3_processtransaction_sp.png */,
+				2336B2BF22162D55004CFC67 /* dash3_signout_en.png */,
+				2336B2C122162D59004CFC67 /* dash3_signout_sp.png */,
+				2336B2BA22162D4D004CFC67 /* dash3_voidtransaction_en.png */,
+				2336B2BC22162D50004CFC67 /* dash3_voidtransaction_sp.png */,
+				2336B2B422161416004CFC67 /* dash_assignshift_en.png */,
+				2336B2B522161418004CFC67 /* dash_assignshift_sp.png */,
+				2336B2B322161414004CFC67 /* dash_canceltransation_en.png */,
+				2336B2B222161413004CFC67 /* dash_canceltransation_sp.png */,
+				2336B2A422160832004CFC67 /* dash_newuser_en.png */,
+				2336B2A322160830004CFC67 /* dash_newuser_sp.png */,
+				2336B2A522160834004CFC67 /* dash_report_en.png */,
+				2336B2A12216082C004CFC67 /* dash_report_sp.png */,
+				2336B2A622160835004CFC67 /* dash_systemconfig_en.png */,
+				2336B2B022160983004CFC67 /* dash_systemconfig_sp.png */,
+				2336B2A722160836004CFC67 /* dash_users_en.png */,
+				2336B2A22216082E004CFC67 /* dash_users_sp.png */,
 				23B35E13220F32470064A7A6 /* transationresult_email_icon.png */,
 				23424CB322082D7900314773 /* comercialinfo_sp.png */,
 				23424CB122082D7600314773 /* connectioncredential_sp.png */,
@@ -862,6 +922,7 @@
 				233E552821DFD1B800279DB1 /* Pagadito_0001s_0003_Iniciar-sesión--.png in Resources */,
 				233E550B21DFD1B800279DB1 /* Pagadito_0000s_0007_Guardar-.png in Resources */,
 				233E553E21DFD1B800279DB1 /* Pagadito_0008_Layer-15-copy-2.png in Resources */,
+				2336B2AF22160839004CFC67 /* dash_users_en.png in Resources */,
 				233E552121DFD1B800279DB1 /* Pagadito_0001_Layer-17.png in Resources */,
 				233E553421DFD1B800279DB1 /* Pagadito_0001s_0022_Layer-109.png in Resources */,
 				23B35E14220F32490064A7A6 /* transationresult_email_icon.png in Resources */,
@@ -869,6 +930,7 @@
 				233E54F321DFD1B800279DB1 /* Pagadito_0000s_0000_Layer-48.png in Resources */,
 				233E551621DFD1B800279DB1 /* Pagadito_0000s_0012_Layer-78-copy.png in Resources */,
 				233E551021DFD1B800279DB1 /* Pagadito_0000s_0009_Buscar.png in Resources */,
+				2336B2B72216141A004CFC67 /* dash_canceltransation_en.png in Resources */,
 				233E54F721DFD1B800279DB1 /* Pagadito_0000s_0001_Clear.png in Resources */,
 				233E550A21DFD1B800279DB1 /* Pagadito_0000s_0007_Cerrar-sesión--.png in Resources */,
 				233E552521DFD1B800279DB1 /* Pagadito_0001s_0001_Eliminar.png in Resources */,
@@ -898,25 +960,32 @@
 				233E552621DFD1B800279DB1 /* Pagadito_0001s_0001_Layer-110.png in Resources */,
 				233E552921DFD1B800279DB1 /* Pagadito_0001s_0004_Layer-100.png in Resources */,
 				2337175D21EA48F4003D7D15 /* user_supervisor_icon.png in Resources */,
+				2336B2C222162D5B004CFC67 /* dash3_voidtransaction_en.png in Resources */,
 				233E551421DFD1B800279DB1 /* Pagadito_0000s_0011_4.png in Resources */,
 				233E550821DFD1B800279DB1 /* Pagadito_0000s_0006_Seleccionar.png in Resources */,
 				233E550921DFD1B800279DB1 /* Pagadito_0000s_0007_2.png in Resources */,
 				2345039C21F074140057C772 /* cashierlist_arrow_icon.png in Resources */,
 				2328843A21E4E89000E5E7C1 /* pagadito_0000_logo.png in Resources */,
+				2336B2C922162D5B004CFC67 /* dash3_signout_sp.png in Resources */,
 				233E554121DFD1B800279DB1 /* Pagadito_0015_Layer-6.png in Resources */,
 				233E552321DFD1B800279DB1 /* Pagadito_0001s_0000_Cancelar.png in Resources */,
+				2336B2B92216141A004CFC67 /* dash_assignshift_sp.png in Resources */,
 				233E550021DFD1B800279DB1 /* Pagadito_0000s_0002_Layer-92.png in Resources */,
+				2336B2AC22160839004CFC67 /* dash_newuser_en.png in Resources */,
+				2336B2C722162D5B004CFC67 /* dash3_signout_en.png in Resources */,
 				233E550E21DFD1B800279DB1 /* Pagadito_0000s_0008_3.png in Resources */,
 				23424CB022082C5E00314773 /* connetioncredential_en.png in Resources */,
 				233E550D21DFD1B800279DB1 /* Pagadito_0000s_0007_Ver-transacciones-de-hoy.png in Resources */,
 				3A09262121BAAA5A00333F1A /* Assets.xcassets in Resources */,
 				233E553F21DFD1B800279DB1 /* Pagadito_0011_Configuración.png in Resources */,
+				2336B2A922160839004CFC67 /* dash_report_sp.png in Resources */,
 				233E550F21DFD1B800279DB1 /* Pagadito_0000s_0009_6.png in Resources */,
 				233E552C21DFD1B800279DB1 /* Pagadito_0001s_0007_Layer-26-copy.png in Resources */,
 				233E54F921DFD1B800279DB1 /* Pagadito_0000s_0001_Layer-65.png in Resources */,
 				233E550121DFD1B800279DB1 /* Pagadito_0000s_0003_Layer-89.png in Resources */,
 				233E54F221DFD1B800279DB1 /* Pagadito_0000s_0000_$.png in Resources */,
 				233E554021DFD1B800279DB1 /* Pagadito_0013_Layer-10.png in Resources */,
+				2336B2B62216141A004CFC67 /* dash_canceltransation_sp.png in Resources */,
 				233E552D21DFD1B800279DB1 /* Pagadito_0001s_0007_Layer-88-copy.png in Resources */,
 				233E553C21DFD1B800279DB1 /* Pagadito_0005_$.png in Resources */,
 				233E553621DFD1B800279DB1 /* Pagadito_0002_Continuar--.png in Resources */,
@@ -924,6 +993,7 @@
 				233E551D21DFD1B800279DB1 /* Pagadito_0000s_0035_Layer-88-copy-3.png in Resources */,
 				233E551521DFD1B800279DB1 /* Pagadito_0000s_0012_9.png in Resources */,
 				2356F43D2202F4420011DD42 /* dashboard_report_sp.png in Resources */,
+				2336B2B122160985004CFC67 /* dash_systemconfig_sp.png in Resources */,
 				233E54F421DFD1B800279DB1 /* Pagadito_0000s_0000_Layer-83.png in Resources */,
 				2315460221EEE68B0025E711 /* assignshift_icon.png in Resources */,
 				2356F43E2202F4420011DD42 /* dashboard_voidtransaction_en.png in Resources */,
@@ -932,14 +1002,19 @@
 				2356F44722030A910011DD42 /* dashboard_systemconfig_en.png in Resources */,
 				233E552F21DFD1B800279DB1 /* Pagadito_0001s_0016_Capa-1.png in Resources */,
 				233E553B21DFD1B800279DB1 /* Pagadito_0004_Layer-11-copy-4.png in Resources */,
+				2336B2C622162D5B004CFC67 /* dash3_endshift_sp.png in Resources */,
 				233E552421DFD1B800279DB1 /* Pagadito_0001s_0000_Shape-1-copy.png in Resources */,
 				233E54FE21DFD1B800279DB1 /* Pagadito_0000s_0002_Anular-Transacción-.png in Resources */,
+				2336B2AB22160839004CFC67 /* dash_newuser_sp.png in Resources */,
 				233E54EB21DFD1B800279DB1 /* Pagadito01_0001s_0002_Layer-108.png in Resources */,
 				233E54F021DFD1B800279DB1 /* Pagadito_0000_Ok.png in Resources */,
+				2336B2AA22160839004CFC67 /* dash_users_sp.png in Resources */,
 				233E551821DFD1B800279DB1 /* Pagadito_0000s_0014_Layer-51.png in Resources */,
 				233E550C21DFD1B800279DB1 /* Pagadito_0000s_0007_Layer-91-copy.png in Resources */,
 				233E553021DFD1B800279DB1 /* Pagadito_0001s_0017_Capa-2.png in Resources */,
 				2329E14E21F56ED300CD8EB2 /* reset_password_logo.png in Resources */,
+				2336B2AD22160839004CFC67 /* dash_report_en.png in Resources */,
+				2336B2AE22160839004CFC67 /* dash_systemconfig_en.png in Resources */,
 				233E550221DFD1B800279DB1 /* Pagadito_0000s_0003_Nueva-Transacción--.png in Resources */,
 				23B4A00F21F8B0B400BAAD37 /* cashier_shift_close_icon.png in Resources */,
 				233E551221DFD1B800279DB1 /* Pagadito_0000s_0009_Layer-50.png in Resources */,
@@ -958,8 +1033,11 @@
 				2356F4422202F4420011DD42 /* dashboard_newtransaction_en.png in Resources */,
 				2356F44622030A910011DD42 /* dashboard_systemconfig_sp.png in Resources */,
 				233E550721DFD1B800279DB1 /* Pagadito_0000s_0006_Layer-88.png in Resources */,
+				2336B2C322162D5B004CFC67 /* dash3_endshift_en.png in Resources */,
 				233E553121DFD1B800279DB1 /* Pagadito_0001s_0019_Layer-64.png in Resources */,
+				2336B2B82216141A004CFC67 /* dash_assignshift_en.png in Resources */,
 				233E551F21DFD1B800279DB1 /* Pagadito_0001_Anular.png in Resources */,
+				2336B2C422162D5B004CFC67 /* dash3_voidtransaction_sp.png in Resources */,
 				233E54FA21DFD1B800279DB1 /* Pagadito_0000s_0001_Layer-94.png in Resources */,
 				2315460421EEE7280025E711 /* assignshift_logout_icon.png in Resources */,
 				23424CAF22082C5E00314773 /* voucherconfig_en.png in Resources */,
@@ -970,12 +1048,14 @@
 				233E54F621DFD1B800279DB1 /* Pagadito_0000s_0000s_0014_-Guardar-y-continuar--.png in Resources */,
 				233E552721DFD1B800279DB1 /* Pagadito_0001s_0002_Layer-108.png in Resources */,
 				2356F43C2202F4420011DD42 /* dashboard_report_en.png in Resources */,
+				2336B2C522162D5B004CFC67 /* dash3_processtransaction_en.png in Resources */,
 				233E54EF21DFD1B800279DB1 /* Pagadito_0000_Layer-44.png in Resources */,
 				233E554321DFD1B800279DB1 /* PagaditoR_0000_Layer-17.png in Resources */,
 				233E553A21DFD1B800279DB1 /* Pagadito_0003_Layer-42.png in Resources */,
 				233E551921DFD1B800279DB1 /* Pagadito_0000s_0015_7.png in Resources */,
 				23424CAE22082C5E00314773 /* comercialinfo_en.png in Resources */,
 				2356F4432202F4420011DD42 /* dashboard_newtransaction_sp.png in Resources */,
+				2336B2C822162D5B004CFC67 /* dash3_processtransaction_sp.png in Resources */,
 				233E551C21DFD1B800279DB1 /* Pagadito_0000s_0025_Generar-reporte.png in Resources */,
 				233E54FB21DFD1B800279DB1 /* Pagadito_0000s_0001_Modificar-Búsqueda.png in Resources */,
 				233E54FC21DFD1B800279DB1 /* Pagadito_0000s_0001_Procesar-transacción--.png in Resources */,
@@ -1270,7 +1350,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = WS64S9P2T4;
 				INFOPLIST_FILE = PAGADITO/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1291,7 +1371,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = WS64S9P2T4;
 				INFOPLIST_FILE = PAGADITO/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

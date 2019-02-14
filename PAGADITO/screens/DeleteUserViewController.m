@@ -364,6 +364,8 @@
     [TransV setHidden:YES];
     [deleteAlertView setHidden:YES];
     
+    Global *globals = [Global sharedInstance];
+    
     [self.activityIndicator startAnimating];
     [self.view addSubview:self.overlayView];
     
@@ -394,14 +396,26 @@
         NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&jsonError];
         BOOL status = [jsonResponse[@"status"] boolValue];
         if(status) {
-            [self displayAlertView:@"Success!" :@"User delete succesfully."];
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Éxito!" :@"Usuario eliminado exitosamente."];
+            } else {
+                [self displayAlertView:@"Success!" :@"User delete succesfully."];
+            }
         } else {
-            [self displayAlertView:@"Warning!" :@"There has been an error deleting this user."];
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Advertencia!" :@"Ha ocurrido un error al eliminar este usuario."];
+            } else {
+                [self displayAlertView:@"Warning!" :@"There has been an error deleting this user."];
+            }
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
-        NSLog(@"bbbb %@", error);
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Network error."];
+        }
     }];
     
 }

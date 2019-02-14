@@ -25,7 +25,7 @@
     
     Global *globals = [Global sharedInstance];
     if(globals.selected_language == 0) {
-        self.titleLabel.text = @"Configuración de Sistema";
+        self.titleLabel.text = @"Configurar Sistema";
         [self.comercialinformationButton setImage:[UIImage imageNamed: @"comercialinfo_sp"] forState:UIControlStateNormal];
         [self.conexionButton setImage:[UIImage imageNamed: @"connectioncredential_sp"] forState:UIControlStateNormal];
         [self.voucherconfigButton setImage:[UIImage imageNamed: @"voucherconfig_sp"] forState:UIControlStateNormal];

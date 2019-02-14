@@ -36,10 +36,14 @@
 
 
 @property (weak, nonatomic) IBOutlet UIView *privilidgeID3DashboardView;
-@property (weak, nonatomic) IBOutlet UIImageView *priv3logoImageView;
 @property (weak, nonatomic) IBOutlet UILabel *priv3FullNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priv3CurrentTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priv3ShiftCodeLabel;
+@property (weak, nonatomic) IBOutlet UIButton *priv3ProcessTransactionButton;
+@property (weak, nonatomic) IBOutlet UIButton *priv3VoidTransactionButton;
+@property (weak, nonatomic) IBOutlet UIButton *priv3EndShiftButton;
+@property (weak, nonatomic) IBOutlet UIButton *priv3SignoutButton;
+
 - (IBAction)signoutButtonAction:(id)sender;
 - (IBAction)closeShiftButtonAction:(id)sender;
 
@@ -60,6 +64,7 @@
 - (IBAction)cerraturnoButtonAction:(id)sender;
 - (IBAction)configButtonAction:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *shorcutLabel;
 @property (weak, nonatomic) IBOutlet UILabel *sessioncommentLabel;
 @property (weak, nonatomic) IBOutlet UIButton *contactsupportButton;

@@ -58,12 +58,14 @@
         self.passwordTextField.placeholder = @"Nueva contraseña";
         self.confirmTextField.placeholder = @"Confirmar contraseña";
         [self.saveButton setTitle:@"Guardar" forState:UIControlStateNormal];
+        self.successcommentLabel.text = @"Tu contraseña ha sido reestablecida con éxito";
     } else {
         self.titleLabel.text = @"Reset Password";
         self.commentLabel.text = @"Enter your new password";
         self.passwordTextField.placeholder = @"New Password";
         self.confirmTextField.placeholder = @"Confirm Password";
         [self.saveButton setTitle:@"Save" forState:UIControlStateNormal];
+        self.successcommentLabel.text = @"Your password has been reset successfuly";
     }
     
 }
@@ -77,16 +79,30 @@
     self.passwordText = self.passwordTextField.text;
     self.confirmText = self.confirmTextField.text;
     
+    Global *globals = [Global sharedInstance];
+    
     if(self.passwordText.length == 0) {
-        [self displayAlertView:@"Warning!" :@"Please input new password."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese una nueva contraseña."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please input new password."];
+        }
         return;
     }
     if(self.passwordText.length < 6) {
-        [self displayAlertView:@"Warning!" :@"Password have to be at least 6 characters."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"La contraseña debe tener al menos 6 caracteres."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Password have to be at least 6 characters"];
+        }
         return;
     }
     if(![self.passwordText isEqualToString:self.confirmText]) {
-        [self displayAlertView:@"Warning!" :@"Password does not match."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Las contraseñas no coinciden."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Password does not match."];
+        }
         return;
     }
     
@@ -120,12 +136,20 @@
             [self.TransV setHidden:NO];
             [self.successAlertView setHidden:NO];
         } else {
-            [self displayAlertView:@"Warning!" :@"An error occured. Please contact support."];
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Advertencia!" :@"Ocurrió un error. Por favor contacte a soporte."];
+            } else {
+                [self displayAlertView:@"Warning!" :@"An error occurred. Please contact support."];
+            }
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
-        [self displayAlertView:@"Warning!!" :@"Network error."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Network error."];
+        }
     }];
     
 }

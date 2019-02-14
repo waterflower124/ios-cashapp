@@ -18,8 +18,8 @@
 @synthesize dataTransaction;
 @synthesize SidePanel, TransV;
 @synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
-@synthesize dateLabel, transactionamountLabel, fullnameLabel, cardnumberLabel, emailTextField, userInfoLabel;
-@synthesize titleLabel, successcommentLabel, detailsLabel, fullnamecommentLabel, cardnumbercommentLabel, signcommentLabel, userInfocommentLabel, mainnewtransButton, maincanceltransButton, signatureclearButton, submitemailButton;
+@synthesize dateLabel, transactionamountLabel, fullnameLabel, cardnumberLabel, emailTextField, userInfoLabel, signatureView;
+@synthesize titleLabel, successcommentLabel, detailsLabel, fullnamecommentLabel, cardnumbercommentLabel, signcommentLabel, userInfocommentLabel, mainnewtransButton, maincanceltransButton, submitemailButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,7 +38,7 @@
         self.userInfocommentLabel.text = @"Sesión iniciada:";
         [self.mainnewtransButton setTitle:@"Nueva Transacción" forState:UIControlStateNormal];
         [self.maincanceltransButton setTitle:@"Anular Transacción" forState:UIControlStateNormal];
-        [self.signatureclearButton setTitle:@"clara" forState:UIControlStateNormal];
+//        [self.signatureclearButton setTitle:@"clara" forState:UIControlStateNormal];
         [self.submitemailButton setTitle:@"Enviar E-Mail" forState:UIControlStateNormal];
     } else {
         self.titleLabel.text = @"Transaction Result";
@@ -52,7 +52,7 @@
         self.userInfocommentLabel.text = @"Session started:";
         [self.mainnewtransButton setTitle:@"New Transaction" forState:UIControlStateNormal];
         [self.maincanceltransButton setTitle:@"Cancel Transaction" forState:UIControlStateNormal];
-        [self.signatureclearButton setTitle:@"clear" forState:UIControlStateNormal];
+//        [self.signatureclearButton setTitle:@"clear" forState:UIControlStateNormal];
         [self.submitemailButton setTitle:@"Submit E-Mail" forState:UIControlStateNormal];
     }
     
@@ -313,18 +313,39 @@
     [self performSegueWithIdentifier:@"transactionresulttowelcome_segue" sender:self];
 }
 
+- (IBAction)signatureViewClearButtonAction:(id)sender {
+    [self.signatureView.path removeAllPoints];
+    [self.signatureView setNeedsDisplay];
+    Global *globals = [Global sharedInstance];
+    globals.signatureStatus = false;
+}
+
 - (IBAction)emailSendButtonAction:(id)sender {
     Global *globals = [Global sharedInstance];
     
     NSString *email = self.emailTextField.text;
     
     if(!globals.signatureStatus) {
-        [self displayAlertView:@"Warning!" :@"Please sign with your name." :@"nil"];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor firme en el espacio indicado." :@"nil"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please sign with your name." :@"nil"];
+        }
     } else if([email isEqualToString:@""]) {
-        [self displayAlertView:@"Warning!" :@"Please input your email address." :@"nil"];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese su dirección email." :@"nil"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please input your email address." :@"nil"];
+        }
     } else {
+        UIGraphicsBeginImageContextWithOptions(self.signatureView.bounds.size, self.signatureView.opaque, 0.0);
+        [self.signatureView.layer renderInContext:UIGraphicsGetCurrentContext()];
+        UIImage *signatureImg = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
         /*
          request to server
+         [self.signatureView.path removeAllPoints];
+         [self.signatureView setNeedsDisplay];
          globals.signatureStatus = false;
          */
     }
@@ -341,5 +362,6 @@
     [alert addAction:actionOK];
     [self presentViewController:alert animated:YES completion:nil];
 }
+
 
 @end

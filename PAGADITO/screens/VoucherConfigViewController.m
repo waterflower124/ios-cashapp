@@ -31,7 +31,7 @@
     
     Global *globals = [Global sharedInstance];
     if(globals.selected_language == 0) {
-        self.titleLabel.text = @"Configuración Voucher";
+        self.titleLabel.text = @"Configurar Voucher";
         self.customemessagecommentLabel.text = @"Mensaje Personalizado";
         self.charcountcommentLabel.text = @"(150 carácteres)";
         [self.saveButton setTitle:@"Guardar" forState:UIControlStateNormal];
@@ -268,6 +268,9 @@
 }
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
+    
+    Global *globals = [Global sharedInstance];
+    
     UIImage *selectedImage = info[UIImagePickerControllerEditedImage];
     self.logoImageView.image = selectedImage;
     [picker dismissViewControllerAnimated:YES completion:nil];
@@ -288,7 +291,11 @@
         globals.logo_imagePath = fileName;
         NSLog(@"qwqwqwqw:  %@", globals.logo_imagePath);
     } else {
-        [self displayAlertView:@"Warning!" :@"Logo Image have to be less than 2MB. Please select another image"];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"El tamaño de la imagen de logo debe ser menor a 2MB. Por favor seleccione otra imagen."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Logo Image have to be less than 2MB. Please select another image."];
+        }
     }
 }
 
@@ -327,18 +334,28 @@
 
 - (IBAction)saveButtonAction:(id)sender {
     self.mensajeVoucherText = self.mensajeVoucherTextField.text;
+    
+    Global *globals = [Global sharedInstance];
+    
     if(self.mensajeVoucherText.length == 0) {
-        [self displayAlertView:@"Warning!" :@"Please input message."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese un mensaje."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please input message."];
+        }
         return;
     }
     if(self.mensajeVoucherText.length > 150) {
-        [self displayAlertView:@"Warning!" :@"Message have to be less than 150 characters."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"El mensaje debe ser inferior a 150 caracteres."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Message have to be less than 150 characters."];
+        }
     }
     
     [self.activityIndicator startAnimating];
     [self.view addSubview:self.overlayView];
     
-    Global *globals = [Global sharedInstance];
     NSDictionary *mensajeVoucher = @{
                                   @"mensajeVoucher": self.mensajeVoucherText,
                                   @"userModification": globals.username,
@@ -367,14 +384,26 @@
         BOOL status = [jsonResponse[@"status"] boolValue];
         if(status) {
             globals.mensajeVoucher = self.mensajeVoucherText;
-            [self displayAlertView:@"Success!" :@"UPDATE SUCCESSFUL!"];
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Éxito!" :@"¡ACTUALIZACIÓN EXITOSA!"];
+            } else {
+                [self displayAlertView:@"Success!" :@"UPDATE SUCCESSFUL!"];
+            }
         } else {
-            [self displayAlertView:@"Warning!" :@"FAILED UPDATE. PLEASE CONTACT SUPPORT!"];
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Advertencia!" :@"No se pudo guardar. Por favor contacte  a soporte"];
+            } else {
+                [self displayAlertView:@"Warning!" :@"FAILED UPDATE. PLEASE CONTACT SUPPORT!"];
+            }
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
-        [self displayAlertView:@"Warning!!" :@"Network error."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Network error."];
+        }
     }];
 }
 

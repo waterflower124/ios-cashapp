@@ -66,9 +66,14 @@
 }
 
 - (IBAction)continueButtonAction:(id)sender {
+    Global *globals = [Global sharedInstance];
     self.wskText = self.wskTextField.text;
     if(self.wskText.length == 0) {
-        [self displayAlertView:@"Warning!" :@"Please input WSK for your account"];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingresa un WSK para tu cuenta."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please input WSK for your account."];
+        }
         return;
     }
     
@@ -108,7 +113,11 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
-        [self displayAlertView:@"Warning!!" :@"Network error."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Network error."];
+        }
     }];
 }
 

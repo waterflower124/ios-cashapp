@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITableView *transactionTableView;
 
 - (IBAction)menuButtonAction:(id)sender;
+- (IBAction)backButtonAction:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIButton *homeButton;
 @property (weak, nonatomic) IBOutlet UIButton *reportButton;

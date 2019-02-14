@@ -14,6 +14,9 @@
 #import "screens/ShiftListViewController.h"
 #import "AFNetworking.h"
 #import "screens/SystemConfigurationViewController.h"
+#import "screens/ReportViewController.h"
+#import "screens/InsertUserViewController.h"
+#import "screens/CancelTransactionViewController.h"
 
 @interface SecondViewController ()
 @property(strong, nonatomic)NSString *userFullNameText;
@@ -30,10 +33,10 @@
 @synthesize DashboardButton1, DashboardButton2, DashboardButton3, DashboardButton4;
 
 @synthesize privilidgeID3DashboardView;
-@synthesize priv3logoImageView, priv3FullNameLabel, priv3CurrentTimeLabel, priv3ShiftCodeLabel;
+@synthesize priv3FullNameLabel, priv3CurrentTimeLabel, priv3ShiftCodeLabel, priv3ProcessTransactionButton, priv3VoidTransactionButton, priv3EndShiftButton, priv3SignoutButton;
 
 @synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton, cerraturnoButton;
-@synthesize shorcutLabel, sessioncommentLabel, contactsupportButton, signoutButton;
+@synthesize titleLabel, shorcutLabel, sessioncommentLabel, contactsupportButton, signoutButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,14 +46,17 @@
     [TransV addGestureRecognizer:tapper];
     
     Global *globals = [Global sharedInstance];
+//    globals.selected_language = 0;
     // user full name label setting
     if(globals.selected_language == 0) {
+        self.titleLabel.text = @"Incio";
         self.userFullNameText = [NSString stringWithFormat:@"¡Bienvenido, %@!", globals.nombreCompleto];
         self.shorcutLabel.text = @"Atajos";
         self.sessioncommentLabel.text = @"Sesión iniciada:";
         [self.contactsupportButton setTitle:@"Contactar a soporte" forState:UIControlStateNormal];
         [self.signoutButton setTitle:@"Cerrar Sesión" forState:UIControlStateNormal];
     } else {
+        self.titleLabel.text = @"Home";
         self.userFullNameText = [NSString stringWithFormat:@"Welcome, %@!", globals.nombreCompleto];
          self.shorcutLabel.text = @"Shortcuts";
         self.sessioncommentLabel.text = @"Session started:";
@@ -86,15 +92,15 @@
     //set dashborad buttons background image according to priviledge ID
     if([globals.idPrivilegio isEqualToString:@"1"]) {
         if(globals.selected_language == 0) {
-            [DashboardButton1 setImage:[UIImage imageNamed: @"dashboard_report_sp"] forState:UIControlStateNormal];
-            [DashboardButton2 setImage:[UIImage imageNamed: @"dashboard_systemconfig_sp"] forState:UIControlStateNormal];
-            [DashboardButton3 setImage:[UIImage imageNamed: @"dashboard_voidtransaction_sp"] forState:UIControlStateNormal];
-            [DashboardButton4 setImage:[UIImage imageNamed: @"dashboard_user_sp"] forState:UIControlStateNormal];
+            [DashboardButton1 setImage:[UIImage imageNamed: @"dash_report_sp"] forState:UIControlStateNormal];
+            [DashboardButton2 setImage:[UIImage imageNamed: @"dash_systemconfig_sp"] forState:UIControlStateNormal];
+            [DashboardButton3 setImage:[UIImage imageNamed: @"dash_newuser_sp"] forState:UIControlStateNormal];
+            [DashboardButton4 setImage:[UIImage imageNamed: @"dash_users_sp"] forState:UIControlStateNormal];
         } else {
-            [DashboardButton1 setImage:[UIImage imageNamed: @"dashboard_report_en"] forState:UIControlStateNormal];
-            [DashboardButton2 setImage:[UIImage imageNamed: @"dashboard_systemconfig_en"] forState:UIControlStateNormal];
-            [DashboardButton3 setImage:[UIImage imageNamed: @"dashboard_voidtransaction_en"] forState:UIControlStateNormal];
-            [DashboardButton4 setImage:[UIImage imageNamed: @"dashboard_user_en"] forState:UIControlStateNormal];
+            [DashboardButton1 setImage:[UIImage imageNamed: @"dash_report_en"] forState:UIControlStateNormal];
+            [DashboardButton2 setImage:[UIImage imageNamed: @"dash_systemconfig_en"] forState:UIControlStateNormal];
+            [DashboardButton3 setImage:[UIImage imageNamed: @"dash_newuser_en"] forState:UIControlStateNormal];
+            [DashboardButton4 setImage:[UIImage imageNamed: @"dash_users_en"] forState:UIControlStateNormal];
         }
         
         ///////  side menu button config   ////////////
@@ -138,15 +144,15 @@
     } else if([globals.idPrivilegio isEqualToString:@"2"]) {
         
         if(globals.selected_language == 0) {
-            [DashboardButton1 setImage:[UIImage imageNamed: @"dashboard_report_sp"] forState:UIControlStateNormal];
-            [DashboardButton2 setImage:[UIImage imageNamed: @"dashboard_assignshift_sp"] forState:UIControlStateNormal];
-            [DashboardButton3 setImage:[UIImage imageNamed: @"dashboard_voidtransaction_sp"] forState:UIControlStateNormal];
-            [DashboardButton4 setImage:[UIImage imageNamed: @"dashboard_user_sp"] forState:UIControlStateNormal];
+            [DashboardButton1 setImage:[UIImage imageNamed: @"dash_report_sp"] forState:UIControlStateNormal];
+            [DashboardButton2 setImage:[UIImage imageNamed: @"dash_assignshift_sp"] forState:UIControlStateNormal];
+            [DashboardButton3 setImage:[UIImage imageNamed: @"dash_canceltransation_sp"] forState:UIControlStateNormal];
+            [DashboardButton4 setImage:[UIImage imageNamed: @"dash_users_sp"] forState:UIControlStateNormal];
         } else {
-            [DashboardButton1 setImage:[UIImage imageNamed: @"dashboard_report_en"] forState:UIControlStateNormal];
-            [DashboardButton2 setImage:[UIImage imageNamed: @"dashboard_assignshift_sp"] forState:UIControlStateNormal];
-            [DashboardButton3 setImage:[UIImage imageNamed: @"dashboard_voidtransaction_en"] forState:UIControlStateNormal];
-            [DashboardButton4 setImage:[UIImage imageNamed: @"dashboard_user_en"] forState:UIControlStateNormal];
+            [DashboardButton1 setImage:[UIImage imageNamed: @"dash_report_en"] forState:UIControlStateNormal];
+            [DashboardButton2 setImage:[UIImage imageNamed: @"dash_assignshift_en"] forState:UIControlStateNormal];
+            [DashboardButton3 setImage:[UIImage imageNamed: @"dash_canceltransation_en"] forState:UIControlStateNormal];
+            [DashboardButton4 setImage:[UIImage imageNamed: @"dash_users_en"] forState:UIControlStateNormal];
         }
         
         
@@ -197,14 +203,16 @@
         ///////////////////////////////
         
     } else if([globals.idPrivilegio isEqualToString:@"3"]) {
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        BOOL isFileExist = [fileManager fileExistsAtPath:globals.logo_imagePath];
-        UIImage *logo_image;
-        if(isFileExist) {
-            logo_image = [[UIImage alloc] initWithContentsOfFile:globals.logo_imagePath];
-            priv3logoImageView.image = logo_image;
+        if(globals.selected_language == 0) {
+            [self.priv3ProcessTransactionButton setImage:[UIImage imageNamed: @"dash3_processtransaction_sp"] forState:UIControlStateNormal];
+            [self.priv3VoidTransactionButton setImage:[UIImage imageNamed: @"dash3_voidtransaction_sp"] forState:UIControlStateNormal];
+            [self.priv3EndShiftButton setImage:[UIImage imageNamed: @"dash3_endshift_sp"] forState:UIControlStateNormal];
+            [self.priv3SignoutButton setImage:[UIImage imageNamed: @"dash3_signout_sp"] forState:UIControlStateNormal];
         } else {
-            priv3logoImageView.image = [UIImage imageNamed:@"pagadito_0000_logo.png"];
+            [self.priv3ProcessTransactionButton setImage:[UIImage imageNamed: @"dash3_processtransaction_en"] forState:UIControlStateNormal];
+            [self.priv3VoidTransactionButton setImage:[UIImage imageNamed: @"dash3_voidtransaction_en"] forState:UIControlStateNormal];
+            [self.priv3EndShiftButton setImage:[UIImage imageNamed: @"dash3_endshift_en"] forState:UIControlStateNormal];
+            [self.priv3SignoutButton setImage:[UIImage imageNamed: @"dash3_signout_en"] forState:UIControlStateNormal];
         }
         priv3FullNameLabel.text = [NSString stringWithFormat:@"Welcome, %@!", globals.nombreCompleto];
         priv3CurrentTimeLabel.text = self.dateTimeLabelText;
@@ -252,14 +260,14 @@
     } else if([globals.idPrivilegio isEqualToString:@"4"]) {
         
         if(globals.selected_language == 0) {
-            [DashboardButton1 setImage:[UIImage imageNamed: @"dashboard_report_sp"] forState:UIControlStateNormal];
-            [DashboardButton2 setImage:[UIImage imageNamed: @"dashboard_user_sp"] forState:UIControlStateNormal];
-            [DashboardButton3 setImage:[UIImage imageNamed: @"dashboard_voidtransaction_sp"] forState:UIControlStateNormal];
+            [DashboardButton1 setImage:[UIImage imageNamed: @"dash_report_sp"] forState:UIControlStateNormal];
+            [DashboardButton2 setImage:[UIImage imageNamed: @"dash_users_sp"] forState:UIControlStateNormal];
+            [DashboardButton3 setImage:[UIImage imageNamed: @"dash_canceltransation_sp"] forState:UIControlStateNormal];
             [DashboardButton4 setImage:[UIImage imageNamed: @"dashboard_newtransaction_sp"] forState:UIControlStateNormal];
         } else {
-            [DashboardButton1 setImage:[UIImage imageNamed: @"dashboard_report_en"] forState:UIControlStateNormal];
-            [DashboardButton2 setImage:[UIImage imageNamed: @"dashboard_user_en"] forState:UIControlStateNormal];
-            [DashboardButton3 setImage:[UIImage imageNamed: @"dashboard_voidtransaction_en"] forState:UIControlStateNormal];
+            [DashboardButton1 setImage:[UIImage imageNamed: @"dash_report_en"] forState:UIControlStateNormal];
+            [DashboardButton2 setImage:[UIImage imageNamed: @"dash_users_en"] forState:UIControlStateNormal];
+            [DashboardButton3 setImage:[UIImage imageNamed: @"dash_canceltransation_en"] forState:UIControlStateNormal];
             [DashboardButton4 setImage:[UIImage imageNamed: @"dashboard_newtransaction_en"] forState:UIControlStateNormal];
         }
         
@@ -375,11 +383,11 @@
 - (IBAction)DashboardButton1Action:(id)sender {
     Global *globals = [Global sharedInstance];
     if([globals.idPrivilegio isEqualToString:@"1"]) {
-        
+        [self performSegueWithIdentifier:@"hometoreport_segue" sender:self];
     } else if([globals.idPrivilegio isEqualToString:@"2"]) {
-        
+        [self performSegueWithIdentifier:@"hometoreport_segue" sender:self];
     } else if([globals.idPrivilegio isEqualToString:@"4"]) {
-        
+        [self performSegueWithIdentifier:@"hometoreport_segue" sender:self];
     }
 }
 
@@ -397,11 +405,11 @@
 - (IBAction)DashboardButton3Action:(id)sender {
     Global *globals = [Global sharedInstance];
     if([globals.idPrivilegio isEqualToString:@"1"]) {
-        
+        [self performSegueWithIdentifier:@"hometoinsertuser_segue" sender:self];
     } else if([globals.idPrivilegio isEqualToString:@"2"]) {
-        
+        [self performSegueWithIdentifier:@"hometocanceltransaction_segue" sender:self];
     } else if([globals.idPrivilegio isEqualToString:@"4"]) {
-        
+        [self performSegueWithIdentifier:@"hometocanceltransaction_segue" sender:self];
     }
 }
 
@@ -433,6 +441,15 @@
     } else if([segue.identifier isEqualToString:@"hometoconfigure_segue"]) {
         SystemConfigurationViewController *SystemConfigurationVC;
         SystemConfigurationVC = [segue destinationViewController];
+    } else if([segue.identifier isEqualToString:@"hometoreport_segue"]) {
+        ReportViewController *ReportVC;
+        ReportVC = [segue destinationViewController];
+    } else if([segue.identifier isEqualToString:@"hometoinsertuser_segue"]) {
+        InsertUserViewController *InserUserVC;
+        InserUserVC = [segue destinationViewController];
+    } else if([segue.identifier isEqualToString:@"hometocanceltransaction_segue"]) {
+        CancelTransactionViewController *CancelTransactionVC;
+        CancelTransactionVC = [segue destinationViewController];
     }
 }
 
@@ -502,13 +519,21 @@
         if(status) {
             [self performSegueWithIdentifier:@"hometowelcome_segue" sender:self];
         } else {
-            [self displayAlertView:@"Notice!" :@"An error has occurred. Please contact support" :@"fail"];
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Advertencia!" :@"Ocurrió un error. Por favor contacte a soporte." :@"fail"];
+            } else {
+               [self displayAlertView:@"Warning!" :@"An error has occurred. Please contact support." :@"fail"];
+            }
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
-        [self displayAlertView:@"Warning!" :@"Network error." :@"network error"];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Error de red." :@"network error"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Network error." :@"network error"];
+        }
     }];
 }
 

@@ -61,12 +61,21 @@
     NSString *emailText = emailTextFiled.text;
     NSString *passwordText = passwordTextField.text;
     if((emailText.length == 0) || (passwordText.length == 0)) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning!" message:@"Please insert email and password." preferredStyle:UIAlertControllerStyleAlert];
-        UIApplication *actionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            NSLog(@"OK action");
-        }];
-        [alert addAction:actionOK];
-        [self presentViewController:alert animated:YES completion:nil];
+        if(globals.selected_language == 0) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"¡Advertencia!" message:@"Por favor ingrese su email y contraseña." preferredStyle:UIAlertControllerStyleAlert];
+            UIApplication *actionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                NSLog(@"OK action");
+            }];
+            [alert addAction:actionOK];
+            [self presentViewController:alert animated:YES completion:nil];
+        } else {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning!" message:@"Please insert your email and password." preferredStyle:UIAlertControllerStyleAlert];
+            UIApplication *actionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                NSLog(@"OK action");
+            }];
+            [alert addAction:actionOK];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
         return;
     }
     
@@ -124,17 +133,40 @@
 //            [self presentViewController:dvc animated:YES completion:nil];
             
         } else {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning!" message:@"Incorrect email or password" preferredStyle:UIAlertControllerStyleAlert];
+            if(globals.selected_language == 0) {
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"¡Advertencia!" message:@"Email o Contraseña Incorrectos" preferredStyle:UIAlertControllerStyleAlert];
+                UIApplication *actionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    NSLog(@"OK action");
+                }];
+                [alert addAction:actionOK];
+                [self presentViewController:alert animated:YES completion:nil];
+            } else {
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning!" message:@"Incorrect email or password" preferredStyle:UIAlertControllerStyleAlert];
+                UIApplication *actionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    NSLog(@"OK action");
+                }];
+                [alert addAction:actionOK];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [self.activityIndicator stopAnimating];
+        [self.overlayView removeFromSuperview];
+        if(globals.selected_language == 0) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"¡Advertencia!" message:@"Error de red." preferredStyle:UIAlertControllerStyleAlert];
+            UIApplication *actionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                NSLog(@"OK action");
+            }];
+            [alert addAction:actionOK];
+            [self presentViewController:alert animated:YES completion:nil];
+        } else {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning!" message:@"Networking error." preferredStyle:UIAlertControllerStyleAlert];
             UIApplication *actionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 NSLog(@"OK action");
             }];
             [alert addAction:actionOK];
             [self presentViewController:alert animated:YES completion:nil];
         }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [self.activityIndicator stopAnimating];
-        [self.overlayView removeFromSuperview];
-        NSLog(@"bbbb %@", error);
     }];
     
 }

@@ -61,7 +61,6 @@
     globals.signatureStatus = false;
 }
 
-
 - (IBAction)clearButtonAction:(id)sender {
     [self.path removeAllPoints];
     [self setNeedsDisplay];

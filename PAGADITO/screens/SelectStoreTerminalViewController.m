@@ -255,7 +255,11 @@ bool isTerminal_name = false;
 - (IBAction)continueButtonAction:(id)sender {
     Global *globals = [Global sharedInstance];
     if(!globals.office_id.length) {
-        [self displayAlertView:@"Warning!" :@"Please select one of the Offices."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor seleccione una sucursal."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please select a store."];
+        }
     } else {
         [self performSegueWithIdentifier:@"logintoselect_segue" sender:nil];
         NSLog(@"ggggggg:%@", self.store_list);

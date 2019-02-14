@@ -42,6 +42,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     //////  init transaction array  //////
     self.transactionArray = [[NSMutableArray alloc] init];
     self.canceled_index = -1;
@@ -265,6 +266,7 @@
         [self.newtransactionButton addSubview:newtransactiolineView];
     }
     
+    
     ////////   get transactions  /////////
     [self.activityIndicator startAnimating];
     [self.view addSubview:self.overlayView];
@@ -278,6 +280,7 @@
                                @"branch_office_id": globals.branchid,
                                @"terminal_id": globals.terminalid
                                };
+
     NSError *error;
     NSData *credentialsPostData = [NSJSONSerialization dataWithJSONObject:credentials options:0 error:&error];
     NSString *credentialsString = [[NSString alloc]initWithData:credentialsPostData encoding:NSUTF8StringEncoding];
@@ -314,7 +317,11 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
-        [self displayAlertView:@"Warning!" :@"Network error."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Network error."];
+        }
         NSLog(@"errororororor");
     }];
     ////////////
@@ -538,12 +545,23 @@ bool xmlTransaction_reference = false;
 - (IBAction)removeButtonAction:(id)sender {
     NSString *email = self.emailTextField.text;
     NSString *reasontext = self.reasonTextField.text;
+    
+    Global *globals = [Global sharedInstance];
+    
     if([email isEqualToString:@""]) {
-        [self displayAlertView:@"Warning!" :@"Please input email."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese Email."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please input email."];
+        }
         return;
     }
     if([reasontext isEqualToString:@""]) {
-        [self displayAlertView:@"Warning!" :@"Please input reason"];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese razón"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please input reason"];
+        }
         return;
     }
     
@@ -553,7 +571,7 @@ bool xmlTransaction_reference = false;
     [self.activityIndicator startAnimating];
     [self.view addSubview:self.overlayView];
     
-    Global *globals = [Global sharedInstance];
+    
     NSDictionary *credentials = @{
                                   @"uid": globals.login_uid,
                                   @"wsk": globals.login_wsk,
@@ -593,8 +611,11 @@ bool xmlTransaction_reference = false;
         } else {
             [self.transactionArray insertObject:self.canceled_transaction atIndex:self.canceled_index];
             [self.transactionTableView reloadData];
-            
-            [self displayAlertView:@"Warning!" :@"An error has occured. Please contact support."];
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Advertencia!" :@"Ocurrió un error. Por favor contacte a soporte."];
+            } else {
+                [self displayAlertView:@"Warning!" :@"An error has occured. Please contact support."];
+            }
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.transactionArray insertObject:self.canceled_transaction atIndex:self.canceled_index];
@@ -602,7 +623,11 @@ bool xmlTransaction_reference = false;
         
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
-        [self displayAlertView:@"Warning!" :@"Network error."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Network error."];
+        }
     }];
 }
 
@@ -648,8 +673,11 @@ bool xmlTransaction_reference = false;
         } else {
             [self.transactionArray insertObject:self.canceled_transaction atIndex:self.canceled_index];
             [self.transactionTableView reloadData];
-            
-            [self displayAlertView:@"Warning!" :@"An error has occurred the void transaction and no has been saved. Please contact support."];
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Advertencia!" :@"Ha ocurrido un error al cancelar la transacción. Por favor contacte a soporte."];
+            } else {
+                [self displayAlertView:@"Warning!" :@"An error has occurred when canceling transaction. Please contact support."];
+            }
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.transactionArray insertObject:self.canceled_transaction atIndex:self.canceled_index];
@@ -657,7 +685,11 @@ bool xmlTransaction_reference = false;
         
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
-        [self displayAlertView:@"Warning" :@"Network error."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Network error."];
+        }
     }];
 }
 
@@ -718,12 +750,20 @@ bool xmlTransaction_reference = false;
         NSLog(@"2222222:   %@", jsonResponse);
         BOOL status = [jsonResponse[@"status"] boolValue];
         if(status) {
-            [self displayAlertView:@"Success!" :@"Voucher sent successfully!."];
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Éxito!" :@"Voucher enciado satisfactoriamente!"];
+            } else {
+                [self displayAlertView:@"Success!" :@"Voucher sent successfully!"];
+            }
         } else {
             [self.transactionArray insertObject:self.canceled_transaction atIndex:self.canceled_index];
             [self.transactionTableView reloadData];
             
-            [self displayAlertView:@"Warning!" :@"An error has occurred the void transaction and no has been saved. Please contact support."];
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Advertencia!" :@"Ha ocurrido un error al cancelar la transacción. Por favor contacte a soporte."];
+            } else {
+                [self displayAlertView:@"Warning!" :@"An error has occurred when canceling transaction. Please contact support."];
+            }
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.transactionArray insertObject:self.canceled_transaction atIndex:self.canceled_index];
@@ -731,7 +771,11 @@ bool xmlTransaction_reference = false;
         
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
-        [self displayAlertView:@"Warning" :@"Network error."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Network error."];
+        }
     }];
 }
 

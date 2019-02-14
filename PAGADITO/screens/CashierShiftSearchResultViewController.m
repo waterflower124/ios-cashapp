@@ -266,10 +266,18 @@
                 self.shiftarrayCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)jsonArray.count];
                 [self.shiftListTableView reloadData];
             } else {
-                [self displayAlertView:@"Notice" :@"There is no shifts."];
+                if(globals.selected_language == 0) {
+                    [self displayAlertView:@"¡Advertencia!" :@"No existen turnos."];
+                } else {
+                    [self displayAlertView:@"Warning!" :@"There is no shifts."];
+                }
             }
         } else {
-            [self displayAlertView:@"Notice" :@"There is no shifts."];
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Advertencia!" :@"No existen turnos."];
+            } else {
+                [self displayAlertView:@"Warning!" :@"There is no shifts."];
+            }
 //            [self displayAlertView:@"Warning!" :@"An error occured. Please contact support."];
         }
         
@@ -277,7 +285,11 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
-        [self displayAlertView:@"Warning!" :@"Network error."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Network error."];
+        }
     }];
     ////////////
 }

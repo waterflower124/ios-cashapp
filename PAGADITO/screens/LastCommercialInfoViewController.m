@@ -123,19 +123,23 @@
 }
 
 - (IBAction)continueButtonAction:(id)sender {
+    Global *globals = [Global sharedInstance];
     self.commercialName = commercialNameTextField.text;
     self.commercialNumber = commercialNumberTextField.text;
     self.commercialEmail = commercialEmailTextField.text;
     self.terminalName = terminalNameTextField.text;
     if((self.commercialName.length == 0) || (self.commercialName.length == 0) || (self.commercialName.length == 0) || (self.commercialName.length == 0) || (self.currencyUnit.length == 0)) {
-        [self displayAlertView:@"Warning!" :@"Please fill all of the fields."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor llene todos los campos." : @"nil"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please fill all of data." : @"nil"];
+        }
         return;
     } else {
         
         [self.activityIndicator startAnimating];
         [self.view addSubview:self.overlayView];
         
-        Global *globals = [Global sharedInstance];
         NSDictionary *comercio = @{
                                       @"uid": globals.uid,
                                       @"wsk": globals.wsk,
@@ -145,6 +149,7 @@
                                       @"emailComercio": self.commercialEmail,
                                       @"numeroRegistro": self.commercialNumber
                                       };
+
         NSDictionary *dispositivo = @{
                                            @"nombreTerminal": self.terminalName,
                                            @"branchid": globals.office_id,
@@ -158,10 +163,13 @@
                                            @"versionSOInstalacion": self.osVersion
                                            };
         
+        NSLog(@"comercio:  %@", comercio);
+        NSLog(@"dispositivo:  %@", dispositivo);
+        NSLog(@"infoUsuario:  %@", infoUsuario);
+        
         NSError *error;
         NSData *infoUsuarioData = [NSJSONSerialization dataWithJSONObject:infoUsuario options:0 error:&error];
         NSString *infoUsuarioString = [[NSString alloc]initWithData:infoUsuarioData encoding:NSUTF8StringEncoding];
-        
         NSDictionary *param = @{
                                     @"comercio": comercio,
                                     @"dispositivo": dispositivo,
@@ -189,15 +197,27 @@
             NSLog(@"%@", jsonResponse);
             BOOL status = [jsonResponse[@"status"] boolValue];
             if(status) {
-                [self displayAlertView:@"Congratulations!" :@"INSTALLATION SUCCESSFUL!"];
+                if(globals.selected_language == 0) {
+                    [self displayAlertView:@"¡Felicidades!" :@"Instalación realizada exitosamente, Ahora inicia sesión con tu usuario." : @"success"];
+                } else {
+                    [self displayAlertView:@"Congratulations!" :@"Installation Successful. Now you can login with your username and password." : @"success"];
+                }
             } else {
-                [self displayAlertView:@"Warning!" :@"FAILED INSTALLATION, CONTACT SUPPORT!"];
+                if(globals.selected_language == 0) {
+                    [self displayAlertView:@"¡Advertencia!" :@"FAILED INSTALLATION, CONTACT SUPPORT!" : @"nil"];
+                } else {
+                    [self displayAlertView:@"Warning!" :@"INSTALACIÓN FALLIDA, CONTACTE A SOPORTE!" : @"nil"];
+                }
             }
 
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [self.activityIndicator stopAnimating];
             [self.overlayView removeFromSuperview];
-            [self displayAlertView:@"Warning!" :@"Network error!"];
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Advertencia!!" :@"Network error!" : @"nil"];
+            } else {
+               [self displayAlertView:@"Warning!" :@"Error de red!" : @"nil"];
+            }
         }];
         
     }
@@ -265,7 +285,7 @@
         Global *globals = [Global sharedInstance];
         globals.logo_imagePath = fileName;
     } else {
-        [self displayAlertView:@"Warning!" :@"Logo Image have to be less than 2MB. Please select another image"];
+        [self displayAlertView:@"Warning!" :@"Logo Image have to be less than 2MB. Please select another image" : @"nil"];
     }
 }
 
@@ -289,11 +309,11 @@
     [currencyTableView setHidden:YES ];
 }
 
--(void)displayAlertView: (NSString *)header :(NSString *)message {
+-(void)displayAlertView: (NSString *)header :(NSString *)message : (NSString *)status {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:header message:message preferredStyle:UIAlertControllerStyleAlert];
     
     UIApplication *actionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        if([message isEqualToString:@"INSTALLATION SUCCESSFUL!"]) {
+        if([status isEqualToString:@"success"]) {
             [self performSegueWithIdentifier:@"lasttowelcome_segue" sender:self];
         }
     }];

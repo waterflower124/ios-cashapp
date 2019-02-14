@@ -274,6 +274,9 @@
 }
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
+    
+    Global *globals = [Global sharedInstance];
+    
     UIImage *selectedImage = info[UIImagePickerControllerEditedImage];
     self.logoImageView.image = selectedImage;
     [picker dismissViewControllerAnimated:YES completion:nil];
@@ -293,7 +296,11 @@
         Global *globals = [Global sharedInstance];
         globals.logo_imagePath = fileName;
     } else {
-        [self displayAlertView:@"Warning!" :@"Logo Image have to be less than 2MB. Please select another image"];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"El tamaño de la imagen de logo debe ser menor a 2MB. Por favor seleccione otra imagen."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Logo Image have to be less than 2MB. Please select another image."];
+        }
     }
 }
 
@@ -400,31 +407,49 @@
 }
 
 - (IBAction)continuButtonAction:(id)sender {
+    Global *globals = [Global sharedInstance];
+    
     self.comercial_name = self.comercial_nameLabel.text;
     self.terminal_name= self.terminal_nameLabel.text;
     self.trade_number = self.trade_numberLabel.text;
     self.trade_email = self.trade_emailLabel.text;
     if(self.comercial_name.length == 0) {
-        [self displayAlertView:@"Warning!" :@"Please input comercial name."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese nombre comercial."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please input comercial name."];
+        }
         return;
     }
     if(self.terminal_name.length == 0) {
-        [self displayAlertView:@"Warning!" :@"Please input terminal name."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favo ingrese nombre de la terminal."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please input terminal name."];
+        }
         return;
     }
     if(self.trade_number.length == 0) {
-        [self displayAlertView:@"Warning!" :@"Please input your phone number."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese su número telefónico."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please input your phone number."];
+        }
         return;
     }
     if(self.trade_email.length == 0) {
-        [self displayAlertView:@"Warning!" :@"Please input your email address."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese su email."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please input your email address."];
+        }
         return;
     }
     
     [self.activityIndicator startAnimating];
     [self.view addSubview:self.overlayView];
     
-    Global *globals = [Global sharedInstance];
+    
     NSDictionary *comercio = @{
                                @"nombreComercio": self.comercial_name,
                                @"emailComercio": self.trade_email,
@@ -470,15 +495,27 @@
             globals.numeroRegistro = self.trade_number;
             globals.emailComercio = self.trade_email;
             /////////////////////////////
-            [self displayAlertView:@"Congratulations!" :@"UPDATE SUCCESSFUL!"];
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Éxito!" :@"¡ACTUALIZACIÓN EXITOSA!"];
+            } else {
+                [self displayAlertView:@"Success!" :@"UPDATE SUCCESSFUL!"];
+            }
         } else {
-            [self displayAlertView:@"Warning!" :@"FAILED UPDATE, CONTACT SUPPORT!"];
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Advertencia!" :@"¡ACTUALIZACIÓN FALLIDA, POR FAVOR CONTACTE A SOPORTE!"];
+            } else {
+                [self displayAlertView:@"Warning!" :@"FAILED UPDATE, CONTACT SUPPORT!"];
+            }
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
-        [self displayAlertView:@"Warning!" :@"Network error!"];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Error de red!"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Network error!"];
+        }
     }];
 }
 

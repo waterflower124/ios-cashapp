@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TransactionResultSignatureView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -44,13 +45,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *cardnumbercommentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *signcommentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userInfocommentLabel;
+
 @property (weak, nonatomic) IBOutlet UIButton *mainnewtransButton;
 @property (weak, nonatomic) IBOutlet UIButton *maincanceltransButton;
-@property (weak, nonatomic) IBOutlet UIButton *signatureclearButton;
 @property (weak, nonatomic) IBOutlet UIButton *submitemailButton;
 
 - (IBAction)emailSendButtonAction:(id)sender;
 
+@property (weak, nonatomic) IBOutlet TransactionResultSignatureView *signatureView;
+- (IBAction)signatureViewClearButtonAction:(id)sender;
 
 @end
 

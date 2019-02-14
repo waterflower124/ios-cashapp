@@ -270,15 +270,27 @@
                 [self.cashier_array insertObject:cashier atIndex:0];
                 [self.cashierTableView reloadData];
             } else {
-                [self displayAlertView:@"Notice" :@"There is no shifts."];
+                if(globals.selected_language == 0) {
+                    [self displayAlertView:@"¡Advertencia!" :@"No existen turnos."];
+                } else {
+                    [self displayAlertView:@"Warning!" :@"There is no shifts."];
+                }
             }
         } else {
-            [self displayAlertView:@"Warning!" :@"An error occured. Please contact support."];
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Advertencia!!" :@"Ocurrió un error. Por favor contacte a soporte."];
+            } else {
+                [self displayAlertView:@"Warning!" :@"An error occured. Please contact support."];
+            }
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
-        [self displayAlertView:@"Warning!" :@"Network error."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"Warning!" :@"Network error."];
+        } else {
+            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+        }
     }];
     ////////////
 }
@@ -382,9 +394,14 @@
 }
 
 - (IBAction)searchButtonAction:(id)sender {
+    Global *globals = [Global sharedInstance];
     self.codigoText = self.codigoTextView.text;
     if(self.codigoText.length > 10) {
-        [self displayAlertView:@"Warning!" :@"Código have to be less than 10 characters."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"El código debe tener menos de 10 caracteres."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Code have to be less than 10 characters."];
+        }
         return;
     }
 //    NSLocale *locale = [NSLocale currentLocale];

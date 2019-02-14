@@ -60,14 +60,14 @@
     
     if(globals.selected_language == 0) {
         self.titleLabel.text = @"¡Bienvenido!";
-        self.appnameLabel.text = @"Tuk POS APP";
+        self.appnameLabel.text = @"Pagadito POS APP";
         self.usernameTextField.placeholder = @"Usuario";
         self.passwordTextField.placeholder = @"Contraseña";
         [self.signinButton setTitle:@"Inicia sesión" forState:UIControlStateNormal];
         [self.forgetpasswordButton setTitle:@"Olvidé mi contraseña" forState:UIControlStateNormal];
     } else {
         self.titleLabel.text = @"Welcome!";
-        self.appnameLabel.text = @"<Comercio> POS APP";
+        self.appnameLabel.text = @"Pagadito POS APP";
         self.usernameTextField.placeholder = @"Username";
         self.passwordTextField.placeholder = @"Password";
         [self.signinButton setTitle:@"Sign In" forState:UIControlStateNormal];
@@ -95,22 +95,34 @@
 //
 //    NSLog(@"%@", cc);
     
-    
+    Global *globals = [Global sharedInstance];
     
     if(self.username.length == 0) {
-        [self displayAlertView:@"Warning!" :@"Please input your username"];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingresa tu usuario."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please input your username."];
+        }
         return;
     }
     if(self.password.length == 0) {
-        [self displayAlertView:@"Warning!" :@"Please input your password"];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingresa tu contraseña"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please input your password"];
+        }
         return;
     }
     if(self.password.length < 6) {
-        [self displayAlertView:@"Warning!" :@"Password have to be at least 5 characters"];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"La contraseña debe tener al menos 6 caracteres."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Password have to be at least 6 characters"];
+        }
         return;
     }
 
-    Global *globals = [Global sharedInstance];
+    
 
     [self.activityIndicator startAnimating];
     [self.view addSubview:self.overlayView];
@@ -141,7 +153,6 @@
 
         NSError *jsonError;
         NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&jsonError];
-
         BOOL status = [jsonResponse[@"status"] boolValue];
         if(status) {
             globals.username = jsonResponse[@"username"];
@@ -165,19 +176,27 @@
             globals.currency = jsonResponse[@"currency"];
             globals.ambiente = jsonResponse[@"ambiente"];
 
-            if([globals.idPrivilegio isEqualToString:@"3"]) {
+            if([globals.idPrivilegio isEqualToString:@"3"] || [globals.idPrivilegio isEqualToString:@"4"]) {
                 [self getShiftCode];
             } else {
                 [self performSegueWithIdentifier:@"logintohome_segue" sender:self];
             }
 
         } else {
-            [self displayAlertView:@"Warning" :@"Signin information is incorrect. Please input valid information"];
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Advertencia!" :@"La información de inicio de sesión es incorrecta. Por favor ingrese información válida."];
+            } else {
+                [self displayAlertView:@"Warning!" :@"Signin information is incorrect. Please input valid information."];
+            }
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
-        [self displayAlertView:@"Warning" :@"Network error."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Network error."];
+        }
     }];
 }
 
@@ -209,7 +228,6 @@
         
         NSError *jsonError;
         NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&jsonError];
-        
         BOOL status = [jsonResponse[@"status"] boolValue];
         if(status) {
             globals.turnoCod = jsonResponse[@"turnoCod"];
@@ -219,12 +237,20 @@
             [self performSegueWithIdentifier:@"logintohome_segue" sender:self];
             
         } else {
-            [self displayAlertView:@"Warning" :@"You can't login. The cashier's shift wasn't assigned."];
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Advertencia!" :@"No puedes iniciar sesión. El turno del cajero no ha sido asignad."];
+            } else {
+                [self displayAlertView:@"Warning!" :@"You can't login. The cashier's shift wasn't assigned."];
+            }
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
-        [self displayAlertView:@"Warning" :@"Network error."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+        } else {
+            [self displayAlertView:@"Warning" :@"Network error."];
+        }
     }];
 }
 

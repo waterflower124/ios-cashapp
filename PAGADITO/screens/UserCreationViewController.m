@@ -93,7 +93,11 @@ int role_int = -1;
     MultiLanguage *multiLanguage = [MultiLanguage sharedInstance];
     
     if(role_int == -1) {
-        [self displayAlertView:@"Warning!" :@"Please select one of user role."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor seleccione un rol de usuario."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please select one of user role."];
+        }
         return;
     }
     NSLog(@"button click role int: %d", role_int);
@@ -105,15 +109,27 @@ int role_int = -1;
     self.pin_code = pincodeTextField.text;
     
     if((self.name.length == 0) || (self.lastname.length == 0) || (self.username.length == 0) || (self.password.length == 0) || (self.confirmpassword.length == 0)) {
-        [self displayAlertView:@"Warning!" :@"Please fill all of data."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor llene todos los campos."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please fill all of data."];
+        }
         return;
     }
     if(self.password.length < 6) {
-        [self displayAlertView:@"Warning!" :@"Password have to be at least 6 characters."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"La contraseña debe tener al menos 6 caracteres."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Password have to be at least 6 characters."];
+        }
         return;
     }
     if(![self.password isEqualToString:self.confirmpassword]) {
-        [self displayAlertView:@"Warning!" :@"Password doesn't match."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Las contraseñas no coinciden."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Password doesn't match."];
+        }
         return;
     }
     
@@ -138,7 +154,11 @@ int role_int = -1;
          BOOL status = [jsonResponse[@"status"] boolValue];
          
          if(status) {
-             [self displayAlertView:@"Warning!" :@"Username is not available. Please try again with another username"];
+             if(globals.selected_language == 0) {
+                 [self displayAlertView:@"¡Advertencia!" :@"Este nombre de usuario no está disponible. Por favor intente de nuevo con un nombre de usuario diferente."];
+             } else {
+                 [self displayAlertView:@"Warning!" :@"Username is not available. Please try again with another username."];
+             }
          } else {
              if(role_int == 4) {
                  NSDictionary *dataUserDic = @{@"nombres":self.name, @"apellidos":self.lastname, @"idPrivilegio":@"4", @"username":self.username, @"password":self.password, @"shiftEveryday":self.checkStatus, @"codigoAprobacion":@""};
@@ -149,7 +169,11 @@ int role_int = -1;
                   ***************/
                  [self performSegueWithIdentifier:@"creationtolast_segue" sender:nil];
              } else if(role_int == 1) {
-                 [self displayAlertView:@"Notice" :@"Usuario Guardado"];
+                 if(globals.selected_language == 0) {
+                     [self displayAlertView:@"¡Éxito!" :@"Usuario Guardado Correctamente"];
+                 } else {
+                     [self displayAlertView:@"Success!" :@"User saved successfuly."];
+                 }
                  NSDictionary *dataUserDic = @{@"nombres":self.name, @"apellidos":self.lastname, @"idPrivilegio":@"1", @"username":self.username, @"password":self.password, @"shiftEveryday":@"0", @"codigoAprobacion":@""};
                  [self.infoUserArray addObject:dataUserDic];
                  role_int = 2;
@@ -159,7 +183,11 @@ int role_int = -1;
                  self.roleTableViewHeightConstraint.constant = 40 * self.role_list.count;
                  [self.pincodeUIView setHidden:NO];
              } else if(role_int == 2) {
-                 [self displayAlertView:@"Notice" :@"Usuario Guardado"];
+                 if(globals.selected_language == 0) {
+                     [self displayAlertView:@"¡Éxito!" :@"Usuario Guardado Correctamente"];
+                 } else {
+                     [self displayAlertView:@"Success!" :@"User saved successfuly."];
+                 }
                  NSDictionary *dataUserDic = @{@"nombres":self.name, @"apellidos":self.lastname, @"idPrivilegio":@"2", @"username":self.username, @"password":self.password, @"shiftEveryday":@"0", @"codigoAprobacion":self.pin_code};
                  [self.infoUserArray addObject:dataUserDic];
                  role_int = 3;
@@ -197,7 +225,12 @@ int role_int = -1;
          } 
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
          [self stopActivityIndicator];
-         [self displayAlertView:@"Warning!" :@"Network error."];
+         if(globals.selected_language == 0) {
+             [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+         } else {
+             [self displayAlertView:@"Warning!" :@"Network error."];
+         }
+         
      }];
 }
 

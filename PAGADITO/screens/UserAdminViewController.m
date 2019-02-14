@@ -251,7 +251,11 @@
                 }
                 [self.usersTableView reloadData];
             } else {
-                [self displayAlertView:@"Notice" :@"There is no users."];
+                if(globals.selected_language == 0) {
+                    [self displayAlertView:@"¡Advertencia!" :@"No existen usuarios."];
+                } else {
+                    [self displayAlertView:@"Warning!" :@"There is no users."];
+                }
             }
         } else {
             
@@ -261,7 +265,11 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
-        NSLog(@"bbbb %@", error);
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Network error."];
+        }
     }];
     ////////////
     

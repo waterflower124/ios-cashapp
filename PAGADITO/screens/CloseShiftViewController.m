@@ -324,13 +324,17 @@
             NSString *alertMessage = [NSString stringWithFormat:@"¿Seguro que deseas cerrar el turno de %@?", self.closing_shift[2]];
             self.alertMessageLabel.text = alertMessage;
         } else {
-            NSString *alertMessage = [NSString stringWithFormat:@"Are you sure you want to close the shift of %@?", self.closing_shift[2]];
+            NSString *alertMessage = [NSString stringWithFormat:@"Are you sure want to close the shift of %@?", self.closing_shift[2]];
             self.alertMessageLabel.text = alertMessage;
         }
         [self.TransV setHidden:NO];
         [self.closeshiftAlertView setHidden:NO];
     } else {
-        [self displayAlertView:@"Warning!" :@"This shift has already closed." :@"deny"];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Este turno ya está cerrado." :@"deny"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"This shift has already closed." :@"deny"];
+        }
     }
 }
 
@@ -373,14 +377,26 @@
         NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&jsonError];
         BOOL status = [jsonResponse[@"status"] boolValue];
         if(status) {
-            [self displayAlertView:@"Success!" :@"Shift Closed" :@"success"];
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Éxito!" :@"Turno Cerrado." :@"success"];
+            } else {
+                [self displayAlertView:@"Success!" :@"Shift Closed." :@"success"];
+            }
         } else {
-            [self displayAlertView:@"Warning!!" :@"An error has occured. Please contact support." :@"error"];
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Advertencia!" :@"Ha ocurrido un error. Por favor contacte a soporte." :@"error"];
+            } else {
+                [self displayAlertView:@"Warning!" :@"An error has occurred. Please contact support." :@"error"];
+            }
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
-        [self displayAlertView:@"Warning!!" :@"Network error." :@"error"];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Network error." :@"error"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Network error." :@"error"];
+        }
     }];
     
 }

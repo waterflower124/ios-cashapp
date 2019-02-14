@@ -84,9 +84,15 @@
         } else {
             self.roleTableArray = [[NSMutableArray alloc] initWithObjects:@"Cashier", nil];
         }
-        [self.checkBoxUIView setHidden:NO];
-        [self.pincodeUIView setHidden:YES];
-        self.shiftEveryday = @"1";
+        if([globals.idPrivilegio isEqualToString:@"1"] || [globals.idPrivilegio isEqualToString:@"4"]) {
+            [self.checkBoxUIView setHidden:NO];
+            [self.pincodeUIView setHidden:YES];
+            self.shiftEveryday = @"1";
+        } else {
+            [self.checkBoxUIView setHidden:YES];
+            [self.pincodeUIView setHidden:YES];
+            self.shiftEveryday = @"0";
+        }
     }
     [self.roleSelectButton setTitle:self.roleTableArray[0] forState:UIControlStateNormal];
     [self.roleTableView setHidden:YES];
@@ -135,31 +141,53 @@
     self.pincode_text = pincodeTextView.text;
     self.confirm_text = confirmTextView.text;
     
+    Global *globals = [Global sharedInstance];
+    
     if(self.firstname_text.length == 0) {
-        [self displayAlertView:@"Warning!" :@"Please input First Name."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese su nombre"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please input First Name."];
+        }
         return;
     }
     if(self.lastname_text.length == 0) {
-        [self displayAlertView:@"Warning!" :@"Please input Last Name."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese su apellido."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please input Last Name."];
+        }
         return;
     }
     if(self.usertname_text.length == 0) {
-        [self displayAlertView:@"Warning!" :@"Please input Username."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese su nombre de usuario."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please input Username."];
+        }
         return;
     }
     if(self.password_text.length < 6) {
-        [self displayAlertView:@"Warning!" :@"Password have to be at least 6 characters"];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"La contraseña debe tener al menos 6 caracteres."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Password have to be at least 6 characters"];
+        }
         return;
     }
     if(![self.password_text isEqualToString:self.confirm_text]) {
-        [self displayAlertView:@"Warning!" :@"Password doesn't match."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Las contraseñas no coinciden."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Password doesn't match."];
+        }
         return;
     }
     
     [self.activityIndicator startAnimating];
     [self.view addSubview:self.overlayView];
     
-    Global *globals = [Global sharedInstance];
+    
     NSDictionary *editUser = @{@"editUser": @{
                                           @"nombres":self.firstname_text,
                                           @"apellidos": self.lastname_text,
@@ -194,15 +222,27 @@
         NSLog(@"%@", jsonResponse);
         BOOL status = [jsonResponse[@"status"] boolValue];
         if(status) {
-            [self displayAlertView:@"Success!" :@"The user edited succesfully."];
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Éxito!" :@"Usuario editado exitosamente."];
+            } else {
+                [self displayAlertView:@"Success!" :@"The user edited succesfully."];
+            }
         } else {
-            [self displayAlertView:@"Warning!" :@"There has been an error editing the user."];
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Advertencia!" :@"Ha ocurrido un error al editar el usuario."];
+            } else {
+                [self displayAlertView:@"Warning!" :@"There has been an error editing the user."];
+            }
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
-        NSLog(@"bbbb %@", error);
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Network error."];
+        }
     }];
 }
 

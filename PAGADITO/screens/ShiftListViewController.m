@@ -243,17 +243,29 @@
                 }
                 [self.shiftlistTableView reloadData];
             } else {
-                [self displayAlertView:@"Notice" :@"There is no shifts."];
+//                if(globals.selected_language == 0) {
+//                    [self displayAlertView:@"¡Advertencia!" :@"No existen turnos."];
+//                } else {
+//                    [self displayAlertView:@"Warning!" :@"There is no shifts."];
+//                }
             }
         } else {
-           [self displayAlertView:@"Warning!" :@"An error occured. Please contact support."];
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Advertencia!" :@"Ha ocurrido un error. Por favor contacte a soporte."];
+            } else {
+                [self displayAlertView:@"Warning!" :@"An error occured. Please contact support."];
+            }
         }
         
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
-        [self displayAlertView:@"Warning!" :@"Network error."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Network error."];
+        }
     }];
     ////////////
 }

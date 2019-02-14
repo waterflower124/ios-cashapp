@@ -42,6 +42,7 @@
     [super viewDidLoad];
     
     Global *globals = [Global sharedInstance];
+
     if(globals.selected_language == 0) {
         self.titleLabel.text = @"Listado de turnos";
         self.closeButtonLabel.text = @"Cerrar";
@@ -56,7 +57,7 @@
         [self.cancelButton setTitle:@"Cancelar" forState:UIControlStateNormal];
         [self.assignButton setTitle:@"Asignar" forState:UIControlStateNormal];
         [self.completeAlertViewContinueButton setTitle:@"Continuar" forState:UIControlStateNormal];
-        [selectcashierButton setTitle:@"Cajero selecto" forState:UIControlStateNormal];
+        [selectcashierButton setTitle:@"Seleccione un Cajero" forState:UIControlStateNormal];
     } else {
         self.titleLabel.text = @"Shift List";
         self.closeButtonLabel.text = @"Close";
@@ -264,13 +265,21 @@
             [self.TransV setHidden:NO];
             [self.assignturnoAlertView setHidden:NO];
         } else {
-            [self displayAlertView:@"Notice!" :@"No Cashiers found! Please add a cashier."];
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Advertencia!" :@"¡No se encontraron cajeros! Por favor agregue un cajero."];
+            } else {
+                [self displayAlertView:@"Warning!" :@"No Cashiers found! Please add a cashier."];
+            }
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
-        [self displayAlertView:@"Warning!" :@"Network error."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Network error."];
+        }
     }];
 }
 
@@ -397,8 +406,13 @@
 }
 
 - (IBAction)assignturnoOKButtonAction:(id)sender {
+    Global *globals = [Global sharedInstance];
     if(self.selected_cashierUserID.length == 0) {
-        [self displayAlertView:@"Warning!" :@"Please select cashier."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor seleccione un cajero."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please select cashier."];
+        }
         return;
     }
     
@@ -409,7 +423,7 @@
     [self.activityIndicator startAnimating];
     [self.view addSubview:self.overlayView];
     
-    Global *globals = [Global sharedInstance];
+    
     NSDictionary *asignarTurno = @{@"asignarTurno": @{
                                            @"cmbUserAsign": self.selected_cashierUserID,
                                            @"idDispositivo": globals.idDispositivo,
@@ -451,15 +465,27 @@
             [self.completeInsertShiftAlertView setHidden:NO];
             
         } else if([status1 isEqualToString:@"0"]) {
-            [self displayAlertView:@"Warning!" :@"An error has occured. please contact support."];
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Advertencia!" :@"Ha ocurrido un error. Por favor contacte a soporte."];
+            } else {
+                [self displayAlertView:@"Warning!" :@"An error has occured. please contact support."];
+            }
         } else {
-            [self displayAlertView:@"Warning!" :@"Cahier already as an active shift!"];
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Advertencia!" :@"¡Este cajero ya tiene un turno activo!"];
+            } else {
+                [self displayAlertView:@"Warning!" :@"Cashier already has an active shift!"];
+            }
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
-        [self displayAlertView:@"Warning!" :@"Network error."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Network error."];
+        }
     }];
 }
 
@@ -496,9 +522,14 @@
 }
 
 - (IBAction)mainmenuAssignShiftButtonAction:(id)sender {
+    Global *globals = [Global sharedInstance];
     self.cashier_array = [[NSMutableArray alloc] init];
     self.selected_cashierUserID = @"";
-    [self.selectcashierButton setTitle:@"Select Cashier" forState:UIControlStateNormal];
+    if(globals.selected_language == 0) {
+        [self.selectcashierButton setTitle:@"Seleccione un Cajero" forState:UIControlStateNormal];
+    } else {
+        [self.selectcashierButton setTitle:@"Select Cashier" forState:UIControlStateNormal];
+    }
     [switchButton setOn:YES];
     [self getCashierDisplayView];
 }

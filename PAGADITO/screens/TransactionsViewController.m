@@ -306,13 +306,21 @@
             [self.xmlTransactionsParser parse];
             
         } else {
-            [self displayAlertView:@"Notice!" :@"No transactions found."];
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Advertencia!" :@"No se encontraron transacciones."];
+            } else {
+                [self displayAlertView:@"Warning!" :@"No transactions found."];
+            }
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
-        [self displayAlertView:@"Warning!" :@"Network error."];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Network error."];
+        }
         NSLog(@"errororororor");
     }];
     ////////////
@@ -481,6 +489,9 @@ bool isTransaction_reference = false;
             
         } completion:nil];
     }
+}
+
+- (IBAction)backButtonAction:(id)sender {
 }
 
 

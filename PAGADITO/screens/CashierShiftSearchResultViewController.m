@@ -12,6 +12,7 @@
 #import "WelcomeViewController.h"
 #import "../tableviewcells/ShiftReportTableViewCell.h"
 #import "TransactionsViewController.h"
+#import "CashierShiftSearchViewController.h"
 
 @interface CashierShiftSearchResultViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -355,6 +356,14 @@
         TransactionsVC = [segue destinationViewController];
         TransactionsVC.shift_code = self.shift_array[self.selected_cell_index][6];
         TransactionsVC.sourceVC = @"CashierShiftSearchVC";
+    } else if([segue.identifier isEqualToString:@"cashiersearchresulttocashiersearch_segue"]) {
+        CashierShiftSearchViewController *CashierShiftSearchVC;
+        CashierShiftSearchVC = [segue destinationViewController];
+        
+        CashierShiftSearchVC.incioDateString = fecha_inicio;
+        CashierShiftSearchVC.cierreDateString = fecha_fin;
+        CashierShiftSearchVC.selected_cashier = userCajero;
+        CashierShiftSearchVC.shift_code = codeShift;
     }
 }
 
@@ -380,8 +389,12 @@
     }
 }
 
+- (IBAction)modifysearchButtonAction:(id)sender {
+    [self performSegueWithIdentifier:@"cashiersearchresulttocashiersearch_segue" sender:self];
+}
+
 - (IBAction)signoutButtonAction:(id)sender {
-    [self performSegueWithIdentifier:@"cashiershiftsearchresulttowelcome_segue" sender:self];
+    [self performSegueWithIdentifier:@"cashiersearchresulttocashiersearch_segue" sender:self];
 }
 
 

@@ -29,6 +29,7 @@
 @end
 
 @implementation CashierShiftSearchViewController
+@synthesize incioDateString, cierreDateString, shift_code, selected_cashier;
 @synthesize TransV, SidePanel, sessionInfoLabel, cashierTableView, selectcashierButton, codigoTextView, startDatePicker, closeDatePicker;
 @synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
 @synthesize titleLabel, maincommentLabel, startdatecommentLabel, enddatecommentLabel, codecommentLabel, cashiercommentLabel, searchButton, sessioncommentLabel;
@@ -36,11 +37,47 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    Global *globals = [Global sharedInstance];
+    
     ///  init   //////
     self.cashier_array = [[NSMutableArray alloc] init];
     self.selected_cashier_index = 0;
     
-    Global *globals = [Global sharedInstance];
+    if(incioDateString != nil) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        NSDate *nstartDate = [dateFormatter dateFromString:incioDateString];
+        [self.startDatePicker setDate:nstartDate];
+        
+        self.startDateString = incioDateString;
+        NSLog(@"get string111:  %@", incioDateString);
+    }
+//    else {
+//        NSDate *currentDate = [NSDate date];
+//        [startDatePicker setDate:currentDate];
+//    }
+    
+    if(cierreDateString != nil) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        NSDate *ncloseDate = [dateFormatter dateFromString:cierreDateString];
+        [self.closeDatePicker setDate:ncloseDate];
+        
+        self.closeDateString = cierreDateString;
+        NSLog(@"get string222:  %@", cierreDateString);
+    }
+//    else {
+//        NSDate *currentDate = [NSDate date];
+//        [startDatePicker setDate:currentDate];
+//    }
+    
+    if(shift_code != nil) {
+        self.codigoTextView.text = shift_code;
+        self.codigoText = shift_code;
+    }
+    
+    
+//    globals.selected_language = 0;
     if(globals.selected_language == 0) {
         self.titleLabel.text = @"Turno de cajeros";
         self.maincommentLabel.text = @"Buscar Turnos";
@@ -49,8 +86,8 @@
         self.codecommentLabel.text = @"Código:";
         self.codigoTextView.placeholder = @"Escriba el código";
         self.cashiercommentLabel.text = @"Cajero:";
-        [self.selectcashierButton setTitle:@"" forState:UIControlStateNormal];
-        [self.searchButton setTitle:@"" forState:UIControlStateNormal];
+        [self.selectcashierButton setTitle:@"Seleccionar cajero" forState:UIControlStateNormal];
+        [self.searchButton setTitle:@"Buscar" forState:UIControlStateNormal];
         self.sessioncommentLabel.text = @"Sesión iniciada:";
     } else {
         self.titleLabel.text = @"Search Cashier Shift";
@@ -269,6 +306,23 @@
                 }
                 [self.cashier_array insertObject:cashier atIndex:0];
                 [self.cashierTableView reloadData];
+                
+                if(self->selected_cashier != nil) {
+                    if([self->selected_cashier isEqualToString:@""]) {
+                        self.selected_cashier_index = 0;
+                        [self.selectcashierButton setTitle:self.cashier_array[0][1] forState:UIControlStateNormal];
+                        
+                    } else {
+                        for(int i = 0; i < self.cashier_array.count; i ++) {
+                            if([self.cashier_array[i][0] isEqualToString:self->selected_cashier]) {
+                                self.selected_cashier_index = i;
+                                [self.selectcashierButton setTitle:self.cashier_array[i][1] forState:UIControlStateNormal];
+                                break;
+                            }
+                        }
+                    }
+                }
+                
             } else {
                 if(globals.selected_language == 0) {
                     [self displayAlertView:@"¡Advertencia!" :@"No existen turnos."];
@@ -322,6 +376,7 @@
         CashierShiftSearchResultVC = [segue destinationViewController];
         CashierShiftSearchResultVC.fecha_inicio = self.startDateString;
         CashierShiftSearchResultVC.fecha_fin = self.closeDateString;
+        NSLog(@"sent string:  %@,  %@", self.startDateString, self.closeDateString);
         if(self.selected_cashier_index == 0) {
             CashierShiftSearchResultVC.userCajero = @"";
         } else {
@@ -344,9 +399,9 @@
     }
     cell.usernameLabel.text = self.cashier_array[indexPath.row][1];
     if([self.cashier_array[indexPath.row][2] isEqualToString:@"1"]) {
-        [cell.closestatusImageView setHidden:YES];
-    } else {
         [cell.closestatusImageView setHidden:NO];
+    } else {
+        [cell.closestatusImageView setHidden:YES];
     }
     return cell;
 }

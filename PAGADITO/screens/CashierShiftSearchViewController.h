@@ -12,6 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CashierShiftSearchViewController : UIViewController
 
+@property(strong, nonatomic) NSString *incioDateString;
+@property(strong, nonatomic) NSString *cierreDateString;
+@property(strong, nonatomic) NSString *selected_cashier;
+@property(strong, nonatomic) NSString *shift_code;
+
 @property (weak, nonatomic) IBOutlet UIView *TransV;
 @property (weak, nonatomic) IBOutlet UIView *SidePanel;
 @property (weak, nonatomic) IBOutlet UILabel *sessionInfoLabel;

@@ -44,14 +44,12 @@ float PhoneWidth = 0;
 
 -(void)autoMoveTableViewCellView: (NSString *)status {
     if([status isEqualToString:@"origin"]) {
-        NSLog(@"origin");
         [UIView transitionWithView:cancelTransactionTableCellView duration:0.3 options:UIViewAnimationOptionCurveEaseIn animations:^{
             CGRect frame = self->cancelTransactionTableCellView.frame;
             frame.origin.x = 0;
             self->cancelTransactionTableCellView.frame = frame;
         } completion:nil];
     } else if([status isEqualToString:@"disappear"]) {
-        NSLog(@"disappear");
         [UIView transitionWithView:cancelTransactionTableCellView duration:0.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
             CGRect frame = self->cancelTransactionTableCellView.frame;
             frame.origin.x = (0 - PhoneWidth);
@@ -59,8 +57,6 @@ float PhoneWidth = 0;
         } completion:^(BOOL finished){
             [self.delegate reloadCancelTransactionTableViewData:self :self->selected_index];
         }];
-        
-        
     }
 }
 

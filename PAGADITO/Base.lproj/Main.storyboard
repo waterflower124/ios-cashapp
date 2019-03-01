@@ -501,7 +501,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fDC-8Y-aVl">
-                                <rect key="frame" x="-302" y="80" width="300" height="587"/>
+                                <rect key="frame" x="-301" y="80" width="300" height="587"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x06-iW-eGn">
@@ -602,6 +602,17 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zbM-7r-Raj">
+                                        <rect key="frame" x="0.0" y="420" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="sidemenu_cerrarturnoButton_icon.png"/>
+                                        <connections>
+                                            <action selector="cerraturnoButtonAction:" destination="wAu-yi-lga" eventType="touchUpInside" id="IGw-EX-9eB"/>
+                                            <action selector="cerraturnoButtonAction:" destination="d8D-n5-YfO" eventType="touchUpInside" id="oT5-mF-45h"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -633,6 +644,7 @@
                         <outlet property="TransV" destination="D4V-s8-5Xh" id="Y5A-KQ-lUX"/>
                         <outlet property="cancelchangeButton" destination="HY3-hc-Tvc" id="aK9-sq-02g"/>
                         <outlet property="canceltransactionButton" destination="Ehz-31-3Bs" id="EIk-iy-gyo"/>
+                        <outlet property="cerraturnoButton" destination="zbM-7r-Raj" id="Oqu-u6-oKJ"/>
                         <outlet property="conexioncredentialcommentLabel" destination="n2K-bb-Zem" id="VrJ-by-Txd"/>
                         <outlet property="configButton" destination="zfu-1z-ZhL" id="klc-rV-NTL"/>
                         <outlet property="dataencryptioncommentLabel" destination="2ER-oO-x4n" id="7Ff-p8-mHn"/>
@@ -640,6 +652,7 @@
                         <outlet property="idSecursalTextField" destination="5Su-pG-J7W" id="NAT-OO-7Pu"/>
                         <outlet property="idTerminalTextField" destination="Pc4-3t-EBc" id="Dm8-Rk-1Es"/>
                         <outlet property="keycommentLabel" destination="XPr-uF-MVQ" id="yNS-Ej-Lbz"/>
+                        <outlet property="logoutButton" destination="qgk-oD-CMH" id="29a-F3-grh"/>
                         <outlet property="newtransactionButton" destination="Z1p-CF-Bfg" id="81n-Pv-QZE"/>
                         <outlet property="reportButton" destination="eZZ-Q1-hqb" id="tMQ-nd-eXI"/>
                         <outlet property="saveButton" destination="aog-kM-aAj" id="laG-sH-g8w"/>
@@ -1059,6 +1072,17 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jcY-fK-i6b">
+                                        <rect key="frame" x="0.0" y="419" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="sidemenu_cerrarturnoButton_icon.png"/>
+                                        <connections>
+                                            <action selector="cerraturnoButtonAction:" destination="d8D-n5-YfO" eventType="touchUpInside" id="kwe-S7-rQZ"/>
+                                            <action selector="cerraturnoButtonAction:" destination="ttg-Am-tA8" eventType="touchUpInside" id="y29-ip-4K8"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -1118,6 +1142,7 @@
                         <outlet property="SidePanel" destination="h6v-dO-MON" id="D3O-VF-eWv"/>
                         <outlet property="TransV" destination="uEo-Ms-VLA" id="Gk2-dp-x4b"/>
                         <outlet property="canceltransactionButton" destination="xFw-A4-5lK" id="jd7-re-ahG"/>
+                        <outlet property="cerraturnoButton" destination="jcY-fK-i6b" id="63U-EU-hPb"/>
                         <outlet property="comercial_nameLabel" destination="V2H-ud-sp1" id="Vwd-AQ-WdT"/>
                         <outlet property="configButton" destination="XOa-zg-G5b" id="59p-zj-0oX"/>
                         <outlet property="continueButton" destination="ctJ-45-LwQ" id="rlF-6H-NFH"/>
@@ -1125,6 +1150,7 @@
                         <outlet property="homeButton" destination="BHL-Fm-ddR" id="RgB-qG-yL8"/>
                         <outlet property="logoImageView" destination="rct-Co-0oX" id="wuh-f8-TO3"/>
                         <outlet property="logoimagecommentLabel" destination="8pN-O4-clD" id="5ZE-ft-tCk"/>
+                        <outlet property="logoutButton" destination="j9f-uP-hZH" id="GCi-fx-wN0"/>
                         <outlet property="maincommentLabel" destination="vTq-wv-o4s" id="ADA-d2-I22"/>
                         <outlet property="newtransactionButton" destination="ZaA-MH-B0Z" id="cSr-NG-7lT"/>
                         <outlet property="reportButton" destination="QHU-Sr-VFx" id="1b2-Ds-xdz"/>
@@ -1145,7 +1171,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bpg-bH-Pab" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4268" y="1833"/>
+            <point key="canvasLocation" x="-4268" y="1832.833583208396"/>
         </scene>
         <!--Voucher Config View Controller-->
         <scene sceneID="Ip0-RY-1eH">
@@ -1386,7 +1412,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TjS-VP-H7r">
-                                <rect key="frame" x="-302" y="80" width="300" height="587"/>
+                                <rect key="frame" x="-301" y="80" width="300" height="587"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FXd-Ir-EHq">
@@ -1487,6 +1513,17 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZIV-vj-Nhn">
+                                        <rect key="frame" x="0.0" y="419" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="sidemenu_cerrarturnoButton_icon.png"/>
+                                        <connections>
+                                            <action selector="cerraturnoButtonAction:" destination="bfC-zU-CZk" eventType="touchUpInside" id="IN2-K6-aWm"/>
+                                            <action selector="cerraturnoButtonAction:" destination="d8D-n5-YfO" eventType="touchUpInside" id="dRs-1r-9Le"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -1505,11 +1542,13 @@
                         <outlet property="SidePanel" destination="TjS-VP-H7r" id="ASj-yb-6mP"/>
                         <outlet property="TransV" destination="9zg-B4-sMz" id="xJF-mU-Rlf"/>
                         <outlet property="canceltransactionButton" destination="Ty9-id-6kZ" id="0id-yn-G3M"/>
+                        <outlet property="cerraturnoButton" destination="ZIV-vj-Nhn" id="emt-5x-08x"/>
                         <outlet property="charcountcommentLabel" destination="bUD-jh-XfN" id="JC6-fL-kAF"/>
                         <outlet property="configButton" destination="xbq-dI-sQY" id="xAa-DW-1FV"/>
                         <outlet property="customemessagecommentLabel" destination="DVk-Jq-gRV" id="R75-jS-DPu"/>
                         <outlet property="homeButton" destination="FXd-Ir-EHq" id="6ly-Sw-2jb"/>
                         <outlet property="logoImageView" destination="pbI-uA-cuj" id="shw-Gp-4Yn"/>
+                        <outlet property="logoutButton" destination="ESB-lh-A1e" id="ad4-dU-89H"/>
                         <outlet property="mensajeVoucherTextField" destination="5Hr-dK-Cli" id="3np-hX-ZkE"/>
                         <outlet property="newtransactionButton" destination="77s-zs-SkJ" id="2AD-G7-2pG"/>
                         <outlet property="reportButton" destination="PRw-Ak-KM9" id="3DV-mY-L1M"/>
@@ -2149,6 +2188,17 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6TU-VL-Xsl">
+                                        <rect key="frame" x="0.0" y="419" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="sidemenu_cerrarturnoButton_icon.png"/>
+                                        <connections>
+                                            <action selector="cerraturnoButtonAction:" destination="yT9-pw-3FR" eventType="touchUpInside" id="jio-uJ-tCC"/>
+                                            <action selector="cerraturnoButtonAction:" destination="d8D-n5-YfO" eventType="touchUpInside" id="mgX-R4-5pq"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -2160,10 +2210,12 @@
                         <outlet property="SidePanel" destination="qgs-s3-G7d" id="sEq-ub-7OY"/>
                         <outlet property="TransV" destination="Y6J-3n-vgW" id="ClC-5O-fM5"/>
                         <outlet property="canceltransactionButton" destination="c5u-WL-bZX" id="EP3-eY-dba"/>
+                        <outlet property="cerraturnoButton" destination="6TU-VL-Xsl" id="Eoc-fr-jso"/>
                         <outlet property="comercialinformationButton" destination="6UF-db-iAS" id="MzN-le-VOl"/>
                         <outlet property="conexionButton" destination="yDf-9b-hWU" id="2RO-uO-G2h"/>
                         <outlet property="configButton" destination="Hma-Dd-iVy" id="Lh6-qh-lp7"/>
                         <outlet property="homeButton" destination="i2o-5B-7p4" id="Gm0-9i-sGZ"/>
+                        <outlet property="logoutButton" destination="yFt-mT-vV6" id="NOT-Bg-kNE"/>
                         <outlet property="newtransactionButton" destination="RgD-Hu-U9b" id="CrQ-0n-mxo"/>
                         <outlet property="reportButton" destination="s63-kj-QW2" id="5SF-Xy-orF"/>
                         <outlet property="sessionInfoLabel" destination="vmf-ww-zV2" id="j0b-X8-wvh"/>
@@ -3331,6 +3383,17 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mQG-Ni-lGe">
+                                        <rect key="frame" x="0.0" y="419" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="sidemenu_cerrarturnoButton_icon.png"/>
+                                        <connections>
+                                            <action selector="cerraturnoButtonAction:" destination="d8D-n5-YfO" eventType="touchUpInside" id="J7M-Sc-lpI"/>
+                                            <action selector="cerraturnoButtonAction:" destination="WuU-8x-33l" eventType="touchUpInside" id="Yxb-m3-jNc"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -3345,10 +3408,12 @@
                         <outlet property="cancelButton" destination="mA9-i9-Avo" id="BB7-Ak-7LC"/>
                         <outlet property="canceltransactionAlertView" destination="0eY-hQ-uhD" id="hX6-CF-oNG"/>
                         <outlet property="canceltransactionButton" destination="qTe-cK-xKX" id="VCJ-EP-swS"/>
+                        <outlet property="cerraturnoButton" destination="mQG-Ni-lGe" id="TRG-Gh-NLk"/>
                         <outlet property="configButton" destination="0Hv-tq-PlI" id="ht6-x4-45t"/>
                         <outlet property="descriptioncommentLabel" destination="Uzf-Tl-fHm" id="ndI-lv-ndQ"/>
                         <outlet property="emailTextField" destination="WYj-AB-puh" id="dMw-D2-GDp"/>
                         <outlet property="homeButton" destination="d4W-GJ-gIZ" id="XGV-1b-KtC"/>
+                        <outlet property="logoutButton" destination="mVj-zF-d74" id="vjc-Z2-nK0"/>
                         <outlet property="newtransactionButton" destination="0ZP-Ll-sNi" id="GcO-C3-Gau"/>
                         <outlet property="notecommentLabel" destination="ifb-u0-Ntv" id="YJL-WU-xPM"/>
                         <outlet property="reasonTextField" destination="d2e-rb-Bks" id="qyv-Id-3Ul"/>
@@ -3679,7 +3744,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JPN-PL-kuQ">
-                                <rect key="frame" x="-300" y="80" width="300" height="587"/>
+                                <rect key="frame" x="-301" y="80" width="300" height="587"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PKs-dd-hFA">
@@ -3780,6 +3845,17 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nOi-FI-aZO">
+                                        <rect key="frame" x="0.0" y="417" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="sidemenu_cerrarturnoButton_icon.png"/>
+                                        <connections>
+                                            <action selector="cerraturnoButtonAction:" destination="d8D-n5-YfO" eventType="touchUpInside" id="1oc-CT-bs5"/>
+                                            <action selector="cerraturnoButtonAction:" destination="gv2-xU-qZj" eventType="touchUpInside" id="A2c-xP-ztw"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -3794,6 +3870,7 @@
                         <outlet property="canceltransactionButton" destination="7NZ-71-Ci3" id="49I-va-yvA"/>
                         <outlet property="cardnumberLabel" destination="siA-X5-IZk" id="g6I-KS-Z7i"/>
                         <outlet property="cardnumbercommentLabel" destination="P8P-X7-rH1" id="uOy-ap-G4d"/>
+                        <outlet property="cerraturnoButton" destination="nOi-FI-aZO" id="Ysf-je-tRo"/>
                         <outlet property="configButton" destination="mFm-qe-dyi" id="4LW-7P-DSk"/>
                         <outlet property="dateLabel" destination="Urg-0g-0ZG" id="zwj-aJ-cMc"/>
                         <outlet property="detailsLabel" destination="bSc-pa-mGZ" id="P0d-VB-1Dw"/>
@@ -3801,6 +3878,7 @@
                         <outlet property="fullnameLabel" destination="f1K-jm-avS" id="xVv-vg-kYS"/>
                         <outlet property="fullnamecommentLabel" destination="jgh-J6-rVo" id="fXP-oY-Cti"/>
                         <outlet property="homeButton" destination="PKs-dd-hFA" id="oay-IY-Hj6"/>
+                        <outlet property="logoutButton" destination="yMZ-cQ-BnM" id="8Zl-MW-70x"/>
                         <outlet property="maincanceltransButton" destination="Egm-Aj-zD6" id="H0O-MW-6JK"/>
                         <outlet property="mainnewtransButton" destination="mqh-gB-mQ7" id="ZcL-Rr-B0g"/>
                         <outlet property="newtransactionButton" destination="koR-Qr-HBa" id="H9b-PA-2aX"/>
@@ -3999,7 +4077,7 @@
                                     <constraint firstAttribute="height" constant="40" id="rfC-WS-SPP"/>
                                 </constraints>
                                 <attributedString key="attributedText"/>
-                                <textInputTraits key="textInputTraits" textContentType="nickname"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 <connections>
                                     <outlet property="delegate" destination="Gom-Zm-B7M" id="zv4-8P-t9s"/>
                                 </connections>
@@ -4024,7 +4102,10 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="c5w-jg-BbO"/>
                                 </constraints>
                                 <attributedString key="attributedText"/>
-                                <textInputTraits key="textInputTraits" textContentType="nickname"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Gom-Zm-B7M" id="3ID-Ic-seU"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="XXX" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HTV-Xv-K9k">
                                 <rect key="frame" x="255" y="382" width="90" height="40"/>
@@ -4033,7 +4114,7 @@
                                     <constraint firstAttribute="width" constant="90" id="ff7-qm-O1u"/>
                                 </constraints>
                                 <attributedString key="attributedText"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="nickname"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" secureTextEntry="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="Gom-Zm-B7M" id="Wc3-Re-SVa"/>
                                 </connections>
@@ -4059,7 +4140,7 @@
                                     <constraint firstAttribute="height" constant="40" id="vc1-eb-uLl"/>
                                 </constraints>
                                 <attributedString key="attributedText"/>
-                                <textInputTraits key="textInputTraits" textContentType="nickname"/>
+                                <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sYE-Jo-kfR">
                                 <rect key="frame" x="30" y="361" width="189" height="21"/>
@@ -4210,10 +4291,60 @@
                                     <outlet property="delegate" destination="Gom-Zm-B7M" id="JZV-eZ-XqV"/>
                                 </connections>
                             </tableView>
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tZ0-h6-y7X">
+                                <rect key="frame" x="40" y="221" width="294" height="246"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Find Devices" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vbs-Ut-mOP">
+                                        <rect key="frame" x="15" y="16" width="186" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3OT-2n-KJY">
+                                        <rect key="frame" x="0.0" y="59" width="294" height="187"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="btdevice_cell" id="WcA-NR-tvx">
+                                                <rect key="frame" x="0.0" y="28" width="294" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WcA-NR-tvx" id="Rhx-3x-4I2">
+                                                    <rect key="frame" x="0.0" y="0.0" width="294" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Gom-Zm-B7M" id="UxT-z9-Ajw"/>
+                                            <outlet property="delegate" destination="Gom-Zm-B7M" id="uo8-AC-i96"/>
+                                        </connections>
+                                    </tableView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="To0-AW-yNm">
+                                        <rect key="frame" x="245" y="11" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button" image="cashier_shift_close_icon.png"/>
+                                        <connections>
+                                            <action selector="BTDeviceListViewCloseButtonAction:" destination="Gom-Zm-B7M" eventType="touchUpInside" id="Jui-DF-2Rf"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PDO-EX-dpn">
+                                <rect key="frame" x="274" y="80" width="93" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="Iniciar Lector"/>
+                                <connections>
+                                    <action selector="btnAction_StartEMV:" destination="Gom-Zm-B7M" eventType="touchUpInside" id="Ewb-AC-OFe"/>
+                                </connections>
+                            </button>
                             <view hidden="YES" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hym-Mc-ZuV">
                                 <rect key="frame" x="0.0" y="80" width="375" height="587"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SJy-xD-o1Z">
                                 <rect key="frame" x="-301" y="80" width="300" height="587"/>
@@ -4317,6 +4448,17 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gVa-Z1-nha">
+                                        <rect key="frame" x="0.0" y="419" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="sidemenu_cerrarturnoButton_icon.png"/>
+                                        <connections>
+                                            <action selector="cerraturnoButtonAction:" destination="Gom-Zm-B7M" eventType="touchUpInside" id="FkP-R0-eGr"/>
+                                            <action selector="cerraturnoButtonAction:" destination="d8D-n5-YfO" eventType="touchUpInside" id="Sfd-LJ-e5r"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -4338,23 +4480,29 @@
                         <viewLayoutGuide key="safeArea" id="47a-Tc-7Qe"/>
                     </view>
                     <connections>
+                        <outlet property="BTDeviceListView" destination="tZ0-h6-y7X" id="5Gu-zb-V47"/>
+                        <outlet property="BTDeviceTable" destination="3OT-2n-KJY" id="Bpe-7U-r2C"/>
                         <outlet property="CVVTextField" destination="HTV-Xv-K9k" id="3KW-aY-moc"/>
                         <outlet property="SidePanel" destination="SJy-xD-o1Z" id="k76-mI-SV7"/>
-                        <outlet property="TransV" destination="Hym-Mc-ZuV" id="jyD-r0-vV5"/>
+                        <outlet property="TransV" destination="Hym-Mc-ZuV" id="3QQ-Fg-QAO"/>
                         <outlet property="amountLabel" destination="MjN-44-nyL" id="2SG-Uu-OKh"/>
                         <outlet property="canceltransactionButton" destination="XYS-Dn-Peh" id="6XN-Di-hSH"/>
                         <outlet property="cardNameTextField" destination="Qyb-ZT-pk6" id="kNU-dI-939"/>
                         <outlet property="cardNumberTextField" destination="En5-hJ-iQN" id="xWQ-pC-IJX"/>
+                        <outlet property="cardReadButton" destination="PDO-EX-dpn" id="5R9-wj-fnm"/>
                         <outlet property="cardholdernameLabel" destination="9XG-uu-ri6" id="aNm-aX-489"/>
                         <outlet property="cardnumberLabel" destination="HOZ-m5-b60" id="XZq-Si-voh"/>
+                        <outlet property="cerraturnoButton" destination="gVa-Z1-nha" id="46a-Bv-IWe"/>
                         <outlet property="checkBoxLabel" destination="nhM-1c-qT0" id="OT5-ab-Ctv"/>
                         <outlet property="configButton" destination="xrV-ym-8My" id="pB3-qq-X1p"/>
                         <outlet property="contactsupportButton" destination="1hU-EA-nFJ" id="zB9-Zw-K2v"/>
                         <outlet property="crediccardImageView" destination="acI-iR-5Um" id="kal-Wh-Akz"/>
                         <outlet property="descriptionLabel" destination="nty-MJ-CzI" id="v5m-34-RGO"/>
                         <outlet property="descriptionTextField" destination="fZj-Kp-3Mt" id="ZZ3-1q-xyq"/>
+                        <outlet property="devicecommentLabel" destination="Vbs-Ut-mOP" id="RxT-wY-xvm"/>
                         <outlet property="expiredateLabel" destination="sYE-Jo-kfR" id="yPS-Sr-q2B"/>
                         <outlet property="homeButton" destination="EhO-c8-W4Z" id="3En-SH-gde"/>
+                        <outlet property="logoutButton" destination="zcJ-Cy-1va" id="dkJ-oe-8rf"/>
                         <outlet property="maincommentLabel" destination="yiR-0f-1Vz" id="RyF-od-a84"/>
                         <outlet property="monthTableVIew" destination="LJh-Af-xqk" id="ZiE-gh-V79"/>
                         <outlet property="monthselectButton" destination="Tvt-8g-Tab" id="TdV-TQ-nrl"/>
@@ -4727,6 +4875,17 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yYC-30-hVa">
+                                        <rect key="frame" x="0.0" y="418" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="sidemenu_cerrarturnoButton_icon.png"/>
+                                        <connections>
+                                            <action selector="cerraturnoButtonAction:" destination="UJ6-Nh-syK" eventType="touchUpInside" id="ALM-6c-lJG"/>
+                                            <action selector="cerraturnoButtonAction:" destination="d8D-n5-YfO" eventType="touchUpInside" id="dSk-4G-nex"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -4746,9 +4905,11 @@
                         <outlet property="amountTextField" destination="AjN-ji-ABN" id="apB-YK-4VJ"/>
                         <outlet property="amountTextFieldcommentLabel" destination="lMK-sr-Uso" id="ycj-vC-4CX"/>
                         <outlet property="canceltransactionButton" destination="byz-v0-DZ8" id="VHG-VO-anU"/>
+                        <outlet property="cerraturnoButton" destination="yYC-30-hVa" id="ufS-Po-bLX"/>
                         <outlet property="configButton" destination="ov0-8v-5P3" id="wXG-gD-VIq"/>
                         <outlet property="continueButton" destination="Xc3-hh-b74" id="SBv-a9-fUG"/>
                         <outlet property="homeButton" destination="zjg-6L-W9a" id="IWj-Zj-R6v"/>
+                        <outlet property="logoutButton" destination="P1t-p6-bxq" id="hc2-f1-Q1x"/>
                         <outlet property="newtransactionButton" destination="CUb-PE-fXR" id="aW6-3r-m9O"/>
                         <outlet property="reportButton" destination="PpH-hj-veU" id="bv5-v7-Y1J"/>
                         <outlet property="sessionInfoLabel" destination="BlF-1f-rfY" id="sf1-bK-sb4"/>
@@ -5404,6 +5565,17 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wHg-W7-VxW">
+                                        <rect key="frame" x="0.0" y="418" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="sidemenu_cerrarturnoButton_icon.png"/>
+                                        <connections>
+                                            <action selector="cerraturnoButtonAction:" destination="d8D-n5-YfO" eventType="touchUpInside" id="6Vo-VE-SaQ"/>
+                                            <action selector="cerraturnoButtonAction:" destination="BU5-oH-Dg7" eventType="touchUpInside" id="Yhm-pT-s0c"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -5458,11 +5630,13 @@
                         <outlet property="assignshiftButtonLabel" destination="6Bl-UR-xPW" id="jnv-JA-615"/>
                         <outlet property="cancelButton" destination="WTA-uV-hGq" id="ewb-OW-lnp"/>
                         <outlet property="canceltransactionButton" destination="NBl-Ws-TTv" id="0bU-EW-h4o"/>
+                        <outlet property="cerraturnoButton" destination="wHg-W7-VxW" id="md1-F8-tHI"/>
                         <outlet property="closeshiftAlertView" destination="PHz-NK-m6b" id="cVe-LN-RAc"/>
                         <outlet property="closeshiftButtonLabel" destination="uz9-Lm-bMT" id="Wo7-pj-X9C"/>
                         <outlet property="codeheadLabel" destination="pJ9-uf-SSw" id="ZLh-64-qsK"/>
                         <outlet property="configButton" destination="y99-HG-6j4" id="LBR-Vr-FgS"/>
                         <outlet property="homeButton" destination="Ki5-t9-qak" id="lvr-W0-jLG"/>
+                        <outlet property="logoutButton" destination="YFH-1W-D5r" id="6zA-fy-Sm7"/>
                         <outlet property="newtransactionButton" destination="bIG-Y1-Wc1" id="GJp-Bb-GmP"/>
                         <outlet property="removeButton" destination="xgV-2m-6HP" id="EWh-lo-1Lq"/>
                         <outlet property="removecommentLabel" destination="Bdg-Pe-5ce" id="Usj-3q-c7e"/>
@@ -6036,6 +6210,17 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NPt-J4-1Vi">
+                                        <rect key="frame" x="0.0" y="419" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="sidemenu_cerrarturnoButton_icon.png"/>
+                                        <connections>
+                                            <action selector="cerraturnoButtonAction:" destination="qja-4M-7Hc" eventType="touchUpInside" id="8Zi-JK-0M2"/>
+                                            <action selector="cerraturnoButtonAction:" destination="d8D-n5-YfO" eventType="touchUpInside" id="pGA-dK-Ifx"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -6082,10 +6267,12 @@
                         <outlet property="TransV" destination="Dk6-BZ-e9t" id="rfV-Aw-fBc"/>
                         <outlet property="assignshiftButtonLabel" destination="azn-Kb-X3W" id="DRc-dN-Nip"/>
                         <outlet property="canceltransactionButton" destination="pzU-Ea-ggp" id="ezb-WI-4qW"/>
+                        <outlet property="cerraturnoButton" destination="NPt-J4-1Vi" id="eAm-BJ-JIn"/>
                         <outlet property="closeshiftButtonLabel" destination="9wC-pY-LiQ" id="lG2-nm-knT"/>
                         <outlet property="codeheadLabel" destination="SJj-3n-J5M" id="Vod-L6-1Eb"/>
                         <outlet property="configButton" destination="Vc5-Mb-xUK" id="H0q-f9-y47"/>
                         <outlet property="homeButton" destination="WGN-fn-G2K" id="x6Q-2b-fir"/>
+                        <outlet property="logoutButton" destination="wdH-nW-Ztw" id="EdR-jo-712"/>
                         <outlet property="mainmenuAssignShiftButton" destination="40J-WR-KZS" id="jfI-KR-rBK"/>
                         <outlet property="mainmenuCloseShiftButton" destination="x6P-v1-wyA" id="sq5-zw-oF6"/>
                         <outlet property="mainmenuSearchButton" destination="1tZ-2A-oV2" id="RTg-4n-9kt"/>
@@ -6681,6 +6868,17 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5A4-61-Ezd">
+                                        <rect key="frame" x="0.0" y="417" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="sidemenu_cerrarturnoButton_icon.png"/>
+                                        <connections>
+                                            <action selector="cerraturnoButtonAction:" destination="WyZ-oE-TfI" eventType="touchUpInside" id="8wA-EB-mnx"/>
+                                            <action selector="cerraturnoButtonAction:" destination="d8D-n5-YfO" eventType="touchUpInside" id="gnX-Ex-M7W"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -6731,10 +6929,12 @@
                         <outlet property="TransV" destination="V3z-AS-VPB" id="kJS-TN-Iml"/>
                         <outlet property="assignshiftButtonLabel" destination="mSS-yg-Oyw" id="iW0-Kp-1hd"/>
                         <outlet property="canceltransactionButton" destination="9L0-xd-69L" id="HdV-ea-X8I"/>
+                        <outlet property="cerraturnoButton" destination="5A4-61-Ezd" id="0hU-wQ-2Od"/>
                         <outlet property="closeshiftButtonLabel" destination="erN-w3-4ec" id="iHi-fu-R5s"/>
                         <outlet property="codeheadLabel" destination="txR-hf-wwY" id="d6r-Dl-IDU"/>
                         <outlet property="configButton" destination="Chv-ya-Jtu" id="K32-hC-glV"/>
                         <outlet property="homeButton" destination="HdQ-Ds-kAD" id="qGf-YA-bwf"/>
+                        <outlet property="logoutButton" destination="ihY-Ei-ADR" id="5Mj-6h-mg7"/>
                         <outlet property="newtransactionButton" destination="Tcx-mx-Nng" id="6mS-oW-hGA"/>
                         <outlet property="reportButton" destination="eoF-nY-52J" id="Xng-9h-Zcp"/>
                         <outlet property="searchshiftButtonLabel" destination="fCF-a8-rdJ" id="YUQ-Yj-fBr"/>
@@ -7228,7 +7428,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="00y-O0-zPD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1014" y="839"/>
+            <point key="canvasLocation" x="1013.6" y="838.83058470764627"/>
         </scene>
         <!--Report View Controller-->
         <scene sceneID="T7D-BH-uIM">
@@ -7361,7 +7561,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rme-hg-kt6">
-                                <rect key="frame" x="-300" y="80" width="300" height="587"/>
+                                <rect key="frame" x="-302" y="80" width="300" height="587"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J51-pt-kuC">
@@ -7465,6 +7665,17 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eO5-2t-z8v">
+                                        <rect key="frame" x="0.0" y="420" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="sidemenu_cerrarturnoButton_icon.png"/>
+                                        <connections>
+                                            <action selector="cerraturnoButtonAction:" destination="d8D-n5-YfO" eventType="touchUpInside" id="WyF-0W-FDR"/>
+                                            <action selector="cerraturnoButtonAction:" destination="nnt-oR-rw4" eventType="touchUpInside" id="nB8-eu-wRW"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -7477,9 +7688,11 @@
                         <outlet property="TransV" destination="Mhp-NW-AvZ" id="ua9-qr-bmi"/>
                         <outlet property="canceltransactionButton" destination="ybx-dX-hdf" id="rgg-va-GNI"/>
                         <outlet property="cashiershiftButton" destination="HuK-a2-4sT" id="8Fa-6d-xt1"/>
+                        <outlet property="cerraturnoButton" destination="eO5-2t-z8v" id="Eyf-eu-UpZ"/>
                         <outlet property="configButton" destination="edN-sw-b04" id="pQB-oS-Z9D"/>
                         <outlet property="contactsupportButton" destination="lgN-Nf-3OY" id="sv4-fW-8yh"/>
                         <outlet property="homeButton" destination="J51-pt-kuC" id="PbG-6h-Q0Y"/>
+                        <outlet property="logoutButton" destination="GpP-gD-tOx" id="igh-Jl-wEo"/>
                         <outlet property="maincommentLabel" destination="6ej-Za-f3O" id="1EQ-hS-Yxt"/>
                         <outlet property="newtransactionButton" destination="ZlW-O9-tAO" id="vCH-6e-C5U"/>
                         <outlet property="reportButton" destination="JzE-TI-Fzy" id="ZKT-03-eN3"/>
@@ -7760,7 +7973,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f1n-2y-0Hm">
-                                <rect key="frame" x="-301" y="80" width="300" height="587"/>
+                                <rect key="frame" x="-300" y="80" width="300" height="587"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FLl-rN-Bsw">
@@ -7864,6 +8077,17 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fx8-ic-aNs">
+                                        <rect key="frame" x="0.0" y="419" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="sidemenu_cerrarturnoButton_icon.png"/>
+                                        <connections>
+                                            <action selector="cerraturnoButtonAction:" destination="jbM-V7-j5R" eventType="touchUpInside" id="N2h-OP-xBm"/>
+                                            <action selector="cerraturnoButtonAction:" destination="d8D-n5-YfO" eventType="touchUpInside" id="k9H-f0-dAA"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -7875,9 +8099,11 @@
                         <outlet property="SidePanel" destination="f1n-2y-0Hm" id="0mF-bx-vRv"/>
                         <outlet property="TransV" destination="eN0-U7-xar" id="cvM-Rn-TmE"/>
                         <outlet property="canceltransactionButton" destination="meb-XT-JzX" id="9fM-se-ELk"/>
+                        <outlet property="cerraturnoButton" destination="fx8-ic-aNs" id="r4s-wz-Faj"/>
                         <outlet property="commentLabel" destination="dG1-aa-7rW" id="KJW-PZ-jbJ"/>
                         <outlet property="configButton" destination="07K-vv-a3b" id="Yg6-Go-eZp"/>
                         <outlet property="homeButton" destination="FLl-rN-Bsw" id="DO6-97-AOT"/>
+                        <outlet property="logoutButton" destination="PIf-UT-0py" id="yX6-bM-YTs"/>
                         <outlet property="newtransactionButton" destination="Cb5-KZ-426" id="QXt-8b-y6y"/>
                         <outlet property="reportButton" destination="NQz-5q-pbD" id="rhr-6N-07F"/>
                         <outlet property="sessionInfoLabel" destination="Unw-wx-KlJ" id="1IK-4A-1or"/>
@@ -8193,7 +8419,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mIW-Ri-mdF">
-                                <rect key="frame" x="-301" y="80" width="300" height="587"/>
+                                <rect key="frame" x="-302" y="80" width="300" height="587"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mLG-bc-MLv">
@@ -8297,6 +8523,17 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KeX-4D-JTi">
+                                        <rect key="frame" x="0.0" y="415" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="sidemenu_cerrarturnoButton_icon.png"/>
+                                        <connections>
+                                            <action selector="cerraturnoButtonAction:" destination="d8D-n5-YfO" eventType="touchUpInside" id="gry-br-X1a"/>
+                                            <action selector="cerraturnoButtonAction:" destination="ifU-SZ-nZw" eventType="touchUpInside" id="uw5-di-Gag"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -8325,12 +8562,14 @@
                         <outlet property="canceltransactionButton" destination="2UN-I9-CRQ" id="kZS-Wz-Qox"/>
                         <outlet property="cashierTableView" destination="tbN-GG-3Ko" id="TFB-iW-rXx"/>
                         <outlet property="cashiercommentLabel" destination="ord-pI-7eX" id="fJJ-46-fHi"/>
+                        <outlet property="cerraturnoButton" destination="KeX-4D-JTi" id="pZy-rT-VhI"/>
                         <outlet property="closeDatePicker" destination="DcC-of-u9S" id="vkc-50-u3E"/>
                         <outlet property="codecommentLabel" destination="1mq-e0-1SC" id="rqx-bu-clF"/>
                         <outlet property="codigoTextView" destination="stp-ND-pWP" id="s5S-3I-ofI"/>
                         <outlet property="configButton" destination="B1d-b3-khC" id="lcz-xm-R5v"/>
                         <outlet property="enddatecommentLabel" destination="Wp0-cf-5QK" id="9xG-mA-nh7"/>
                         <outlet property="homeButton" destination="mLG-bc-MLv" id="B6P-Kp-Wnv"/>
+                        <outlet property="logoutButton" destination="zXN-8Q-OQk" id="ahr-jf-scS"/>
                         <outlet property="maincommentLabel" destination="9KD-0X-IxD" id="E9N-cP-iso"/>
                         <outlet property="newtransactionButton" destination="2iH-Ba-lEj" id="Io1-Q3-gQE"/>
                         <outlet property="reportButton" destination="NHb-qq-xam" id="dYR-aM-6PK"/>
@@ -8534,7 +8773,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="477-nn-rux">
-                                <rect key="frame" x="-300" y="80" width="300" height="587"/>
+                                <rect key="frame" x="-299" y="80" width="300" height="587"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l3X-lc-KYY">
@@ -8638,6 +8877,17 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5QI-rm-cbT">
+                                        <rect key="frame" x="0.0" y="418" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="sidemenu_cerrarturnoButton_icon.png"/>
+                                        <connections>
+                                            <action selector="cerraturnoButtonAction:" destination="d8D-n5-YfO" eventType="touchUpInside" id="2vR-ze-CEt"/>
+                                            <action selector="cerraturnoButtonAction:" destination="MgO-sS-HtP" eventType="touchUpInside" id="ret-a3-Jzv"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -8649,12 +8899,14 @@
                         <outlet property="SidePanel" destination="477-nn-rux" id="Lj2-Ss-EgR"/>
                         <outlet property="TransV" destination="Sra-EK-3xG" id="BEE-sb-Zns"/>
                         <outlet property="canceltransactionButton" destination="gdn-Z4-ZWt" id="gSK-xX-KN1"/>
+                        <outlet property="cerraturnoButton" destination="5QI-rm-cbT" id="cif-hW-YMs"/>
                         <outlet property="configButton" destination="Ym9-cI-jJe" id="VE9-TI-Exy"/>
                         <outlet property="contactsupportButton" destination="bWd-n7-pwN" id="wmd-SB-0F3"/>
                         <outlet property="enddatecommentLabel" destination="4MM-1y-OmZ" id="8l7-7z-iCu"/>
                         <outlet property="finishDatePicker" destination="xzk-CM-W9v" id="eBs-CX-bgf"/>
                         <outlet property="generatereportButton" destination="kQj-lk-ywm" id="hXM-i6-bLw"/>
                         <outlet property="homeButton" destination="l3X-lc-KYY" id="qqm-7U-Z0n"/>
+                        <outlet property="logoutButton" destination="pyE-Kt-7Az" id="I2C-Ue-uBV"/>
                         <outlet property="newtransactionButton" destination="8ZZ-dm-Sk9" id="hYa-5S-kqX"/>
                         <outlet property="reportButton" destination="0i7-Wd-YgJ" id="MaS-tB-tYg"/>
                         <outlet property="searchcommentLabel" destination="VtS-cr-3FM" id="uS1-kt-HFG"/>
@@ -9023,7 +9275,7 @@
                                             <attributedString key="attributedTitle"/>
                                         </state>
                                         <connections>
-                                            <segue destination="5Z4-mn-8hx" kind="show" id="IIT-Bf-BZW"/>
+                                            <action selector="logoutButtonAction:" destination="APy-JS-0hp" eventType="touchUpInside" id="9T7-Oy-1Dh"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cqf-96-zY5">
@@ -9031,6 +9283,17 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txY-fS-dUv">
+                                        <rect key="frame" x="0.0" y="420" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="sidemenu_cerrarturnoButton_icon.png"/>
+                                        <connections>
+                                            <action selector="cerraturnoButtonAction:" destination="d8D-n5-YfO" eventType="touchUpInside" id="Fjv-ls-Fje"/>
+                                            <action selector="cerraturnoButtonAction:" destination="APy-JS-0hp" eventType="touchUpInside" id="xhP-Dl-Y4q"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -9052,12 +9315,14 @@
                         <outlet property="SidePanel" destination="NAy-dh-UCp" id="Tg4-Fj-oVa"/>
                         <outlet property="TransV" destination="qRt-TI-OoR" id="Aos-Kw-tqS"/>
                         <outlet property="canceltransactionButton" destination="aI6-o6-iZC" id="dUv-n7-Iym"/>
+                        <outlet property="cerraturnoButton" destination="txY-fS-dUv" id="Noh-Q2-Z37"/>
                         <outlet property="configButton" destination="wev-mw-5ok" id="4cN-RV-C04"/>
                         <outlet property="createuserbutton" destination="35X-A1-iUN" id="uVS-ie-0Of"/>
                         <outlet property="deleteuserButton" destination="gEm-W3-zdx" id="Ya2-YC-xAi"/>
                         <outlet property="edituserButton" destination="lCx-6R-FHR" id="PWf-fn-ijx"/>
                         <outlet property="fullnameLabel" destination="4sP-or-Qer" id="aV7-aN-fFR"/>
                         <outlet property="homeButton" destination="qYC-b0-Sd2" id="wbD-5r-1Nq"/>
+                        <outlet property="logoutButton" destination="Dpb-AT-gb4" id="vpW-W0-hHY"/>
                         <outlet property="newtransactionButton" destination="CmO-Pd-foL" id="53K-ue-KOP"/>
                         <outlet property="reportButton" destination="zGC-bh-agi" id="65g-vO-1cc"/>
                         <outlet property="roleLabel" destination="I1O-YP-gKO" id="riq-gd-Blk"/>
@@ -9074,6 +9339,7 @@
                         <segue destination="gx5-XN-oCB" kind="presentation" identifier="useradmintodeleteuser_segue" id="IFn-GB-61X"/>
                         <segue destination="ouP-c7-clX" kind="presentation" identifier="useradmintosearchuser_segue" id="ggG-WD-r8D"/>
                         <segue destination="d8D-n5-YfO" kind="presentation" identifier="useradmintohome_segue" id="MOE-b9-ZmU"/>
+                        <segue destination="5Z4-mn-8hx" kind="presentation" identifier="useradmintowelcome_segue" id="jJS-2y-sFP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XX9-9p-d0K" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -9349,7 +9615,7 @@
                                 </connections>
                             </tableView>
                             <view hidden="YES" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M1Y-Tb-CJT">
-                                <rect key="frame" x="-1" y="80" width="375" height="587"/>
+                                <rect key="frame" x="0.0" y="80" width="375" height="587"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
@@ -9450,7 +9716,7 @@
                                             <attributedString key="attributedTitle"/>
                                         </state>
                                         <connections>
-                                            <segue destination="5Z4-mn-8hx" kind="show" id="eyM-J0-pqn"/>
+                                            <action selector="logoutButtonAction:" destination="gx5-XN-oCB" eventType="touchUpInside" id="2xm-JI-Qwf"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hAh-iX-LWc">
@@ -9458,6 +9724,17 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZeN-B7-9s8">
+                                        <rect key="frame" x="0.0" y="419" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="sidemenu_cerrarturnoButton_icon.png"/>
+                                        <connections>
+                                            <action selector="cerraturnoButtonAction:" destination="gx5-XN-oCB" eventType="touchUpInside" id="M1R-y3-X9a"/>
+                                            <action selector="cerraturnoButtonAction:" destination="d8D-n5-YfO" eventType="touchUpInside" id="aUa-F4-kwF"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -9536,12 +9813,14 @@
                         <outlet property="TransV" destination="M1Y-Tb-CJT" id="Glj-oK-EeY"/>
                         <outlet property="cancelButton" destination="ebp-xI-l8T" id="auE-m8-PNU"/>
                         <outlet property="canceltransactionButton" destination="AAe-Xm-Emz" id="KHH-ho-q5x"/>
+                        <outlet property="cerraturnoButton" destination="ZeN-B7-9s8" id="MaD-d0-who"/>
                         <outlet property="configButton" destination="ohL-I2-MQD" id="dDP-4C-dyP"/>
                         <outlet property="deleteAlertView" destination="piu-5D-Kcc" id="j32-TF-cEP"/>
                         <outlet property="deleteUserNameLabel" destination="dJQ-eT-6Bq" id="Gpw-6q-AP1"/>
                         <outlet property="deletecommentLabel" destination="l8I-tH-uf7" id="nN0-5t-D0R"/>
                         <outlet property="fullnameLabel" destination="fhT-Xd-w3O" id="bi8-7H-Pni"/>
                         <outlet property="homeButton" destination="4lo-pm-9sy" id="cpd-9i-BPW"/>
+                        <outlet property="logoutButton" destination="FTh-yh-3dD" id="Oqu-7z-bEN"/>
                         <outlet property="newtransactionButton" destination="y91-NR-M46" id="eSd-j7-1Hg"/>
                         <outlet property="removeButton" destination="EJi-lP-gWK" id="tyI-rn-qzc"/>
                         <outlet property="reportButton" destination="gsh-Dn-jVj" id="WIz-ll-xRH"/>
@@ -9557,6 +9836,7 @@
                         <segue destination="XKq-6y-rr8" kind="presentation" identifier="deleteusertocreateuser_segue" id="L35-3n-3Ti"/>
                         <segue destination="ouP-c7-clX" kind="presentation" identifier="deleteusertosearchuser_segue" id="ZY0-Ah-Urh"/>
                         <segue destination="APy-JS-0hp" kind="presentation" identifier="deleteusertouseradmin_segue" id="fdF-By-OpW"/>
+                        <segue destination="5Z4-mn-8hx" kind="presentation" identifier="deleteusertowelcome_segue" id="2PB-XB-pnd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J4y-0l-ZcG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -9829,7 +10109,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ykk-MG-oJ9">
-                                <rect key="frame" x="-300" y="80" width="300" height="587"/>
+                                <rect key="frame" x="-301" y="80" width="300" height="587"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FNE-Is-t1g">
@@ -9925,7 +10205,7 @@
                                             <attributedString key="attributedTitle"/>
                                         </state>
                                         <connections>
-                                            <segue destination="5Z4-mn-8hx" kind="show" id="5eu-lK-bWv"/>
+                                            <action selector="logoutButtonAction:" destination="IOh-8J-uEF" eventType="touchUpInside" id="3QR-aV-xrA"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W77-MM-0DW">
@@ -9933,6 +10213,17 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="shs-XJ-2N0">
+                                        <rect key="frame" x="0.0" y="417" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="sidemenu_cerrarturnoButton_icon.png"/>
+                                        <connections>
+                                            <action selector="cerraturnoButtonAction:" destination="d8D-n5-YfO" eventType="touchUpInside" id="FVH-or-TRv"/>
+                                            <action selector="cerraturnoButtonAction:" destination="IOh-8J-uEF" eventType="touchUpInside" id="dqn-om-Pyo"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -9952,10 +10243,12 @@
                         <outlet property="SidePanel" destination="Ykk-MG-oJ9" id="F2V-qz-A47"/>
                         <outlet property="TransV" destination="Fyp-NF-yrQ" id="PUt-Pc-L5O"/>
                         <outlet property="canceltransactionButton" destination="Qyw-fV-Z2N" id="GJL-cT-bm1"/>
+                        <outlet property="cerraturnoButton" destination="shs-XJ-2N0" id="xmr-Hu-2Hu"/>
                         <outlet property="configButton" destination="3vT-FK-maX" id="5Lq-hm-FrD"/>
                         <outlet property="editcommentLabel" destination="s0m-Rf-frA" id="djO-Nj-4QC"/>
                         <outlet property="fullnameLabel" destination="LMr-D8-DF8" id="It6-MM-9Jd"/>
                         <outlet property="homeButton" destination="FNE-Is-t1g" id="kKi-dc-7Vv"/>
+                        <outlet property="logoutButton" destination="G0c-jU-W4k" id="zdp-Xs-ALS"/>
                         <outlet property="newtransactionButton" destination="cDo-fN-M16" id="Pwt-QI-XDP"/>
                         <outlet property="reportButton" destination="u2K-7D-pc7" id="Z5p-8Z-66s"/>
                         <outlet property="roleLabel" destination="RP8-lD-fQk" id="kEf-cx-GjN"/>
@@ -9970,6 +10263,7 @@
                         <segue destination="gx5-XN-oCB" kind="presentation" identifier="editusertodeleteuser_segue" id="N8w-64-bFE"/>
                         <segue destination="XKq-6y-rr8" kind="presentation" identifier="editusertoinsertuser_segue" id="aSm-9k-GYS"/>
                         <segue destination="ouP-c7-clX" kind="presentation" identifier="editusertosearchuser_segue" id="D9R-AI-944"/>
+                        <segue destination="5Z4-mn-8hx" kind="presentation" identifier="editusertowelcome_segue" id="X7w-0U-l0e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pP2-Gf-CfM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -10237,7 +10531,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LAY-F3-FRQ">
-                                <rect key="frame" x="-300" y="80" width="300" height="587"/>
+                                <rect key="frame" x="-301" y="80" width="300" height="587"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XXy-Xz-ORK">
@@ -10333,7 +10627,7 @@
                                             <attributedString key="attributedTitle"/>
                                         </state>
                                         <connections>
-                                            <segue destination="5Z4-mn-8hx" kind="show" id="0V5-6V-SAp"/>
+                                            <action selector="logoutButtonAction:" destination="ouP-c7-clX" eventType="touchUpInside" id="189-GE-m5Y"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jxN-2J-yMv">
@@ -10341,6 +10635,17 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HWu-8U-OVO">
+                                        <rect key="frame" x="0.0" y="418" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="sidemenu_cerrarturnoButton_icon.png"/>
+                                        <connections>
+                                            <action selector="cerraturnoButtonAction:" destination="d8D-n5-YfO" eventType="touchUpInside" id="4f0-Ps-v8I"/>
+                                            <action selector="cerraturnoButtonAction:" destination="ouP-c7-clX" eventType="touchUpInside" id="uMH-ky-gBB"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -10358,9 +10663,11 @@
                         <outlet property="SidePanel" destination="LAY-F3-FRQ" id="1Ne-fD-0jY"/>
                         <outlet property="TransV" destination="bPV-Uk-Mv3" id="I0m-cJ-YEY"/>
                         <outlet property="canceltransactionButton" destination="qAC-FD-Kz3" id="gPL-g8-Pmc"/>
+                        <outlet property="cerraturnoButton" destination="HWu-8U-OVO" id="f4v-3g-NqK"/>
                         <outlet property="configButton" destination="crY-iU-b0G" id="OZI-xc-59T"/>
                         <outlet property="fullnameLabel" destination="92X-Ur-QcM" id="r9J-JE-rX8"/>
                         <outlet property="homeButton" destination="XXy-Xz-ORK" id="t4l-tc-F26"/>
+                        <outlet property="logoutButton" destination="aXi-xC-ZOs" id="4Jj-1y-x0m"/>
                         <outlet property="newtransactionButton" destination="war-FO-udt" id="1mP-yH-ad1"/>
                         <outlet property="reportButton" destination="VlG-pv-il2" id="QMw-0l-1fe"/>
                         <outlet property="roleLabel" destination="1Mp-9X-2a8" id="nEo-aV-sdt"/>
@@ -10375,6 +10682,7 @@
                         <segue destination="XKq-6y-rr8" kind="presentation" identifier="searchusertoinsertuser_segue" id="hO8-wg-cUF"/>
                         <segue destination="gx5-XN-oCB" kind="presentation" identifier="searchusertodeleteuser_segue" id="cB3-i3-ZTn"/>
                         <segue destination="IOh-8J-uEF" kind="presentation" identifier="searchusertoedituser_segue" id="yf9-sf-dlg"/>
+                        <segue destination="5Z4-mn-8hx" kind="presentation" identifier="searchusertowelcome_segue" id="4Sh-Zg-dpy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nbb-QA-Rws" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -10523,7 +10831,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" secureTextEntry="YES"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PIN de autorización:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYW-UM-Bc4">
                                         <rect key="frame" x="75" y="10" width="154" height="21"/>
@@ -10923,7 +11231,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YIb-QY-8UJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4233" y="2810"/>
+            <point key="canvasLocation" x="4255" y="2810"/>
         </scene>
         <!--Cashier Shift Search Result View Controller-->
         <scene sceneID="0ph-6z-DhM">
@@ -11209,7 +11517,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zcb-B7-PU1">
-                                <rect key="frame" x="-300" y="80" width="300" height="587"/>
+                                <rect key="frame" x="-301" y="80" width="300" height="587"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wBC-RF-zxk">
@@ -11313,6 +11621,17 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tjM-Fp-Mip">
+                                        <rect key="frame" x="0.0" y="420" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="sidemenu_cerrarturnoButton_icon.png"/>
+                                        <connections>
+                                            <action selector="cerraturnoButtonAction:" destination="4CB-cV-rqT" eventType="touchUpInside" id="QC6-W4-Cl9"/>
+                                            <action selector="cerraturnoButtonAction:" destination="d8D-n5-YfO" eventType="touchUpInside" id="QUa-mY-dgv"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -11324,9 +11643,11 @@
                         <outlet property="SidePanel" destination="zcb-B7-PU1" id="38v-ZN-DAF"/>
                         <outlet property="TransV" destination="bP2-FV-P3Y" id="UaJ-Xi-6h5"/>
                         <outlet property="canceltransactionButton" destination="Niu-Mq-vLd" id="i1N-Do-214"/>
+                        <outlet property="cerraturnoButton" destination="tjM-Fp-Mip" id="grF-Rg-Ooo"/>
                         <outlet property="configButton" destination="8eP-5U-HoW" id="DYT-Cy-bq6"/>
                         <outlet property="countLabel" destination="WWR-yU-nxg" id="toe-0v-PFA"/>
                         <outlet property="homeButton" destination="wBC-RF-zxk" id="myA-9z-qNF"/>
+                        <outlet property="logoutButton" destination="8lY-0J-8QP" id="vxx-jH-Iph"/>
                         <outlet property="modifysearchButton" destination="ofa-jI-eEG" id="wSE-dL-sVn"/>
                         <outlet property="newtransactionButton" destination="qze-iv-tI0" id="uOV-8w-EtQ"/>
                         <outlet property="reportButton" destination="tui-6Q-SGT" id="G6K-29-e3F"/>
@@ -11376,17 +11697,16 @@
                                 </state>
                                 <connections>
                                     <action selector="backButtonAction:" destination="exd-rz-6jl" eventType="touchUpInside" id="j4B-bB-OHb"/>
-                                    <segue destination="nnt-oR-rw4" kind="show" id="hf2-bf-iof"/>
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HoF-YZ-8Au">
-                                <rect key="frame" x="8" y="95" width="119" height="21"/>
+                                <rect key="frame" x="8" y="95" width="140" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="Turno código:">
+                                    <fragment content="Turno Seleccionado:">
                                         <attributes>
                                             <color key="NSColor" red="0.26389950509999999" green="0.52124434710000001" blue="0.81966942549999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            <font key="NSFont" metaFont="system" size="18"/>
+                                            <font key="NSFont" size="15" name=".AppleSystemUIFont"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -11394,7 +11714,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmo-Rp-rA8">
-                                <rect key="frame" x="132" y="95" width="135" height="21"/>
+                                <rect key="frame" x="152" y="94" width="118" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText"/>
                                 <nil key="highlightedColor"/>
@@ -11754,6 +12074,17 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s01-Ny-Igy">
+                                        <rect key="frame" x="0.0" y="417" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="sidemenu_cerrarturnoButton_icon.png"/>
+                                        <connections>
+                                            <action selector="cerraturnoButtonAction:" destination="d8D-n5-YfO" eventType="touchUpInside" id="M6W-F1-fo9"/>
+                                            <action selector="cerraturnoButtonAction:" destination="exd-rz-6jl" eventType="touchUpInside" id="ywj-58-2MA"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -11765,9 +12096,11 @@
                         <outlet property="SidePanel" destination="RvX-cm-ypm" id="pdK-g8-V9g"/>
                         <outlet property="TransV" destination="mwd-tw-QBU" id="q6X-wf-uBJ"/>
                         <outlet property="canceltransactionButton" destination="GNA-j8-gHm" id="KD7-kz-hTD"/>
+                        <outlet property="cerraturnoButton" destination="s01-Ny-Igy" id="Azd-Qi-3Jx"/>
                         <outlet property="configButton" destination="1wp-Dw-ieC" id="JIb-Id-OMY"/>
                         <outlet property="exportcommentLabel" destination="U3p-Fg-rVs" id="vVc-Q8-XxT"/>
                         <outlet property="homeButton" destination="jJg-U8-fHU" id="LxT-1o-cTZ"/>
+                        <outlet property="logoutButton" destination="BI0-Zx-str" id="L5w-Hm-sMR"/>
                         <outlet property="newtransactionButton" destination="FZo-Sd-e5d" id="BaO-Kp-09W"/>
                         <outlet property="reportButton" destination="V4J-gP-rUm" id="vR5-JS-jFk"/>
                         <outlet property="sessionInfoLabel" destination="xJl-ZO-T2V" id="UVg-tp-aBn"/>
@@ -11781,6 +12114,7 @@
                         <segue destination="5Z4-mn-8hx" kind="presentation" identifier="transactionstowelcome_segue" id="ltV-FB-0Zc"/>
                         <segue destination="4CB-cV-rqT" kind="presentation" identifier="transactiontocashiershiftsearch_segue" id="y3M-X3-6G4"/>
                         <segue destination="MgO-sS-HtP" kind="presentation" identifier="transactiontotransactionreport_segue" id="xY8-sy-NSf"/>
+                        <segue destination="jbM-V7-j5R" kind="presentation" identifier="transactiontoshiftreport_segue" id="JkH-aQ-mdo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vNL-bi-Bap" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -12313,7 +12647,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" secureTextEntry="YES"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PIN de autorización:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRH-5G-Of3">
                                         <rect key="frame" x="33" y="10" width="196" height="21"/>
@@ -13126,6 +13460,17 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3tj-hd-pcq">
+                                        <rect key="frame" x="0.0" y="419" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="sidemenu_cerrarturnoButton_icon.png"/>
+                                        <connections>
+                                            <action selector="cerraturnoButtonAction:" destination="npW-YR-nEN" eventType="touchUpInside" id="5ou-Vz-QUy"/>
+                                            <action selector="cerraturnoButtonAction:" destination="d8D-n5-YfO" eventType="touchUpInside" id="Bqo-Aq-nAK"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -13183,6 +13528,7 @@
                         <outlet property="canceltransactionButton" destination="GgO-74-Qg0" id="pLB-Rp-Z0o"/>
                         <outlet property="cashierlistTableView" destination="NrT-RO-Dp1" id="c31-EH-6Us"/>
                         <outlet property="cashierlistTableViewHeightConstraint" destination="D0K-jM-k2b" id="CAQ-E1-1Ye"/>
+                        <outlet property="cerraturnoButton" destination="3tj-hd-pcq" id="ktA-iD-D4T"/>
                         <outlet property="checkboxcommentLabel" destination="ehB-xg-LWj" id="iNw-Yc-onP"/>
                         <outlet property="closeButtonLabel" destination="wUT-cx-exM" id="z22-WG-pEd"/>
                         <outlet property="codeheadLabel" destination="Lex-MS-yLa" id="nD4-Ch-jze"/>
@@ -13191,6 +13537,7 @@
                         <outlet property="completeInsertShiftAlertView" destination="o7M-v3-DyR" id="fIj-DI-b4T"/>
                         <outlet property="configButton" destination="9im-z6-eau" id="4EF-hj-WBd"/>
                         <outlet property="homeButton" destination="MC3-sW-0hB" id="yax-LQ-LV0"/>
+                        <outlet property="logoutButton" destination="Uwm-kf-nWL" id="f8c-aK-ifT"/>
                         <outlet property="newtransactionButton" destination="r8J-7j-lnA" id="Jep-D3-Rnf"/>
                         <outlet property="reportButton" destination="LRU-Zz-pGS" id="I9x-nr-bve"/>
                         <outlet property="searchButtonLabel" destination="54J-4w-zdg" id="Zn6-JH-hJ9"/>
@@ -13356,7 +13703,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" secureTextEntry="YES"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PIN de autorización:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFr-dr-w8P">
                                         <rect key="frame" x="75" y="10" width="154" height="21"/>
@@ -13821,28 +14168,28 @@
         <image name="wsk_response_fail_icon.png" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="YI8-6s-7Og"/>
+        <segue reference="e5t-5z-f4H"/>
         <segue reference="zS9-Pj-GIe"/>
         <segue reference="e76-cs-Nyg"/>
-        <segue reference="u4j-r1-HxG"/>
+        <segue reference="3TK-Ke-iOO"/>
         <segue reference="DFb-lS-2Hg"/>
-        <segue reference="9vh-nL-AO6"/>
-        <segue reference="Ng2-3v-POk"/>
+        <segue reference="1vS-uD-AiC"/>
+        <segue reference="y3M-X3-6G4"/>
         <segue reference="ggG-WD-r8D"/>
-        <segue reference="yf9-sf-dlg"/>
-        <segue reference="cB3-i3-ZTn"/>
-        <segue reference="XiX-x4-MHI"/>
+        <segue reference="4J5-oD-WY6"/>
+        <segue reference="IFn-GB-61X"/>
+        <segue reference="ivr-bU-8aI"/>
         <segue reference="xY8-sy-NSf"/>
         <segue reference="1dn-zp-irt"/>
-        <segue reference="xGE-zO-q7t"/>
-        <segue reference="pb5-F5-9pQ"/>
-        <segue reference="pab-KF-uQk"/>
-        <segue reference="cBP-Ph-8a9"/>
-        <segue reference="UDO-fI-gl3"/>
-        <segue reference="VI1-Lg-iw4"/>
-        <segue reference="gZg-DN-wVl"/>
-        <segue reference="0kq-Cg-V8g"/>
-        <segue reference="qEM-ep-jst"/>
-        <segue reference="6dS-Gp-qOT"/>
+        <segue reference="JkH-aQ-mdo"/>
+        <segue reference="0ml-nG-RJ5"/>
+        <segue reference="kYx-Hx-9Hd"/>
+        <segue reference="ryk-l3-l3n"/>
+        <segue reference="pgs-jf-eXV"/>
+        <segue reference="3gc-ek-hpZ"/>
+        <segue reference="4ji-My-ajd"/>
+        <segue reference="bmQ-vd-U7f"/>
+        <segue reference="MRp-cr-dAm"/>
+        <segue reference="Eg3-5k-x3y"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -36,11 +36,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *turnoButton;
 @property (weak, nonatomic) IBOutlet UIButton *canceltransactionButton;
 @property (weak, nonatomic) IBOutlet UIButton *newtransactionButton;
+@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
+@property (weak, nonatomic) IBOutlet UIButton *cerraturnoButton;
 
 - (IBAction)homeButtonAction:(id)sender;
 - (IBAction)usuarionButtonAction:(id)sender;
 - (IBAction)turnoButtonAction:(id)sender;
 - (IBAction)signoutButtonAction:(id)sender;
+- (IBAction)cerraturnoButtonAction:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *searchshiftButtonLabel;

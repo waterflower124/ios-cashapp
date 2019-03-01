@@ -50,6 +50,24 @@
 		2337176821EAF273003D7D15 /* DeleteUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2337176721EAF273003D7D15 /* DeleteUserViewController.m */; };
 		2337176B21EC20D2003D7D15 /* EditUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2337176A21EC20D2003D7D15 /* EditUserViewController.m */; };
 		2337176E21EC2CF7003D7D15 /* EditUserScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2337176D21EC2CF7003D7D15 /* EditUserScreenViewController.m */; };
+		233B1097221F86CB00378E93 /* menu_home_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 233B1085221F86A600378E93 /* menu_home_sp.png */; };
+		233B1098221F86CB00378E93 /* menu_canceltransaction_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 233B1086221F86A800378E93 /* menu_canceltransaction_en.png */; };
+		233B1099221F86CB00378E93 /* menu_shift_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 233B1087221F86AA00378E93 /* menu_shift_en.png */; };
+		233B109A221F86CB00378E93 /* menu_newtransaction_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 233B1088221F86AC00378E93 /* menu_newtransaction_sp.png */; };
+		233B109B221F86CB00378E93 /* menu_newtransaction_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 233B1089221F86AD00378E93 /* menu_newtransaction_en.png */; };
+		233B109C221F86CB00378E93 /* menu_configuration_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 233B108A221F86AF00378E93 /* menu_configuration_sp.png */; };
+		233B109D221F86CB00378E93 /* menu_users_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 233B108B221F86B100378E93 /* menu_users_en.png */; };
+		233B109E221F86CB00378E93 /* menu_close_shift_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 233B108C221F86B200378E93 /* menu_close_shift_sp.png */; };
+		233B109F221F86CB00378E93 /* menu_shift_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 233B108D221F86B400378E93 /* menu_shift_sp.png */; };
+		233B10A0221F86CB00378E93 /* menu_users_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 233B108E221F86B700378E93 /* menu_users_sp.png */; };
+		233B10A1221F86CB00378E93 /* menu_home_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 233B108F221F86B900378E93 /* menu_home_en.png */; };
+		233B10A2221F86CB00378E93 /* menu_signout_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 233B1090221F86BB00378E93 /* menu_signout_en.png */; };
+		233B10A3221F86CB00378E93 /* menu_close_shift_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 233B1091221F86BE00378E93 /* menu_close_shift_en.png */; };
+		233B10A4221F86CB00378E93 /* menu_reports_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 233B1092221F86C000378E93 /* menu_reports_sp.png */; };
+		233B10A5221F86CB00378E93 /* menu_configuration_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 233B1093221F86C300378E93 /* menu_configuration_en.png */; };
+		233B10A6221F86CB00378E93 /* menu_signout_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 233B1094221F86C400378E93 /* menu_signout_sp.png */; };
+		233B10A7221F86CB00378E93 /* menu_canceltransaction_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 233B1095221F86C600378E93 /* menu_canceltransaction_sp.png */; };
+		233B10A8221F86CB00378E93 /* menu_reports_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 233B1096221F86C900378E93 /* menu_reports_en.png */; };
 		233E54EB21DFD1B800279DB1 /* Pagadito01_0001s_0002_Layer-108.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E549121DFD1B700279DB1 /* Pagadito01_0001s_0002_Layer-108.png */; };
 		233E54EC21DFD1B800279DB1 /* Pagadito_0000_Cancelar.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E549221DFD1B700279DB1 /* Pagadito_0000_Cancelar.png */; };
 		233E54EE21DFD1B800279DB1 /* Pagadito_0000_Layer-20.png in Resources */ = {isa = PBXBuildFile; fileRef = 233E549421DFD1B700279DB1 /* Pagadito_0000_Layer-20.png */; };
@@ -144,7 +162,7 @@
 		23424CB422082D7A00314773 /* connectioncredential_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 23424CB122082D7600314773 /* connectioncredential_sp.png */; };
 		23424CB522082D7A00314773 /* voucherconfig_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 23424CB222082D7700314773 /* voucherconfig_sp.png */; };
 		23424CB622082D7A00314773 /* comercialinfo_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 23424CB322082D7900314773 /* comercialinfo_sp.png */; };
-		23424CB922088CB600314773 /* ProcessTransactionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23424CB822088CB600314773 /* ProcessTransactionViewController.m */; };
+		23424CB922088CB600314773 /* ProcessTransactionViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 23424CB822088CB600314773 /* ProcessTransactionViewController.mm */; };
 		23424CBC220CDF0300314773 /* TransactionResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23424CBB220CDF0300314773 /* TransactionResultViewController.m */; };
 		23424CBF220D0A3C00314773 /* TransactionResultSignatureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23424CBE220D0A3C00314773 /* TransactionResultSignatureView.m */; };
 		2345039A21EF5B840057C772 /* ShiftListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2345039921EF5B840057C772 /* ShiftListTableViewCell.m */; };
@@ -174,6 +192,24 @@
 		2356F44722030A910011DD42 /* dashboard_systemconfig_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 2356F44522030A8F0011DD42 /* dashboard_systemconfig_en.png */; };
 		2356F44A22030C850011DD42 /* dashboard_assignshift_sp.png in Resources */ = {isa = PBXBuildFile; fileRef = 2356F44822030C800011DD42 /* dashboard_assignshift_sp.png */; };
 		2356F44B22030C850011DD42 /* dashboard_assignshift_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 2356F44922030C820011DD42 /* dashboard_assignshift_en.png */; };
+		2367C80322253DC100AE7B43 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2367C80222253DC000AE7B43 /* AudioToolbox.framework */; };
+		2367C80522253DCC00AE7B43 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2367C80422253DCC00AE7B43 /* CoreAudio.framework */; };
+		2367C80722253DD800AE7B43 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2367C80622253DD800AE7B43 /* MediaPlayer.framework */; };
+		2367C80922253DE000AE7B43 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2367C80822253DE000AE7B43 /* CoreBluetooth.framework */; };
+		2367C80B22253DE900AE7B43 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2367C80A22253DE900AE7B43 /* AVFoundation.framework */; };
+		2367C80D22253DF300AE7B43 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2367C80C22253DF300AE7B43 /* ExternalAccessory.framework */; };
+		2367C81422253E4A00AE7B43 /* libBBDeviceOTA-iOS-1.4.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2367C80E22253E4900AE7B43 /* libBBDeviceOTA-iOS-1.4.0.a */; };
+		2367C81522253E4A00AE7B43 /* libBBDevice-iOS-3.4.4-simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2367C80F22253E4900AE7B43 /* libBBDevice-iOS-3.4.4-simulator.a */; };
+		2367C81622253E4A00AE7B43 /* libCAPK-simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2367C81022253E4900AE7B43 /* libCAPK-simulator.a */; };
+		2367C81722253E4A00AE7B43 /* libCAPK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2367C81122253E4A00AE7B43 /* libCAPK.a */; };
+		2367C81822253E4A00AE7B43 /* libBBDevice-iOS-3.4.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2367C81222253E4A00AE7B43 /* libBBDevice-iOS-3.4.4.a */; };
+		2367C81922253E4A00AE7B43 /* libBBDeviceOTA-iOS-1.4.0-simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2367C81322253E4A00AE7B43 /* libBBDeviceOTA-iOS-1.4.0-simulator.a */; };
+		2367C8252225405400AE7B43 /* libBBDevice-iOS-3.4.4-simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2367C81E2225405400AE7B43 /* libBBDevice-iOS-3.4.4-simulator.a */; };
+		2367C8262225405500AE7B43 /* libBBDevice-iOS-3.4.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2367C81F2225405400AE7B43 /* libBBDevice-iOS-3.4.4.a */; };
+		2367C8272225405500AE7B43 /* libBBDeviceOTA-iOS-1.4.0-simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2367C8202225405400AE7B43 /* libBBDeviceOTA-iOS-1.4.0-simulator.a */; };
+		2367C8282225405500AE7B43 /* libBBDeviceOTA-iOS-1.4.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2367C8212225405400AE7B43 /* libBBDeviceOTA-iOS-1.4.0.a */; };
+		2367C8292225405500AE7B43 /* libCAPK-simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2367C8222225405400AE7B43 /* libCAPK-simulator.a */; };
+		2367C82A2225405500AE7B43 /* libCAPK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2367C8232225405400AE7B43 /* libCAPK.a */; };
 		23682F4121EE2B56002BC7D7 /* DeletTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23682F4021EE2B56002BC7D7 /* DeletTableViewCell.m */; };
 		23B35E14220F32490064A7A6 /* transationresult_email_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 23B35E13220F32470064A7A6 /* transationresult_email_icon.png */; };
 		23B49FFB21F71BBE00BAAD37 /* ConexionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B49FFA21F71BBE00BAAD37 /* ConexionViewController.m */; };
@@ -276,6 +312,24 @@
 		2337176A21EC20D2003D7D15 /* EditUserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditUserViewController.m; sourceTree = "<group>"; };
 		2337176C21EC2CF7003D7D15 /* EditUserScreenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditUserScreenViewController.h; sourceTree = "<group>"; };
 		2337176D21EC2CF7003D7D15 /* EditUserScreenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditUserScreenViewController.m; sourceTree = "<group>"; };
+		233B1085221F86A600378E93 /* menu_home_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_home_sp.png; sourceTree = "<group>"; };
+		233B1086221F86A800378E93 /* menu_canceltransaction_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_canceltransaction_en.png; sourceTree = "<group>"; };
+		233B1087221F86AA00378E93 /* menu_shift_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_shift_en.png; sourceTree = "<group>"; };
+		233B1088221F86AC00378E93 /* menu_newtransaction_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_newtransaction_sp.png; sourceTree = "<group>"; };
+		233B1089221F86AD00378E93 /* menu_newtransaction_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_newtransaction_en.png; sourceTree = "<group>"; };
+		233B108A221F86AF00378E93 /* menu_configuration_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_configuration_sp.png; sourceTree = "<group>"; };
+		233B108B221F86B100378E93 /* menu_users_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_users_en.png; sourceTree = "<group>"; };
+		233B108C221F86B200378E93 /* menu_close_shift_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_close_shift_sp.png; sourceTree = "<group>"; };
+		233B108D221F86B400378E93 /* menu_shift_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_shift_sp.png; sourceTree = "<group>"; };
+		233B108E221F86B700378E93 /* menu_users_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_users_sp.png; sourceTree = "<group>"; };
+		233B108F221F86B900378E93 /* menu_home_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_home_en.png; sourceTree = "<group>"; };
+		233B1090221F86BB00378E93 /* menu_signout_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_signout_en.png; sourceTree = "<group>"; };
+		233B1091221F86BE00378E93 /* menu_close_shift_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_close_shift_en.png; sourceTree = "<group>"; };
+		233B1092221F86C000378E93 /* menu_reports_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_reports_sp.png; sourceTree = "<group>"; };
+		233B1093221F86C300378E93 /* menu_configuration_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_configuration_en.png; sourceTree = "<group>"; };
+		233B1094221F86C400378E93 /* menu_signout_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_signout_sp.png; sourceTree = "<group>"; };
+		233B1095221F86C600378E93 /* menu_canceltransaction_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_canceltransaction_sp.png; sourceTree = "<group>"; };
+		233B1096221F86C900378E93 /* menu_reports_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_reports_en.png; sourceTree = "<group>"; };
 		233E549121DFD1B700279DB1 /* Pagadito01_0001s_0002_Layer-108.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pagadito01_0001s_0002_Layer-108.png"; sourceTree = "<group>"; };
 		233E549221DFD1B700279DB1 /* Pagadito_0000_Cancelar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pagadito_0000_Cancelar.png; sourceTree = "<group>"; };
 		233E549421DFD1B700279DB1 /* Pagadito_0000_Layer-20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pagadito_0000_Layer-20.png"; sourceTree = "<group>"; };
@@ -373,7 +427,7 @@
 		23424CB222082D7700314773 /* voucherconfig_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = voucherconfig_sp.png; sourceTree = "<group>"; };
 		23424CB322082D7900314773 /* comercialinfo_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comercialinfo_sp.png; sourceTree = "<group>"; };
 		23424CB722088CB600314773 /* ProcessTransactionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProcessTransactionViewController.h; sourceTree = "<group>"; };
-		23424CB822088CB600314773 /* ProcessTransactionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProcessTransactionViewController.m; sourceTree = "<group>"; };
+		23424CB822088CB600314773 /* ProcessTransactionViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ProcessTransactionViewController.mm; sourceTree = "<group>"; };
 		23424CBA220CDF0300314773 /* TransactionResultViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionResultViewController.h; sourceTree = "<group>"; };
 		23424CBB220CDF0300314773 /* TransactionResultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionResultViewController.m; sourceTree = "<group>"; };
 		23424CBD220D0A3C00314773 /* TransactionResultSignatureView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionResultSignatureView.h; sourceTree = "<group>"; };
@@ -416,6 +470,28 @@
 		2356F44522030A8F0011DD42 /* dashboard_systemconfig_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard_systemconfig_en.png; sourceTree = "<group>"; };
 		2356F44822030C800011DD42 /* dashboard_assignshift_sp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard_assignshift_sp.png; sourceTree = "<group>"; };
 		2356F44922030C820011DD42 /* dashboard_assignshift_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard_assignshift_en.png; sourceTree = "<group>"; };
+		2367C80222253DC000AE7B43 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		2367C80422253DCC00AE7B43 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		2367C80622253DD800AE7B43 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		2367C80822253DE000AE7B43 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		2367C80A22253DE900AE7B43 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		2367C80C22253DF300AE7B43 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
+		2367C80E22253E4900AE7B43 /* libBBDeviceOTA-iOS-1.4.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libBBDeviceOTA-iOS-1.4.0.a"; path = "Library/libBBDeviceOTA-iOS-1.4.0.a"; sourceTree = "<group>"; };
+		2367C80F22253E4900AE7B43 /* libBBDevice-iOS-3.4.4-simulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libBBDevice-iOS-3.4.4-simulator.a"; path = "Library/libBBDevice-iOS-3.4.4-simulator.a"; sourceTree = "<group>"; };
+		2367C81022253E4900AE7B43 /* libCAPK-simulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libCAPK-simulator.a"; path = "Library/libCAPK-simulator.a"; sourceTree = "<group>"; };
+		2367C81122253E4A00AE7B43 /* libCAPK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCAPK.a; path = Library/libCAPK.a; sourceTree = "<group>"; };
+		2367C81222253E4A00AE7B43 /* libBBDevice-iOS-3.4.4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libBBDevice-iOS-3.4.4.a"; path = "Library/libBBDevice-iOS-3.4.4.a"; sourceTree = "<group>"; };
+		2367C81322253E4A00AE7B43 /* libBBDeviceOTA-iOS-1.4.0-simulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libBBDeviceOTA-iOS-1.4.0-simulator.a"; path = "Library/libBBDeviceOTA-iOS-1.4.0-simulator.a"; sourceTree = "<group>"; };
+		2367C81B2225405400AE7B43 /* BBDeviceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBDeviceController.h; sourceTree = "<group>"; };
+		2367C81C2225405400AE7B43 /* BBDeviceOTAController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBDeviceOTAController.h; sourceTree = "<group>"; };
+		2367C81D2225405400AE7B43 /* CAPK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPK.h; sourceTree = "<group>"; };
+		2367C81E2225405400AE7B43 /* libBBDevice-iOS-3.4.4-simulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libBBDevice-iOS-3.4.4-simulator.a"; sourceTree = "<group>"; };
+		2367C81F2225405400AE7B43 /* libBBDevice-iOS-3.4.4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libBBDevice-iOS-3.4.4.a"; sourceTree = "<group>"; };
+		2367C8202225405400AE7B43 /* libBBDeviceOTA-iOS-1.4.0-simulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libBBDeviceOTA-iOS-1.4.0-simulator.a"; sourceTree = "<group>"; };
+		2367C8212225405400AE7B43 /* libBBDeviceOTA-iOS-1.4.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libBBDeviceOTA-iOS-1.4.0.a"; sourceTree = "<group>"; };
+		2367C8222225405400AE7B43 /* libCAPK-simulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libCAPK-simulator.a"; sourceTree = "<group>"; };
+		2367C8232225405400AE7B43 /* libCAPK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCAPK.a; sourceTree = "<group>"; };
+		2367C8242225405400AE7B43 /* VASMerchantConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VASMerchantConfig.h; sourceTree = "<group>"; };
 		23682F3F21EE2B56002BC7D7 /* DeletTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeletTableViewCell.h; sourceTree = "<group>"; };
 		23682F4021EE2B56002BC7D7 /* DeletTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeletTableViewCell.m; sourceTree = "<group>"; };
 		23B35E13220F32470064A7A6 /* transationresult_email_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transationresult_email_icon.png; sourceTree = "<group>"; };
@@ -470,6 +546,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2367C81422253E4A00AE7B43 /* libBBDeviceOTA-iOS-1.4.0.a in Frameworks */,
+				2367C8292225405500AE7B43 /* libCAPK-simulator.a in Frameworks */,
+				2367C81522253E4A00AE7B43 /* libBBDevice-iOS-3.4.4-simulator.a in Frameworks */,
+				2367C8262225405500AE7B43 /* libBBDevice-iOS-3.4.4.a in Frameworks */,
+				2367C82A2225405500AE7B43 /* libCAPK.a in Frameworks */,
+				2367C81622253E4A00AE7B43 /* libCAPK-simulator.a in Frameworks */,
+				2367C81722253E4A00AE7B43 /* libCAPK.a in Frameworks */,
+				2367C8272225405500AE7B43 /* libBBDeviceOTA-iOS-1.4.0-simulator.a in Frameworks */,
+				2367C81822253E4A00AE7B43 /* libBBDevice-iOS-3.4.4.a in Frameworks */,
+				2367C81922253E4A00AE7B43 /* libBBDeviceOTA-iOS-1.4.0-simulator.a in Frameworks */,
+				2367C80D22253DF300AE7B43 /* ExternalAccessory.framework in Frameworks */,
+				2367C80B22253DE900AE7B43 /* AVFoundation.framework in Frameworks */,
+				2367C80922253DE000AE7B43 /* CoreBluetooth.framework in Frameworks */,
+				2367C80722253DD800AE7B43 /* MediaPlayer.framework in Frameworks */,
+				2367C80522253DCC00AE7B43 /* CoreAudio.framework in Frameworks */,
+				2367C80322253DC100AE7B43 /* AudioToolbox.framework in Frameworks */,
+				2367C8252225405400AE7B43 /* libBBDevice-iOS-3.4.4-simulator.a in Frameworks */,
+				2367C8282225405500AE7B43 /* libBBDeviceOTA-iOS-1.4.0.a in Frameworks */,
 				C11F0F70877D94E4FB53C912 /* Pods_PAGADITO.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -526,6 +620,24 @@
 		233E549021DFD1B700279DB1 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				233B1086221F86A800378E93 /* menu_canceltransaction_en.png */,
+				233B1095221F86C600378E93 /* menu_canceltransaction_sp.png */,
+				233B1091221F86BE00378E93 /* menu_close_shift_en.png */,
+				233B108C221F86B200378E93 /* menu_close_shift_sp.png */,
+				233B1093221F86C300378E93 /* menu_configuration_en.png */,
+				233B108A221F86AF00378E93 /* menu_configuration_sp.png */,
+				233B108F221F86B900378E93 /* menu_home_en.png */,
+				233B1085221F86A600378E93 /* menu_home_sp.png */,
+				233B1089221F86AD00378E93 /* menu_newtransaction_en.png */,
+				233B1088221F86AC00378E93 /* menu_newtransaction_sp.png */,
+				233B1096221F86C900378E93 /* menu_reports_en.png */,
+				233B1092221F86C000378E93 /* menu_reports_sp.png */,
+				233B1087221F86AA00378E93 /* menu_shift_en.png */,
+				233B108D221F86B400378E93 /* menu_shift_sp.png */,
+				233B1090221F86BB00378E93 /* menu_signout_en.png */,
+				233B1094221F86C400378E93 /* menu_signout_sp.png */,
+				233B108B221F86B100378E93 /* menu_users_en.png */,
+				233B108E221F86B700378E93 /* menu_users_sp.png */,
 				2336B2BB22162D4E004CFC67 /* dash3_endshift_en.png */,
 				2336B2BE22162D53004CFC67 /* dash3_endshift_sp.png */,
 				2336B2BD22162D52004CFC67 /* dash3_processtransaction_en.png */,
@@ -734,7 +846,7 @@
 				2356F43122021ACC0011DD42 /* MultiLanguage.h */,
 				2356F43222021ACC0011DD42 /* MultiLanguage.m */,
 				23424CB722088CB600314773 /* ProcessTransactionViewController.h */,
-				23424CB822088CB600314773 /* ProcessTransactionViewController.m */,
+				23424CB822088CB600314773 /* ProcessTransactionViewController.mm */,
 				23424CBA220CDF0300314773 /* TransactionResultViewController.h */,
 				23424CBB220CDF0300314773 /* TransactionResultViewController.m */,
 				23424CBD220D0A3C00314773 /* TransactionResultSignatureView.h */,
@@ -745,9 +857,27 @@
 			path = screens;
 			sourceTree = "<group>";
 		};
+		2367C81A2225405400AE7B43 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				2367C81B2225405400AE7B43 /* BBDeviceController.h */,
+				2367C81C2225405400AE7B43 /* BBDeviceOTAController.h */,
+				2367C81D2225405400AE7B43 /* CAPK.h */,
+				2367C81E2225405400AE7B43 /* libBBDevice-iOS-3.4.4-simulator.a */,
+				2367C81F2225405400AE7B43 /* libBBDevice-iOS-3.4.4.a */,
+				2367C8202225405400AE7B43 /* libBBDeviceOTA-iOS-1.4.0-simulator.a */,
+				2367C8212225405400AE7B43 /* libBBDeviceOTA-iOS-1.4.0.a */,
+				2367C8222225405400AE7B43 /* libCAPK-simulator.a */,
+				2367C8232225405400AE7B43 /* libCAPK.a */,
+				2367C8242225405400AE7B43 /* VASMerchantConfig.h */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
 		3A09260B21BAAA5800333F1A = {
 			isa = PBXGroup;
 			children = (
+				2367C81A2225405400AE7B43 /* Library */,
 				3A09261621BAAA5900333F1A /* PAGADITO */,
 				3A09262F21BAAA5A00333F1A /* PAGADITOTests */,
 				3A09263A21BAAA5A00333F1A /* PAGADITOUITests */,
@@ -809,6 +939,18 @@
 		4B9046CAAFC99C66FBEAE918 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2367C80F22253E4900AE7B43 /* libBBDevice-iOS-3.4.4-simulator.a */,
+				2367C81222253E4A00AE7B43 /* libBBDevice-iOS-3.4.4.a */,
+				2367C81322253E4A00AE7B43 /* libBBDeviceOTA-iOS-1.4.0-simulator.a */,
+				2367C80E22253E4900AE7B43 /* libBBDeviceOTA-iOS-1.4.0.a */,
+				2367C81022253E4900AE7B43 /* libCAPK-simulator.a */,
+				2367C81122253E4A00AE7B43 /* libCAPK.a */,
+				2367C80C22253DF300AE7B43 /* ExternalAccessory.framework */,
+				2367C80A22253DE900AE7B43 /* AVFoundation.framework */,
+				2367C80822253DE000AE7B43 /* CoreBluetooth.framework */,
+				2367C80622253DD800AE7B43 /* MediaPlayer.framework */,
+				2367C80422253DCC00AE7B43 /* CoreAudio.framework */,
+				2367C80222253DC000AE7B43 /* AudioToolbox.framework */,
 				2A63F08DE9CEED364D00A01B /* Pods_PAGADITO.framework */,
 			);
 			name = Frameworks;
@@ -883,6 +1025,11 @@
 				TargetAttributes = {
 					3A09261321BAAA5900333F1A = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					3A09262B21BAAA5A00333F1A = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -922,11 +1069,13 @@
 				233E552821DFD1B800279DB1 /* Pagadito_0001s_0003_Iniciar-sesión--.png in Resources */,
 				233E550B21DFD1B800279DB1 /* Pagadito_0000s_0007_Guardar-.png in Resources */,
 				233E553E21DFD1B800279DB1 /* Pagadito_0008_Layer-15-copy-2.png in Resources */,
+				233B10A6221F86CB00378E93 /* menu_signout_sp.png in Resources */,
 				2336B2AF22160839004CFC67 /* dash_users_en.png in Resources */,
 				233E552121DFD1B800279DB1 /* Pagadito_0001_Layer-17.png in Resources */,
 				233E553421DFD1B800279DB1 /* Pagadito_0001s_0022_Layer-109.png in Resources */,
 				23B35E14220F32490064A7A6 /* transationresult_email_icon.png in Resources */,
 				233E551721DFD1B800279DB1 /* Pagadito_0000s_0013_8.png in Resources */,
+				233B1099221F86CB00378E93 /* menu_shift_en.png in Resources */,
 				233E54F321DFD1B800279DB1 /* Pagadito_0000s_0000_Layer-48.png in Resources */,
 				233E551621DFD1B800279DB1 /* Pagadito_0000s_0012_Layer-78-copy.png in Resources */,
 				233E551021DFD1B800279DB1 /* Pagadito_0000s_0009_Buscar.png in Resources */,
@@ -941,11 +1090,14 @@
 				233E54F821DFD1B800279DB1 /* Pagadito_0000s_0001_Iniciar-sesión--.png in Resources */,
 				2356F4412202F4420011DD42 /* dashboard_voidtransaction_sp.png in Resources */,
 				2329E14C21F25FFB00CD8EB2 /* insert_shift_ok_message_icon.png in Resources */,
+				233B109A221F86CB00378E93 /* menu_newtransaction_sp.png in Resources */,
 				233E54EC21DFD1B800279DB1 /* Pagadito_0000_Cancelar.png in Resources */,
 				233E551B21DFD1B800279DB1 /* Pagadito_0000s_0021__.png in Resources */,
+				233B10A2221F86CB00378E93 /* menu_signout_en.png in Resources */,
 				233E550521DFD1B800279DB1 /* Pagadito_0000s_0005_Layer-90.png in Resources */,
 				233E551121DFD1B800279DB1 /* Pagadito_0000s_0009_Layer-47.png in Resources */,
 				234503A021F082D30057C772 /* sidemenu_cerrarturnoButton_icon.png in Resources */,
+				233B109C221F86CB00378E93 /* menu_configuration_sp.png in Resources */,
 				2356F44B22030C850011DD42 /* dashboard_assignshift_en.png in Resources */,
 				2356F44A22030C850011DD42 /* dashboard_assignshift_sp.png in Resources */,
 				233E553D21DFD1B800279DB1 /* Pagadito_0007_Layer-8.png in Resources */,
@@ -966,6 +1118,7 @@
 				233E550921DFD1B800279DB1 /* Pagadito_0000s_0007_2.png in Resources */,
 				2345039C21F074140057C772 /* cashierlist_arrow_icon.png in Resources */,
 				2328843A21E4E89000E5E7C1 /* pagadito_0000_logo.png in Resources */,
+				233B109F221F86CB00378E93 /* menu_shift_sp.png in Resources */,
 				2336B2C922162D5B004CFC67 /* dash3_signout_sp.png in Resources */,
 				233E554121DFD1B800279DB1 /* Pagadito_0015_Layer-6.png in Resources */,
 				233E552321DFD1B800279DB1 /* Pagadito_0001s_0000_Cancelar.png in Resources */,
@@ -979,11 +1132,13 @@
 				3A09262121BAAA5A00333F1A /* Assets.xcassets in Resources */,
 				233E553F21DFD1B800279DB1 /* Pagadito_0011_Configuración.png in Resources */,
 				2336B2A922160839004CFC67 /* dash_report_sp.png in Resources */,
+				233B10A4221F86CB00378E93 /* menu_reports_sp.png in Resources */,
 				233E550F21DFD1B800279DB1 /* Pagadito_0000s_0009_6.png in Resources */,
 				233E552C21DFD1B800279DB1 /* Pagadito_0001s_0007_Layer-26-copy.png in Resources */,
 				233E54F921DFD1B800279DB1 /* Pagadito_0000s_0001_Layer-65.png in Resources */,
 				233E550121DFD1B800279DB1 /* Pagadito_0000s_0003_Layer-89.png in Resources */,
 				233E54F221DFD1B800279DB1 /* Pagadito_0000s_0000_$.png in Resources */,
+				233B109D221F86CB00378E93 /* menu_users_en.png in Resources */,
 				233E554021DFD1B800279DB1 /* Pagadito_0013_Layer-10.png in Resources */,
 				2336B2B62216141A004CFC67 /* dash_canceltransation_sp.png in Resources */,
 				233E552D21DFD1B800279DB1 /* Pagadito_0001s_0007_Layer-88-copy.png in Resources */,
@@ -996,12 +1151,15 @@
 				2336B2B122160985004CFC67 /* dash_systemconfig_sp.png in Resources */,
 				233E54F421DFD1B800279DB1 /* Pagadito_0000s_0000_Layer-83.png in Resources */,
 				2315460221EEE68B0025E711 /* assignshift_icon.png in Resources */,
+				233B1098221F86CB00378E93 /* menu_canceltransaction_en.png in Resources */,
 				2356F43E2202F4420011DD42 /* dashboard_voidtransaction_en.png in Resources */,
 				233E553321DFD1B800279DB1 /* Pagadito_0001s_0021_Layer-89.png in Resources */,
 				233E554221DFD1B800279DB1 /* Pagadito_0016_Layer-2.png in Resources */,
 				2356F44722030A910011DD42 /* dashboard_systemconfig_en.png in Resources */,
 				233E552F21DFD1B800279DB1 /* Pagadito_0001s_0016_Capa-1.png in Resources */,
+				233B10A5221F86CB00378E93 /* menu_configuration_en.png in Resources */,
 				233E553B21DFD1B800279DB1 /* Pagadito_0004_Layer-11-copy-4.png in Resources */,
+				233B10A8221F86CB00378E93 /* menu_reports_en.png in Resources */,
 				2336B2C622162D5B004CFC67 /* dash3_endshift_sp.png in Resources */,
 				233E552421DFD1B800279DB1 /* Pagadito_0001s_0000_Shape-1-copy.png in Resources */,
 				233E54FE21DFD1B800279DB1 /* Pagadito_0000s_0002_Anular-Transacción-.png in Resources */,
@@ -1012,6 +1170,7 @@
 				233E551821DFD1B800279DB1 /* Pagadito_0000s_0014_Layer-51.png in Resources */,
 				233E550C21DFD1B800279DB1 /* Pagadito_0000s_0007_Layer-91-copy.png in Resources */,
 				233E553021DFD1B800279DB1 /* Pagadito_0001s_0017_Capa-2.png in Resources */,
+				233B10A0221F86CB00378E93 /* menu_users_sp.png in Resources */,
 				2329E14E21F56ED300CD8EB2 /* reset_password_logo.png in Resources */,
 				2336B2AD22160839004CFC67 /* dash_report_en.png in Resources */,
 				2336B2AE22160839004CFC67 /* dash_systemconfig_en.png in Resources */,
@@ -1021,9 +1180,12 @@
 				233E552A21DFD1B800279DB1 /* Pagadito_0001s_0005_Layer-98.png in Resources */,
 				23424CB622082D7A00314773 /* comercialinfo_sp.png in Resources */,
 				233E552221DFD1B800279DB1 /* Pagadito_0001_Layer-43.png in Resources */,
+				233B1097221F86CB00378E93 /* menu_home_sp.png in Resources */,
 				2351BBC122036F11004F6A58 /* user_cajero_icon_sp.png in Resources */,
 				233E553821DFD1B800279DB1 /* Pagadito_0003_Layer-16.png in Resources */,
+				233B109E221F86CB00378E93 /* menu_close_shift_sp.png in Resources */,
 				23424CB422082D7A00314773 /* connectioncredential_sp.png in Resources */,
+				233B10A1221F86CB00378E93 /* menu_home_en.png in Resources */,
 				233E551E21DFD1B800279DB1 /* Pagadito_0000s_0036_Layer-88.png in Resources */,
 				2356F43F2202F4420011DD42 /* dashboard_user_en.png in Resources */,
 				233E54F521DFD1B800279DB1 /* Pagadito_0000s_0000s_0001_Layer-41.png in Resources */,
@@ -1035,11 +1197,13 @@
 				233E550721DFD1B800279DB1 /* Pagadito_0000s_0006_Layer-88.png in Resources */,
 				2336B2C322162D5B004CFC67 /* dash3_endshift_en.png in Resources */,
 				233E553121DFD1B800279DB1 /* Pagadito_0001s_0019_Layer-64.png in Resources */,
+				233B10A3221F86CB00378E93 /* menu_close_shift_en.png in Resources */,
 				2336B2B82216141A004CFC67 /* dash_assignshift_en.png in Resources */,
 				233E551F21DFD1B800279DB1 /* Pagadito_0001_Anular.png in Resources */,
 				2336B2C422162D5B004CFC67 /* dash3_voidtransaction_sp.png in Resources */,
 				233E54FA21DFD1B800279DB1 /* Pagadito_0000s_0001_Layer-94.png in Resources */,
 				2315460421EEE7280025E711 /* assignshift_logout_icon.png in Resources */,
+				233B10A7221F86CB00378E93 /* menu_canceltransaction_sp.png in Resources */,
 				23424CAF22082C5E00314773 /* voucherconfig_en.png in Resources */,
 				23424CB522082D7A00314773 /* voucherconfig_sp.png in Resources */,
 				233E553921DFD1B800279DB1 /* Pagadito_0003_Layer-2.png in Resources */,
@@ -1056,6 +1220,7 @@
 				23424CAE22082C5E00314773 /* comercialinfo_en.png in Resources */,
 				2356F4432202F4420011DD42 /* dashboard_newtransaction_sp.png in Resources */,
 				2336B2C822162D5B004CFC67 /* dash3_processtransaction_sp.png in Resources */,
+				233B109B221F86CB00378E93 /* menu_newtransaction_en.png in Resources */,
 				233E551C21DFD1B800279DB1 /* Pagadito_0000s_0025_Generar-reporte.png in Resources */,
 				233E54FB21DFD1B800279DB1 /* Pagadito_0000s_0001_Modificar-Búsqueda.png in Resources */,
 				233E54FC21DFD1B800279DB1 /* Pagadito_0000s_0001_Procesar-transacción--.png in Resources */,
@@ -1150,7 +1315,7 @@
 				234BDED121F9BA8700B2C944 /* TransactionsReportViewController.m in Sources */,
 				23B4A00A21F81E0A00BAAD37 /* TransactionsViewController.m in Sources */,
 				23B4A01521F8F0C100BAAD37 /* TransactionsTableViewCell.m in Sources */,
-				23424CB922088CB600314773 /* ProcessTransactionViewController.m in Sources */,
+				23424CB922088CB600314773 /* ProcessTransactionViewController.mm in Sources */,
 				2329E15621F585FC00CD8EB2 /* ResetPasswordConfirmViewController.m in Sources */,
 				3A09261C21BAAA5900333F1A /* ViewController.m in Sources */,
 				23B4A00421F7AEDB00BAAD37 /* ShiftReportViewController.m in Sources */,
@@ -1356,6 +1521,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pagadito.pos.mob;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1376,6 +1545,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pagadito.pos.mob;
 				PRODUCT_NAME = "$(TARGET_NAME)";

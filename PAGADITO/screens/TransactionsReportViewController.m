@@ -25,7 +25,7 @@
 
 @implementation TransactionsReportViewController
 @synthesize TransV, SidePanel, sessionInfoLabel, startDatePicker, finishDatePicker;
-@synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
+@synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton, logoutButton, cerraturnoButton;
 @synthesize titleLabel, todaytransactionButton, searchcommentLabel, startdatecommentLabel, enddatecommentLabel, generatereportButton, contactsupportButton, sessioncommentLabel;
 
 - (void)viewDidLoad {
@@ -51,6 +51,8 @@
         [self.contactsupportButton setTitle:@"Contact Support" forState:UIControlStateNormal];
         self.sessioncommentLabel.text = @"Session started:";
     }
+    
+    [self setMenuButtonsicon];
     
     /////////  TransV  tanp event   /////////
     UITapGestureRecognizer *tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideSidePanel:)];
@@ -105,7 +107,9 @@
         [self.turnoButton setHidden:YES];
         [self.canceltransactionButton setHidden:YES];
         [self.newtransactionButton setHidden:YES];
+        [self.cerraturnoButton setHidden:YES];
     } else if([globals.idPrivilegio isEqualToString:@"2"]) {
+        ///////  side menu button config   ////////////
         CGRect homeButtonFrame = self.homeButton.frame;
         homeButtonFrame.origin.x = 0;
         homeButtonFrame.origin.y = 0;
@@ -138,16 +142,10 @@
         turnolineView.backgroundColor = [UIColor lightGrayColor];
         [self.turnoButton addSubview:turnolineView];
         
-        CGRect canceltransactionButtonFrame = self.canceltransactionButton.frame;
-        canceltransactionButtonFrame.origin.x = 0;
-        canceltransactionButtonFrame.origin.y = 240;
-        self.canceltransactionButton.frame = canceltransactionButtonFrame;
-        UIView *canceltransactionlineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, canceltransactionButton.frame.size.width, 1)];
-        canceltransactionlineView.backgroundColor = [UIColor lightGrayColor];
-        [self.canceltransactionButton addSubview:canceltransactionlineView];
-        
         [self.configButton setHidden:YES];
         [self.newtransactionButton setHidden:YES];
+        [self.canceltransactionButton setHidden:YES];
+        [self.cerraturnoButton setHidden:YES];
         
     } else if([globals.idPrivilegio isEqualToString:@"4"]) {
         CGRect homeButtonFrame = self.homeButton.frame;
@@ -190,22 +188,56 @@
         turnolineView.backgroundColor = [UIColor lightGrayColor];
         [self.turnoButton addSubview:turnolineView];
         
+        CGRect newtransactionButtonFrame = self.newtransactionButton.frame;
+        newtransactionButtonFrame.origin.x = 0;
+        newtransactionButtonFrame.origin.y = 300;
+        self.newtransactionButton.frame = newtransactionButtonFrame;
+        UIView *newtransactiolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, newtransactionButton.frame.size.width, 1)];
+        newtransactiolineView.backgroundColor = [UIColor lightGrayColor];
+        
         CGRect canceltransactionButtonFrame = self.canceltransactionButton.frame;
         canceltransactionButtonFrame.origin.x = 0;
-        canceltransactionButtonFrame.origin.y = 300;
+        canceltransactionButtonFrame.origin.y = 360;
         self.canceltransactionButton.frame = canceltransactionButtonFrame;
         UIView *canceltransactionlineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, canceltransactionButton.frame.size.width, 1)];
         canceltransactionlineView.backgroundColor = [UIColor lightGrayColor];
         [self.canceltransactionButton addSubview:canceltransactionlineView];
         
-        CGRect newtransactionButtonFrame = self.newtransactionButton.frame;
-        newtransactionButtonFrame.origin.x = 0;
-        newtransactionButtonFrame.origin.y = 360;
-        self.newtransactionButton.frame = newtransactionButtonFrame;
-        UIView *newtransactiolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, newtransactionButton.frame.size.width, 1)];
-        newtransactiolineView.backgroundColor = [UIColor lightGrayColor];
+        CGRect cerraturnoButtonFrame = self.cerraturnoButton.frame;
+        cerraturnoButtonFrame.origin.x = 0;
+        cerraturnoButtonFrame.origin.y = 420;
+        self.cerraturnoButton.frame = cerraturnoButtonFrame;
+        UIView *cerraturnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, cerraturnoButton.frame.size.width, 1)];
+        cerraturnolineView.backgroundColor = [UIColor lightGrayColor];
+        [self.cerraturnoButton addSubview:cerraturnolineView];
+        
         [self.newtransactionButton addSubview:newtransactiolineView];
         
+    }
+}
+
+-(void)setMenuButtonsicon {
+    Global *globals = [Global sharedInstance];
+    if(globals.selected_language == 0) {
+        [self.homeButton setImage:[UIImage imageNamed: @"menu_home_sp"] forState:UIControlStateNormal];
+        [self.reportButton setImage:[UIImage imageNamed: @"menu_reports_sp"] forState:UIControlStateNormal];
+        [self.configButton setImage:[UIImage imageNamed: @"menu_configuration_sp"] forState:UIControlStateNormal];
+        [self.usuarioButton setImage:[UIImage imageNamed: @"menu_users_sp"] forState:UIControlStateNormal];
+        [self.turnoButton setImage:[UIImage imageNamed: @"menu_shift_sp"] forState:UIControlStateNormal];
+        [self.canceltransactionButton setImage:[UIImage imageNamed: @"menu_canceltransaction_sp"] forState:UIControlStateNormal];
+        [self.newtransactionButton setImage:[UIImage imageNamed: @"menu_newtransaction_sp"] forState:UIControlStateNormal];
+        [self.logoutButton setImage:[UIImage imageNamed: @"menu_signout_sp"] forState:UIControlStateNormal];
+        [self.cerraturnoButton setImage:[UIImage imageNamed: @"menu_close_shift_sp"] forState:UIControlStateNormal];
+    } else {
+        [self.homeButton setImage:[UIImage imageNamed: @"menu_home_en"] forState:UIControlStateNormal];
+        [self.reportButton setImage:[UIImage imageNamed: @"menu_reports_en"] forState:UIControlStateNormal];
+        [self.configButton setImage:[UIImage imageNamed: @"menu_configuration_en"] forState:UIControlStateNormal];
+        [self.usuarioButton setImage:[UIImage imageNamed: @"menu_users_en"] forState:UIControlStateNormal];
+        [self.turnoButton setImage:[UIImage imageNamed: @"menu_shift_en"] forState:UIControlStateNormal];
+        [self.canceltransactionButton setImage:[UIImage imageNamed: @"menu_canceltransaction_en"] forState:UIControlStateNormal];
+        [self.newtransactionButton setImage:[UIImage imageNamed: @"menu_newtransaction_en"] forState:UIControlStateNormal];
+        [self.logoutButton setImage:[UIImage imageNamed: @"menu_signout_en"] forState:UIControlStateNormal];
+        [self.cerraturnoButton setImage:[UIImage imageNamed: @"menu_close_shift_en"] forState:UIControlStateNormal];
     }
 }
 
@@ -273,12 +305,76 @@
     NSDate *startDate = [self.startDatePicker date];
     NSDate *finishDate = [self.finishDatePicker date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *startDateString = [dateFormatter stringFromDate:startDate];
     NSString *finishDateString = [dateFormatter stringFromDate:finishDate];
-    self.start_datetime = [[NSString alloc]initWithFormat:@"%@ 00:00:00", startDateString];
-    self.finish_datetime = [[NSString alloc]initWithFormat:@"%@ 00:00:00", finishDateString];
+//    self.start_datetime = [[NSString alloc]initWithFormat:@"%@ 00:00:00", startDateString];
+//    self.finish_datetime = [[NSString alloc]initWithFormat:@"%@ 00:00:00", finishDateString];
+    self.start_datetime = startDateString;
+    self.finish_datetime = finishDateString;
     [self performSegueWithIdentifier:@"transactionreporttotransaction_segue" sender:self];
    
 }
+
+- (IBAction)cerraturnoButtonAction:(id)sender {
+    Global *globals = [Global sharedInstance];
+    
+    [self.activityIndicator startAnimating];
+    [self.view addSubview:self.overlayView];
+    
+    NSDictionary *param = @{@"param": @{
+                                    @"idUser": globals.idUser,
+                                    @"turnoCod": globals.turnoCod,
+                                    }};
+    
+    NSError *error;
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:param options:0 error:&error];
+    NSString *string = [[NSString alloc]initWithData:postData encoding:NSUTF8StringEncoding];
+    
+    NSDictionary *parameters = @{
+                                 @"method": @"closeShift",
+                                 @"param": string
+                                 };
+    AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
+    sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects: @"application/json", nil];
+    [sessionManager POST: globals.server_url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        [self.activityIndicator stopAnimating];
+        [self.overlayView removeFromSuperview];
+        
+        NSError *jsonError;
+        NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&jsonError];
+        BOOL status = [jsonResponse[@"status"] boolValue];
+        if(status) {
+            [self performSegueWithIdentifier:@"transactionreporttowelcome_segue" sender:self];
+        } else {
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Advertencia!" :@"Ocurrió un error. Por favor contacte a soporte."];
+            } else {
+                [self displayAlertView:@"Warning!" :@"An error has occurred. Please contact support."];
+            }
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [self.activityIndicator stopAnimating];
+        [self.overlayView removeFromSuperview];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Network error."];
+        }
+    }];
+}
+
+-(void)displayAlertView: (NSString *)header :(NSString *)message {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:header message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIApplication *actionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"OK action");
+    }];
+    [alert addAction:actionOK];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 @end

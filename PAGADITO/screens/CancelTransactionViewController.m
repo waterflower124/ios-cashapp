@@ -36,7 +36,7 @@
 
 @implementation CancelTransactionViewController
 @synthesize SidePanel, TransV, transactionTableView, turnoCodeLabel, sessionInfoLabel, canceltransactionAlertView, alertTitleLabel, emailTextField, reasonTextField, cancelButton, removeButton;
-@synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton;
+@synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton, logoutButton, cerraturnoButton;
 @synthesize titleLabel, turnocodecommentLabel, notecommentLabel, descriptioncommentLabel, removecommentLabel, sessionInfocommentLabel;
 
 - (void)viewDidLoad {
@@ -49,7 +49,7 @@
     
     Global *globals = [Global sharedInstance];
     
-    self.turnoCodeLabel.text = globals.turnoCod;
+    self.turnoCodeLabel.text = globals.codeShift;
     
     if(globals.selected_language == 0) {
         self.titleLabel.text = @"Anular Transacciones";
@@ -75,6 +75,8 @@
         [self.removeButton setTitle:@"Remove" forState:UIControlStateNormal];
     }
     
+    [self setMenuButtonsicon];
+    
     //session info label
     sessionInfoLabel.text = [NSString stringWithFormat:@"%@ / %@", globals.username, globals.nombreComercio];;
     
@@ -89,6 +91,11 @@
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     self.activityIndicator.center = self.overlayView.center;
     [self.overlayView addSubview:self.activityIndicator];
+    
+    ///////  dismiss keyboard  //////
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
+    tap.cancelsTouchesInView = NO;
     
     
     //set dashborad buttons background image according to priviledge ID
@@ -129,6 +136,7 @@
         [self.turnoButton setHidden:YES];
         [self.canceltransactionButton setHidden:YES];
         [self.newtransactionButton setHidden:YES];
+        [self.cerraturnoButton setHidden:YES];
         ////////////////////////////////////////////
     } else if([globals.idPrivilegio isEqualToString:@"2"]) {
         ///////  side menu button config   ////////////
@@ -174,6 +182,7 @@
         
         [self.configButton setHidden:YES];
         [self.newtransactionButton setHidden:YES];
+        [self.cerraturnoButton setHidden:YES];
         ///////////////////////////////
         
     } else if([globals.idPrivilegio isEqualToString:@"3"]) {
@@ -186,21 +195,29 @@
         homelineView.backgroundColor = [UIColor lightGrayColor];
         [self.homeButton addSubview:homelineView];
         
+        CGRect newtransactionButtonFrame = self.newtransactionButton.frame;
+        newtransactionButtonFrame.origin.x = 0;
+        newtransactionButtonFrame.origin.y = 60;
+        self.newtransactionButton.frame = newtransactionButtonFrame;
+        UIView *newtransactiolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, newtransactionButton.frame.size.width, 1)];
+        newtransactiolineView.backgroundColor = [UIColor lightGrayColor];
+        [self.newtransactionButton addSubview:newtransactiolineView];
+        
         CGRect canceltransactionButtonFrame = self.canceltransactionButton.frame;
         canceltransactionButtonFrame.origin.x = 0;
-        canceltransactionButtonFrame.origin.y = 60;
+        canceltransactionButtonFrame.origin.y = 120;
         self.canceltransactionButton.frame = canceltransactionButtonFrame;
         UIView *canceltransactionlineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, canceltransactionButton.frame.size.width, 1)];
         canceltransactionlineView.backgroundColor = [UIColor lightGrayColor];
         [self.canceltransactionButton addSubview:canceltransactionlineView];
         
-        CGRect newtransactionButtonFrame = self.newtransactionButton.frame;
-        newtransactionButtonFrame.origin.x = 0;
-        newtransactionButtonFrame.origin.y = 120;
-        self.newtransactionButton.frame = newtransactionButtonFrame;
-        UIView *newtransactiolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, newtransactionButton.frame.size.width, 1)];
-        newtransactiolineView.backgroundColor = [UIColor lightGrayColor];
-        [self.newtransactionButton addSubview:newtransactiolineView];
+        CGRect cerraturnoButtonFrame = self.cerraturnoButton.frame;
+        cerraturnoButtonFrame.origin.x = 0;
+        cerraturnoButtonFrame.origin.y = 180;
+        self.cerraturnoButton.frame = cerraturnoButtonFrame;
+        UIView *cerraturnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, cerraturnoButton.frame.size.width, 1)];
+        cerraturnolineView.backgroundColor = [UIColor lightGrayColor];
+        [self.cerraturnoButton addSubview:cerraturnolineView];
         
         [self.reportButton setHidden:YES];
         [self.configButton setHidden:YES];
@@ -249,20 +266,29 @@
         turnolineView.backgroundColor = [UIColor lightGrayColor];
         [self.turnoButton addSubview:turnolineView];
         
+        CGRect newtransactionButtonFrame = self.newtransactionButton.frame;
+        newtransactionButtonFrame.origin.x = 0;
+        newtransactionButtonFrame.origin.y = 300;
+        self.newtransactionButton.frame = newtransactionButtonFrame;
+        UIView *newtransactiolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, newtransactionButton.frame.size.width, 1)];
+        newtransactiolineView.backgroundColor = [UIColor lightGrayColor];
+        
         CGRect canceltransactionButtonFrame = self.canceltransactionButton.frame;
         canceltransactionButtonFrame.origin.x = 0;
-        canceltransactionButtonFrame.origin.y = 300;
+        canceltransactionButtonFrame.origin.y = 360;
         self.canceltransactionButton.frame = canceltransactionButtonFrame;
         UIView *canceltransactionlineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, canceltransactionButton.frame.size.width, 1)];
         canceltransactionlineView.backgroundColor = [UIColor lightGrayColor];
         [self.canceltransactionButton addSubview:canceltransactionlineView];
         
-        CGRect newtransactionButtonFrame = self.newtransactionButton.frame;
-        newtransactionButtonFrame.origin.x = 0;
-        newtransactionButtonFrame.origin.y = 360;
-        self.newtransactionButton.frame = newtransactionButtonFrame;
-        UIView *newtransactiolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, newtransactionButton.frame.size.width, 1)];
-        newtransactiolineView.backgroundColor = [UIColor lightGrayColor];
+        CGRect cerraturnoButtonFrame = self.cerraturnoButton.frame;
+        cerraturnoButtonFrame.origin.x = 0;
+        cerraturnoButtonFrame.origin.y = 420;
+        self.cerraturnoButton.frame = cerraturnoButtonFrame;
+        UIView *cerraturnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, cerraturnoButton.frame.size.width, 1)];
+        cerraturnolineView.backgroundColor = [UIColor lightGrayColor];
+        [self.cerraturnoButton addSubview:cerraturnolineView];
+        
         [self.newtransactionButton addSubview:newtransactiolineView];
     }
     
@@ -298,7 +324,7 @@
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
     sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects: @"application/json", nil];
-    [sessionManager POST: @"http://ninjahosting.us/web_api/service.php" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [sessionManager POST: globals.server_url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
@@ -325,6 +351,36 @@
         NSLog(@"errororororor");
     }];
     ////////////
+}
+
+-(void)setMenuButtonsicon {
+    Global *globals = [Global sharedInstance];
+    if(globals.selected_language == 0) {
+        [self.homeButton setImage:[UIImage imageNamed: @"menu_home_sp"] forState:UIControlStateNormal];
+        [self.reportButton setImage:[UIImage imageNamed: @"menu_reports_sp"] forState:UIControlStateNormal];
+        [self.configButton setImage:[UIImage imageNamed: @"menu_configuration_sp"] forState:UIControlStateNormal];
+        [self.usuarioButton setImage:[UIImage imageNamed: @"menu_users_sp"] forState:UIControlStateNormal];
+        [self.turnoButton setImage:[UIImage imageNamed: @"menu_shift_sp"] forState:UIControlStateNormal];
+        [self.canceltransactionButton setImage:[UIImage imageNamed: @"menu_canceltransaction_sp"] forState:UIControlStateNormal];
+        [self.newtransactionButton setImage:[UIImage imageNamed: @"menu_newtransaction_sp"] forState:UIControlStateNormal];
+        [self.logoutButton setImage:[UIImage imageNamed: @"menu_signout_sp"] forState:UIControlStateNormal];
+        [self.cerraturnoButton setImage:[UIImage imageNamed: @"menu_close_shift_sp"] forState:UIControlStateNormal];
+    } else {
+        [self.homeButton setImage:[UIImage imageNamed: @"menu_home_en"] forState:UIControlStateNormal];
+        [self.reportButton setImage:[UIImage imageNamed: @"menu_reports_en"] forState:UIControlStateNormal];
+        [self.configButton setImage:[UIImage imageNamed: @"menu_configuration_en"] forState:UIControlStateNormal];
+        [self.usuarioButton setImage:[UIImage imageNamed: @"menu_users_en"] forState:UIControlStateNormal];
+        [self.turnoButton setImage:[UIImage imageNamed: @"menu_shift_en"] forState:UIControlStateNormal];
+        [self.canceltransactionButton setImage:[UIImage imageNamed: @"menu_canceltransaction_en"] forState:UIControlStateNormal];
+        [self.newtransactionButton setImage:[UIImage imageNamed: @"menu_newtransaction_en"] forState:UIControlStateNormal];
+        [self.logoutButton setImage:[UIImage imageNamed: @"menu_signout_en"] forState:UIControlStateNormal];
+        [self.cerraturnoButton setImage:[UIImage imageNamed: @"menu_close_shift_en"] forState:UIControlStateNormal];
+    }
+}
+
+-(void)dismissKeyboard
+{
+    [self.view endEditing:YES];
 }
 
 -(void)hideSidePanel:(UIGestureRecognizer *)gesture{
@@ -472,10 +528,12 @@ bool xmlTransaction_reference = false;
 }
 
 -(void) reloadCancelTransactionTableViewData:(CancelTransactionTableViewCell *)sender :(NSInteger)index {
+    NSLog(@"0000:  %lu", (unsigned long)self.transactionArray.count);
     self.canceled_transaction = self.transactionArray[index];
     self.canceled_index = index;
     [self.transactionArray removeObjectAtIndex:index];
     [self.transactionTableView reloadData];
+    NSLog(@"1111:  %lu", (unsigned long)self.transactionArray.count);
     
     Global *globals = [Global sharedInstance];
     if(globals.selected_language == 0) {
@@ -542,6 +600,13 @@ bool xmlTransaction_reference = false;
     [self.canceltransactionAlertView setHidden:YES];
 }
 
+- (BOOL)validateEmailWithString:(NSString*)email
+{
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:email];
+}
+
 - (IBAction)removeButtonAction:(id)sender {
     NSString *email = self.emailTextField.text;
     NSString *reasontext = self.reasonTextField.text;
@@ -564,13 +629,20 @@ bool xmlTransaction_reference = false;
         }
         return;
     }
+    if(![self validateEmailWithString:email]) {
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor utilice la dirección de correo electrónico válida."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please use valid email address."];
+        }
+        return;
+    }
     
     [self.TransV setHidden:YES];
     [self.canceltransactionAlertView setHidden:YES];
     
     [self.activityIndicator startAnimating];
     [self.view addSubview:self.overlayView];
-    
     
     NSDictionary *credentials = @{
                                   @"uid": globals.login_uid,
@@ -592,7 +664,7 @@ bool xmlTransaction_reference = false;
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
     sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects: @"application/json", nil];
-    [sessionManager POST: @"http://ninjahosting.us/web_api/service.php" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [sessionManager POST: globals.server_url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
@@ -603,6 +675,7 @@ bool xmlTransaction_reference = false;
             self.dataTransaction = jsonResponse;
             [self.dataTransaction setValue:globals.nombreComercio forKey:@"comercio"];
             [self.dataTransaction setValue:globals.moneda forKey:@"moneda"];
+            [self.dataTransaction setValue:self.emailTextField.text forKey:@"mail_comprador"];
             [self.dataTransaction setValue:globals.emailComercio forKey:@"emailComercio"];
             
             NSLog(@"000000::: %@", self.dataTransaction);
@@ -631,16 +704,77 @@ bool xmlTransaction_reference = false;
     }];
 }
 
+- (IBAction)cerraturnoButtonAction:(id)sender {
+    Global *globals = [Global sharedInstance];
+    
+    [self.activityIndicator startAnimating];
+    [self.view addSubview:self.overlayView];
+    
+    NSDictionary *param = @{@"param": @{
+                                    @"idUser": globals.idUser,
+                                    @"turnoCod": globals.turnoCod,
+                                    }};
+    
+    NSError *error;
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:param options:0 error:&error];
+    NSString *string = [[NSString alloc]initWithData:postData encoding:NSUTF8StringEncoding];
+    
+    NSDictionary *parameters = @{
+                                 @"method": @"closeShift",
+                                 @"param": string
+                                 };
+    AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
+    sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects: @"application/json", nil];
+    [sessionManager POST: globals.server_url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        [self.activityIndicator stopAnimating];
+        [self.overlayView removeFromSuperview];
+        
+        NSError *jsonError;
+        NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&jsonError];
+        BOOL status = [jsonResponse[@"status"] boolValue];
+        if(status) {
+            [self performSegueWithIdentifier:@"canceltransactiontowelcome_segue" sender:self];
+        } else {
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Advertencia!" :@"Ocurrió un error. Por favor contacte a soporte."];
+            } else {
+                [self displayAlertView:@"Warning!" :@"An error has occurred. Please contact support."];
+            }
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [self.activityIndicator stopAnimating];
+        [self.overlayView removeFromSuperview];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Network error."];
+        }
+    }];
+}
+
 -(void)insertTransactions:(NSDictionary *)data :(NSString *)void_reason {
     [self.activityIndicator startAnimating];
     [self.view addSubview:self.overlayView];
 
     Global *globals = [Global sharedInstance];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"America/El_Salvador"];
+    [dateFormatter setTimeZone:timeZone];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
+    NSDate *fechaDate = [dateFormatter dateFromString:data[@"value"][@"void_origin_transaction_info"][@"date_trans"]];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *fechaString = [dateFormatter stringFromDate:fechaDate];
+    
     NSDictionary *insertTransactions = @{
                                   @"total": data[@"value"][@"void_origin_transaction_info"][@"amount"],
                                   @"ern": data[@"value"][@"void_origin_transaction_info"][@"ern"],
                                   @"referencia": data[@"value"][@"void_origin_transaction_info"][@"reference"],
-                                  @"fecha": data[@"value"][@"void_origin_transaction_info"][@"date_trans"],
+                                  @"fecha": fechaString,
                                   @"status": data[@"value"][@"void_origin_transaction_info"][@"status"],
                                   @"concepto": void_reason,
                                   @"ipPublica": globals.IPAddress,
@@ -659,7 +793,7 @@ bool xmlTransaction_reference = false;
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
     sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects: @"application/json", nil];
-    [sessionManager POST: @"http://ninjahosting.us/web_api/service.php" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [sessionManager POST: globals.server_url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
@@ -699,38 +833,15 @@ bool xmlTransaction_reference = false;
     
     Global *globals = [Global sharedInstance];
     
-    NSDictionary *void_origin_transaction_info = self.dataTransaction[@"value"][@"void_origin_transaction_info"];
+    NSDictionary *dataVoidTransaction = self.dataTransaction;
     NSError *error;
-    NSData *void_origin_transaction_infoPostData = [NSJSONSerialization dataWithJSONObject:void_origin_transaction_info options:0 error:&error];
-    NSString *void_origin_transaction_infoString = [[NSString alloc]initWithData:void_origin_transaction_infoPostData encoding:NSUTF8StringEncoding];
     
-    NSDictionary *value = @{
-                            @"token": self.dataTransaction[@"value"][@"token"],
-                            @"void_reference": self.dataTransaction[@"value"][@"void_reference"],
-                            @"void_datetime": self.dataTransaction[@"value"][@"void_datetime"],
-                            @"void_origin_transaction_info": void_origin_transaction_infoString
-                            };
-    NSData *valuePostData = [NSJSONSerialization dataWithJSONObject:value options:0 error:&error];
-    NSString *valueString = [[NSString alloc]initWithData:valuePostData encoding:NSUTF8StringEncoding];
+    NSDictionary *converObject = @{
+                                   @"dataTransacction": dataVoidTransaction
+                                   };
     
-    NSDictionary *converted_dataTransaction = @{
-                            @"code": self.dataTransaction[@"code"],
-                            @"message": self.dataTransaction[@"message"],
-                            @"value": valueString,
-                            @"datetime": self.dataTransaction[@"datetime"],
-                            @"status": self.dataTransaction[@"status"]
-                            };
-    NSData *converted_dataTransactionPostData = [NSJSONSerialization dataWithJSONObject:converted_dataTransaction options:0 error:&error];
-    NSString *converted_dataTransactionString = [[NSString alloc]initWithData:converted_dataTransactionPostData encoding:NSUTF8StringEncoding];
-    
-    NSDictionary *param = @{
-                             @"dataTransacction": converted_dataTransactionString,
-                             @"mail_comprador": self.emailTextField.text,
-                             };
-    
-    
-    NSData *paramPostData = [NSJSONSerialization dataWithJSONObject:param options:0 error:&error];
-    NSString *paramString = [[NSString alloc]initWithData:paramPostData encoding:NSUTF8StringEncoding];
+    NSData *dataTransactionData = [NSJSONSerialization dataWithJSONObject:converObject options:0 error:&error];
+    NSString *paramString = [[NSString alloc]initWithData:dataTransactionData encoding:NSUTF8StringEncoding];
     
     NSDictionary *parameters = @{
                                  @"method": @"generateVoidPDF",
@@ -740,7 +851,7 @@ bool xmlTransaction_reference = false;
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
     sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects: @"application/json", nil];
-    [sessionManager POST: @"http://ninjahosting.us/web_api/service.php" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [sessionManager POST: globals.server_url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
@@ -751,7 +862,7 @@ bool xmlTransaction_reference = false;
         BOOL status = [jsonResponse[@"status"] boolValue];
         if(status) {
             if(globals.selected_language == 0) {
-                [self displayAlertView:@"¡Éxito!" :@"Voucher enciado satisfactoriamente!"];
+                [self displayAlertView:@"¡Éxito!" :@"Voucher enviado satisfactoriamente!"];
             } else {
                 [self displayAlertView:@"Success!" :@"Voucher sent successfully!"];
             }

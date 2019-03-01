@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BBDeviceController.h"
+#import "BBDeviceOTAController.h"
 
-@interface ViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface ViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, BBDeviceControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView_language;
 @property (weak, nonatomic) IBOutlet UILabel *pv_txt;

@@ -82,8 +82,6 @@ float deviceWidth = 0;
         } completion:^(BOOL finished){
             [self.delegate reloadDeleteTableViewData:self :self->cellIndex];
         }];
-
-
     }
 }
 

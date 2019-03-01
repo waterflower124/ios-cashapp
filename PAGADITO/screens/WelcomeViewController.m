@@ -122,8 +122,6 @@
         return;
     }
 
-    
-
     [self.activityIndicator startAnimating];
     [self.view addSubview:self.overlayView];
 
@@ -132,7 +130,6 @@
                                           @"password": self.password,
                                           @"mac": globals.macAddress
                                           }};
-
     NSError *error;
     NSData *postData = [NSJSONSerialization dataWithJSONObject:initLogin options:0 error:&error];
     NSString *postString = [[NSString alloc]initWithData:postData encoding:NSUTF8StringEncoding];
@@ -146,7 +143,7 @@
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
     sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects: @"application/json", nil];
-    [sessionManager POST: @"http://ninjahosting.us/web_api/service.php" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [sessionManager POST: globals.server_url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
@@ -221,7 +218,7 @@
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
     sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects: @"application/json", nil];
-    [sessionManager POST: @"http://ninjahosting.us/web_api/service.php" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [sessionManager POST: globals.server_url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
@@ -238,7 +235,7 @@
             
         } else {
             if(globals.selected_language == 0) {
-                [self displayAlertView:@"¡Advertencia!" :@"No puedes iniciar sesión. El turno del cajero no ha sido asignad."];
+                [self displayAlertView:@"¡Advertencia!" :@"No puedes iniciar sesión. El turno del cajero no ha sido asignado."];
             } else {
                 [self displayAlertView:@"Warning!" :@"You can't login. The cashier's shift wasn't assigned."];
             }

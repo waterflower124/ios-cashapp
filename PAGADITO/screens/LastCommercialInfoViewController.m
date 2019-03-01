@@ -163,10 +163,6 @@
                                            @"versionSOInstalacion": self.osVersion
                                            };
         
-        NSLog(@"comercio:  %@", comercio);
-        NSLog(@"dispositivo:  %@", dispositivo);
-        NSLog(@"infoUsuario:  %@", infoUsuario);
-        
         NSError *error;
         NSData *infoUsuarioData = [NSJSONSerialization dataWithJSONObject:infoUsuario options:0 error:&error];
         NSString *infoUsuarioString = [[NSString alloc]initWithData:infoUsuarioData encoding:NSUTF8StringEncoding];
@@ -187,7 +183,7 @@
         sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
         sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
         sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects: @"application/json", nil];
-        [sessionManager POST: @"http://ninjahosting.us/web_api/service.php" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [sessionManager POST: globals.server_url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             
             [self.activityIndicator stopAnimating];
             [self.overlayView removeFromSuperview];
@@ -204,9 +200,9 @@
                 }
             } else {
                 if(globals.selected_language == 0) {
-                    [self displayAlertView:@"¡Advertencia!" :@"FAILED INSTALLATION, CONTACT SUPPORT!" : @"nil"];
+                    [self displayAlertView:@"¡Advertencia!" :@"INSTALACIÓN FALLIDA. POR FAVOR CONTACTE A SOPORTE!" : @"nil"];
                 } else {
-                    [self displayAlertView:@"Warning!" :@"INSTALACIÓN FALLIDA, CONTACTE A SOPORTE!" : @"nil"];
+                    [self displayAlertView:@"Warning!" :@"FAILED INSTALLATION, PLEASE CONTACT SUPPORT!" : @"nil"];
                 }
             }
 
@@ -214,9 +210,9 @@
             [self.activityIndicator stopAnimating];
             [self.overlayView removeFromSuperview];
             if(globals.selected_language == 0) {
-                [self displayAlertView:@"¡Advertencia!!" :@"Network error!" : @"nil"];
+                [self displayAlertView:@"¡Advertencia!" :@"Error de red!" : @"nil"];
             } else {
-               [self displayAlertView:@"Warning!" :@"Error de red!" : @"nil"];
+               [self displayAlertView:@"Warning!" :@"Network error!" : @"nil"];
             }
         }];
         
@@ -266,6 +262,7 @@
 }
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
+    Global *globals = [Global sharedInstance];
     UIImage *selectedImage = info[UIImagePickerControllerEditedImage];
     self.logoImageView.image = selectedImage;
     [picker dismissViewControllerAnimated:YES completion:nil];
@@ -285,7 +282,11 @@
         Global *globals = [Global sharedInstance];
         globals.logo_imagePath = fileName;
     } else {
-        [self displayAlertView:@"Warning!" :@"Logo Image have to be less than 2MB. Please select another image" : @"nil"];
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"La imagen del logo debe ser inferior a 2MB. Por favor seleccione otra imagen." : @"nil"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Logo Image have to be less than 2MB. Please select another image." : @"nil"];
+        }
     }
 }
 

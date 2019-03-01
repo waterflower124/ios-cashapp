@@ -11,6 +11,8 @@
 #import "AFNetworking.h"
 #import "screens/LoginViewController.h"
 #import "screens/WelcomeViewController.h"
+#import "BBDeviceController.h"
+#import "BBDeviceOTAController.h"
 
 #include <sys/socket.h>
 #include <sys/sysctl.h>
@@ -18,6 +20,8 @@
 #include <net/if_dl.h>
 #include <ifaddrs.h>
 #include <arpa/inet.h>
+
+#define kTimeout_ScanBT 60
 
 @interface ViewController ()
 {
@@ -36,6 +40,7 @@ Global *globals;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     
     globals = [Global sharedInstance];
     /////   initalization for global variables
@@ -100,7 +105,7 @@ Global *globals;
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
     sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects: @"application/json", nil];
-    [sessionManager POST: @"http://ninjahosting.us/web_api/service.php" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [sessionManager POST: globals.server_url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
@@ -127,14 +132,14 @@ Global *globals;
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"¡Advertencia!" message:@"Error de red." preferredStyle:UIAlertControllerStyleAlert];
-            UIApplication *actionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            UIAlertAction *actionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 NSLog(@"OK action");
             }];
             [alert addAction:actionOK];
             [self presentViewController:alert animated:YES completion:nil];
         } else {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning!" message:@"Networking error." preferredStyle:UIAlertControllerStyleAlert];
-            UIApplication *actionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            UIAlertAction *actionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 NSLog(@"OK action");
             }];
             [alert addAction:actionOK];

@@ -11,6 +11,7 @@
 
 @interface Global : NSObject
 {
+    NSString *server_url;
 
     NSInteger selected_language;
     NSString *macAddress;
@@ -59,6 +60,8 @@
 }
 
 + (Global *)sharedInstance;
+
+@property(strong, nonatomic, readwrite) NSString *server_url;
 
 @property(nonatomic, readwrite) NSInteger selected_language;
 @property(strong, nonatomic, readwrite) NSString *macAddress;

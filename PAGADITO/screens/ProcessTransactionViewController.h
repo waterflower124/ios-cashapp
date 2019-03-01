@@ -7,10 +7,29 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BBDeviceController.h"
+#import "BBDeviceOTAController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ProcessTransactionViewController : UIViewController
+@interface ProcessTransactionViewController : UIViewController <BBDeviceControllerDelegate>{
+    //LECTOR
+@private
+    BOOL isAutoSetAmount;
+    BOOL isAutoSelectApplication;
+    BOOL isAutoEnterPin;
+    BOOL isAutoFinalConfirm;
+    BOOL isAutoSendOnlineProcessResult;
+    BOOL isAutoConnectLastBTDevice;
+    
+    BOOL isBadSwiped;
+    BOOL isWrongPin;
+    BOOL isCanceledPin;
+    BOOL isCheckCardOnly;
+    BOOL isSwipeCardOnly;
+    BOOL isClickedStartTransactionButton;
+    
+}
 
 @property(strong, nonatomic) NSString *transactionAmount;
 
@@ -25,8 +44,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *turnoButton;
 @property (weak, nonatomic) IBOutlet UIButton *canceltransactionButton;
 @property (weak, nonatomic) IBOutlet UIButton *newtransactionButton;
+@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
+@property (weak, nonatomic) IBOutlet UIButton *cerraturnoButton;
 
 - (IBAction)signoutButtonAction:(id)sender;
+- (IBAction)cerraturnoButtonAction:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UILabel *transactionAmountLabel;
 @property (weak, nonatomic) IBOutlet UITextField *cardNumberTextField;
@@ -60,8 +82,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *sessioncommentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *sessionInfoLabel;
 
-
-
+@property (weak, nonatomic) IBOutlet UIView *BTDeviceListView;
+@property (weak, nonatomic) IBOutlet UILabel *devicecommentLabel;
+@property (weak, nonatomic) IBOutlet UITableView *BTDeviceTable;
+- (IBAction)BTDeviceListViewCloseButtonAction:(id)sender;
+- (IBAction)btnAction_StartEMV:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *cardReadButton;
 
 @end
 

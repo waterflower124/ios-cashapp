@@ -124,7 +124,7 @@
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
     sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects: @"application/json", nil];
-    [sessionManager POST: @"http://ninjahosting.us/web_api/service.php" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [sessionManager POST: globals.server_url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
@@ -137,9 +137,9 @@
             [self.successAlertView setHidden:NO];
         } else {
             if(globals.selected_language == 0) {
-                [self displayAlertView:@"¡Advertencia!" :@"Ocurrió un error. Por favor contacte a soporte."];
+                [self displayAlertView:@"¡Advertencia!" :@"No puede utilizar la contraseña actual, ingrese una nueva contraseña."];
             } else {
-                [self displayAlertView:@"Warning!" :@"An error occurred. Please contact support."];
+                [self displayAlertView:@"Warning!" :@"You can't use your current password. Please use a new one."];
             }
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

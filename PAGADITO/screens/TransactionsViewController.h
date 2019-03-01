@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(strong, nonatomic)NSString *shift_code;
 @property(strong, nonatomic)NSString *start_datetime;
 @property(strong, nonatomic)NSString *finish_datetime;
+@property(strong, nonatomic)NSString *userCajero;
+@property(strong, nonatomic)NSString *selectedTurnoCode;
 
 
 @property (weak, nonatomic) IBOutlet UIView *TransV;
@@ -35,8 +37,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *turnoButton;
 @property (weak, nonatomic) IBOutlet UIButton *canceltransactionButton;
 @property (weak, nonatomic) IBOutlet UIButton *newtransactionButton;
+@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
+@property (weak, nonatomic) IBOutlet UIButton *cerraturnoButton;
 
 - (IBAction)signoutButtonAction:(id)sender;
+- (IBAction)cerraturnoButtonAction:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *exportcommentLabel;

@@ -55,6 +55,13 @@
     [self.view endEditing:YES];
 }
 
+- (BOOL)validateEmailWithString:(NSString*)email
+{
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:email];
+}
+
 - (IBAction)LoginButtonAction:(id)sender {
     Global *globals = [Global sharedInstance];
 
@@ -79,19 +86,38 @@
         return;
     }
     
+    if(![self validateEmailWithString:emailText]) {
+        if(globals.selected_language == 0) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"¡Advertencia!" message:@"Por favor ingrese una dirección de correo electrónico válida." preferredStyle:UIAlertControllerStyleAlert];
+            UIApplication *actionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                NSLog(@"OK action");
+            }];
+            [alert addAction:actionOK];
+            [self presentViewController:alert animated:YES completion:nil];
+        } else {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning!" message:@"Please input valid email address." preferredStyle:UIAlertControllerStyleAlert];
+            UIApplication *actionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                NSLog(@"OK action");
+            }];
+            [alert addAction:actionOK];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+        return;
+    }
+    
     [self.activityIndicator startAnimating];
     [self.view addSubview:self.overlayView];
     
-//    NSDictionary *credentials = @{@"credentials": @{
-//                                                  @"email": @"jescobar@ninjawebcorporation.com",
-//                                                  @"pwd": @"12345678a",
-//                                                  @"ambiente": @"0"
-//                                                  }};
     NSDictionary *credentials = @{@"credentials": @{
-                                          @"email": emailText,
-                                          @"pwd": passwordText,
-                                          @"ambiente": @"0"
-                                          }};
+                                                  @"email": @"jescobar@ninjawebcorporation.com",
+                                                  @"pwd": @"12345678a",
+                                                  @"ambiente": @"0"
+                                                  }};
+//    NSDictionary *credentials = @{@"credentials": @{
+//                                          @"email": emailText,
+//                                          @"pwd": passwordText,
+//                                          @"ambiente": @"0"
+//                                          }};
     
     NSError *error;
     NSData *postData = [NSJSONSerialization dataWithJSONObject:credentials options:0 error:&error];
@@ -106,7 +132,7 @@
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
     sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects: @"application/json", nil];
-    [sessionManager POST: @"http://ninjahosting.us/web_api/service.php" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [sessionManager POST: globals.server_url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];

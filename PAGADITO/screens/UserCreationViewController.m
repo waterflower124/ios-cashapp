@@ -144,7 +144,7 @@ int role_int = -1;
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
     sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects: @"application/json", nil];
-    [sessionManager POST: @"http://ninjahosting.us/web_api/service.php" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+    [sessionManager POST: globals.server_url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
      {
          NSError *jsonError;
          NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&jsonError];
@@ -167,6 +167,7 @@ int role_int = -1;
                  /****************
                   go to next screen with infoUserArray
                   ***************/
+                 NSLog(@"%@", dataUserDic);
                  [self performSegueWithIdentifier:@"creationtolast_segue" sender:nil];
              } else if(role_int == 1) {
                  if(globals.selected_language == 0) {
@@ -183,6 +184,14 @@ int role_int = -1;
                  self.roleTableViewHeightConstraint.constant = 40 * self.role_list.count;
                  [self.pincodeUIView setHidden:NO];
              } else if(role_int == 2) {
+                 if(self.pin_code.length > 4) {
+                     if(globals.selected_language == 0) {
+                         [self displayAlertView:@"¡Advertencia!" :@"El código PIN debe tener un máximo de cuatro caracteres."];
+                     } else {
+                         [self displayAlertView:@"Warning!" :@"PIN code have to be a maximum of 4 chracters."];
+                     }
+                     return;
+                 }
                  if(globals.selected_language == 0) {
                      [self displayAlertView:@"¡Éxito!" :@"Usuario Guardado Correctamente"];
                  } else {

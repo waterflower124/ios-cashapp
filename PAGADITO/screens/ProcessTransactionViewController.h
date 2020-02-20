@@ -2,7 +2,7 @@
 //  ProcessTransactionViewController.h
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/2/4.
+//  Created by Javier Calderon  on 2019/2/4.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ProcessTransactionViewController : UIViewController <BBDeviceControllerDelegate>{
+@interface ProcessTransactionViewController : UIViewController <BBDeviceControllerDelegate,UITextFieldDelegate>{
     //LECTOR
 @private
     BOOL isAutoSetAmount;
@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
     BOOL isClickedStartTransactionButton;
     
 }
+@property (weak, nonatomic) IBOutlet UIScrollView *textScrollView;
 
 @property(strong, nonatomic) NSString *transactionAmount;
 

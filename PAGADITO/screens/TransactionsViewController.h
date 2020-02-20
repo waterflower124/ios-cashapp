@@ -2,7 +2,7 @@
 //  TransactionsViewController.h
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/23.
+//  Created by Javier Calderon  on 2019/1/23.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *turnocodigoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *turnocodigoTitleLabel;
 @property (weak, nonatomic) IBOutlet UITableView *transactionTableView;
+@property (weak, nonatomic) IBOutlet UIButton *pdfGenerateButton;
+@property (weak, nonatomic) IBOutlet UIButton *xlsxGenerateButton;
 
 - (IBAction)menuButtonAction:(id)sender;
 - (IBAction)backButtonAction:(id)sender;

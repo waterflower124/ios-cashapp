@@ -2,7 +2,7 @@
 //  TransactionResultSignatureView.m
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/2/8.
+//  Created by Javier Calderon  on 2019/2/8.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 

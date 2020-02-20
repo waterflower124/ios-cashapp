@@ -2,7 +2,7 @@
 //  CashierShiftSearchViewController.m
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/23.
+//  Created by Javier Calderon  on 2019/1/23.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
@@ -249,6 +249,7 @@
         self.newtransactionButton.frame = newtransactionButtonFrame;
         UIView *newtransactiolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, newtransactionButton.frame.size.width, 1)];
         newtransactiolineView.backgroundColor = [UIColor lightGrayColor];
+        [self.newtransactionButton addSubview:newtransactiolineView];
         
         CGRect canceltransactionButtonFrame = self.canceltransactionButton.frame;
         canceltransactionButtonFrame.origin.x = 0;
@@ -266,7 +267,7 @@
         cerraturnolineView.backgroundColor = [UIColor lightGrayColor];
         [self.cerraturnoButton addSubview:cerraturnolineView];
         
-        [self.newtransactionButton addSubview:newtransactiolineView];
+        [self.cerraturnoButton setHidden:YES];
         
     }
     
@@ -282,7 +283,8 @@
     NSString *string = [[NSString alloc]initWithData:postData encoding:NSUTF8StringEncoding];
     NSDictionary *parameters = @{
                                  @"method": @"getUsersPOS",
-                                 @"param": string
+                                 @"param": string,
+                                 @"TOKEN": globals.server_token
                                  };
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -348,9 +350,9 @@
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"Warning!" :@"Network error."];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet."];
         } else {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue."];
         }
     }];
     ////////////
@@ -495,12 +497,61 @@
 //    self.startDatePicker.locale = locale;
     NSDate *startDate = [self.startDatePicker date];
     NSDate *closeDate = [self.closeDatePicker date];
+    
+    NSComparisonResult result = [closeDate compare:startDate];
+    
+    switch (result)
+    {
+        case NSOrderedAscending:
+            NSLog(@"%@ is in future from %@", startDate, closeDate);
+            [self showInvalidAlert];
+            return;
+        case NSOrderedDescending:
+            NSLog(@"%@ is in past from %@", startDate, closeDate);
+            break;
+        case NSOrderedSame:
+            NSLog(@"%@ is the same as %@", startDate, closeDate);
+            [self showInvalidAlert];
+            return;
+        default:
+            NSLog(@"erorr dates %@, %@", startDate, closeDate);
+            break;
+    }
+    
+    NSComparisonResult result1 = [startDate compare:closeDate];
+    switch (result1)
+    {
+        case NSOrderedAscending:
+            NSLog(@"%@ is in future from %@", closeDate, startDate);
+            break;
+        case NSOrderedDescending:
+            NSLog(@"%@ is in past from %@", closeDate, startDate);
+            [self showInvalidAlert];
+            return;
+        case NSOrderedSame:
+            NSLog(@"%@ is the same as %@", closeDate, startDate);
+            [self showInvalidAlert];
+            return;
+        default:
+            NSLog(@"erorr dates %@, %@", closeDate, startDate);
+            break;
+    }
+    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     self.startDateString = [dateFormatter stringFromDate:startDate];
     self.closeDateString = [dateFormatter stringFromDate:closeDate];
     
     [self performSegueWithIdentifier:@"cashiershiftsearchtocashiershiftsearchresult_segue" sender:self];
+}
+
+- (void) showInvalidAlert {
+    Global *globals = [Global sharedInstance];
+    if(globals.selected_language == 0) {
+        [self displayAlertView:@"¡Advertencia!" :@"El rango de fechas seleccionadas no es válido."];
+    } else {
+        [self displayAlertView:@"Warning!" :@"The dates selected are invalid."];
+    }
 }
 
 - (IBAction)cerraturnoButtonAction:(id)sender {
@@ -520,7 +571,8 @@
     
     NSDictionary *parameters = @{
                                  @"method": @"closeShift",
-                                 @"param": string
+                                 @"param": string,
+                                 @"TOKEN": globals.server_token
                                  };
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -548,9 +600,9 @@
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet."];
         } else {
-            [self displayAlertView:@"Warning!" :@"Network error."];
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue."];
         }
     }];
 }

@@ -2,7 +2,7 @@
 //  CancelTransactionViewController.m
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/2/10.
+//  Created by Javier Calderon  on 2019/2/10.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
@@ -35,7 +35,7 @@
 @end
 
 @implementation CancelTransactionViewController
-@synthesize SidePanel, TransV, transactionTableView, turnoCodeLabel, sessionInfoLabel, canceltransactionAlertView, alertTitleLabel, emailTextField, reasonTextField, cancelButton, removeButton;
+@synthesize SidePanel, TransV, transactionTableView, turnoCodeLabel, sessionInfoLabel, canceltransactionAlertView, alertmainTitleLabel, alertTitleLabel, pincodeTextField, emailTextField, reasonTextField, cancelButton, removeButton;
 @synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton, logoutButton, cerraturnoButton;
 @synthesize titleLabel, turnocodecommentLabel, notecommentLabel, descriptioncommentLabel, removecommentLabel, sessionInfocommentLabel;
 
@@ -58,21 +58,25 @@
         self.notecommentLabel.text = @"Nota:";
         self.descriptioncommentLabel.text = @"Solo puedes anular transacciones de los últimos 30 min.";
         self.sessionInfocommentLabel.text = @"Sesión iniciada:";
-        self.emailTextField.placeholder = @"Correo Electrónico";
-        self.reasonTextField.placeholder = @"Motivo";
+        self.alertmainTitleLabel.text = @"Anular Transacción";
+        self.pincodeTextField.placeholder = @"Ingresa PIN de supervisor";
+        self.emailTextField.placeholder = @"Correo Electrónico Cliente";
+        self.reasonTextField.placeholder = @"Razón para Anular";
         [self.cancelButton setTitle:@"Cancelar" forState:UIControlStateNormal];
         [self.removeButton setTitle:@"Anular" forState:UIControlStateNormal];
     } else {
         self.titleLabel.text = @"Cancel Transactions";
         self.turnocodecommentLabel.text = @"Shift Code:";
         self.removecommentLabel.text = @"Swipe the transaction to be canceled to the left.";
-        self.notecommentLabel.text = @"Note:";
+        self.notecommentLabel.text = @"IMPORTANT:";
         self.descriptioncommentLabel.text = @"You can only cancel transactions for the last 30 min.";
         self.sessionInfocommentLabel.text = @"Session started:";
-        self.emailTextField.placeholder = @"Email";
-        self.reasonTextField.placeholder = @"Reason";
+        self.alertmainTitleLabel.text = @"Void Transaction";
+        self.pincodeTextField.placeholder = @"Enter supervisor PIN";
+        self.emailTextField.placeholder = @"Customer Email";
+        self.reasonTextField.placeholder = @"Reason to Void";
         [self.cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
-        [self.removeButton setTitle:@"Remove" forState:UIControlStateNormal];
+        [self.removeButton setTitle:@"Void" forState:UIControlStateNormal];
     }
     
     [self setMenuButtonsicon];
@@ -186,6 +190,9 @@
         ///////////////////////////////
         
     } else if([globals.idPrivilegio isEqualToString:@"3"]) {
+        
+        [self.pincodeTextField setHidden:NO];
+        
         ///////  side menu button config   ////////////
         CGRect homeButtonFrame = self.homeButton.frame;
         homeButtonFrame.origin.x = 0;
@@ -225,6 +232,9 @@
         [self.turnoButton setHidden:YES];
         
     } else if([globals.idPrivilegio isEqualToString:@"4"]) {
+        
+        [self.pincodeTextField setHidden:YES];
+        
         ///////  side menu button config   ////////////
         CGRect homeButtonFrame = self.homeButton.frame;
         homeButtonFrame.origin.x = 0;
@@ -272,6 +282,7 @@
         self.newtransactionButton.frame = newtransactionButtonFrame;
         UIView *newtransactiolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, newtransactionButton.frame.size.width, 1)];
         newtransactiolineView.backgroundColor = [UIColor lightGrayColor];
+        [self.newtransactionButton addSubview:newtransactiolineView];
         
         CGRect canceltransactionButtonFrame = self.canceltransactionButton.frame;
         canceltransactionButtonFrame.origin.x = 0;
@@ -281,15 +292,15 @@
         canceltransactionlineView.backgroundColor = [UIColor lightGrayColor];
         [self.canceltransactionButton addSubview:canceltransactionlineView];
         
-        CGRect cerraturnoButtonFrame = self.cerraturnoButton.frame;
-        cerraturnoButtonFrame.origin.x = 0;
-        cerraturnoButtonFrame.origin.y = 420;
-        self.cerraturnoButton.frame = cerraturnoButtonFrame;
-        UIView *cerraturnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, cerraturnoButton.frame.size.width, 1)];
-        cerraturnolineView.backgroundColor = [UIColor lightGrayColor];
-        [self.cerraturnoButton addSubview:cerraturnolineView];
+//        CGRect cerraturnoButtonFrame = self.cerraturnoButton.frame;
+//        cerraturnoButtonFrame.origin.x = 0;
+//        cerraturnoButtonFrame.origin.y = 420;
+//        self.cerraturnoButton.frame = cerraturnoButtonFrame;
+//        UIView *cerraturnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, cerraturnoButton.frame.size.width, 1)];
+//        cerraturnolineView.backgroundColor = [UIColor lightGrayColor];
+//        [self.cerraturnoButton addSubview:cerraturnolineView];
         
-        [self.newtransactionButton addSubview:newtransactiolineView];
+        [self.cerraturnoButton setHidden:YES];
     }
     
     
@@ -318,7 +329,8 @@
                                  @"credentials": credentialsString,
                                  @"terminal": terminalString,
                                  @"shift_code": globals.turnoCod,
-                                 @"typeReport": @"1"
+                                 @"typeReport": @"1",
+                                 @"TOKEN": globals.server_token
                                  };
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -332,25 +344,53 @@
         NSError *jsonError;
         NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&jsonError];
         
-        NSString *xml_string = jsonResponse[@"value"][@"xml_transactions"];
-        NSData *xmlData = [xml_string dataUsingEncoding:NSUTF8StringEncoding];
-        self.xmlTransactionsParser = [[NSXMLParser alloc] initWithData:xmlData];
-        self.xmlTransactionsParser.delegate = self;
-        
-        [self.xmlTransactionsParser parse];
-        
+        if([jsonResponse[@"code"] isEqualToString:@"PG1022"]) {
+            if([jsonResponse[@"countAnullVoid"] isEqual:[NSNumber numberWithLong:0]]){
+                if(globals.selected_language == 0) {
+                    [self displayAlertView:@"¡Advertencia!" :@"No has realizado transacciones en los últimos 30 minutos, no hay transacciones que anular."];
+                } else {
+                    [self displayAlertView:@"Warning!" :@"No transactions have been made in the last 30 minutes, so no transactions can be voided."];
+                }
+            }else{
+                NSString *xml_string = jsonResponse[@"value"][@"xml_transactions"];
+                NSData *xmlData = [xml_string dataUsingEncoding:NSUTF8StringEncoding];
+                self.xmlTransactionsParser = [[NSXMLParser alloc] initWithData:xmlData];
+                self.xmlTransactionsParser.delegate = self;
+                
+                [self.xmlTransactionsParser parse];
+            }
+        }else {
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Advertencia!" :@"Ocurrió un error. Por favor contacte a soporte."];
+            } else {
+                [self displayAlertView:@"Warning!" :@"An error has occurred. Please contact support."];
+            }
+        }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet."];
         } else {
-            [self displayAlertView:@"Warning!" :@"Network error."];
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue."];
         }
         NSLog(@"errororororor");
     }];
     ////////////
+     self.pincodeTextField.delegate = self;
+}
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if(textField == self.pincodeTextField){
+        if (textField.text.length < 4 || string.length == 0){
+            return YES;
+        }
+        else{
+            return NO;
+        }
+    }
+    return NO;
 }
 
 -(void)setMenuButtonsicon {
@@ -478,7 +518,7 @@ bool xmlTransaction_reference = false;
         self.transaction_ern = string;
     }
     if(xmlTransaction && xmlTransaction_amount) {
-        self.transaction_amount = string;
+        self.transaction_amount = [self getAmountToCurrency:string];
     }
     if(xmlTransaction && xmlTransaction_datetime) {
         self.transaction_datetime = string;
@@ -486,6 +526,19 @@ bool xmlTransaction_reference = false;
     if(xmlTransaction && xmlTransaction_reference) {
         self.transaction_reference = string;
     }
+}
+
+-(NSString *)getAmountToCurrency: (NSString *) amount{
+    NSDecimalNumber *amountFinal = [NSDecimalNumber decimalNumberWithString:amount];
+    NSNumberFormatter *numberFormatter1 = [[NSNumberFormatter alloc] init];
+    numberFormatter1.locale = [NSLocale currentLocale];// this ensures the right separator behavior
+    numberFormatter1.numberStyle = NSNumberFormatterDecimalStyle;
+    numberFormatter1.usesGroupingSeparator = YES;
+    [numberFormatter1 setGroupingSize:3];
+    [numberFormatter1 setMaximumFractionDigits:2];
+    [numberFormatter1 setMinimumFractionDigits:2];
+    
+    return [NSString stringWithFormat:@"%@", [numberFormatter1 stringForObjectValue:amountFinal]];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -521,6 +574,10 @@ bool xmlTransaction_reference = false;
         cell.referencecommentLabel.text = @"Pay Reference:";
         cell.statuscommentLabel.text = @"Status:";
     }
+
+    CGRect frame = cell.cancelTransactionTableCellView.frame;
+    frame.origin.x = 0;
+    cell.cancelTransactionTableCellView.frame = frame;
     
     [cell setSelected_index:indexPath.row];
     cell.delegate = self;
@@ -598,6 +655,9 @@ bool xmlTransaction_reference = false;
     [self.transactionTableView reloadData];
     [self.TransV setHidden:YES];
     [self.canceltransactionAlertView setHidden:YES];
+    self.pincodeTextField.text = @"";
+    self.emailTextField.text = @"";
+    self.reasonTextField.text = @"";
 }
 
 - (BOOL)validateEmailWithString:(NSString*)email
@@ -608,32 +668,51 @@ bool xmlTransaction_reference = false;
 }
 
 - (IBAction)removeButtonAction:(id)sender {
+    NSString *pincode = self.pincodeTextField.text;
     NSString *email = self.emailTextField.text;
     NSString *reasontext = self.reasonTextField.text;
     
     Global *globals = [Global sharedInstance];
+    if([globals.idPrivilegio isEqualToString:@"3"]) {
+        if(pincode.length == 0) {
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese un PIN"];
+            } else {
+                [self displayAlertView:@"Warning!" :@"Please enter a valid PIN."];
+            }
+            return;
+        }
+        if(pincode.length > 4) {
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Advertencia!" :@"El código PIN debe tener un máximo de 4 digitos."];
+            } else {
+                [self displayAlertView:@"Warning!" :@"PIN code have to be a maximum of 4 chracters."];
+            }
+            return;
+        }
+    }
     
     if([email isEqualToString:@""]) {
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese Email."];
+            [self displayAlertView:@"¡Advertencia!" :@"Ingresa una dirección de correo electrónico para continuar."];
         } else {
-            [self displayAlertView:@"Warning!" :@"Please input email."];
+            [self displayAlertView:@"Warning!" :@"Please enter an e-mail address to continue."];
         }
         return;
     }
     if([reasontext isEqualToString:@""]) {
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese razón"];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese una razón"];
         } else {
-            [self displayAlertView:@"Warning!" :@"Please input reason"];
+            [self displayAlertView:@"Warning!" :@"Please enter a reason"];
         }
         return;
     }
     if(![self validateEmailWithString:email]) {
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Por favor utilice la dirección de correo electrónico válida."];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor utilice una dirección de correo electrónico válida."];
         } else {
-            [self displayAlertView:@"Warning!" :@"Please use valid email address."];
+            [self displayAlertView:@"Warning!" :@"Please use valid customer email."];
         }
         return;
     }
@@ -653,12 +732,34 @@ bool xmlTransaction_reference = false;
     NSError *error;
     NSData *credentialsPostData = [NSJSONSerialization dataWithJSONObject:credentials options:0 error:&error];
     NSString *credentialsString = [[NSString alloc]initWithData:credentialsPostData encoding:NSUTF8StringEncoding];
+    
+    NSDictionary *validCodeSupervisor;
+    NSString *validCodeSupervisorString;
+    if([globals.idPrivilegio isEqualToString:@"3"]) {
+        validCodeSupervisor = @{
+                                  @"code": pincode,
+                                  @"idComercio": globals.idComercio,
+                                  @"idPrivilegio": globals.idPrivilegio
+                                  };
+        NSData *validCodeSupervisorPostData = [NSJSONSerialization dataWithJSONObject:validCodeSupervisor options:0 error:&error];
+        validCodeSupervisorString = [[NSString alloc]initWithData:validCodeSupervisorPostData encoding:NSUTF8StringEncoding];
+    } else if([globals.idPrivilegio isEqualToString:@"4"]) {
+        validCodeSupervisor = @{
+                                @"code": @"null",
+                                @"idComercio": globals.idComercio,
+                                @"idPrivilegio": globals.idPrivilegio
+                                };
+        NSData *validCodeSupervisorPostData = [NSJSONSerialization dataWithJSONObject:validCodeSupervisor options:0 error:&error];
+        validCodeSupervisorString = [[NSString alloc]initWithData:validCodeSupervisorPostData encoding:NSUTF8StringEncoding];
+    }
   
     NSDictionary *parameters = @{
                                  @"method": @"void_transaction_mobil",
                                  @"credentials": credentialsString,
+                                 @"validCodeSupervisor": validCodeSupervisorString,
                                  @"void_reason": reasontext,
-                                 @"transaction_reference": self.canceled_transaction[5]
+                                 @"transaction_reference": self.canceled_transaction[5],
+                                 @"TOKEN": globals.server_token
                                  };
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -671,35 +772,54 @@ bool xmlTransaction_reference = false;
         
         NSError *jsonError;
         NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&jsonError];
+        NSLog(@"%@", jsonResponse);
+        
+        NSString *selected_language;
+        if(globals.selected_language == 0) {
+            selected_language = @"ES";
+        } else {
+            selected_language = @"EN";
+        }
+        
         if([jsonResponse[@"code"] isEqualToString:@"PG1021"]) {
             self.dataTransaction = jsonResponse;
             [self.dataTransaction setValue:globals.nombreComercio forKey:@"comercio"];
             [self.dataTransaction setValue:globals.moneda forKey:@"moneda"];
+            [self.dataTransaction setValue:globals.currency forKey:@"currency"];
             [self.dataTransaction setValue:self.emailTextField.text forKey:@"mail_comprador"];
             [self.dataTransaction setValue:globals.emailComercio forKey:@"emailComercio"];
+            [self.dataTransaction setValue:globals.terminalid forKey:@"terminalid"];
+            [self.dataTransaction setValue:globals.branchid forKey:@"branchid"];
+            [self.dataTransaction setValue:selected_language forKey:@"language"];
             
-            NSLog(@"000000::: %@", self.dataTransaction);
+            self.pincodeTextField.text = @"";
+            self.emailTextField.text = @"";
+            self.reasonTextField.text = @"";
             
             [self insertTransactions:jsonResponse :reasontext];
         } else {
-            [self.transactionArray insertObject:self.canceled_transaction atIndex:self.canceled_index];
-            [self.transactionTableView reloadData];
+            [self.TransV setHidden:NO];
+            [self.canceltransactionAlertView setHidden:NO];
+//            [self.transactionArray insertObject:self.canceled_transaction atIndex:self.canceled_index];
+//            [self.transactionTableView reloadData];
             if(globals.selected_language == 0) {
-                [self displayAlertView:@"¡Advertencia!" :@"Ocurrió un error. Por favor contacte a soporte."];
+                [self displayAlertView:@"¡Advertencia!" :@"Código de aprobación no válido, vuelva a intentarlo!"];
             } else {
-                [self displayAlertView:@"Warning!" :@"An error has occured. Please contact support."];
+                [self displayAlertView:@"Warning!" :@"Supervisor PIN is incorrect. Please try again."];
             }
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [self.transactionArray insertObject:self.canceled_transaction atIndex:self.canceled_index];
-        [self.transactionTableView reloadData];
+        [self.TransV setHidden:NO];
+        [self.canceltransactionAlertView setHidden:NO];
+//        [self.transactionArray insertObject:self.canceled_transaction atIndex:self.canceled_index];
+//        [self.transactionTableView reloadData];
         
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet."];
         } else {
-            [self displayAlertView:@"Warning!" :@"Network error."];
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue."];
         }
     }];
 }
@@ -721,7 +841,8 @@ bool xmlTransaction_reference = false;
     
     NSDictionary *parameters = @{
                                  @"method": @"closeShift",
-                                 @"param": string
+                                 @"param": string,
+                                 @"TOKEN": globals.server_token
                                  };
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -749,9 +870,9 @@ bool xmlTransaction_reference = false;
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet."];
         } else {
-            [self displayAlertView:@"Warning!" :@"Network error."];
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue."];
         }
     }];
 }
@@ -788,6 +909,7 @@ bool xmlTransaction_reference = false;
     NSDictionary *parameters = @{
                                  @"method": @"insertTransactions",
                                  @"param": transactionsString,
+                                 @"TOKEN": globals.server_token
                                  };
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -820,9 +942,9 @@ bool xmlTransaction_reference = false;
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet."];
         } else {
-            [self displayAlertView:@"Warning!" :@"Network error."];
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue."];
         }
     }];
 }
@@ -839,6 +961,7 @@ bool xmlTransaction_reference = false;
     NSDictionary *converObject = @{
                                    @"dataTransacction": dataVoidTransaction
                                    };
+    NSLog(@"rrrrrrrrr%@", converObject);
     
     NSData *dataTransactionData = [NSJSONSerialization dataWithJSONObject:converObject options:0 error:&error];
     NSString *paramString = [[NSString alloc]initWithData:dataTransactionData encoding:NSUTF8StringEncoding];
@@ -846,6 +969,7 @@ bool xmlTransaction_reference = false;
     NSDictionary *parameters = @{
                                  @"method": @"generateVoidPDF",
                                  @"param": paramString,
+                                 @"TOKEN": globals.server_token
                                  };
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -858,13 +982,13 @@ bool xmlTransaction_reference = false;
         
         NSError *jsonError;
         NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&jsonError];
-        NSLog(@"2222222:   %@", jsonResponse);
         BOOL status = [jsonResponse[@"status"] boolValue];
         if(status) {
+            [self.transactionArray insertObject:self.canceled_transaction atIndex:self.canceled_index];
             if(globals.selected_language == 0) {
-                [self displayAlertView:@"¡Éxito!" :@"Voucher enviado satisfactoriamente!"];
+                [self displayAlertView:@"¡Éxito!" :[NSString stringWithFormat:@"La Transacción %@ se ha anulado correctamente.", self.transaction_reference]];
             } else {
-                [self displayAlertView:@"Success!" :@"Voucher sent successfully!"];
+                [self displayAlertView:@"Success!" :[NSString stringWithFormat:@"The transaction %@ has been Void successfully.", self.transaction_reference]];
             }
         } else {
             [self.transactionArray insertObject:self.canceled_transaction atIndex:self.canceled_index];
@@ -883,9 +1007,9 @@ bool xmlTransaction_reference = false;
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet."];
         } else {
-            [self displayAlertView:@"Warning!" :@"Network error."];
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue."];
         }
     }];
 }

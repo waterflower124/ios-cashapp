@@ -2,7 +2,7 @@
 //  InformationComercialViewController.h
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/21.
+//  Created by Javier Calderon  on 2019/1/21.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface InformationComercialViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIScrollView *textScrollView;
 @property (weak, nonatomic) IBOutlet UIImageView *logoImageView;
 @property (weak, nonatomic) IBOutlet UIView *TransV;
 @property (weak, nonatomic) IBOutlet UILabel *sessionInfoLabel;

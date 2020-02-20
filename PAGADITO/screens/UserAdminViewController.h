@@ -2,7 +2,7 @@
 //  UserAdminViewController.h
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/12.
+//  Created by Javier Calderon  on 2019/1/12.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
     IBOutlet UIButton *MenuBtn;
     
 }
+@property (weak, nonatomic) IBOutlet UIView *tableTitleView;
 
 @property(nonatomic)IBOutlet UIButton *MenuBtn;
 @property(nonatomic)IBOutlet UIView *SidePanel;

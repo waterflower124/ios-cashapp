@@ -2,7 +2,7 @@
 //  SelectStoreTerminalViewController.m
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/5.
+//  Created by Javier Calderon  on 2019/1/5.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
@@ -11,6 +11,7 @@
 #import "Global.h"
 #import "UserCreationViewController.h"
 #import "MultiLanguage.h"
+#import "FRHyperLabel.h"
 
 @interface SelectStoreTerminalViewController () <UITableViewDelegate, UITableViewDataSource, NSXMLParserDelegate>
 
@@ -21,6 +22,8 @@
 @property (nonatomic, strong)NSMutableArray *storeID_list;
 @property (nonatomic, strong)NSMutableArray *terminal_list;
 @property (nonatomic, strong)NSMutableArray *terminalID_list;
+
+@property (weak, nonatomic) IBOutlet FRHyperLabel *label;
 
 @end
 
@@ -55,9 +58,23 @@ bool isTerminal_name = false;
     [self.selectStoreButton setTitle:multiLanguage.selectstoreVC_selectStoreButtonText[globals.selected_language] forState:UIControlStateNormal];
     self.selectTerminalCommentLabel.text = multiLanguage.selectstoreVC_selectTerminalCommentText[globals.selected_language];
     [self.selectTerminalButton setTitle:multiLanguage.selectstoreVC_selectTerminalButtonText[globals.selected_language] forState:UIControlStateNormal];
-    self.commentLabel.text = multiLanguage.selectstoreVC_CommentText[globals.selected_language];
+    //self.commentLabel.text = multiLanguage.selectstoreVC_CommentText[globals.selected_language];
     [self.continueButton setTitle:multiLanguage.selectstoreVC_continueButtonText[globals.selected_language] forState:UIControlStateNormal];
     //////////////////////////////////////////
+    
+    FRHyperLabel *label = self.label;
+    
+    //Step 1: Define a normal attributed string for non-link texts
+    NSDictionary *attributesL = @{NSForegroundColorAttributeName: [UIColor blackColor],NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]};
+    label.attributedText = [[NSAttributedString alloc]initWithString:multiLanguage.selectstoreVC_CommentText[globals.selected_language] attributes:attributesL];
+    
+    //Step 2: Define a selection handler block
+    void(^handler)(FRHyperLabel *label, NSString *substring) = ^(FRHyperLabel *label, NSString *substring){
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.pagadito.com/index.php?ac=iniciar_sesion"] options:@{} completionHandler:nil];
+    };
+    
+    //Step 3: Add link substrings
+    [label setLinksForSubstrings:@[@"aquí", @"here"] withLinkHandler:handler];
     
     self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
@@ -72,7 +89,6 @@ bool isTerminal_name = false;
     self.storeID_list = [[NSMutableArray alloc] init];
     self.terminal_list = [[NSMutableArray alloc] init];
     self.terminalID_list = [[NSMutableArray alloc] init];
-    
     
     globals.office_id = @"";
     
@@ -92,7 +108,8 @@ bool isTerminal_name = false;
     
     NSDictionary *parameters = @{
                                  @"method": @"getBranchOffices",
-                                 @"credentials": string
+                                 @"credentials": string,
+                                 @"TOKEN": globals.server_token
                                  };
     
     
@@ -136,6 +153,11 @@ bool isTerminal_name = false;
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         NSLog(@"bbbb %@", error);
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue."];
+        }
     }];
     
     
@@ -256,13 +278,74 @@ bool isTerminal_name = false;
     Global *globals = [Global sharedInstance];
     if(!globals.office_id.length) {
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Por favor seleccione una sucursal."];
+            [self displayAlertView:@"¡Advertencia!" :@"Ha ocurrido un error al seleccionar la Sucursal, favor seleccionar una Sucursal válida para continuar."];
         } else {
-            [self displayAlertView:@"Warning!" :@"Please select a store."];
+            [self displayAlertView:@"Warning!" :@"An error occurred when selecting the branch, please select a valid branch to continue."];
+        }
+    }
+    else if(!globals.terminal_id.length) {
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Ha ocurrido un error al seleccionar la Terminal, favor seleccionar una Terminal válida para continuar."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"An error occurred when selecting the Terminal, please select a valid Terminal to continue."];
         }
     } else {
-        [self performSegueWithIdentifier:@"logintoselect_segue" sender:nil];
-        NSLog(@"ggggggg:%@", self.store_list);
+        //CONSULTAMOS EN LA BASE DE DATOS SÍ LA TERMINAL Y LA SUCURSAL YA HAN SIDO PREVIAMENTE INSTALADAS.
+        [self.activityIndicator startAnimating];
+        [self.view addSubview:self.overlayView];
+        
+        Global *globals = [Global sharedInstance];
+        NSDictionary *checkCommerceExist =  @{@"checkCommerceExist": @{
+                                                      @"uid": globals.uid,
+                                                      @"wsk": globals.wsk,
+                                                      @"branchid": globals.office_id,
+                                                      @"terminalid": globals.terminal_id
+                                                      }};
+        
+        NSError *error;
+        NSData *chkCommerce = [NSJSONSerialization dataWithJSONObject:checkCommerceExist options:0 error:&error];
+        NSString *chkCommerceString = [[NSString alloc]initWithData:chkCommerce encoding:NSUTF8StringEncoding];
+        
+        NSDictionary *parameters = @{
+                                     @"method": @"checkCommerceExist",
+                                     @"param": chkCommerceString,
+                                     @"TOKEN": globals.server_token
+                                     };
+        
+        AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
+        sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects: @"application/json", nil];
+        [sessionManager POST: globals.server_url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            
+            [self.activityIndicator stopAnimating];
+            [self.overlayView removeFromSuperview];
+            
+            
+            NSError *jsonError;
+            NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&jsonError];
+           
+            BOOL status = [jsonResponse[@"status"] boolValue];
+            if(status) {
+                if(globals.selected_language == 0) {
+                    [self displayAlertView:@"¡Advertencia!" :@"La terminal POS seleccionada ya ha sido configurada, por favor elige una terminal distinta para continuar."];
+                } else {
+                    [self displayAlertView:@"Warning!" :@"The selected POS Terminal has already been configured, please select a different one to continue."];
+                }
+            } else {
+                [self performSegueWithIdentifier:@"creationtolast_segue" sender:self];
+            }
+           
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [self.activityIndicator stopAnimating];
+            [self.overlayView removeFromSuperview];
+            NSLog(@"bbbb %@", error);
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet."];
+            } else {
+                [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue."];
+            }
+        }];
     }
     
 }
@@ -351,7 +434,8 @@ bool isTerminal_name = false;
         NSDictionary *parameters = @{
                                          @"method": @"getTerminals",
                                          @"credentials": credentialsString,
-                                         @"terminal": terminalString
+                                         @"terminal": terminalString,
+                                         @"TOKEN": globals.server_token
                                      };
         
         
@@ -386,17 +470,34 @@ bool isTerminal_name = false;
                 
                 
             } else {
-                //            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning!" message:@"Incorrect email or password" preferredStyle:UIAlertControllerStyleAlert];
-                //            UIApplication *actionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                //                NSLog(@"OK action");
-                //            }];
-                //            [alert addAction:actionOK];
-                //            [self presentViewController:alert animated:YES completion:nil];
+                NSString *cmbDefault;
+                if(globals.selected_language == 0) {
+                    [self displayAlertView:@"¡Advertencia!" :@"No se encuentran Terminales POS asignadas a la Sucursal seleccionada para realizar su configuración. Por favor agrega una terminal desde tu cuenta Pagadito para continuar."];
+                    cmbDefault = @"Selecciona una terminal";
+                } else {
+                    [self displayAlertView:@"Warning!" :@"There are no POS Terminals assigned to the selected branch office for configuration. Please add a POS Terminal from your Pagadito Account´s Dashboard to continue."];
+                    
+                    cmbDefault = @"Select a POS Terminal";
+                }
+                
+                globals.terminal_id = @"";
+                [self.terminal_list removeAllObjects];
+                [self.terminalID_list removeAllObjects];
+                [self.terminalID_list addObject:@""];
+                [self.terminal_list addObject:cmbDefault];
+                [self.terminalTableView reloadData];
+                [self.selectTerminalButton setTitle:self.terminal_list[0] forState:UIControlStateNormal];
+
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [self.activityIndicator stopAnimating];
             [self.overlayView removeFromSuperview];
             NSLog(@"bbbb %@", error);
+            if(globals.selected_language == 0) {
+                [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet."];
+            } else {
+                [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue."];
+            }
         }];
     }
 }

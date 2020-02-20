@@ -2,7 +2,7 @@
 //  InsertUserViewController.h
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/13.
+//  Created by Javier Calderon  on 2019/1/13.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
@@ -10,8 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface InsertUserViewController : UIViewController
+@interface InsertUserViewController : UIViewController <UITextFieldDelegate>
 @property(strong, nonatomic)NSString *user_role;
+@property (weak, nonatomic) IBOutlet UIScrollView *textScrollView;
 
 @property (weak, nonatomic) IBOutlet UIButton *roleSelectButton;
 @property (weak, nonatomic) IBOutlet UIView *checkBoxUIView;

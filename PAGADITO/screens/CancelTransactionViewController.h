@@ -2,7 +2,7 @@
 //  CancelTransactionViewController.h
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/2/10.
+//  Created by Javier Calderon  on 2019/2/10.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CancelTransactionViewController : UIViewController
+@interface CancelTransactionViewController : UIViewController<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *SidePanel;
 @property (weak, nonatomic) IBOutlet UIView *TransV;
@@ -24,9 +24,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *sessionInfoLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *canceltransactionAlertView;
+@property (weak, nonatomic) IBOutlet UILabel *alertmainTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *alertTitleLabel;
+@property (weak, nonatomic) IBOutlet UITextField *pincodeTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *reasonTextField;
+
 
 
 @property (weak, nonatomic) IBOutlet UIButton *homeButton;

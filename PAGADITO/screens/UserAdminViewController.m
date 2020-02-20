@@ -2,7 +2,7 @@
 //  UserAdminViewController.m
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/12.
+//  Created by Javier Calderon  on 2019/1/12.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
@@ -28,7 +28,7 @@
 @end
 
 @implementation UserAdminViewController
-@synthesize SidePanel, MenuBtn, TransV;
+@synthesize tableTitleView, SidePanel, MenuBtn, TransV;
 @synthesize sessionInfoLabel;
 @synthesize usersTableView;
 @synthesize createuserbutton, deleteuserButton, edituserButton, searchuserButton;
@@ -38,6 +38,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.tableTitleView.layer.borderWidth = 1;
+    self.tableTitleView.layer.borderColor = [UIColor colorWithRed:145/255 green:145/255 blue:145/255 alpha:1].CGColor;
     
     Global *globals = [Global sharedInstance];
     if(globals.selected_language == 0) {
@@ -194,6 +197,7 @@
         self.newtransactionButton.frame = newtransactionButtonFrame;
         UIView *newtransactiolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, newtransactionButton.frame.size.width, 1)];
         newtransactiolineView.backgroundColor = [UIColor lightGrayColor];
+        [self.newtransactionButton addSubview:newtransactiolineView];
         
         CGRect canceltransactionButtonFrame = self.canceltransactionButton.frame;
         canceltransactionButtonFrame.origin.x = 0;
@@ -203,15 +207,15 @@
         canceltransactionlineView.backgroundColor = [UIColor lightGrayColor];
         [self.canceltransactionButton addSubview:canceltransactionlineView];
         
-        CGRect cerraturnoButtonFrame = self.cerraturnoButton.frame;
-        cerraturnoButtonFrame.origin.x = 0;
-        cerraturnoButtonFrame.origin.y = 420;
-        self.cerraturnoButton.frame = cerraturnoButtonFrame;
-        UIView *cerraturnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, cerraturnoButton.frame.size.width, 1)];
-        cerraturnolineView.backgroundColor = [UIColor lightGrayColor];
-        [self.cerraturnoButton addSubview:cerraturnolineView];
+//        CGRect cerraturnoButtonFrame = self.cerraturnoButton.frame;
+//        cerraturnoButtonFrame.origin.x = 0;
+//        cerraturnoButtonFrame.origin.y = 420;
+//        self.cerraturnoButton.frame = cerraturnoButtonFrame;
+//        UIView *cerraturnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, cerraturnoButton.frame.size.width, 1)];
+//        cerraturnolineView.backgroundColor = [UIColor lightGrayColor];
+//        [self.cerraturnoButton addSubview:cerraturnolineView];
         
-        [self.newtransactionButton addSubview:newtransactiolineView];
+        [self.cerraturnoButton setHidden:YES];
     }
     /////////////////////////////////////////////////////
     
@@ -234,7 +238,8 @@
     NSString *string = [[NSString alloc]initWithData:postData encoding:NSUTF8StringEncoding];
     NSDictionary *parameters = @{
                                  @"method": @"getAllUsers",
-                                 @"param": string
+                                 @"param": string,
+                                 @"TOKEN": globals.server_token
                                  };
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -248,7 +253,6 @@
         NSError *jsonError;
         NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&jsonError];
         Boolean status = [jsonResponse[@"status"] boolValue];
-//        NSLog(@"%@", jsonResponse);
         if(status) {
             NSMutableArray *jsonArray = jsonResponse[@"allUsers"];
             NSArray *user = [[NSArray alloc] init];
@@ -272,9 +276,9 @@
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet."];
         } else {
-            [self displayAlertView:@"Warning!" :@"Network error."];
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue."];
         }
     }];
     ////////////
@@ -445,7 +449,8 @@
     
     NSDictionary *parameters = @{
                                  @"method": @"closeShift",
-                                 @"param": string
+                                 @"param": string,
+                                 @"TOKEN": globals.server_token
                                  };
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -473,9 +478,9 @@
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet."];
         } else {
-            [self displayAlertView:@"Warning!" :@"Network error."];
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue."];
         }
     }];
 }

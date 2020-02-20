@@ -2,7 +2,7 @@
 //  CancelTransactionTableViewCell.h
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/2/11.
+//  Created by Javier Calderon  on 2019/2/11.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 

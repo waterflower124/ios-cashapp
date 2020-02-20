@@ -2,7 +2,7 @@
 //  LastCommercialInfoViewController.m
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/7.
+//  Created by Javier Calderon  on 2019/1/7.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
@@ -41,17 +41,22 @@
 
 @implementation LastCommercialInfoViewController
 
-@synthesize logoImageView, commercialNameTextField, commercialEmailTextField, commercialNumberTextField, terminalNameTextField, currencyTableView, selectCurrencyButton;
+@synthesize textScrollView, logoImageView, commercialNameTextField, commercialEmailTextField, commercialNumberTextField, terminalNameTextField, currencyTableView, selectCurrencyButton;
 @synthesize infoUsuario;
 @synthesize titleLabel, commentLabel, imagecommentLabel, continuButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    ///  keyboard avoid
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:self.view.window];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:self.view.window];
+    
     ///////////   language setting  ////////
     Global *globals = [Global sharedInstance];
     if(globals.selected_language == 0) {
         self.titleLabel.text = @"Información Comercial";
-        self.commentLabel.text = @"Personaliza tu Pagadito POS App";
+        self.commentLabel.text = @"Personaliza tu POS App";
         self.imagecommentLabel.text = @"Logo imagen";
         self.commercialNameTextField.placeholder = @"Nombre Comercial";
         self.terminalNameTextField.placeholder = @"Nombre de Terminal POS";
@@ -61,7 +66,7 @@
         [self.continuButton setTitle:@"Continuar" forState:UIControlStateNormal];
     } else {
         self.titleLabel.text = @"Merchant Information";
-        self.commentLabel.text = @"Personalize your Pagadito POS APP";
+        self.commentLabel.text = @"Personalize your POS APP";
         self.imagecommentLabel.text = @"Logo image";
         self.commercialNameTextField.placeholder = @"Business Name";
         self.terminalNameTextField.placeholder = @"POS Terminal Name";
@@ -77,7 +82,11 @@
     tap.cancelsTouchesInView = NO;
     
     /////  initialization ////
-    self.currencyNameArray = [[NSMutableArray alloc] initWithObjects:@"($) Dólares Americanos", @"(Q) Quetzales", @"(L) Lempiras", @"(C$) Córdobas", @"(₡) Colones Costarricenses", @"(B/.) Balboas", @"(RD$) Pesos Dominicanos", nil];
+    if(globals.selected_language == 0) {
+        self.currencyNameArray = [[NSMutableArray alloc] initWithObjects:@"($) Dólares Americanos", @"(Q) Quetzales", @"(L) Lempiras", @"(C$) Córdobas", @"(₡) Colones Costarricenses", @"(B/.) Balboas", @"(RD$) Pesos Dominicanos", nil];
+    } else {
+        self.currencyNameArray = [[NSMutableArray alloc] initWithObjects:@"($) Dollars", @"(Q) Quetzales", @"(L) Lempiras", @"(C$) Cordobas", @"(₡) Costa Rican Colones", @"(B/.) Balboas", @"(RD$) Dominican Pesos", nil];
+    }
     self.currencyUnitArray = [[NSMutableArray alloc] initWithObjects:@"USD", @"GTQ", @"HNL", @"NIO", @"CRC", @"PAB", @"DOP", nil];
     
     self.commercialName = @"";
@@ -109,6 +118,24 @@
     
 }
 
+- (void) keyboardWillShow:(NSNotification *) n
+{
+    NSDictionary* userInfo = [n userInfo];
+    // get the size of the keyboard
+    CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    // resize the noteView
+    
+    UIEdgeInsets contentInset = self.textScrollView.contentInset;
+    contentInset.bottom = keyboardSize.height - 50;
+    self.textScrollView.contentInset = contentInset;
+}
+
+- (void) keyboardWillHide:(NSNotification *) n
+{
+    UIEdgeInsets contentInset = UIEdgeInsetsZero;
+    self.textScrollView.contentInset = contentInset;
+}
+
 -(void)dismissKeyboard
 {
     [self.view endEditing:YES];
@@ -122,20 +149,80 @@
     }
 }
 
+- (BOOL)validateEmailWithString:(NSString*)email
+{
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:email];
+}
+
 - (IBAction)continueButtonAction:(id)sender {
     Global *globals = [Global sharedInstance];
     self.commercialName = commercialNameTextField.text;
     self.commercialNumber = commercialNumberTextField.text;
     self.commercialEmail = commercialEmailTextField.text;
     self.terminalName = terminalNameTextField.text;
-    if((self.commercialName.length == 0) || (self.commercialName.length == 0) || (self.commercialName.length == 0) || (self.commercialName.length == 0) || (self.currencyUnit.length == 0)) {
+    
+    if(self.commercialName.length == 0) {
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Por favor llene todos los campos." : @"nil"];
+            [self displayAlertView:@"¡Advertencia!" :@"Escribe el nombre de tu comercio para continuar." : @"nil"];
         } else {
-            [self displayAlertView:@"Warning!" :@"Please fill all of data." : @"nil"];
+            [self displayAlertView:@"Warning!" :@"Enter your commercial name to continue." : @"nil"];
+        }
+        return;
+    }
+    else if(self.terminalName.length == 0) {
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese un nombre de terminal" : @"nil"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please enter a valid Terminal Name" : @"nil"];
+        }
+        return;
+    }
+    else if(self.commercialNumber.length == 0) {
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Ingresa tu número de registro comercial. Si no lo conoces, ingresa: 0000." : @"nil"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please enter your merchant registry number. If you don´t have one, enter: 0000." : @"nil"];
+        }
+        return;
+    }
+    else if(self.commercialEmail.length == 0) {
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Ingresa una dirección de correo electrónico para continuar." : @"nil"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please enter your business email to continue." : @"nil"];
+        }
+        return;
+    }
+    else if(![self validateEmailWithString:self.commercialEmail]) {
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese una dirección de correo electrónico válida." : @"nil"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please enter a valid email address." : @"nil"];
+        }
+        return;
+    }
+    else if(self.currencyUnit.length == 0) {
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor seleccione una moneda" : @"nil"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please select a currency" : @"nil"];
         }
         return;
     } else {
+        ///  delete origin image
+        if(globals.logo_imagePath.length == 0) {
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                                 NSUserDomainMask, YES);
+            NSString *documentsDirectory = [paths objectAtIndex:0];
+            NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png", @"pagadito/pagadito_logo"]];
+            BOOL fileExists=[[NSFileManager defaultManager] fileExistsAtPath:imagePath];
+            if(fileExists) {
+                NSError *error;
+                [[NSFileManager defaultManager] removeItemAtPath:imagePath error:&error];
+            }
+        }
         
         [self.activityIndicator startAnimating];
         [self.view addSubview:self.overlayView];
@@ -149,7 +236,6 @@
                                       @"emailComercio": self.commercialEmail,
                                       @"numeroRegistro": self.commercialNumber
                                       };
-
         NSDictionary *dispositivo = @{
                                            @"nombreTerminal": self.terminalName,
                                            @"branchid": globals.office_id,
@@ -162,7 +248,6 @@
                                            @"sistemaOperativoInstalacion": self.osName,
                                            @"versionSOInstalacion": self.osVersion
                                            };
-        
         NSError *error;
         NSData *infoUsuarioData = [NSJSONSerialization dataWithJSONObject:infoUsuario options:0 error:&error];
         NSString *infoUsuarioString = [[NSString alloc]initWithData:infoUsuarioData encoding:NSUTF8StringEncoding];
@@ -171,12 +256,14 @@
                                     @"dispositivo": dispositivo,
                                     @"infoUsuario": infoUsuarioString
                                 };
+        NSLog(@"%@33333: ", self.infoUsuario);
         NSData *paramData = [NSJSONSerialization dataWithJSONObject:param options:0 error:&error];
         NSString *paramString = [[NSString alloc]initWithData:paramData encoding:NSUTF8StringEncoding];
         
         NSDictionary *parameters = @{
                                      @"method": @"insertSetBranchOffice",
-                                     @"param": paramString
+                                     @"param": paramString,
+                                     @"TOKEN": globals.server_token
                                      };
         
         AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
@@ -210,9 +297,9 @@
             [self.activityIndicator stopAnimating];
             [self.overlayView removeFromSuperview];
             if(globals.selected_language == 0) {
-                [self displayAlertView:@"¡Advertencia!" :@"Error de red!" : @"nil"];
+                [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet." : @"nil"];
             } else {
-               [self displayAlertView:@"Warning!" :@"Network error!" : @"nil"];
+                [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue." : @"nil"];
             }
         }];
         

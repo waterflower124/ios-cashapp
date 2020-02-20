@@ -2,7 +2,7 @@
 //  ShiftListViewController.h
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/16.
+//  Created by Javier Calderon  on 2019/1/16.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
@@ -29,8 +29,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIView *TransV;
 - (IBAction)menuButtonAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *SidePanel;
-
-
 
 @property (weak, nonatomic) IBOutlet UIButton *homeButton;
 @property (weak, nonatomic) IBOutlet UIButton *reportButton;

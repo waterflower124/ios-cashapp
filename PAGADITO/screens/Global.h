@@ -2,7 +2,7 @@
 //  Global.h
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/6.
+//  Created by Javier Calderon  on 2019/1/6.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
@@ -101,5 +101,7 @@
 @property(strong, nonatomic, readwrite) NSString *idTurno;
 
 @property(nonatomic) BOOL signatureStatus;
+
+@property(strong, nonatomic, readwrite) NSString *server_token;
 
 @end

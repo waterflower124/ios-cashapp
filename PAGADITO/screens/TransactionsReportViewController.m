@@ -2,7 +2,7 @@
 //  TransactionsReportViewController.m
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/24.
+//  Created by Javier Calderon  on 2019/1/24.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
@@ -194,6 +194,7 @@
         self.newtransactionButton.frame = newtransactionButtonFrame;
         UIView *newtransactiolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, newtransactionButton.frame.size.width, 1)];
         newtransactiolineView.backgroundColor = [UIColor lightGrayColor];
+        [self.newtransactionButton addSubview:newtransactiolineView];
         
         CGRect canceltransactionButtonFrame = self.canceltransactionButton.frame;
         canceltransactionButtonFrame.origin.x = 0;
@@ -203,15 +204,15 @@
         canceltransactionlineView.backgroundColor = [UIColor lightGrayColor];
         [self.canceltransactionButton addSubview:canceltransactionlineView];
         
-        CGRect cerraturnoButtonFrame = self.cerraturnoButton.frame;
-        cerraturnoButtonFrame.origin.x = 0;
-        cerraturnoButtonFrame.origin.y = 420;
-        self.cerraturnoButton.frame = cerraturnoButtonFrame;
-        UIView *cerraturnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, cerraturnoButton.frame.size.width, 1)];
-        cerraturnolineView.backgroundColor = [UIColor lightGrayColor];
-        [self.cerraturnoButton addSubview:cerraturnolineView];
+//        CGRect cerraturnoButtonFrame = self.cerraturnoButton.frame;
+//        cerraturnoButtonFrame.origin.x = 0;
+//        cerraturnoButtonFrame.origin.y = 420;
+//        self.cerraturnoButton.frame = cerraturnoButtonFrame;
+//        UIView *cerraturnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, cerraturnoButton.frame.size.width, 1)];
+//        cerraturnolineView.backgroundColor = [UIColor lightGrayColor];
+//        [self.cerraturnoButton addSubview:cerraturnolineView];
         
-        [self.newtransactionButton addSubview:newtransactiolineView];
+        [self.cerraturnoButton setHidden:YES];
         
     }
 }
@@ -310,10 +311,67 @@
     NSString *finishDateString = [dateFormatter stringFromDate:finishDate];
 //    self.start_datetime = [[NSString alloc]initWithFormat:@"%@ 00:00:00", startDateString];
 //    self.finish_datetime = [[NSString alloc]initWithFormat:@"%@ 00:00:00", finishDateString];
+    
+    NSComparisonResult result = [finishDateString compare:startDateString];
+    
+    switch (result)
+    {
+        case NSOrderedAscending:
+            NSLog(@"%@ is in future from %@", startDateString, finishDateString);
+            [self showInvalidAlert];
+            return;
+        case NSOrderedDescending:
+            NSLog(@"%@ is in past from %@", startDateString, finishDateString);
+            break;
+        case NSOrderedSame:
+            NSLog(@"%@ is the same as %@", startDateString, finishDateString);
+            [self showInvalidAlert];
+            return;
+        default:
+            NSLog(@"erorr dates %@, %@", startDateString, finishDateString);
+            break;
+    }
+    
+    NSComparisonResult result1 = [startDateString compare:finishDateString];
+    switch (result1)
+    {
+        case NSOrderedAscending:
+            NSLog(@"%@ is in future from %@", finishDateString, startDateString);
+            break;
+        case NSOrderedDescending:
+            NSLog(@"%@ is in past from %@", finishDateString, startDateString);
+            [self showInvalidAlert];
+            return;
+        case NSOrderedSame:
+            NSLog(@"%@ is the same as %@", finishDateString, startDateString);
+            [self showInvalidAlert];
+            return;
+        default:
+            NSLog(@"erorr dates %@, %@", finishDateString, startDateString);
+            break;
+    }
+    
+    
     self.start_datetime = startDateString;
     self.finish_datetime = finishDateString;
     [self performSegueWithIdentifier:@"transactionreporttotransaction_segue" sender:self];
    
+}
+
+- (IBAction)contactSupport:(id)sender {
+    NSString * encodedString = [@"mailto:soporte@pagadito.com" stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+    
+    UIApplication *application = [UIApplication sharedApplication];
+    [application openURL:[NSURL URLWithString: encodedString] options:@{} completionHandler:nil];
+}
+
+- (void) showInvalidAlert {
+    Global *globals = [Global sharedInstance];
+    if(globals.selected_language == 0) {
+        [self displayAlertView:@"¡Advertencia!" :@"El rango de fechas seleccionadas no es válido."];
+    } else {
+        [self displayAlertView:@"Warning!" :@"The dates selected are invalid."];
+    }
 }
 
 - (IBAction)cerraturnoButtonAction:(id)sender {
@@ -333,7 +391,8 @@
     
     NSDictionary *parameters = @{
                                  @"method": @"closeShift",
-                                 @"param": string
+                                 @"param": string,
+                                 @"TOKEN": globals.server_token
                                  };
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -361,9 +420,9 @@
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet."];
         } else {
-            [self displayAlertView:@"Warning!" :@"Network error."];
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue."];
         }
     }];
 }

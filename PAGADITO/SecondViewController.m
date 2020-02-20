@@ -86,6 +86,7 @@
     self.sessionInfoLabelText = [NSString stringWithFormat:@"%@ / %@", globals.username, globals.nombreComercio];
     sessionInfoLabel.text = self.sessionInfoLabelText;
     
+    
     //////////// init for activity indicator  /////////
     self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
@@ -333,15 +334,15 @@
         canceltransactionlineView.backgroundColor = [UIColor lightGrayColor];
         [self.canceltransactionButton addSubview:canceltransactionlineView];
         
-        CGRect cerraturnoButtonFrame = self.cerraturnoButton.frame;
-        cerraturnoButtonFrame.origin.x = 0;
-        cerraturnoButtonFrame.origin.y = 420;
-        self.cerraturnoButton.frame = cerraturnoButtonFrame;
-        UIView *cerraturnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, cerraturnoButton.frame.size.width, 1)];
-        cerraturnolineView.backgroundColor = [UIColor lightGrayColor];
-        [self.cerraturnoButton addSubview:cerraturnolineView];
+//        CGRect cerraturnoButtonFrame = self.cerraturnoButton.frame;
+//        cerraturnoButtonFrame.origin.x = 0;
+//        cerraturnoButtonFrame.origin.y = 420;
+//        self.cerraturnoButton.frame = cerraturnoButtonFrame;
+//        UIView *cerraturnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, cerraturnoButton.frame.size.width, 1)];
+//        cerraturnolineView.backgroundColor = [UIColor lightGrayColor];
+//        [self.cerraturnoButton addSubview:cerraturnolineView];
         
-//        [self.cerraturnoButton setHidden:YES];
+        [self.cerraturnoButton setHidden:YES];
         ///////////////////////////////
  
     }
@@ -523,6 +524,14 @@
     [self performSegueWithIdentifier:@"hometoconfigure_segue" sender:self];
 }
 
+- (IBAction)contactSupport:(id)sender {
+    NSString * encodedString = [@"mailto:soporte@pagadito.com" stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+    
+    UIApplication *application = [UIApplication sharedApplication];
+    [application openURL:[NSURL URLWithString: encodedString] options:@{} completionHandler:nil];
+}
+
+
 -(void)closeShiftCode {
     Global *globals = [Global sharedInstance];
     
@@ -540,7 +549,8 @@
     
     NSDictionary *parameters = @{
                                  @"method": @"closeShift",
-                                 @"param": string
+                                 @"param": string,
+                                 @"TOKEN": globals.server_token
                                  };
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -568,9 +578,9 @@
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red." :@"network error"];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet." :@"network error"];
         } else {
-            [self displayAlertView:@"Warning!" :@"Network error." :@"network error"];
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue." :@"network error"];
         }
     }];
 }

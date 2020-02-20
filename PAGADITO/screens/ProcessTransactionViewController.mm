@@ -2,7 +2,7 @@
 //  ProcessTransactionViewController.m
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/2/4.
+//  Created by Javier Calderon  on 2019/2/4.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
@@ -39,10 +39,10 @@
 @end
 
 @implementation ProcessTransactionViewController
-@synthesize TransV, SidePanel;
+@synthesize textScrollView, TransV, SidePanel;
 @synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton, logoutButton, cerraturnoButton;
 @synthesize transactionAmount, sessionInfoLabel;
-@synthesize transactionAmountLabel, crediccardImageView, cardNumberTextField, cardNameTextField, CVVTextField, monthTableVIew, yearTableView, taxSwitchButton;
+@synthesize transactionAmountLabel, crediccardImageView, cardNumberTextField, cardNameTextField, CVVTextField, monthTableVIew, yearTableView, monthselectButton, yearselectButton, taxSwitchButton;
 @synthesize titleLabel, amountLabel, maincommentLabel, cardnumberLabel, cardholdernameLabel, expiredateLabel, descriptionLabel, checkBoxLabel, processtransactionButton, contactsupportButton, sessioncommentLabel;
 @synthesize BTDeviceListView, BTDeviceTable, devicecommentLabel;
 @synthesize cardReadButton;
@@ -53,6 +53,11 @@ NSString *numberCard = @"";
 NSString *exp_card = @"";
 NSString *pan = @"";
 NSInteger typeTransaction = 0;
+NSString *swipe_ksn = @"";
+NSString *swipe_encTrack1 = @"";
+NSString *tlv_C0 = @"";
+NSString *tlv_C2 = @"";
+NSString *type_trans = @"";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -74,30 +79,36 @@ NSInteger typeTransaction = 0;
         self.maincommentLabel.text = @"Desliza la tarjeta y completa los campos requeridos.";
         self.cardnumberLabel.text = @"Número de tarjeta";
         self.cardholdernameLabel.text = @"Nombre de la tarjeta";
+        self.cardNameTextField.placeholder = @"Nombre en la tarjeta";
         self.expiredateLabel.text = @"Fecha de Expiración";
         self.descriptionLabel.text = @"Descripción (opcional)";
-        self.descriptionTextField.placeholder = @"Usuario";
+//        self.descriptionTextField.placeholder = @"Usuario";
         self.checkBoxLabel.text = @"Los impuestos están incluidos.";
         [self.processtransactionButton setTitle:@"Procesar transacción" forState:UIControlStateNormal];
         [self.contactsupportButton setTitle:@"Contactar a Soporte" forState:UIControlStateNormal];
         self.sessioncommentLabel.text = @"Sesión iniciada:";
         self.devicecommentLabel.text = @"Encontrar dispositivos";
-        [self.cardReadButton setTitle:@"Iniciar Lector" forState:UIControlStateNormal];
+        [self.monthselectButton setTitle:@"Mes" forState:UIControlStateNormal];
+        [self.yearselectButton setTitle:@"Año" forState:UIControlStateNormal];
+//        [self.cardReadButton setTitle:@"Iniciar Lector" forState:UIControlStateNormal];
     } else {
         self.titleLabel.text = @"Process Transaction";
         self.amountLabel.text = @"Amount to charge:";
         self.maincommentLabel.text = @"Slide card and input all required fields.";
         self.cardnumberLabel.text = @"Card number";
-        self.cardholdernameLabel.text = @"Card holder name";
+        self.cardholdernameLabel.text = @"Cardholder name";
+        self.cardNameTextField.placeholder = @"Cardholder Name";
         self.expiredateLabel.text = @"Expiration date";
         self.descriptionLabel.text = @"Description (optional)";
-        self.descriptionTextField.placeholder = @"User";
+//        self.descriptionTextField.placeholder = @"User";
         self.checkBoxLabel.text = @"Taxes are included.";
         [self.processtransactionButton setTitle:@"Process transaction" forState:UIControlStateNormal];
         [self.contactsupportButton setTitle:@"Contact support" forState:UIControlStateNormal];
         self.sessioncommentLabel.text = @"Session statred:";
         self.devicecommentLabel.text = @"Find Devices";
-        [self.cardReadButton setTitle:@"Start Reader" forState:UIControlStateNormal];
+        [self.monthselectButton setTitle:@"Month" forState:UIControlStateNormal];
+        [self.yearselectButton setTitle:@"Year" forState:UIControlStateNormal];
+//        [self.cardReadButton setTitle:@"Start Reader" forState:UIControlStateNormal];
         
     }
     
@@ -120,6 +131,10 @@ NSInteger typeTransaction = 0;
     self.activityIndicator.center = self.overlayView.center;
     [self.overlayView addSubview:self.activityIndicator];
     
+    ///  keyboard avoid
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:self.view.window];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:self.view.window];
+    
     ///////  dismiss keyboard  //////
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
@@ -137,11 +152,12 @@ NSInteger typeTransaction = 0;
     numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
     numberFormatter.usesGroupingSeparator = YES;
     [numberFormatter setGroupingSize:3];
-    [numberFormatter setMaximumFractionDigits:10];
+    [numberFormatter setMaximumFractionDigits:2];
+    [numberFormatter setMinimumFractionDigits:2];
     /////////
     
     NSString * formattedString = [NSString stringWithFormat:@"%@", [numberFormatter stringForObjectValue:amountDecimal]];
-    self.transactionAmountLabel.text = [NSString stringWithFormat:@"$%@", formattedString];
+    self.transactionAmountLabel.text = [NSString stringWithFormat:@"%@%@", globals.currency ,formattedString];
     
     //set dashborad buttons background image according to priviledge ID
     if([globals.idPrivilegio isEqualToString:@"1"]) {
@@ -317,6 +333,7 @@ NSInteger typeTransaction = 0;
         self.newtransactionButton.frame = newtransactionButtonFrame;
         UIView *newtransactiolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, newtransactionButton.frame.size.width, 1)];
         newtransactiolineView.backgroundColor = [UIColor lightGrayColor];
+        [self.newtransactionButton addSubview:newtransactiolineView];
         
         CGRect canceltransactionButtonFrame = self.canceltransactionButton.frame;
         canceltransactionButtonFrame.origin.x = 0;
@@ -326,19 +343,30 @@ NSInteger typeTransaction = 0;
         canceltransactionlineView.backgroundColor = [UIColor lightGrayColor];
         [self.canceltransactionButton addSubview:canceltransactionlineView];
         
-        CGRect cerraturnoButtonFrame = self.cerraturnoButton.frame;
-        cerraturnoButtonFrame.origin.x = 0;
-        cerraturnoButtonFrame.origin.y = 420;
-        self.cerraturnoButton.frame = cerraturnoButtonFrame;
-        UIView *cerraturnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, cerraturnoButton.frame.size.width, 1)];
-        cerraturnolineView.backgroundColor = [UIColor lightGrayColor];
-        [self.cerraturnoButton addSubview:cerraturnolineView];
+//        CGRect cerraturnoButtonFrame = self.cerraturnoButton.frame;
+//        cerraturnoButtonFrame.origin.x = 0;
+//        cerraturnoButtonFrame.origin.y = 420;
+//        self.cerraturnoButton.frame = cerraturnoButtonFrame;
+//        UIView *cerraturnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, cerraturnoButton.frame.size.width, 1)];
+//        cerraturnolineView.backgroundColor = [UIColor lightGrayColor];
+//        [self.cerraturnoButton addSubview:cerraturnolineView];
+//        
         
-        [self.newtransactionButton addSubview:newtransactiolineView];
+        [self.cerraturnoButton setHidden:YES];
         
         ///////////////////////////////
         
     }
+    
+    self.cardNameTextField.delegate = self;
+    self.CVVTextField.delegate = self;
+}
+
+- (IBAction)contactSupport:(id)sender {
+    NSString * encodedString = [@"mailto:soporte@pagadito.com" stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+    
+    UIApplication *application = [UIApplication sharedApplication];
+    [application openURL:[NSURL URLWithString: encodedString] options:@{} completionHandler:nil];
 }
 
 -(void)setMenuButtonsicon {
@@ -364,6 +392,24 @@ NSInteger typeTransaction = 0;
         [self.logoutButton setImage:[UIImage imageNamed: @"menu_signout_en"] forState:UIControlStateNormal];
         [self.cerraturnoButton setImage:[UIImage imageNamed: @"menu_close_shift_en"] forState:UIControlStateNormal];
     }
+}
+
+- (void) keyboardWillShow:(NSNotification *) n
+{
+    NSDictionary* userInfo = [n userInfo];
+    // get the size of the keyboard
+    CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    // resize the noteView
+    
+    UIEdgeInsets contentInset = self.textScrollView.contentInset;
+    contentInset.bottom = keyboardSize.height;
+    self.textScrollView.contentInset = contentInset;
+}
+
+- (void) keyboardWillHide:(NSNotification *) n
+{
+    UIEdgeInsets contentInset = UIEdgeInsetsZero;
+    self.textScrollView.contentInset = contentInset;
 }
 
 -(void)dismissKeyboard
@@ -453,7 +499,8 @@ NSInteger typeTransaction = 0;
     
     NSDictionary *parameters = @{
                                  @"method": @"closeShift",
-                                 @"param": string
+                                 @"param": string,
+                                 @"TOKEN": globals.server_token
                                  };
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -481,9 +528,9 @@ NSInteger typeTransaction = 0;
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red." :@"nil"];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet." :@"nil"];
         } else {
-            [self displayAlertView:@"Warning!" :@"Network error." :@"nil"];
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue." :@"nil"];
         }
     }];
 }
@@ -497,6 +544,7 @@ NSInteger typeTransaction = 0;
 }
 
 - (IBAction)monthselectButtonAction:(id)sender {
+    
     if([self.monthTableVIew isHidden]) {
         [self.monthTableVIew setHidden:NO];
     } else {
@@ -529,13 +577,26 @@ NSInteger typeTransaction = 0;
     return randomERN;
 }
 
+-(NSString *)getAmountToCurrency: (NSString *) amount{
+    NSDecimalNumber *amountFinal = [NSDecimalNumber decimalNumberWithString:amount];
+    NSNumberFormatter *numberFormatter1 = [[NSNumberFormatter alloc] init];
+    numberFormatter1.locale = [NSLocale currentLocale];// this ensures the right separator behavior
+    numberFormatter1.numberStyle = NSNumberFormatterDecimalStyle;
+    numberFormatter1.usesGroupingSeparator = YES;
+    [numberFormatter1 setGroupingSize:3];
+    [numberFormatter1 setMaximumFractionDigits:2];
+    [numberFormatter1 setMinimumFractionDigits:2];
+    
+    return [NSString stringWithFormat:@"%@", [numberFormatter1 stringForObjectValue:amountFinal]];
+}
+
 -(NSString *)getCreditCardTypeByNumber: (NSString *) creditCardNum {
-    NSString *regVisa = @"^4[0-9]{12}(?:[0-9]{3})?$";
-    NSString *regMaster = @"^5[1-5][0-9]{14}$";
-    NSString *regExpress = @"^3[47][0-9]{13}$";
-    NSString *regDiners = @"^3(?:0[0-5]|[68][0-9])[0-9]{11}$";
-    NSString *regDiscover = @"^6(?:011|5[0-9]{2})[0-9]{12}$";
-    NSString *regJCB = @"^(?:2131|1800|35\\d{3})\\d{11}$";
+    NSString *regVisa = @"^4[0-9]{3,}$";
+    NSString *regMaster = @"^5[1-5][0-9]{2,}$";
+    NSString *regExpress = @"^3[47][0-9]{2,}$";
+    NSString *regDiners = @"^3(?:0[0-5]|[68][0-9])[0-9]{1,}$";
+    NSString *regDiscover = @"^6(?:011|5[0-9]{2})[0-9]{0,}$";
+    NSString *regJCB = @"^(?:2131|1800|35[0-9]{2})[0-9]{0,}$";
     
     NSString *cardType = @"";
     NSArray *cardTypeArray = @[regVisa, regMaster, regExpress, regDiners, regDiscover, regJCB];
@@ -583,22 +644,63 @@ NSInteger typeTransaction = 0;
 
 - (IBAction)processtransactionButtonAction:(id)sender {
     Global *globals = [Global sharedInstance];
+    [self.processtransactionButton setEnabled:NO];
+    NSString *ksn_data = @"";
+    NSString *card_data = @"";
+    NSString *validCard = @"";
+    
+    //DATA TEST//
+    /*self.cardNumberTextField.text = @"5564362752814906";
+    self.cardNameTextField.text = @"Robert Salguero";
+    self.CVVTextField.text = @"281";
+    self.selected_year = @"19";
+    self.selected_month = @"10";
+    tlv_C0 = @"88888845700342200069";
+    tlv_C2 = @"8068C45A1906E9DD703728426FF523A803CFCE5FABC10E97F2B653BE9A9780332ACA304A2E12D7B46F5F08299FF691E87A8E186467F9E140D1F409A3BAA924D3AC9CB71197DDCFB8C6FB85F71EEF885944A6A2F9B6F1E612972B41838F43BA43DB1DBA131453444D706C1BA024105719AB1F98ED53CA572AD5425685CA3365591F8F1900CCEBE0ECE7181B7217C3E7B74500B0CE2B92F209CC17EDCB076D9C96B3912FCA4CCD6E969FE46A9B8C4149DFB2BE7C476981AD161A91E10514A330BCCF098C1BE147BCB93F3BD195B7E545FFE506E251552F539F376ECFF4A71C0741E862D82AB3E8552EBD76CB683CB629E20A07F10B4D1A3E00ADFE9B25E23F9117D6B541C333AA2E2FC1B424D9B338362F1BEF07CD878DD170951CF76589A506AC49925EAB56002DEEFD12A776BC955371F114369944061FBF0B600B98FBE95E8736CCDAF0000286B5AD78D2B5CC8A575B441A5430343B2977479E7CF733B86E7F0C2E0EDAE7474C03E86B6A899F08BE9BB1D569A4D2A93843AE1863B61E4C0F1648B34FBCF6AFC962";
+    type_trans = @"TLV";*/
+    //DATA TEST//
+    
     self.cardNumber = self.cardNumberTextField.text;
     self.cardHolderName = self.cardNameTextField.text;
     self.CVV = self.CVVTextField.text;
     self.descriptiontxt = self.descriptionTextField.text;
     self.expire_date = [NSString stringWithFormat:@"%@%@", self.selected_year, self.selected_month];
     
-    /*self.cardNumber = @"5564362752814906";
-    self.cardHolderName = @"test holder name";
-    self.CVV = @"281";*/
+    pan = self.cardNumber;
+    numberCard = pan;
     
-    if(self.cardNumber.length < 15 && self.cardNumber.length > 16) {
+    if(pan.length >= 15){
+        validCard = [pan substringWithRange:NSMakeRange(0, 4)];
+    }
+    
+    if(self.cardNumber.length < 15) {
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Su tarjeta de crédito debe tener 15 o 16 dígitos." :@"nil"];
+            [self displayAlertView:@"¡Advertencia!" :@"Debes ingresar un número de tarjeta válido para continuar." :@"nil"];
         } else {
-            [self displayAlertView:@"Warning!" :@"Your credit card number must have 15 or 16 digits." :@"nil"];
+            [self displayAlertView:@"Warning!" :@"Please enter a valid card number to continue." :@"nil"];
         }
+        self.cardNumberTextField.text = @"";
+        self.cardNameTextField.text = @"";
+        self.CVVTextField.text = @"";
+        self.descriptionTextField.text = @"";
+        self.selected_year = self.year_array[0];
+        self.selected_month = self.month_array[0];
+        [self.processtransactionButton setEnabled:YES];
+        return;
+    }
+    if( !([[self getCreditCardTypeByNumber:validCard] isEqualToString:@"VISA"]) && !([[self getCreditCardTypeByNumber:validCard] isEqualToString:@"MASTERCARD"])){
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"El tipo de tarjeta seleccionada no es aceptada por este POS, por favor intenta con otra tarjeta." :@"nil"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"The type of credit card selected is not accepted in this POS. Please try with a different card." :@"nil"];
+        }
+        self.cardNumberTextField.text = @"";
+        self.cardNameTextField.text = @"";
+        self.CVVTextField.text = @"";
+        self.descriptionTextField.text = @"";
+        self.selected_year = self.year_array[0];
+        self.selected_month = self.month_array[0];
+        [self.processtransactionButton setEnabled:YES];
         return;
     }
     if(self.cardHolderName.length == 0) {
@@ -607,14 +709,25 @@ NSInteger typeTransaction = 0;
         } else {
             [self displayAlertView:@"Warning!" :@"Please input name." :@"nil"];
         }
+        [self.processtransactionButton setEnabled:YES];
         return;
     }
-    if(self.CVV.length < 3 && self.CVV.length > 4) {
+    if(self.cardHolderName.length > 50) {
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"El CVV debe tener entre 3 a 4 dígitos." :@"nil"];
+            [self displayAlertView:@"¡Advertencia!" :@"Nombre no puede ser mayor a 50 caracteres." :@"nil"];
         } else {
-            [self displayAlertView:@"Warning!" :@"CVV have to be 3 or 4 characters." :@"nil"];
+            [self displayAlertView:@"Warning!" :@"Name have to be less than 50 characters" :@"nil"];
         }
+        [self.processtransactionButton setEnabled:YES];
+        return;
+    }
+    if(self.CVV.length != 3) {
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"El CVV debe tener 3 dígitos." :@"nil"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"CVV have to be 3 digits." :@"nil"];
+        }
+        [self.processtransactionButton setEnabled:YES];
         return;
     }
     if([self.selected_year isEqualToString:@""] || [self.selected_month isEqualToString:@""]) {
@@ -623,6 +736,7 @@ NSInteger typeTransaction = 0;
         } else {
             [self displayAlertView:@"Warning!" :@"Please select expire date." :@"nil"];
         }
+        [self.processtransactionButton setEnabled:YES];
         return;
     }
     
@@ -660,13 +774,19 @@ NSInteger typeTransaction = 0;
     NSData *postTransactionData = [NSJSONSerialization dataWithJSONObject:transaction options:0 error:&error];
     NSString *postTransactionString = [[NSString alloc]initWithData:postTransactionData encoding:NSUTF8StringEncoding];
     
-    if(typeTransaction == 0){
-        pan = self.cardNumber;
-        numberCard = pan;
+    if([type_trans isEqualToString:@"Swipe"]){
+        ksn_data = swipe_ksn;
+        card_data = swipe_encTrack1;
+    }else if([type_trans isEqualToString:@"TLV"]){
+        ksn_data = tlv_C0;
+        card_data = tlv_C2;
     }
     
     NSDictionary *card = @{
-                           @"pan": pan,
+                           //@"pan": pan,
+                           @"ksn": ksn_data,
+                           @"data": card_data,
+                           @"type": type_trans,
                            @"card_holder_name": self.cardHolderName,
                            @"card_expiration_date": self.expire_date,
                            @"cvv": self.CVV
@@ -687,7 +807,8 @@ NSInteger typeTransaction = 0;
                                  @"credentials": postCredentialsString,
                                  @"transaction": postTransactionString,
                                  @"terminal": postTerminalString,
-                                 @"card": postCardString
+                                 @"card": postCardString,
+                                 @"TOKEN": globals.server_token
                                  };
     
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
@@ -708,9 +829,9 @@ NSInteger typeTransaction = 0;
             NSString *last4digits = [pan substringFromIndex:[pan length] - 4];
             [self.dataTransaction setValue:last4digits forKey:@"card"];
             [self.dataTransaction setValue:globals.nombreComercio forKey:@"comercio"];
-            [self.dataTransaction setValue:[self getCreditCardTypeByNumber:pan] forKey:@"type"];
+            [self.dataTransaction setValue:[self getCreditCardTypeByNumber:validCard] forKey:@"type"];
             [self.dataTransaction setValue:self.cardHolderName forKey:@"name"];
-            [self.dataTransaction setValue:self.transactionAmount forKey:@"amount"];
+            [self.dataTransaction setValue:[self getAmountToCurrency:self.transactionAmount] forKey:@"amount"];
             [self.dataTransaction setValue:jsonResponse[@"value"][@"date_trans"] forKey:@"date"];
             
             [self insertTransations:self.transactionAmount :jsonResponse[@"value"] :self.descriptiontxt];
@@ -726,9 +847,9 @@ NSInteger typeTransaction = 0;
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red." :@"nil"];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet." :@"nil"];
         } else {
-            [self displayAlertView:@"Warning!" :@"Network error." :@"nil"];
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue." :@"nil"];
         }
     }];
     
@@ -765,7 +886,8 @@ NSInteger typeTransaction = 0;
     
     NSDictionary *parameters = @{
                                  @"method": @"insertTransactions",
-                                 @"param": postinsertTransactionsString
+                                 @"param": postinsertTransactionsString,
+                                 @"TOKEN": globals.server_token
                                  };
     
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
@@ -781,11 +903,12 @@ NSInteger typeTransaction = 0;
         NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&jsonError];
         BOOL status = [jsonResponse[@"status"] boolValue];
         if(status) {
-            if(globals.selected_language == 0) {
-                [self displayAlertView:@"¡Felicidades!" :@"Transacción realizada exitosamente!." :@"transaction_result"];
-            } else {
-                [self displayAlertView:@"Congratulations!" :@"Transaction successful!." :@"transaction_result"];
-            }
+//            if(globals.selected_language == 0) {
+//                [self displayAlertView:@"¡Felicidades!" :@"Transacción realizada exitosamente!." :@"transaction_result"];
+//            } else {
+//                [self displayAlertView:@"Congratulations!" :@"Transaction successful!." :@"transaction_result"];
+//            }
+            [self performSegueWithIdentifier:@"processtransactiontoresult_segue" sender:self];
         } else {
             if(globals.selected_language == 0) {
                 [self displayAlertView:@"¡Advertencia!" :@"Ha ocurrido un error la transacción no fue ejecutada. Por favor comuníquese con soporte." :@"nil"];
@@ -797,9 +920,9 @@ NSInteger typeTransaction = 0;
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red." :@"nil"];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet." :@"nil"];
         } else {
-            [self displayAlertView:@"Warning!" :@"Network error." :@"nil"];
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue." :@"nil"];
         }
     }];
     
@@ -807,32 +930,45 @@ NSInteger typeTransaction = 0;
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if(textField == self.cardNameTextField) {
-        const char * _char = [string cStringUsingEncoding:NSUTF8StringEncoding];
-        int isBackSpace = strcmp(_char, "\b");
+        if (textField.text.length < 50 || string.length == 0){
+            const char * _char = [string cStringUsingEncoding:NSUTF8StringEncoding];
+            int isBackSpace = strcmp(_char, "\b");
+            
+            if (isBackSpace == -8) {
+                NSLog(@"Backspace was pressed");
+                return YES;
+            }
+            
+            BOOL canEdit=NO;
+            NSCharacterSet *myCharSet = [NSCharacterSet characterSetWithCharactersInString:@"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "];
+            for (int i = 0; i < [string length]; i++)
+            {
+                unichar c = [string characterAtIndex:i];
+                if (![myCharSet characterIsMember:c])
+                {
+                    canEdit=NO;
+                }
+                else
+                {
+                    canEdit=YES;
+                }
+            }
+            return canEdit;
+        }else{
+            return NO;
+        }
         
-        if (isBackSpace == -8) {
-            NSLog(@"Backspace was pressed");
+    } else if (textField == self.CVVTextField){
+        if (textField.text.length < 3 || string.length == 0){
             return YES;
         }
-        
-        BOOL canEdit=NO;
-        NSCharacterSet *myCharSet = [NSCharacterSet characterSetWithCharactersInString:@"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "];
-        for (int i = 0; i < [string length]; i++)
-        {
-            unichar c = [string characterAtIndex:i];
-            if (![myCharSet characterIsMember:c])
-            {
-                canEdit=NO;
-            }
-            else
-            {
-                canEdit=YES;
-            }
+        else{
+            return NO;
         }
-        return canEdit;
-    } else {
+    }else {
         return YES;
     }
+
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -943,6 +1079,11 @@ NSInteger typeTransaction = 0;
 
 //---------------------------------------- DATAFORM ----------------------------------------------------
 
+- (void)dataCardHolderNameTLV:(NSString *)cardholderName{
+    self.cardNameTextField.text = cardholderName;
+    [self startEmvWithData];
+}
+
 - (void)dataForm:(NSString *)numberCard :(NSString *)cardHolderName :(NSString *)exp_card :(NSString *)type
                 :(NSString *)ksn :(NSString *)encTrack1 :(NSString *)C0 :(NSString *)C2 {
     
@@ -951,7 +1092,10 @@ NSInteger typeTransaction = 0;
     //set value cardHolderName in the field Cardholdername
     //set value exp_card in the fields month and year example of return: 2006 (20 is a year, and 06 is a month)
     
-    Global *globals = [Global sharedInstance];
+    //Global *globals = [Global sharedInstance];
+    [self.activityIndicator startAnimating];
+    [self.view addSubview:self.overlayView];
+
     typeTransaction = 1;
     NSString *month = @"";
     NSString *year = @"";
@@ -959,91 +1103,26 @@ NSInteger typeTransaction = 0;
     month = [exp_card substringWithRange:NSMakeRange(2, 2)];
     NSLog(@"test year and month: %@ :: %@", year, month);
     self.cardNumberTextField.text = numberCard;
-    self.cardNameTextField.text = cardHolderName;
+    
+    type_trans = type;
+    
+    if([type isEqualToString:@"Swipe"]){
+        self.cardNameTextField.text = cardHolderName;
+        swipe_ksn = ksn;
+        swipe_encTrack1 = encTrack1;
+    }else if([type isEqualToString:@"TLV"]){
+        tlv_C0 = C0;
+        tlv_C2 = C2;
+    }
+
     [self.monthselectButton setTitle:month forState:UIControlStateNormal];
     [self.yearselectButton setTitle:year forState:UIControlStateNormal];
     self.selected_year = year;
     self.selected_month = month;
     
-    
-    [self.activityIndicator startAnimating];
-    [self.view addSubview:self.overlayView];
-    
-    NSDictionary *cardData = [[NSDictionary alloc] init];
-    if([type isEqualToString:@"TLV"]){
-        //Here fucntion to consume WS
-        cardData = @{
-                     @"ksn": @"",
-                     @"track1": @"",
-                     @"C0": C0,
-                     @"C2": C2,
-                     @"type": type
-                     };
-    }else if ([type isEqualToString:@"Swipe"]){
-        //Here function to consume WS
-        cardData = @{
-                     @"ksn": ksn,
-                     @"track1": encTrack1,
-                     @"C0": @"",
-                     @"C2": @"",
-                     @"type": type
-                     };
-    }
-    
-    NSError *error;
-    NSData *postCardData = [NSJSONSerialization dataWithJSONObject:cardData options:0 error:&error];
-    NSString *postcardDataString = [[NSString alloc]initWithData:postCardData encoding:NSUTF8StringEncoding];
-    
-    NSDictionary *parameters = @{
-                                 @"method": @"setDataCard",
-                                 @"dataCard": postcardDataString
-                                 };
-    AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
-    sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects: @"application/json", nil];
-    [sessionManager POST: globals.server_url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        [self.activityIndicator stopAnimating];
-        [self.overlayView removeFromSuperview];
-        
-        NSError *jsonError;
-        NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&jsonError];
-        BOOL status = [jsonResponse[@"status"] boolValue];
-        NSLog(@"111111: %@", jsonResponse);
-        if(status) {
-            if([type isEqualToString:@"TLV"]){
-                
-                NSArray *position = jsonResponse[@"DataEmvTLV"];
-                NSArray *card_numbers = [position[2] componentsSeparatedByString:@"d"];
-                self.cardNameTextField.text = position[0];
-                pan = card_numbers[0];
-                [self.CVVTextField becomeFirstResponder];
-                
-            } else if([type isEqualToString:@"Swipe"]) {
-                
-                NSString *position = jsonResponse[@"DataEmvSwipe"];
-                NSArray *card_numbers = [position componentsSeparatedByString:@"^"];
-                pan = [card_numbers[0] stringByReplacingOccurrencesOfString:@"%B" withString:@""];
-                [self.CVVTextField becomeFirstResponder];
-            }
-        } else {
-            if(globals.selected_language == 0) {
-                [self displayAlertView:@"¡Advertencia!" :@"No se pudo obtener respuesta del servidor. Por favor contacte a Soporte." :@"nil"];
-            } else {
-                [self displayAlertView:@"Warning!" :@"An error occured. Please contact support" :@"nil"];
-            }
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [self.activityIndicator stopAnimating];
-        [self.overlayView removeFromSuperview];
-        if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red." :@"nil"];
-        } else {
-            [self displayAlertView:@"Warning!" :@"Network error." :@"nil"];
-        }
-    }];
-    
+    [self.activityIndicator stopAnimating];
+    [self.overlayView removeFromSuperview];
+
 }
 
 
@@ -1176,34 +1255,56 @@ NSInteger typeTransaction = 0;
     
     NSLog(@"cardData: %@", cardData);
     
-    NSString *type = @"Swipe";
-    NSString *cardHolderName = @"";
-    NSString *ksn = @"";
-    NSString *encTrack1 = @"";
-    
-    NSArray *keys = [[cardData allKeys] sortedArrayUsingSelector:@selector(localizedCompare:)];
-    for (NSString *loopKey in keys) {
-        
-        if([loopKey isEqualToString:@"maskedPAN"]){
-            NSLog(@"TARJETA: %@", [cardData objectForKey:loopKey]);
-            numberCard = [cardData objectForKey:loopKey];
-        }else if([loopKey isEqualToString:@"cardholderName"]){
-            NSLog(@"CARDHOLDERNAME: %@", [cardData objectForKey:loopKey]);
-            cardHolderName = [cardData objectForKey:loopKey];
-        }else if([loopKey isEqualToString:@"expiryDate"]){
-            NSLog(@"EXP_DATE: %@", [cardData objectForKey:loopKey]);
-            exp_card = [cardData objectForKey:loopKey];
-        }else if([loopKey isEqualToString:@"ksn"]){
-            NSLog(@"KSN: %@", [cardData objectForKey:loopKey]);
-            ksn = [cardData objectForKey:loopKey];
-        }else if([loopKey isEqualToString:@"encTrack1"]){
-            NSLog(@"ENCTRACK1: %@", [cardData objectForKey:loopKey]);
-            encTrack1 = [cardData objectForKey:loopKey];
-        }
+    NSString *checkCardResultString = @"";
+    switch (result) {
+        case BBDeviceCheckCardResult_NoCard:{ checkCardResultString = @"onReturnCheckCardResult - result: BBDeviceCheckCardResult_NoCard"; break;}
+        case BBDeviceCheckCardResult_InsertedCard:{ checkCardResultString = @"onReturnCheckCardResult - result: BBDeviceCheckCardResult_InsertedCard"; break;}
+        case BBDeviceCheckCardResult_NotIccCard:{ checkCardResultString = @"onReturnCheckCardResult - result: BBDeviceCheckCardResult_NotIccCard"; break;}
+        case BBDeviceCheckCardResult_BadSwipe:{ checkCardResultString = @"onReturnCheckCardResult - result: BBDeviceCheckCardResult_BadSwipe"; break;}
+        case BBDeviceCheckCardResult_SwipedCard:{ checkCardResultString = @"onReturnCheckCardResult - result: BBDeviceCheckCardResult_SwipedCard"; break;}
+        case BBDeviceCheckCardResult_MagHeadFail:{ checkCardResultString = @"onReturnCheckCardResult - result: BBDeviceCheckCardResult_MagHeadFail"; break;}
+        case BBDeviceCheckCardResult_TapCardDetected:{ checkCardResultString = @"onReturnCheckCardResult - result: BBDeviceCheckCardResult_TapCardDetected"; break;}
+        default:{ checkCardResultString = @"onReturnCheckCardResult - result: else"; break;}
     }
+    //[self printLog:checkCardResultString];
     
-    [self dataForm:numberCard :cardHolderName :exp_card :type :ksn :encTrack1 :@"" :@""];
-    
+    switch (result) {
+        case BBDeviceCheckCardResult_SwipedCard:{
+            NSString *type = @"Swipe";
+            NSString *cardHolderName = @"";
+            NSString *ksn = @"";
+            NSString *encTrack1 = @"";
+            
+            NSArray *keys = [[cardData allKeys] sortedArrayUsingSelector:@selector(localizedCompare:)];
+            for (NSString *loopKey in keys) {
+                
+                if([loopKey isEqualToString:@"maskedPAN"]){
+                    NSLog(@"TARJETA: %@", [cardData objectForKey:loopKey]);
+                    numberCard = [cardData objectForKey:loopKey];
+                }else if([loopKey isEqualToString:@"cardholderName"]){
+                    NSLog(@"CARDHOLDERNAME: %@", [cardData objectForKey:loopKey]);
+                    cardHolderName = [cardData objectForKey:loopKey];
+                }else if([loopKey isEqualToString:@"expiryDate"]){
+                    NSLog(@"EXP_DATE: %@", [cardData objectForKey:loopKey]);
+                    exp_card = [cardData objectForKey:loopKey];
+                }else if([loopKey isEqualToString:@"ksn"]){
+                    NSLog(@"KSN: %@", [cardData objectForKey:loopKey]);
+                    ksn = [cardData objectForKey:loopKey];
+                }else if([loopKey isEqualToString:@"encTrack1"]){
+                    NSLog(@"ENCTRACK1: %@", [cardData objectForKey:loopKey]);
+                    encTrack1 = [cardData objectForKey:loopKey];
+                }
+            }
+            
+            [self dataForm:numberCard :cardHolderName :exp_card :type :ksn :encTrack1 :@"" :@""];
+            break;
+        }
+        case BBDeviceCheckCardResult_InsertedCard:{
+            [[BBDeviceController sharedController] getEmvCardData];
+            break;
+        }
+        default:{break;}
+    }
 }
 
 - (void)checkCardAgainAfterBadSwipe{
@@ -1216,8 +1317,19 @@ NSInteger typeTransaction = 0;
     
     isClickedStartTransactionButton = YES;
     
-    [self startEmvWithData];
+    //[self startEmvWithData];
+    [self checkCard];
     
+}
+
+- (void)checkCard{
+    
+    NSMutableDictionary *inputData = [NSMutableDictionary dictionary];
+    [inputData setObject:[NSNumber numberWithInt:(int)BBDeviceCheckCardMode_SwipeOrInsert] forKey:@"checkCardMode"];
+    [inputData setObject:[NSNumber numberWithInt:30] forKey:@"checkCardTimeout"];
+    NSLog(@"checkCard ...");
+    
+    [[BBDeviceController sharedController] checkCard:[NSDictionary dictionaryWithDictionary:inputData]];
 }
 
 - (void)startEmvWithData{
@@ -1249,6 +1361,40 @@ NSInteger typeTransaction = 0;
         [[BBDeviceController sharedController] startEmvWithData:[NSDictionary dictionaryWithDictionary:inputData]];
     
    }
+
+- (void)onReturnEmvCardDataResult:(BOOL)isSuccess tlv:(NSString *)tlv{
+    //ViewControllerLog(@"onReturnEmvCardDataResult - isSuccess: %d, tlv: %@", isSuccess, tlv);
+    //lblGeneralData.text = [NSString stringWithFormat:@"onReturnEmvCardDataResult \nisSuccess: %@", isSuccess ? @"YES" : @"NO"];
+    NSLog(@"[[BBDeviceController sharedController] decodeTlv:tlv]: %@", [[BBDeviceController sharedController] decodeTlv:tlv]);
+    NSDictionary *decodedTlv = [[BBDeviceController sharedController] decodeTlv:tlv];
+    NSArray *keys = [[decodedTlv allKeys] sortedArrayUsingSelector:@selector(localizedCompare:)];
+    NSString *tempDisplayString = @"";
+    NSString *cardholdername = @"";
+    for (NSString *loopKey in keys) {
+        tempDisplayString = [NSString stringWithFormat:@"%@\n\n%@: %@", tempDisplayString, loopKey, [decodedTlv objectForKey:loopKey]];
+        NSLog(@"RESULT: %@", tempDisplayString);
+        if([loopKey isEqualToString:@"5F20"]){
+            NSLog(@"cardholdername: %@", [decodedTlv objectForKey:loopKey]);
+            cardholdername = [decodedTlv objectForKey:loopKey];
+            NSString * str = cardholdername;
+            NSMutableString * newString = [[NSMutableString alloc] init];
+            int i = 0;
+            while (i < [str length])
+            {
+                NSString * hexChar = [str substringWithRange: NSMakeRange(i, 2)];
+                int value = 0;
+                sscanf([hexChar cStringUsingEncoding:NSASCIIStringEncoding], "%x", &value);
+                [newString appendFormat:@"%c", (char)value];
+                i+=2;
+            }
+            NSLog(@"cardholdername: %@", newString);
+            [self dataCardHolderNameTLV: newString];
+        }
+    }
+    //[self displayLongData:[NSString stringWithFormat:@"EMV card data:\n%@", tlv]];
+    
+    //[self Debug_onReturnEmvCardDataResult];
+}
 
 #pragma mark -- Transaction Flow -- Terminal Time
 - (void)onRequestTerminalTime{ //terminalTime can be input at startEmvWithData
@@ -1329,10 +1475,8 @@ NSInteger typeTransaction = 0;
             exp_card = [[decodedTlv objectForKey:loopKey] substringWithRange:NSMakeRange(0, exp.length - 2)];
         }
     }
-    NSLog(@"test222222");
 
     [self dataForm:numberCard :@"" :exp_card :type :@"" :@"" :C0 :C2];
-    NSLog(@"test333333");
     
 }
 

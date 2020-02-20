@@ -2,7 +2,7 @@
 //  WelcomeViewController.m
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/8.
+//  Created by Javier Calderon  on 2019/1/8.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
@@ -49,6 +49,7 @@
             logoImageView.image = [UIImage imageNamed:@"pagadito_0000_logo.png"];
         }
     }
+    
     self.username = @"";
     self.password = @"";
     
@@ -60,14 +61,14 @@
     
     if(globals.selected_language == 0) {
         self.titleLabel.text = @"¡Bienvenido!";
-        self.appnameLabel.text = @"Pagadito POS APP";
+        self.appnameLabel.text = @"POS APP";
         self.usernameTextField.placeholder = @"Usuario";
         self.passwordTextField.placeholder = @"Contraseña";
         [self.signinButton setTitle:@"Inicia sesión" forState:UIControlStateNormal];
         [self.forgetpasswordButton setTitle:@"Olvidé mi contraseña" forState:UIControlStateNormal];
     } else {
         self.titleLabel.text = @"Welcome!";
-        self.appnameLabel.text = @"Pagadito POS APP";
+        self.appnameLabel.text = @"POS APP";
         self.usernameTextField.placeholder = @"Username";
         self.passwordTextField.placeholder = @"Password";
         [self.signinButton setTitle:@"Sign In" forState:UIControlStateNormal];
@@ -113,14 +114,14 @@
         }
         return;
     }
-    if(self.password.length < 6) {
+    /*if(self.password.length < 6) {
         if(globals.selected_language == 0) {
             [self displayAlertView:@"¡Advertencia!" :@"La contraseña debe tener al menos 6 caracteres."];
         } else {
             [self displayAlertView:@"Warning!" :@"Password have to be at least 6 characters"];
         }
         return;
-    }
+    }*/
 
     [self.activityIndicator startAnimating];
     [self.view addSubview:self.overlayView];
@@ -136,7 +137,8 @@
 
     NSDictionary *parameters = @{
                                  @"method": @"initLogin",
-                                 @"param": postString
+                                 @"param": postString,
+                                 @"TOKEN": globals.server_token
                                  };
 
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
@@ -151,6 +153,7 @@
         NSError *jsonError;
         NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&jsonError];
         BOOL status = [jsonResponse[@"status"] boolValue];
+
         if(status) {
             globals.username = jsonResponse[@"username"];
             globals.idPrivilegio = jsonResponse[@"idPrivilegio"];
@@ -181,18 +184,21 @@
 
         } else {
             if(globals.selected_language == 0) {
-                [self displayAlertView:@"¡Advertencia!" :@"La información de inicio de sesión es incorrecta. Por favor ingrese información válida."];
+                [self displayAlertView:@"¡Advertencia!" :@"Contraseña o usuario no válidos."];
             } else {
-                [self displayAlertView:@"Warning!" :@"Signin information is incorrect. Please input valid information."];
+                [self displayAlertView:@"Warning!" :@"Invalid username or password."];
             }
+            self.usernameTextField.text = @"";
+            self.passwordTextField.text = @"";
+            [self.usernameTextField becomeFirstResponder];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet."];
         } else {
-            [self displayAlertView:@"Warning!" :@"Network error."];
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue."];
         }
     }];
 }
@@ -211,7 +217,8 @@
     
     NSDictionary *parameters = @{
                                  @"method": @"getShiftCode",
-                                 @"param": globals.idUser
+                                 @"param": globals.idUser,
+                                 @"TOKEN": globals.server_token
                                  };
     
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
@@ -235,18 +242,21 @@
             
         } else {
             if(globals.selected_language == 0) {
-                [self displayAlertView:@"¡Advertencia!" :@"No puedes iniciar sesión. El turno del cajero no ha sido asignado."];
+                [self displayAlertView:@"¡Advertencia!" :@"No tienes asignado un turno para ingresar. Pídele a tu supervisor que te asigne un turno o intenta con otro usuario."];
             } else {
-                [self displayAlertView:@"Warning!" :@"You can't login. The cashier's shift wasn't assigned."];
+                [self displayAlertView:@"Warning!" :@"There is no shift assigned to this username. Ask a supervisor to assign a new shift or try with a different user."];
             }
+            self.usernameTextField.text = @"";
+            self.passwordTextField.text = @"";
+            [self.usernameTextField becomeFirstResponder];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet."];
         } else {
-            [self displayAlertView:@"Warning" :@"Network error."];
+            [self displayAlertView:@"Warning" :@"Please check your internet connection to continue."];
         }
     }];
 }

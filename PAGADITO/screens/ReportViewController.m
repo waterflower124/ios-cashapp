@@ -2,7 +2,7 @@
 //  ReportViewController.m
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/23.
+//  Created by Javier Calderon  on 2019/1/23.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
@@ -31,21 +31,19 @@
     if(globals.selected_language == 0) {
         self.titleLabel.text = @"Reportes";
         self.maincommentLabel.text = @"Elige un reporte";
-        /*
-        [self.cashiershiftButton setImage:[UIImage imageNamed: @"dashboard_report_en"] forState:UIControlStateNormal];
-        [self.transactionlistButton setImage:[UIImage imageNamed: @"dashboard_report_en"] forState:UIControlStateNormal];
-        */
+      
         [self.contactsupportButton setTitle:@"Contactar a Soporte" forState:UIControlStateNormal];
         self.sessioncommentLabel.text = @"Sesión iniciada:";
+        [self.cashiershiftButton setImage:[UIImage imageNamed: @"report_cashiershift_es"] forState:UIControlStateNormal];
+        [self.transactionlistButton setImage:[UIImage imageNamed: @"report_transactionlist_es"] forState:UIControlStateNormal];
     } else {
         self.titleLabel.text = @"Report";
         self.maincommentLabel.text = @"Choose a report";
-        /*
-         [self.cashiershiftButton setImage:[UIImage imageNamed: @"dashboard_report_en"] forState:UIControlStateNormal];
-         [self.transactionlistButton setImage:[UIImage imageNamed: @"dashboard_report_en"] forState:UIControlStateNormal];
-         */
+       
         [self.contactsupportButton setTitle:@"Contact support" forState:UIControlStateNormal];
         self.sessioncommentLabel.text = @"Session started:";
+        [self.cashiershiftButton setImage:[UIImage imageNamed: @"report_cashiershift_en"] forState:UIControlStateNormal];
+        [self.transactionlistButton setImage:[UIImage imageNamed: @"report_transactionlist_en"] forState:UIControlStateNormal];
     }
     
     [self setMenuButtonsicon];
@@ -190,6 +188,7 @@
         self.newtransactionButton.frame = newtransactionButtonFrame;
         UIView *newtransactiolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, newtransactionButton.frame.size.width, 1)];
         newtransactiolineView.backgroundColor = [UIColor lightGrayColor];
+        [self.newtransactionButton addSubview:newtransactiolineView];
         
         CGRect canceltransactionButtonFrame = self.canceltransactionButton.frame;
         canceltransactionButtonFrame.origin.x = 0;
@@ -199,15 +198,15 @@
         canceltransactionlineView.backgroundColor = [UIColor lightGrayColor];
         [self.canceltransactionButton addSubview:canceltransactionlineView];
         
-        CGRect cerraturnoButtonFrame = self.cerraturnoButton.frame;
-        cerraturnoButtonFrame.origin.x = 0;
-        cerraturnoButtonFrame.origin.y = 420;
-        self.cerraturnoButton.frame = cerraturnoButtonFrame;
-        UIView *cerraturnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, cerraturnoButton.frame.size.width, 1)];
-        cerraturnolineView.backgroundColor = [UIColor lightGrayColor];
-        [self.cerraturnoButton addSubview:cerraturnolineView];
+//        CGRect cerraturnoButtonFrame = self.cerraturnoButton.frame;
+//        cerraturnoButtonFrame.origin.x = 0;
+//        cerraturnoButtonFrame.origin.y = 420;
+//        self.cerraturnoButton.frame = cerraturnoButtonFrame;
+//        UIView *cerraturnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, cerraturnoButton.frame.size.width, 1)];
+//        cerraturnolineView.backgroundColor = [UIColor lightGrayColor];
+//        [self.cerraturnoButton addSubview:cerraturnolineView];
         
-        [self.newtransactionButton addSubview:newtransactiolineView];
+        [self.cerraturnoButton setHidden:YES];
 
     }
 }
@@ -272,6 +271,13 @@
     [self performSegueWithIdentifier:@"reporttowelcome_segue" sender:self];
 }
 
+- (IBAction)contactSupport:(id)sender {
+    NSString * encodedString = [@"mailto:soporte@pagadito.com" stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+    
+    UIApplication *application = [UIApplication sharedApplication];
+    [application openURL:[NSURL URLWithString: encodedString] options:@{} completionHandler:nil];
+}
+
 - (IBAction)cerraturnoButtonAction:(id)sender {
     Global *globals = [Global sharedInstance];
     
@@ -289,7 +295,8 @@
     
     NSDictionary *parameters = @{
                                  @"method": @"closeShift",
-                                 @"param": string
+                                 @"param": string,
+                                 @"TOKEN": globals.server_token
                                  };
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -317,9 +324,9 @@
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red." :@"network error"];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet." :@"network error"];
         } else {
-            [self displayAlertView:@"Warning!" :@"Network error." :@"network error"];
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue." :@"network error"];
         }
     }];
 }

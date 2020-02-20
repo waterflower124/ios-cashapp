@@ -2,7 +2,7 @@
 //  NewTransactionViewController.m
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/14.
+//  Created by Javier Calderon  on 2019/1/14.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
@@ -42,10 +42,12 @@
         self.sessionInfocommentLabel.text = @"Sesión iniciada:";
     } else {
         self.titleLabel.text = @"New Transaction";
-        self.amountTextFieldcommentLabel.text = @"Enter the amount receivable:";
+        self.amountTextFieldcommentLabel.text = @"Enter the amount to process:";
         [self.continueButton setTitle:@"Continue" forState:UIControlStateNormal];
         self.sessionInfocommentLabel.text = @"Session started:";
     }
+    
+    self.amountTextField.placeholder = [NSString stringWithFormat:@"%@%@", globals.currency, @"0.00"];
     
     [self setMenuButtonsicon];
     
@@ -243,6 +245,7 @@
         self.newtransactionButton.frame = newtransactionButtonFrame;
         UIView *newtransactiolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, newtransactionButton.frame.size.width, 1)];
         newtransactiolineView.backgroundColor = [UIColor lightGrayColor];
+        [self.newtransactionButton addSubview:newtransactiolineView];
         
         CGRect canceltransactionButtonFrame = self.canceltransactionButton.frame;
         canceltransactionButtonFrame.origin.x = 0;
@@ -252,15 +255,15 @@
         canceltransactionlineView.backgroundColor = [UIColor lightGrayColor];
         [self.canceltransactionButton addSubview:canceltransactionlineView];
         
-        CGRect cerraturnoButtonFrame = self.cerraturnoButton.frame;
-        cerraturnoButtonFrame.origin.x = 0;
-        cerraturnoButtonFrame.origin.y = 420;
-        self.cerraturnoButton.frame = cerraturnoButtonFrame;
-        UIView *cerraturnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, cerraturnoButton.frame.size.width, 1)];
-        cerraturnolineView.backgroundColor = [UIColor lightGrayColor];
-        [self.cerraturnoButton addSubview:cerraturnolineView];
+//        CGRect cerraturnoButtonFrame = self.cerraturnoButton.frame;
+//        cerraturnoButtonFrame.origin.x = 0;
+//        cerraturnoButtonFrame.origin.y = 420;
+//        self.cerraturnoButton.frame = cerraturnoButtonFrame;
+//        UIView *cerraturnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, cerraturnoButton.frame.size.width, 1)];
+//        cerraturnolineView.backgroundColor = [UIColor lightGrayColor];
+//        [self.cerraturnoButton addSubview:cerraturnolineView];
         
-        [self.newtransactionButton addSubview:newtransactiolineView];
+        [self.cerraturnoButton setHidden:YES];
         
         ///////////////////////////////
         
@@ -541,7 +544,8 @@
     
     NSDictionary *parameters = @{
                                  @"method": @"closeShift",
-                                 @"param": string
+                                 @"param": string,
+                                 @"TOKEN": globals.server_token
                                  };
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -569,9 +573,9 @@
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet."];
         } else {
-            [self displayAlertView:@"Warning!" :@"Network error."];
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue."];
         }
     }];
 }
@@ -585,17 +589,21 @@
             [self displayAlertView:@"Warning!" :@"Please input transaction amount."];
         }
         return;
-    }
-    if([self.amountText floatValue] > 50000) {
+    }else if([self.amountText floatValue] > 50000) {
         if(globals.selected_language == 0) {
             [self displayAlertView:@"¡Advertencia!" :@"La cantidad a procesar debe ser menor a 50,000."];
         } else {
             [self displayAlertView:@"Warning!" :@"Transaction amount have to be less than 50,000."];
         }
         return;
+    }else if([self.amountText floatValue] < 1.00) {
+        self.amountText = @"";
+        self.amountTextField.text = @"";
+        self.pointClicked = false;
+        self.decimalCount = 0;
+    }else{
+        [self performSegueWithIdentifier:@"newtranssactiontoprocesstransaction_segue" sender:self];
     }
-    
-    [self performSegueWithIdentifier:@"newtranssactiontoprocesstransaction_segue" sender:self];
 }
 
 - (IBAction)menunewtransctionButtonAction:(id)sender {

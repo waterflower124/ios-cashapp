@@ -2,7 +2,7 @@
 //  ResetPasswordWSKViewController.m
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/21.
+//  Created by Javier Calderon  on 2019/1/21.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
@@ -54,7 +54,7 @@
         self.failcommentLabel.text = @"WSK no encontrado.  Introduce un WSK válido o contacta a soporte.";
     } else {
         self.titleLabel.text = @"Restore Password";
-        self.commentLabel.text = @"Enter the WSK code of your Pegadito POS";
+        self.commentLabel.text = @"Enter the WSK code of your Pagadito POS";
         [self.continueButton setTitle:@"Continue" forState:UIControlStateNormal];
         self.failcommentLabel.text = @"WSK not found. Enter a valid WSK or contact support.";
     }
@@ -70,9 +70,9 @@
     self.wskText = self.wskTextField.text;
     if(self.wskText.length == 0) {
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingresa un WSK para tu cuenta."];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingresa tu WSK para continuar"];
         } else {
-            [self displayAlertView:@"Warning!" :@"Please input WSK for your account."];
+            [self displayAlertView:@"Warning!" :@"Please enter a valid WSK code to continue"];
         }
         return;
     }
@@ -88,7 +88,8 @@
     NSString *string = [[NSString alloc]initWithData:postData encoding:NSUTF8StringEncoding];
     NSDictionary *parameters = @{
                                  @"method": @"readValidWSK",
-                                 @"param": string
+                                 @"param": string,
+                                 @"TOKEN": globals.server_token
                                  };
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -114,9 +115,9 @@
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet."];
         } else {
-            [self displayAlertView:@"Warning!" :@"Network error."];
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue."];
         }
     }];
 }

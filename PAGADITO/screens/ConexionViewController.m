@@ -2,7 +2,7 @@
 //  ConexionViewController.m
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/22.
+//  Created by Javier Calderon  on 2019/1/22.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
@@ -27,7 +27,7 @@
 @end
 
 @implementation ConexionViewController
-@synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton, logoutButton, cerraturnoButton;
+@synthesize textScrollView, homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton, logoutButton, cerraturnoButton;
 @synthesize SidePanel, TransV, sessionInfoLabel, uidTextField, wskTextField, idSecursalTextField, idTerminalTextField, LlaveprivadaTextField, vectorTextField;
 @synthesize titleLabel, warningcommentLabel, conexioncredentialcommentLabel, dataencryptioncommentLabel, keycommentLabel, vectorcommentLabel, saveButton, cancelchangeButton, sessioncommentLabel;
 
@@ -37,7 +37,7 @@
     Global *globals = [Global sharedInstance];
     if(globals.selected_language == 0) {
         self.titleLabel.text = @"Conexión";
-        self.warningcommentLabel.text = @"Advertencia: Datos erroneos causarán el mal funcionamiento de las transacciones POS.";
+        self.warningcommentLabel.text = @"Advertencia: Datos erroneos causarán el mal funcionamiento de la aplicación.";
         self.conexioncredentialcommentLabel.text = @"Credenciales de Conexión";
         self.dataencryptioncommentLabel.text = @"Información de Encriptación de Datos";
         self.keycommentLabel.text = @"Llave privada";
@@ -47,7 +47,7 @@
         self.sessioncommentLabel.text = @"Sesión iniciada:";
     } else {
         self.titleLabel.text = @"Connection";
-        self.warningcommentLabel.text = @"Warning: Wrong data will cause POS transaction errors.";
+        self.warningcommentLabel.text = @"Warning: Wrong data will cause the application to malfunction";
         self.conexioncredentialcommentLabel.text = @"Connection credentials";
         self.dataencryptioncommentLabel.text = @"Data encryption information";
         self.keycommentLabel.text = @"Private key";
@@ -72,6 +72,10 @@
     self.LlaveprivadaText = globals.llaveCifrado;
     self.vectorTextField.text = globals.cifradoIV;
     self.vectorText = globals.cifradoIV;
+    
+    ///  keyboard avoid
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:self.view.window];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:self.view.window];
     
     /////  dismiss keyboard  ///////////
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
@@ -182,6 +186,7 @@
         self.newtransactionButton.frame = newtransactionButtonFrame;
         UIView *newtransactiolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, newtransactionButton.frame.size.width, 1)];
         newtransactiolineView.backgroundColor = [UIColor lightGrayColor];
+        [self.newtransactionButton addSubview:newtransactiolineView];
         
         CGRect canceltransactionButtonFrame = self.canceltransactionButton.frame;
         canceltransactionButtonFrame.origin.x = 0;
@@ -192,16 +197,34 @@
         [self.canceltransactionButton addSubview:canceltransactionlineView];
         
         
-        CGRect cerraturnoButtonFrame = self.cerraturnoButton.frame;
-        cerraturnoButtonFrame.origin.x = 0;
-        cerraturnoButtonFrame.origin.y = 420;
-        self.cerraturnoButton.frame = cerraturnoButtonFrame;
-        UIView *cerraturnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, cerraturnoButton.frame.size.width, 1)];
-        cerraturnolineView.backgroundColor = [UIColor lightGrayColor];
-        [self.cerraturnoButton addSubview:cerraturnolineView];
+//        CGRect cerraturnoButtonFrame = self.cerraturnoButton.frame;
+//        cerraturnoButtonFrame.origin.x = 0;
+//        cerraturnoButtonFrame.origin.y = 420;
+//        self.cerraturnoButton.frame = cerraturnoButtonFrame;
+//        UIView *cerraturnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, cerraturnoButton.frame.size.width, 1)];
+//        cerraturnolineView.backgroundColor = [UIColor lightGrayColor];
+//        [self.cerraturnoButton addSubview:cerraturnolineView];
+        [self.cerraturnoButton setHidden:YES];
         
-        [self.newtransactionButton addSubview:newtransactiolineView];
     }
+}
+
+- (void) keyboardWillShow:(NSNotification *) n
+{
+    NSDictionary* userInfo = [n userInfo];
+    // get the size of the keyboard
+    CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    // resize the noteView
+    
+    UIEdgeInsets contentInset = self.textScrollView.contentInset;
+    contentInset.bottom = keyboardSize.height - 50;
+    self.textScrollView.contentInset = contentInset;
+}
+
+- (void) keyboardWillHide:(NSNotification *) n
+{
+    UIEdgeInsets contentInset = UIEdgeInsetsZero;
+    self.textScrollView.contentInset = contentInset;
 }
 
 -(void)setMenuButtonsicon {
@@ -292,33 +315,33 @@
     
     if(self.uidText.length == 0) {
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese un UID válido."];
+            [self displayAlertView:@"¡Advertencia!" :@"Ingresa el  UID asignado a tu terminal. Si tienes dudas, contacta a soporte"];
         } else {
-            [self displayAlertView:@"Warning!" :@"Please input a valid UID."];
+            [self displayAlertView:@"Warning!" :@"Enter the UID assigned to your POS Terminal."];
         }
         return;
     }
     if(self.wskText.length == 0) {
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese un WSK Válido."];
+            [self displayAlertView:@"¡Advertencia!" :@"Ingresa el WSK asignado a tu terminal. Si tienes dudas, contacta a soporte."];
         } else {
-            [self displayAlertView:@"Warning!" :@"Please input a valid WSK."];
+            [self displayAlertView:@"Warning!" :@"Enter the WSK assigned to your POS Terminal. "];
         }
         return;
     }
     if(self.idSecursalText.length == 0) {
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese un ID Sucursal válido."];
+            [self displayAlertView:@"¡Advertencia!" :@"Ingresa una ID de Sucursal válida para guardar los ajustes."];
         } else {
-            [self displayAlertView:@"Warning!" :@"Please insert a valid Store ID."];
+            [self displayAlertView:@"Warning!" :@"Please enter a valid Branch ID to save your changes. If you have any doubts, please contact support."];
         }
         return;
     }
     if(self.idTerminalText.length == 0) {
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese un ID Terminal válido."];
+            [self displayAlertView:@"¡Advertencia!" :@"Ingresa una ID de Terminal válida para guardar los ajustes."];
         } else {
-            [self displayAlertView:@"Warning!" :@"Please insert a valid Terminal ID."];
+            [self displayAlertView:@"Warning!" :@"Please enter a valid Terminal ID to save your changes. If you have any doubts, please contact support."];
         }
         return;
     }
@@ -365,7 +388,8 @@
     
     NSDictionary *parameters = @{
                                  @"method": @"updateSetCommerceConnection",
-                                 @"param": paramString
+                                 @"param": paramString,
+                                 @"TOKEN": globals.server_token
                                  };
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -390,9 +414,9 @@
             globals.cifradoIV = self.vectorText;
             /////////////////////////////
             if(globals.selected_language == 0) {
-                [self displayAlertView:@"¡ÉXITO!" :@"ACTUALIZACIÓN EXITOSA!"];
+                [self displayAlertView:@"¡ÉXITO!" :@"La información fue actualizada con éxito."];
             } else {
-                [self displayAlertView:@"Congratulations!" :@"UPDATE SUCCESSFUL!"];
+                [self displayAlertView:@"Congratulations!" :@"Your information was saved successfully."];
             }
         } else {
             if(globals.selected_language == 0) {
@@ -406,9 +430,9 @@
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet."];
         } else {
-            [self displayAlertView:@"Warning!" :@"Network error."];
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue."];
         }
     }];
     
@@ -447,7 +471,8 @@
     
     NSDictionary *parameters = @{
                                  @"method": @"closeShift",
-                                 @"param": string
+                                 @"param": string,
+                                 @"TOKEN": globals.server_token
                                  };
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -475,9 +500,9 @@
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet."];
         } else {
-            [self displayAlertView:@"Warning!" :@"Network error."];
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue."];
         }
     }];
 }

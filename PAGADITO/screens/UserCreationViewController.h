@@ -2,7 +2,7 @@
 //  UserCreationViewController.h
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/7.
+//  Created by Javier Calderon  on 2019/1/7.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
@@ -10,8 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UserCreationViewController : UIViewController
+@interface UserCreationViewController : UIViewController <UITextFieldDelegate>
 
+@property (weak, nonatomic) IBOutlet UIScrollView *textScrollView;
 @property (weak, nonatomic) IBOutlet UITableView *roleTableView;
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;

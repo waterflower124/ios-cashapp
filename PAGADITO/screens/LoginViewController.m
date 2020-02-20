@@ -2,7 +2,7 @@
 //  LoginViewController.m
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/5.
+//  Created by Javier Calderon  on 2019/1/5.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
@@ -22,10 +22,14 @@
 //Global *globals;
 
 @implementation LoginViewController
-@synthesize emailTextFiled, passwordTextField, comment1Label, comment2Label, signinButton, forgotpasswordButton, explainLabel;
+@synthesize textScrollView, emailTextFiled, passwordTextField, comment1Label, comment2Label, signinButton, forgotpasswordButton, explainLabel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    ///  keyboard avoid
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:self.view.window];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:self.view.window];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
@@ -49,6 +53,27 @@
     self.explainLabel.text = multiLanguage.signinVC_explain[globals.selected_language];
 }
 
+- (IBAction)forgotPass:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.pagadito.com/index.php?mod=recuperar"] options:@{} completionHandler:nil];
+}
+
+- (void) keyboardWillShow:(NSNotification *) n
+{
+    NSDictionary* userInfo = [n userInfo];
+    // get the size of the keyboard
+    CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    // resize the noteView
+    
+    UIEdgeInsets contentInset = self.textScrollView.contentInset;
+    contentInset.bottom = keyboardSize.height;
+    self.textScrollView.contentInset = contentInset;
+}
+
+- (void) keyboardWillHide:(NSNotification *) n
+{
+    UIEdgeInsets contentInset = UIEdgeInsetsZero;
+    self.textScrollView.contentInset = contentInset;
+}
 
 -(void)dismissKeyboard
 {
@@ -67,16 +92,37 @@
 
     NSString *emailText = emailTextFiled.text;
     NSString *passwordText = passwordTextField.text;
-    if((emailText.length == 0) || (passwordText.length == 0)) {
+    
+//    emailText = @"jescobar@ninjawebcorporation.com";
+//    passwordText = @"12345678a";
+    
+    if((emailText.length == 0)) {
         if(globals.selected_language == 0) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"¡Advertencia!" message:@"Por favor ingrese su email y contraseña." preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"¡Advertencia!" message:@"Ingresa un correo electrónico válido para continuar." preferredStyle:UIAlertControllerStyleAlert];
             UIApplication *actionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 NSLog(@"OK action");
             }];
             [alert addAction:actionOK];
             [self presentViewController:alert animated:YES completion:nil];
         } else {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning!" message:@"Please insert your email and password." preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning!" message:@"Enter a valid email to continue." preferredStyle:UIAlertControllerStyleAlert];
+            UIApplication *actionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                NSLog(@"OK action");
+            }];
+            [alert addAction:actionOK];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+        return;
+    }else if((passwordText.length == 0)) {
+        if(globals.selected_language == 0) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"¡Advertencia!" message:@"Ingresa la contraseña de tu cuenta pagadito para continuar." preferredStyle:UIAlertControllerStyleAlert];
+            UIApplication *actionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                NSLog(@"OK action");
+            }];
+            [alert addAction:actionOK];
+            [self presentViewController:alert animated:YES completion:nil];
+        } else {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning!" message:@"Enter the password of your pagadito account to continue." preferredStyle:UIAlertControllerStyleAlert];
             UIApplication *actionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 NSLog(@"OK action");
             }];
@@ -108,16 +154,16 @@
     [self.activityIndicator startAnimating];
     [self.view addSubview:self.overlayView];
     
-    NSDictionary *credentials = @{@"credentials": @{
-                                                  @"email": @"jescobar@ninjawebcorporation.com",
-                                                  @"pwd": @"12345678a",
-                                                  @"ambiente": @"0"
-                                                  }};
 //    NSDictionary *credentials = @{@"credentials": @{
-//                                          @"email": emailText,
-//                                          @"pwd": passwordText,
-//                                          @"ambiente": @"0"
-//                                          }};
+//                                                  @"email": @"jescobar@ninjawebcorporation.com",
+//                                                  @"pwd": @"12345678a",
+//                                                  @"ambiente": @"0"
+//                                                  }};
+    NSDictionary *credentials = @{@"credentials": @{
+                                          @"email": emailText,
+                                          @"pwd": passwordText,
+                                          @"ambiente": @"0"
+                                          }};
     
     NSError *error;
     NSData *postData = [NSJSONSerialization dataWithJSONObject:credentials options:0 error:&error];
@@ -125,7 +171,8 @@
 
     NSDictionary *parameters = @{
                                      @"method": @"initLoginWSPG",
-                                     @"credentials": string
+                                     @"credentials": string,
+                                     @"TOKEN": globals.server_token
                                 };
     
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
@@ -160,14 +207,14 @@
             
         } else {
             if(globals.selected_language == 0) {
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"¡Advertencia!" message:@"Email o Contraseña Incorrectos" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"¡Advertencia!" message:@"Los datos ingresados son incorrectos." preferredStyle:UIAlertControllerStyleAlert];
                 UIApplication *actionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                     NSLog(@"OK action");
                 }];
                 [alert addAction:actionOK];
                 [self presentViewController:alert animated:YES completion:nil];
             } else {
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning!" message:@"Incorrect email or password" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning!" message:@"Data is incorrect." preferredStyle:UIAlertControllerStyleAlert];
                 UIApplication *actionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                     NSLog(@"OK action");
                 }];
@@ -179,7 +226,7 @@
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"¡Advertencia!" message:@"Error de red." preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"¡Advertencia!" message:@"Por favor asegurate que estás conectado a internet." preferredStyle:UIAlertControllerStyleAlert];
             UIApplication *actionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 NSLog(@"OK action");
             }];

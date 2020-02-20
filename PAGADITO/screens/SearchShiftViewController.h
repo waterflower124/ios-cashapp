@@ -2,7 +2,7 @@
 //  SearchShiftViewController.h
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/18.
+//  Created by Javier Calderon  on 2019/1/18.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 

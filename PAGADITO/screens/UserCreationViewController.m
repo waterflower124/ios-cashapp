@@ -2,7 +2,7 @@
 //  UserCreationViewController.m
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/7.
+//  Created by Javier Calderon  on 2019/1/7.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
@@ -38,7 +38,7 @@
 
 @implementation UserCreationViewController
 
-@synthesize roleTableView;
+@synthesize textScrollView, roleTableView;
 @synthesize nameTextField, lastnameTextField, usernameTextField, passwordTextField, confirmpwdTextField;
 @synthesize selectRoleButton, continueButton, switchButton, checkBoxUIView, pincodeUIView, pincodeTextField;
 @synthesize roleTableViewHeightConstraint;
@@ -46,12 +46,16 @@
 
 int role_int = -1;
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     Global *globals = [Global sharedInstance];
     MultiLanguage *multiLanguage = [MultiLanguage sharedInstance];
     
+    ///  keyboard avoid
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:self.view.window];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:self.view.window];
+    
+    ///  keyboard dismiss
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
     tap.cancelsTouchesInView = NO;
@@ -63,6 +67,11 @@ int role_int = -1;
     self.role_list = multiLanguage.usercreationVC_role_list[globals.selected_language];
     
     roleTableViewHeightConstraint.constant = 40 * self.role_list.count;
+    
+    self.pincodeTextField.delegate = self;
+    self.usernameTextField.delegate = self;
+    self.nameTextField.delegate = self;
+    self.lastnameTextField.delegate = self;
     
     [roleTableView setHidden:YES];
     [checkBoxUIView setHidden:YES];
@@ -82,16 +91,70 @@ int role_int = -1;
     [self.continueButton setTitle:multiLanguage.usercreationVC_continueButtonText[globals.selected_language] forState:UIControlStateNormal];
 }
 
+- (void) keyboardWillShow:(NSNotification *) n
+{
+    NSDictionary* userInfo = [n userInfo];
+    // get the size of the keyboard
+    CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    // resize the noteView
+
+    UIEdgeInsets contentInset = self.textScrollView.contentInset;
+    contentInset.bottom = keyboardSize.height - 50;
+    self.textScrollView.contentInset = contentInset;
+}
+
+- (void) keyboardWillHide:(NSNotification *) n
+{
+    UIEdgeInsets contentInset = UIEdgeInsetsZero;
+    self.textScrollView.contentInset = contentInset;
+}
+
 -(void)dismissKeyboard
 {
     [self.view endEditing:YES];
+}
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if(textField == self.pincodeTextField){
+        if (textField.text.length < 4 || string.length == 0){
+            return YES;
+        }
+        else{
+            return NO;
+        }
+    }
+    else if(textField == self.usernameTextField){
+        if (textField.text.length < 25  || string.length == 0){
+            return YES;
+        }
+        else{
+            return NO;
+        }
+    }
+    else if(textField == self.nameTextField){
+        if (textField.text.length < 45  || string.length == 0){
+            return YES;
+        }
+        else{
+            return NO;
+        }
+    }
+    else if(textField == self.lastnameTextField){
+        if (textField.text.length < 45  || string.length == 0){
+            return YES;
+        }
+        else{
+            return NO;
+        }
+    }
+    return NO;
 }
 
 - (IBAction)continueButtonAction:(id)sender {
     
     Global *globals = [Global sharedInstance];
     MultiLanguage *multiLanguage = [MultiLanguage sharedInstance];
-    
+
     if(role_int == -1) {
         if(globals.selected_language == 0) {
             [self displayAlertView:@"¡Advertencia!" :@"Por favor seleccione un rol de usuario."];
@@ -107,12 +170,49 @@ int role_int = -1;
     self.password = passwordTextField.text;
     self.confirmpassword = confirmpwdTextField.text;
     self.pin_code = pincodeTextField.text;
-    
-    if((self.name.length == 0) || (self.lastname.length == 0) || (self.username.length == 0) || (self.password.length == 0) || (self.confirmpassword.length == 0)) {
+
+    if(self.name.length == 0) {
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Por favor llene todos los campos."];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese un nombre."];
         } else {
-            [self displayAlertView:@"Warning!" :@"Please fill all of data."];
+            [self displayAlertView:@"Warning!" :@"Please enter a name."];
+        }
+        return;
+    }
+    if(self.lastname.length == 0) {
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese un apellido."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please enter a Lastname."];
+        }
+        return;
+    }
+    if(self.username.length == 0) {
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese un nombre de usuario."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please enter a Username."];
+        }
+        return;
+    }
+
+    NSString *someRegexp = @"^[a-zA-Z0-9]+$";
+    NSPredicate *myTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", someRegexp];
+
+    if (![myTest evaluateWithObject: self.username]){
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Utiliza únicamente letras de la A-Z y números del 0-9, sin espacios."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Only characters from A-Z, and numbers 0-9 are allowed, with no spaces."];
+        }
+        return;
+    }
+
+    if(self.password.length == 0) {
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese una contraseña."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please enter a Password."];
         }
         return;
     }
@@ -124,22 +224,31 @@ int role_int = -1;
         }
         return;
     }
-    if(![self.password isEqualToString:self.confirmpassword]) {
+    if(self.confirmpassword.length == 0) {
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Las contraseñas no coinciden."];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese la confirmación de la contraseña."];
         } else {
-            [self displayAlertView:@"Warning!" :@"Password doesn't match."];
+            [self displayAlertView:@"Warning!" :@"Please enter the confirmation password."];
         }
         return;
     }
-    
+    if(![self.password isEqualToString:self.confirmpassword]) {
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Ambas contraseñas deben ser iguales. Usuario no guardado"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"The password confirmation does not match the original. Changes not saved."];
+        }
+        return;
+    }
+
     [self startActivityIndicator];
-    
+
     NSDictionary *parameters = @{
                                  @"method": @"checkUserName",
-                                 @"username": self.username
+                                 @"username": self.username,
+                                 @"TOKEN": globals.server_token
                                  };
-    
+
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
     sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -148,11 +257,11 @@ int role_int = -1;
      {
          NSError *jsonError;
          NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&jsonError];
-         
+
          [self stopActivityIndicator];
-         
+
          BOOL status = [jsonResponse[@"status"] boolValue];
-         
+
          if(status) {
              if(globals.selected_language == 0) {
                  [self displayAlertView:@"¡Advertencia!" :@"Este nombre de usuario no está disponible. Por favor intente de nuevo con un nombre de usuario diferente."];
@@ -171,10 +280,11 @@ int role_int = -1;
                  [self performSegueWithIdentifier:@"creationtolast_segue" sender:nil];
              } else if(role_int == 1) {
                  if(globals.selected_language == 0) {
-                     [self displayAlertView:@"¡Éxito!" :@"Usuario Guardado Correctamente"];
+                     [self displayAlertView:@"¡Éxito!" :[NSString stringWithFormat:@"Creaste al usuario %@ con éxito.", self.username]];
                  } else {
-                     [self displayAlertView:@"Success!" :@"User saved successfuly."];
+                     [self displayAlertView:@"Success!" :[NSString stringWithFormat:@"New user %@ created successfully", self.username]];
                  }
+
                  NSDictionary *dataUserDic = @{@"nombres":self.name, @"apellidos":self.lastname, @"idPrivilegio":@"1", @"username":self.username, @"password":self.password, @"shiftEveryday":@"0", @"codigoAprobacion":@""};
                  [self.infoUserArray addObject:dataUserDic];
                  role_int = 2;
@@ -184,18 +294,26 @@ int role_int = -1;
                  self.roleTableViewHeightConstraint.constant = 40 * self.role_list.count;
                  [self.pincodeUIView setHidden:NO];
              } else if(role_int == 2) {
+                 if(self.pin_code.length == 0) {
+                     if(globals.selected_language == 0) {
+                         [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese un PIN"];
+                     } else {
+                         [self displayAlertView:@"Warning!" :@"Please enter a valid PIN"];
+                     }
+                     return;
+                 }
                  if(self.pin_code.length > 4) {
                      if(globals.selected_language == 0) {
-                         [self displayAlertView:@"¡Advertencia!" :@"El código PIN debe tener un máximo de cuatro caracteres."];
+                         [self displayAlertView:@"¡Advertencia!" :@"El código pin debe tener 4 dígitos."];
                      } else {
-                         [self displayAlertView:@"Warning!" :@"PIN code have to be a maximum of 4 chracters."];
+                         [self displayAlertView:@"Warning!" :@"Pin code have to be 4 digits."];
                      }
                      return;
                  }
                  if(globals.selected_language == 0) {
-                     [self displayAlertView:@"¡Éxito!" :@"Usuario Guardado Correctamente"];
+                     [self displayAlertView:@"¡Éxito!" :[NSString stringWithFormat:@"Creaste al usuario %@ con éxito.", self.username]];
                  } else {
-                     [self displayAlertView:@"Success!" :@"User saved successfuly."];
+                     [self displayAlertView:@"Success!" :[NSString stringWithFormat:@"New user %@ created successfully", self.username]];
                  }
                  NSDictionary *dataUserDic = @{@"nombres":self.name, @"apellidos":self.lastname, @"idPrivilegio":@"2", @"username":self.username, @"password":self.password, @"shiftEveryday":@"0", @"codigoAprobacion":self.pin_code};
                  [self.infoUserArray addObject:dataUserDic];
@@ -214,13 +332,14 @@ int role_int = -1;
                  [self.pincodeUIView setHidden:YES];
                  [self.checkBoxUIView setHidden:NO];
                  [self.switchButton setOn:YES];
+                 [self.switchButton setEnabled:YES];
                  self.checkStatus = @"1";
              } else if(role_int == 3) {
                  NSDictionary *dataUserDic = @{@"nombres":self.name, @"apellidos":self.lastname, @"idPrivilegio":@"3", @"username":self.username, @"password":self.password, @"shiftEveryday":self.checkStatus, @"codigoAprobacion":@""};
                  [self.infoUserArray addObject:dataUserDic];
-                 
+
                  self.infoUserDic = @{@"infoUsuario":self.infoUserArray};
-                 
+
                  /****************
                   go to next screen with infoUserArray
                   ***************/
@@ -231,15 +350,15 @@ int role_int = -1;
              self.usernameTextField.text = @"";
              self.passwordTextField.text = @"";
              self.confirmpwdTextField.text = @"";
-         } 
+         }
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
          [self stopActivityIndicator];
          if(globals.selected_language == 0) {
-             [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+             [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet."];
          } else {
-             [self displayAlertView:@"Warning!" :@"Network error."];
+             [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue."];
          }
-         
+
      }];
 }
 

@@ -2,7 +2,7 @@
 //  MultiLanguage.m
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/31.
+//  Created by Javier Calderon  on 2019/1/31.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 

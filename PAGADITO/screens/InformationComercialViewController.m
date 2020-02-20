@@ -2,7 +2,7 @@
 //  InformationComercialViewController.m
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/21.
+//  Created by Javier Calderon  on 2019/1/21.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
@@ -31,7 +31,7 @@
 @end
 
 @implementation InformationComercialViewController
-@synthesize logoImageView, TransV, SidePanel, sessionInfoLabel, currencyTableView, comercial_nameLabel, terminal_nameLabel, selectCurrencyButton, trade_numberLabel, trade_emailLabel;
+@synthesize textScrollView, logoImageView, TransV, SidePanel, sessionInfoLabel, currencyTableView, comercial_nameLabel, terminal_nameLabel, selectCurrencyButton, trade_numberLabel, trade_emailLabel;
 @synthesize homeButton, reportButton, configButton, usuarioButton, turnoButton, canceltransactionButton, newtransactionButton, cerraturnoButton, logoutButton;
 @synthesize titleLabel, maincommentLabel, logoimagecommentLabel, continueButton, sessioncommentLabel;
 
@@ -42,7 +42,7 @@
     
     if(globals.selected_language == 0) {
         self.titleLabel.text = @"Información Comercial";
-        self.maincommentLabel.text = @"Personaliza tu Pagadito POS App";
+        self.maincommentLabel.text = @"Personaliza tu POS App";
         self.logoimagecommentLabel.text = @"Logo imagen";
         self.sessioncommentLabel.text = @"Sesión iniciada:";
         [self.continueButton setTitle:@"Continuar" forState:UIControlStateNormal];
@@ -53,7 +53,7 @@
         self.trade_emailLabel.placeholder = @"Email del Comercio";
     } else {
         self.titleLabel.text = @"Merchant Information";
-        self.maincommentLabel.text = @"Personalize your Pagadito POS APP";
+        self.maincommentLabel.text = @"Personalize your POS APP";
         self.logoimagecommentLabel.text = @"Logo image";
         self.sessioncommentLabel.text = @"Session started:";
         [self.continueButton setTitle:@"Continue" forState:UIControlStateNormal];
@@ -67,7 +67,11 @@
     [self setMenuButtonsicon];
     
     /////  initialization ////
-    self.currencyNameArray = [[NSMutableArray alloc] initWithObjects:@"($) Dólares Americanos", @"(Q) Quetzales", @"(L) Lempiras", @"(C$) Córdobas", @"(₡) Colones Costarricenses", @"(B/.) Balboas", @"(RD$) Pesos Dominicanos", nil];
+    if(globals.selected_language == 0) {
+        self.currencyNameArray = [[NSMutableArray alloc] initWithObjects:@"($) Dólares Americanos", @"(Q) Quetzales", @"(L) Lempiras", @"(C$) Córdobas", @"(₡) Colones Costarricenses", @"(B/.) Balboas", @"(RD$) Pesos Dominicanos", nil];
+    } else {
+        self.currencyNameArray = [[NSMutableArray alloc] initWithObjects:@"($) Dollars", @"(Q) Quetzales", @"(L) Lempiras", @"(C$) Cordobas", @"(₡) Costa Rican Colones", @"(B/.) Balboas", @"(RD$) Dominican Pesos", nil];
+    }
     self.currencyUnitArray = [[NSMutableArray alloc] initWithObjects:@"USD", @"GTQ", @"HNL", @"NIO", @"CRC", @"PAB", @"DOP", nil];
     
     self.comercial_nameLabel.text = globals.nombreComercio;
@@ -99,6 +103,10 @@
             logoImageView.image = logo_image;
         }
     }
+    
+    ///  keyboard avoid
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:self.view.window];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:self.view.window];
     
     /////  dismiss keyboard  ///////////
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
@@ -215,6 +223,7 @@
         self.newtransactionButton.frame = newtransactionButtonFrame;
         UIView *newtransactiolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, newtransactionButton.frame.size.width, 1)];
         newtransactiolineView.backgroundColor = [UIColor lightGrayColor];
+        [self.newtransactionButton addSubview:newtransactiolineView];
         
         CGRect canceltransactionButtonFrame = self.canceltransactionButton.frame;
         canceltransactionButtonFrame.origin.x = 0;
@@ -224,18 +233,36 @@
         canceltransactionlineView.backgroundColor = [UIColor lightGrayColor];
         [self.canceltransactionButton addSubview:canceltransactionlineView];
         
-        CGRect cerraturnoButtonFrame = self.cerraturnoButton.frame;
-        cerraturnoButtonFrame.origin.x = 0;
-        cerraturnoButtonFrame.origin.y = 420;
-        self.cerraturnoButton.frame = cerraturnoButtonFrame;
-        UIView *cerraturnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, cerraturnoButton.frame.size.width, 1)];
-        cerraturnolineView.backgroundColor = [UIColor lightGrayColor];
-        [self.cerraturnoButton addSubview:cerraturnolineView];
+//        CGRect cerraturnoButtonFrame = self.cerraturnoButton.frame;
+//        cerraturnoButtonFrame.origin.x = 0;
+//        cerraturnoButtonFrame.origin.y = 420;
+//        self.cerraturnoButton.frame = cerraturnoButtonFrame;
+//        UIView *cerraturnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, cerraturnoButton.frame.size.width, 1)];
+//        cerraturnolineView.backgroundColor = [UIColor lightGrayColor];
+//        [self.cerraturnoButton addSubview:cerraturnolineView];
         
-        [self.newtransactionButton addSubview:newtransactiolineView];
+        [self.cerraturnoButton setHidden:YES];
     }
     
     
+}
+
+- (void) keyboardWillShow:(NSNotification *) n
+{
+    NSDictionary* userInfo = [n userInfo];
+    // get the size of the keyboard
+    CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    // resize the noteView
+    
+    UIEdgeInsets contentInset = self.textScrollView.contentInset;
+    contentInset.bottom = keyboardSize.height - 50;
+    self.textScrollView.contentInset = contentInset;
+}
+
+- (void) keyboardWillHide:(NSNotification *) n
+{
+    UIEdgeInsets contentInset = UIEdgeInsetsZero;
+    self.textScrollView.contentInset = contentInset;
 }
 
 -(void)setMenuButtonsicon {
@@ -460,7 +487,8 @@
     
     NSDictionary *parameters = @{
                                  @"method": @"closeShift",
-                                 @"param": string
+                                 @"param": string,
+                                 @"TOKEN": globals.server_token
                                  };
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -488,11 +516,18 @@
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet."];
         } else {
-            [self displayAlertView:@"Warning!" :@"Network error."];
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue."];
         }
     }];
+}
+
+- (BOOL)validateEmailWithString:(NSString*)email
+{
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:email];
 }
 
 - (IBAction)continuButtonAction:(id)sender {
@@ -502,39 +537,55 @@
     self.terminal_name= self.terminal_nameLabel.text;
     self.trade_number = self.trade_numberLabel.text;
     self.trade_email = self.trade_emailLabel.text;
+    
     if(self.comercial_name.length == 0) {
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese nombre comercial."];
+            [self displayAlertView:@"¡Advertencia!" :@"Escribe el nombre de tu comercio para continuar."];
         } else {
-            [self displayAlertView:@"Warning!" :@"Please input comercial name."];
+            [self displayAlertView:@"Warning!" :@"Enter your commercial name to continue."];
         }
         return;
     }
     if(self.terminal_name.length == 0) {
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Por favo ingrese nombre de la terminal."];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese un nombre de terminal"];
         } else {
-            [self displayAlertView:@"Warning!" :@"Please input terminal name."];
+            [self displayAlertView:@"Warning!" :@"Please enter a valid Terminal Name"];
         }
         return;
     }
     if(self.trade_number.length == 0) {
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingresa un RUC válido."];
+            [self displayAlertView:@"¡Advertencia!" :@"Ingresa tu número de registro comercial. Si no lo conoces, ingresa: 0000."];
         } else {
-            [self displayAlertView:@"Warning!" :@"Please insert a valid RUC."];
+            [self displayAlertView:@"Warning!" :@"Please enter your merchant registry number. If you don´t have one, enter: 0000."];
         }
         return;
     }
     if(self.trade_email.length == 0) {
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese su email."];
+            [self displayAlertView:@"¡Advertencia!" :@"Ingresa una dirección de correo electrónico para continuar."];
         } else {
-            [self displayAlertView:@"Warning!" :@"Please input your email address."];
+            [self displayAlertView:@"Warning!" :@"Please enter your business email to continue."];
         }
         return;
     }
-    
+    if(![self validateEmailWithString:self.trade_email]) {
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese una dirección de correo electrónico válida."];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please enter a valid email address."];
+        }
+        return;
+    }
+    if(self.selected_currency.length == 0) {
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor seleccione una moneda"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please select a currency"];
+        }
+        return;
+    }
     [self.activityIndicator startAnimating];
     [self.view addSubview:self.overlayView];
     
@@ -561,7 +612,8 @@
     
     NSDictionary *parameters = @{
                                  @"method": @"updateSetCommerceInformation",
-                                 @"param": paramString
+                                 @"param": paramString,
+                                 @"TOKEN": globals.server_token
                                  };
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -583,11 +635,28 @@
             globals.moneda = self.selected_currency;
             globals.numeroRegistro = self.trade_number;
             globals.emailComercio = self.trade_email;
+            
+            if([self.selected_currency isEqualToString:@"USD"]){
+                globals.currency = @"$";
+            } else if([self.selected_currency isEqualToString:@"GTQ"]){
+                globals.currency = @"Q";
+            } else if([self.selected_currency isEqualToString:@"HNL"]){
+                globals.currency = @"L";
+            } else if([self.selected_currency isEqualToString:@"NIO"]){
+                globals.currency = @"C$";
+            } else if([self.selected_currency isEqualToString:@"CRC"]){
+                globals.currency = @"₡";
+            } else if([self.selected_currency isEqualToString:@"PAB"]){
+                globals.currency = @"B/.";
+            } else if([self.selected_currency isEqualToString:@"DOP"]){
+                globals.currency = @"RD$";
+            }
+            
             /////////////////////////////
             if(globals.selected_language == 0) {
-                [self displayAlertView:@"¡Éxito!" :@"¡ACTUALIZACIÓN EXITOSA!"];
+                [self displayAlertView:@"¡Éxito!" :@"La información fue actualizada con éxito."];
             } else {
-                [self displayAlertView:@"Success!" :@"UPDATE SUCCESSFUL!"];
+                [self displayAlertView:@"Success!" :@"Your information was saved successfully."];
             }
         } else {
             if(globals.selected_language == 0) {
@@ -601,9 +670,9 @@
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red!"];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet."];
         } else {
-            [self displayAlertView:@"Warning!" :@"Network error!"];
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue."];
         }
     }];
 }

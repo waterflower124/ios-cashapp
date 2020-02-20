@@ -2,7 +2,7 @@
 //  TransactionResultViewController.m
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/2/8.
+//  Created by Javier Calderon  on 2019/2/8.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
@@ -37,7 +37,7 @@
         self.amountcommentLabel.text = @"Monto cobrado:";
         self.fullnamecommentLabel.text = @"Nombre:";
         self.cardnumbercommentLabel.text = @"# de la Tarjeta:";
-        self.emailTextField.placeholder = @"Correo Electrónico";
+        self.emailTextField.placeholder = @"Ingresa tu correo electrónico";
         self.signcommentLabel.text = @"Firma";
         self.userInfocommentLabel.text = @"Sesión iniciada:";
         [self.mainnewtransButton setTitle:@"Nueva Transacción" forState:UIControlStateNormal];
@@ -51,13 +51,13 @@
         self.amountcommentLabel.text = @"Charged Amount:";
         self.fullnamecommentLabel.text = @"Name:";
         self.cardnumbercommentLabel.text = @"# of the Card:";
-        self.emailTextField.placeholder = @"Email";
+        self.emailTextField.placeholder = @"Please enter your e-mail address";
         self.signcommentLabel.text = @"Sign";
         self.userInfocommentLabel.text = @"Session started:";
         [self.mainnewtransButton setTitle:@"New Transaction" forState:UIControlStateNormal];
         [self.maincanceltransButton setTitle:@"Cancel Transaction" forState:UIControlStateNormal];
 //        [self.signatureclearButton setTitle:@"clear" forState:UIControlStateNormal];
-        [self.submitemailButton setTitle:@"Submit E-Mail" forState:UIControlStateNormal];
+        [self.submitemailButton setTitle:@"Send by Email" forState:UIControlStateNormal];
     }
     
     [self setMenuButtonsicon];
@@ -90,7 +90,7 @@
     self.cardnumberLabel.text = [NSString stringWithFormat:@"**** **** **** %@", self.dataTransaction[@"card"]];
     
     //////  init amount Label  //////
-    NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.dataTransaction[@"amount"]];
+    /*NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.dataTransaction[@"amount"]];
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
     numberFormatter.locale = [NSLocale currentLocale];// this ensures the right separator behavior
     numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
@@ -99,8 +99,7 @@
     [numberFormatter setMaximumFractionDigits:10];
     /////////
     
-    NSString * formattedString = [NSString stringWithFormat:@"%@", [numberFormatter stringForObjectValue:amountDecimal]];
-    self.transactionamountLabel.text = [NSString stringWithFormat:@"$%@", formattedString];
+    NSString * formattedString = [NSString stringWithFormat:@"%@", [numberFormatter stringForObjectValue:amountDecimal]];*/    self.transactionamountLabel.text = [NSString stringWithFormat:@"%@%@", globals.currency ,self.dataTransaction[@"amount"]];
     
     //////////// init for activity indicator  /////////
     self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -289,6 +288,7 @@
         self.newtransactionButton.frame = newtransactionButtonFrame;
         UIView *newtransactiolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, newtransactionButton.frame.size.width, 1)];
         newtransactiolineView.backgroundColor = [UIColor lightGrayColor];
+        [self.newtransactionButton addSubview:newtransactiolineView];
         
         CGRect canceltransactionButtonFrame = self.canceltransactionButton.frame;
         canceltransactionButtonFrame.origin.x = 0;
@@ -298,15 +298,15 @@
         canceltransactionlineView.backgroundColor = [UIColor lightGrayColor];
         [self.canceltransactionButton addSubview:canceltransactionlineView];
         
-        CGRect cerraturnoButtonFrame = self.cerraturnoButton.frame;
-        cerraturnoButtonFrame.origin.x = 0;
-        cerraturnoButtonFrame.origin.y = 420;
-        self.cerraturnoButton.frame = cerraturnoButtonFrame;
-        UIView *cerraturnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, cerraturnoButton.frame.size.width, 1)];
-        cerraturnolineView.backgroundColor = [UIColor lightGrayColor];
-        [self.cerraturnoButton addSubview:cerraturnolineView];
+//        CGRect cerraturnoButtonFrame = self.cerraturnoButton.frame;
+//        cerraturnoButtonFrame.origin.x = 0;
+//        cerraturnoButtonFrame.origin.y = 420;
+//        self.cerraturnoButton.frame = cerraturnoButtonFrame;
+//        UIView *cerraturnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, cerraturnoButton.frame.size.width, 1)];
+//        cerraturnolineView.backgroundColor = [UIColor lightGrayColor];
+//        [self.cerraturnoButton addSubview:cerraturnolineView];
         
-        [self.newtransactionButton addSubview:newtransactiolineView];
+        [self.cerraturnoButton setHidden:YES];
     }
         
         ///////////////////////////////
@@ -407,7 +407,8 @@
     
     NSDictionary *parameters = @{
                                  @"method": @"closeShift",
-                                 @"param": string
+                                 @"param": string,
+                                 @"TOKEN": globals.server_token
                                  };
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -435,9 +436,9 @@
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red." :@"nil"];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet." :@"nil"];
         } else {
-            [self displayAlertView:@"Warning!" :@"Network error." :@"nil"];
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue." :@"nil"];
         }
     }];
 }
@@ -449,6 +450,13 @@
     globals.signatureStatus = false;
 }
 
+- (BOOL)validateEmailWithString:(NSString*)email
+{
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:email];
+}
+
 - (IBAction)emailSendButtonAction:(id)sender {
     Global *globals = [Global sharedInstance];
     
@@ -456,19 +464,28 @@
     
     if(!globals.signatureStatus) {
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Por favor firme en el espacio indicado." :@"nil"];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor dibuja tu firma para completar la transacción." :@"nil"];
         } else {
-            [self displayAlertView:@"Warning!" :@"Please sign with your name." :@"nil"];
+            [self displayAlertView:@"Warning!" :@"Please provide your signature to finalize the transaction." :@"nil"];
         }
         return;
     }
-     if([email isEqualToString:@""]) {
+    if([email isEqualToString:@""]) {
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese su dirección email." :@"nil"];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingresa un correo electrónico para continuar." :@"nil"];
         } else {
-            [self displayAlertView:@"Warning!" :@"Please input your email address." :@"nil"];
+            [self displayAlertView:@"Warning!" :@"Please enter an e-mail address to continue." :@"nil"];
         }
          return;
+    }
+    
+    if(![self validateEmailWithString:email]) {
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese una dirección de correo electrónico válida." :@"nil"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please enter a valid email address." :@"nil"];
+        }
+        return;
     }
     
     UIGraphicsBeginImageContextWithOptions(self.signatureView.bounds.size, self.signatureView.opaque, 0.0);
@@ -509,12 +526,21 @@
     NSData *dataTransactionData = [NSJSONSerialization dataWithJSONObject:dataTransaction options:0 error:&error];
     NSString *dataTransactionString = [[NSString alloc]initWithData:dataTransactionData encoding:NSUTF8StringEncoding];
     
+    NSString *selected_language;
+    if(globals.selected_language == 0) {
+        selected_language = @"ES";
+    } else {
+        selected_language = @"EN";
+    }
+    
     NSDictionary *param = @{
                                   @"dataTransacction": dataTransactionString,
                                   @"firma": base64StringSignature,
                                   @"logo": base64StringLogo,
+                                  @"moneda": globals.currency,
                                   @"mail_comprador": email,
-                                  @"emailComercio": globals.emailComercio
+                                  @"emailComercio": globals.emailComercio,
+                                  @"language": selected_language
                                 };
 //    NSLog(@"11111:  %@", base64StringSignature);
 //    NSLog(@"222222:  %@", base64StringLogo);
@@ -526,6 +552,7 @@
     NSDictionary *parameter = @{
                                 @"method": @"generatePDF",
                                 @"param": paramString,
+                                @"TOKEN": globals.server_token
                             };
     
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
@@ -547,12 +574,16 @@
             [self.signatureView.path removeAllPoints];
             [self.signatureView setNeedsDisplay];
             globals.signatureStatus = false;
+            [self.mainnewtransButton setEnabled:YES];
+            [self.maincanceltransButton setEnabled:YES];
             if(globals.selected_language == 0) {
                 [self displayAlertView:@"¡Felicidades!" :@"Voucher enviado exitosamente!" :@"nil"];
             } else {
                 [self displayAlertView:@"Congratulations!" :@"Voucher sent successfully!" :@"nil"];
             }
         } else {
+            [self.mainnewtransButton setEnabled:NO];
+            [self.maincanceltransButton setEnabled:NO];
             if(globals.selected_language == 0) {
                 [self displayAlertView:@"¡Advertencia!" :@"No se pudo obtener respuesta del servidor." :@"nil"];
             } else {
@@ -562,10 +593,12 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
+        [self.mainnewtransButton setEnabled:NO];
+        [self.maincanceltransButton setEnabled:NO];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red." :@"nil"];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet." :@"nil"];
         } else {
-            [self displayAlertView:@"Warning!" :@"Network error." :@"nil"];
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue." :@"nil"];
         }
     }];
     

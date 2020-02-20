@@ -63,6 +63,12 @@ Global *globals;
     /////  get IP address  //////
     [self getIPAddress];
     
+    ////   get Mac address  /////
+    self.macAddress = [self getMacAddress];
+//    self.macAddress = @"E692D6BB-E8A1-44B3-992F-9CA1A1BF20E4";
+    globals.macAddress = self.macAddress;
+    NSLog(@"%@", globals.macAddress);
+    
     ///////  language picker setting
     NSUserDefaults *userdefault = [NSUserDefaults standardUserDefaults];
     if([[[userdefault dictionaryRepresentation] allKeys] containsObject:@"selected_language"]) {
@@ -70,24 +76,9 @@ Global *globals;
         }
     [self.pickerView_language selectRow:globals.selected_language inComponent:0 animated:YES];
     
-    ///////////// logo image load   ///////////
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                         NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png", @"pagadito/pagadito_logo"]];
-    BOOL fileExists=[[NSFileManager defaultManager] fileExistsAtPath:imagePath];
     
-    if(fileExists) {
-        globals.logo_imagePath = imagePath;
-    }else {
-        globals.logo_imagePath = @"";
-    }
     
     //////////////////////////////////////////
-    self.macAddress = [self getMacAddress];
-    globals.macAddress = self.macAddress;
-    NSLog(@"%@", globals.macAddress);
-    
     self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -98,7 +89,8 @@ Global *globals;
 
     NSDictionary *parameters = @{
                                  @"method": @"initSystem",
-                                 @"param": self.macAddress
+                                 @"param": self.macAddress,
+                                 @"TOKEN": globals.server_token
                                  };
 
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
@@ -123,15 +115,49 @@ Global *globals;
             if([[[userdefault dictionaryRepresentation] allKeys] containsObject:@"selected_language"]) {
                 globals.selected_language = [[NSUserDefaults standardUserDefaults] integerForKey:@"selected_language"];
             }
+            
+            ///////////// logo image load   ///////////
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                                 NSUserDomainMask, YES);
+            NSString *documentsDirectory = [paths objectAtIndex:0];
+            NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png", @"pagadito/pagadito_logo"]];
+            BOOL fileExists=[[NSFileManager defaultManager] fileExistsAtPath:imagePath];
+            
+            if(fileExists) {
+                globals.logo_imagePath = imagePath;
+            }else {
+                globals.logo_imagePath = @"";
+            }
+           
+//            NSArray *ppaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+//                                                                 NSUserDomainMask, YES);
+//            NSString *ddocumentsDirectory = [ppaths objectAtIndex:0];
+//            NSString *iimagePath = [ddocumentsDirectory stringByAppendingPathComponent:@"pagadito/333.pdf"];
+//            BOOL ffileExists=[[NSFileManager defaultManager] fileExistsAtPath:iimagePath];
+//            if(ffileExists) {
+//                NSLog(@"00000000: file exist");
+//            }else {
+//                NSLog(@"99999999: file don't exist");
+//            }
+//            NSLog(@"pdf file path:  :%@", iimagePath);
             [self performSegueWithIdentifier:@"firsttowelcome_segue" sender:self];
-        } else if(statusInt == 2){
-
+        } else {
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                                 NSUserDomainMask, YES);
+            NSString *documentsDirectory = [paths objectAtIndex:0];
+            NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png", @"pagadito/pagadito_logo"]];
+            BOOL fileExists=[[NSFileManager defaultManager] fileExistsAtPath:imagePath];
+            if(fileExists) {
+                NSError *error;
+                [[NSFileManager defaultManager] removeItemAtPath:imagePath error:&error];
+            }
+            globals.logo_imagePath = @"";
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"¡Advertencia!" message:@"Error de red." preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"¡Advertencia!" message:@"Por favor asegurate que estás conectado a internet." preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *actionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 NSLog(@"OK action");
             }];

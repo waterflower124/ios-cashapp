@@ -2,7 +2,7 @@
 //  EditUserScreenViewController.m
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/14.
+//  Created by Javier Calderon  on 2019/1/14.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
@@ -30,7 +30,7 @@
 @end
 
 @implementation EditUserScreenViewController
-@synthesize user_array, selected_index;
+@synthesize textScrollView, user_array, selected_index;
 @synthesize roleSelectButton, switchButton, checkBoxUIView, pincodeUIView, roleTableView, roleTableViewHeightConstraint;
 @synthesize firstnameTextView, lastnameTextView, usernameTextView, passwordTextView, confirmTextView, pincodeTextView;
 @synthesize titleLabel, pincodecommentLabel, checkboxcommentLabel, saveButton;
@@ -62,6 +62,10 @@
         self.confirmTextView.placeholder = @"Confirm Password";
         [self.saveButton setTitle:@"Save and Continue" forState:UIControlStateNormal];
     }
+    
+    ///  keyboard avoid
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:self.view.window];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:self.view.window];
     
     ////  dismiss keyboard   //////
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
@@ -106,6 +110,65 @@
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     self.activityIndicator.center = self.overlayView.center;
     [self.overlayView addSubview:self.activityIndicator];
+    
+    self.pincodeTextView.delegate = self;
+    self.usernameTextView.delegate = self;
+    self.firstnameTextView.delegate = self;
+    self.lastnameTextView.delegate = self;
+}
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if(textField == self.pincodeTextView){
+        if (textField.text.length < 4 || string.length == 0){
+            return YES;
+        }
+        else{
+            return NO;
+        }
+    }
+    else if(textField == self.usernameTextView){
+        if (textField.text.length < 25  || string.length == 0){
+            return YES;
+        }
+        else{
+            return NO;
+        }
+    }
+    else if(textField == self.firstnameTextView){
+        if (textField.text.length < 45  || string.length == 0){
+            return YES;
+        }
+        else{
+            return NO;
+        }
+    }
+    else if(textField == self.lastnameTextView){
+        if (textField.text.length < 45  || string.length == 0){
+            return YES;
+        }
+        else{
+            return NO;
+        }
+    }
+    return NO;
+}
+
+- (void) keyboardWillShow:(NSNotification *) n
+{
+    NSDictionary* userInfo = [n userInfo];
+    // get the size of the keyboard
+    CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    // resize the noteView
+    
+    UIEdgeInsets contentInset = self.textScrollView.contentInset;
+    contentInset.bottom = keyboardSize.height - 50;
+    self.textScrollView.contentInset = contentInset;
+}
+
+- (void) keyboardWillHide:(NSNotification *) n
+{
+    UIEdgeInsets contentInset = UIEdgeInsetsZero;
+    self.textScrollView.contentInset = contentInset;
 }
 
 -(void)dismissKeyboard
@@ -145,25 +208,46 @@
     
     if(self.firstname_text.length == 0) {
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese su nombre" :@"nil"];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese un nombre." :@"nil"];
         } else {
-            [self displayAlertView:@"Warning!" :@"Please input First Name." :@"nil"];
+            [self displayAlertView:@"Warning!" :@"Please enter a name." :@"nil"];
         }
         return;
     }
     if(self.lastname_text.length == 0) {
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese su apellido." :@"nil"];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese un apellido." :@"nil"];
         } else {
-            [self displayAlertView:@"Warning!" :@"Please input Last Name." :@"nil"];
+            [self displayAlertView:@"Warning!" :@"Please enter a LastName." :@"nil"];
         }
         return;
     }
     if(self.usertname_text.length == 0) {
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese su nombre de usuario." :@"nil"];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese un nombre de usuario." :@"nil"];
         } else {
-            [self displayAlertView:@"Warning!" :@"Please input Username." :@"nil"];
+            [self displayAlertView:@"Warning!" :@"Please enter a UserName." :@"nil"];
+        }
+        return;
+    }
+    
+    NSString *someRegexp = @"^[a-zA-Z0-9]+$";
+    NSPredicate *myTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", someRegexp];
+    
+    if (![myTest evaluateWithObject: self.usertname_text]){
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Utiliza únicamente letras de la A-Z y números del 0-9, sin espacios." :@"nil"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Only characters from A-Z, and numbers 0-9 are allowed, with no spaces." :@"nil"];
+        }
+        return;
+    }
+    
+    if(self.password_text.length == 0) {
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese una contraseña." :@"nil"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please enter a Password." :@"nil"];
         }
         return;
     }
@@ -171,22 +255,38 @@
         if(globals.selected_language == 0) {
             [self displayAlertView:@"¡Advertencia!" :@"La contraseña debe tener al menos 6 caracteres." :@"nil"];
         } else {
-            [self displayAlertView:@"Warning!" :@"Password have to be at least 6 characters" :@"nil"];
+            [self displayAlertView:@"Warning!" :@"Password have to be at least 6 characters." :@"nil"];
+        }
+        return;
+    }
+    if(self.confirm_text.length == 0) {
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese la confirmación de la contraseña." :@"nil"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"Please enter the confirmation password." :@"nil"];
         }
         return;
     }
     if(![self.password_text isEqualToString:self.confirm_text]) {
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Las contraseñas no coinciden." :@"nil"];
+            [self displayAlertView:@"¡Advertencia!" :@"Ambas contraseñas deben ser iguales. Usuario no guardado" :@"nil"];
         } else {
-            [self displayAlertView:@"Warning!" :@"Password doesn't match." :@"nil"];
+            [self displayAlertView:@"Warning!" :@"The password confirmation does not match the original. Changes not saved." :@"nil"];
         }
         return;
     }
     if([self.selected_user[3] isEqualToString:@"Supervisor"]) {
-        if(self.pincode_text.length != 4) {
+        if(self.pincode_text.length == 0) {
             if(globals.selected_language == 0) {
-                [self displayAlertView:@"¡Advertencia!" :@"El código pin debe tener 4 dígitos." :@"nil"];
+                [self displayAlertView:@"¡Advertencia!" :@"Por favor ingrese un PIN" :@"nil"];
+            } else {
+                [self displayAlertView:@"Warning!" :@"Please enter a valid PIN" :@"nil"];
+            }
+            return;
+        }
+        if(self.pincode_text.length > 4) {
+            if(globals.selected_language == 0) {
+               [self displayAlertView:@"¡Advertencia!" :@"El código pin debe tener 4 dígitos." :@"nil"];
             } else {
                 [self displayAlertView:@"Warning!" :@"Pin code have to be 4 digits." :@"nil"];
             }
@@ -215,7 +315,8 @@
     
     NSDictionary *parameters = @{
                                  @"method": @"editSystemUsers",
-                                 @"param": string
+                                 @"param": string,
+                                 @"TOKEN": globals.server_token
                                  };
     
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
@@ -233,15 +334,15 @@
         BOOL status = [jsonResponse[@"status"] boolValue];
         if(status) {
             if(globals.selected_language == 0) {
-                [self displayAlertView:@"¡Éxito!" :@"Usuario editado exitosamente." :@"user_admin"];
+                [self displayAlertView:@"¡Éxito!" :[NSString stringWithFormat:@"Se ha editado con éxito a %@.", self.usertname_text] :@"user_admin"];
             } else {
-                [self displayAlertView:@"Congratulations!" :@"The user edited succesfully." :@"user_admin"];
+                [self displayAlertView:@"Congratulations!" :[NSString stringWithFormat:@"You succesfully edited user %@.", self.usertname_text] :@"user_admin"];
             }
         } else {
             if(globals.selected_language == 0) {
-                [self displayAlertView:@"¡Advertencia!" :@"Ha ocurrido un error al editar el usuario." :@"nil"];
+                [self displayAlertView:@"¡Advertencia!" :[NSString stringWithFormat:@"Ha ocurrido un error al editar el usuario %@.", self.usertname_text] :@"nil"];
             } else {
-                [self displayAlertView:@"Warning!" :@"There has been an error editing the user." :@"nil"];
+                [self displayAlertView:@"Warning!" :[NSString stringWithFormat:@"There has been an error editing the user %@.", self.usertname_text] :@"nil"];
             }
         }
         
@@ -249,9 +350,9 @@
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red." :@"nil"];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet." :@"nil"];
         } else {
-            [self displayAlertView:@"Warning!" :@"Network error." :@"nil"];
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue." :@"nil"];
         }
     }];
 }

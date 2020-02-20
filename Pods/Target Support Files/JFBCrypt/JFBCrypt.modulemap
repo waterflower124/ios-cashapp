@@ -1,0 +1,6 @@
+framework module JFBCrypt {
+  umbrella header "JFBCrypt-umbrella.h"
+
+  export *
+  module * { export * }
+}

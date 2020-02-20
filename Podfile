@@ -6,5 +6,9 @@ target 'PAGADITO' do
   use_frameworks!
 
   pod 'AFNetworking', '~> 3.0'
+  pod 'JFBCrypt', '~> 0.1'
+  pod 'FRHyperLabel', '~> 1.0'
+
+
 
 end

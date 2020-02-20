@@ -2,7 +2,7 @@
 //  EditUserScreenViewController.h
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/14.
+//  Created by Javier Calderon  on 2019/1/14.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
@@ -10,7 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface EditUserScreenViewController : UIViewController
+@interface EditUserScreenViewController : UIViewController <UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UIScrollView *textScrollView;
 
 @property(strong, nonatomic)NSMutableArray *user_array;
 @property(nonatomic)NSInteger selected_index;

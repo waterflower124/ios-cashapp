@@ -2,12 +2,13 @@
 //  Global.m
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/6.
+//  Created by Javier Calderon  on 2019/1/6.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "Global.h"
+#import "JFBCrypt.h"
 
 @implementation Global
 
@@ -18,6 +19,7 @@
 
 @synthesize turnoCod,codeShift,idTurno;
 @synthesize signatureStatus;
+@synthesize server_token;
     
 + (Global *)sharedInstance {
     static dispatch_once_t onceToken;
@@ -32,8 +34,14 @@
 -(id)init {
     self = [super init];
     if(self) {
-//        uid = nil;
-        server_url = @"http://52.37.130.199/service.php";
+        //URL WS
+        server_url = @"http://3.130.254.187/ws_pg/service.php";
+        
+        //PRIVATE KEY
+        NSString *salt = [JFBCrypt generateSaltWithNumberOfRounds: 10];
+        NSString *hashedPassword = [JFBCrypt hashPassword: @"@PG$WS$2019$APPS$!@" withSalt: salt];
+        //NSLog(@"%@",hashedPassword);
+        server_token = hashedPassword;
     }
     return self;
 }

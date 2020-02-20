@@ -2,7 +2,7 @@
 //  CloseShiftViewController.m
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/18.
+//  Created by Javier Calderon  on 2019/1/18.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
@@ -61,7 +61,7 @@
         self.timedateheadLabel.text = @"Time/Date";
         self.sessioncommentLabel.text = @"Session started:";
         self.removecommentLabel.text = @"Swipe the shift you want to close to the left.";
-        [self.removeButton setTitle:@"Romove" forState:UIControlStateNormal];
+        [self.removeButton setTitle:@"Remove" forState:UIControlStateNormal];
         [self.cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
     }
     
@@ -166,6 +166,7 @@
         self.newtransactionButton.frame = newtransactionButtonFrame;
         UIView *newtransactiolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, newtransactionButton.frame.size.width, 1)];
         newtransactiolineView.backgroundColor = [UIColor lightGrayColor];
+        [self.newtransactionButton addSubview:newtransactiolineView];
         
         CGRect canceltransactionButtonFrame = self.canceltransactionButton.frame;
         canceltransactionButtonFrame.origin.x = 0;
@@ -175,15 +176,15 @@
         canceltransactionlineView.backgroundColor = [UIColor lightGrayColor];
         [self.canceltransactionButton addSubview:canceltransactionlineView];
         
-        CGRect cerraturnoButtonFrame = self.cerraturnoButton.frame;
-        cerraturnoButtonFrame.origin.x = 0;
-        cerraturnoButtonFrame.origin.y = 420;
-        self.cerraturnoButton.frame = cerraturnoButtonFrame;
-        UIView *cerraturnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, cerraturnoButton.frame.size.width, 1)];
-        cerraturnolineView.backgroundColor = [UIColor lightGrayColor];
-        [self.cerraturnoButton addSubview:cerraturnolineView];
+//        CGRect cerraturnoButtonFrame = self.cerraturnoButton.frame;
+//        cerraturnoButtonFrame.origin.x = 0;
+//        cerraturnoButtonFrame.origin.y = 420;
+//        self.cerraturnoButton.frame = cerraturnoButtonFrame;
+//        UIView *cerraturnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, cerraturnoButton.frame.size.width, 1)];
+//        cerraturnolineView.backgroundColor = [UIColor lightGrayColor];
+//        [self.cerraturnoButton addSubview:cerraturnolineView];
         
-        [self.newtransactionButton addSubview:newtransactiolineView];
+        [self.cerraturnoButton setHidden:YES];
     }
     /////////////////////////////////////////////////////
     UITapGestureRecognizer *tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideSidePanel:)];
@@ -271,6 +272,10 @@
         cell.fechaFincommentLabel.text = @"End:";
     }
     
+    CGRect frame = cell.closeShiftTableCellView.frame;
+    frame.origin.x = 0;
+    cell.closeShiftTableCellView.frame = frame;
+    
     [cell setCell_index:indexPath.row];
     cell.delegate = self;
     return cell;
@@ -347,6 +352,14 @@
 
 -(void) reloadCloseShiftTableViewData:(CloseShiftTableViewCell *)sender :(NSInteger)index {
     Global *globals = [Global sharedInstance];
+    if([self.shift_array[index][1] isEqualToString:globals.idUser]) {
+        if(globals.selected_language == 0) {
+            [self displayAlertView:@"¡Advertencia!" :@"No puedes cerrar este turno." :@"deny"];
+        } else {
+            [self displayAlertView:@"Warning!" :@"You can't close this shift." :@"deny"];
+        }
+        return;
+    }
     if([self.shift_array[index][7] isEqualToString:@"1"]) {
         self.closing_shift = self.shift_array[index];
         self.closing_shift_index = index;
@@ -394,7 +407,8 @@
     NSString *string = [[NSString alloc]initWithData:postData encoding:NSUTF8StringEncoding];
     NSDictionary *parameters = @{
                                  @"method": @"closeShift",
-                                 @"param": string
+                                 @"param": string,
+                                 @"TOKEN": globals.server_token
                                  };
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -410,9 +424,9 @@
         BOOL status = [jsonResponse[@"status"] boolValue];
         if(status) {
             if(globals.selected_language == 0) {
-                [self displayAlertView:@"¡Éxito!" :@"Turno Cerrado." :@"success"];
+                [self displayAlertView:@"¡Éxito!" :[NSString stringWithFormat:@"Se ha cerrado correctamente el turno %@.", self.closing_shift[2]] :@"success"];
             } else {
-                [self displayAlertView:@"Success!" :@"Shift Closed." :@"success"];
+                [self displayAlertView:@"Success!" :[NSString stringWithFormat:@"The shift %@ is closed successfully.", self.closing_shift[2]] :@"success"];
             }
         } else {
             if(globals.selected_language == 0) {
@@ -425,9 +439,9 @@
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Network error." :@"error"];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet." :@"error"];
         } else {
-            [self displayAlertView:@"Warning!" :@"Network error." :@"error"];
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue." :@"error"];
         }
     }];
     
@@ -480,7 +494,8 @@
     
     NSDictionary *parameters = @{
                                  @"method": @"closeShift",
-                                 @"param": string
+                                 @"param": string,
+                                 @"TOKEN": globals.server_token
                                  };
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -508,9 +523,9 @@
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red." :@"nil"];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet." :@"nil"];
         } else {
-            [self displayAlertView:@"Warning!" :@"Network error." :@"nil"];
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue." :@"nil"];
         }
     }];
 }

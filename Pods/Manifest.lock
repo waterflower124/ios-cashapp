@@ -14,17 +14,25 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - FRHyperLabel (1.0.4)
+  - JFBCrypt (0.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
+  - FRHyperLabel (~> 1.0)
+  - JFBCrypt (~> 0.1)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
+    - FRHyperLabel
+    - JFBCrypt
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  FRHyperLabel: f4a127d5f8ffb211040554615e93f936d5a576a6
+  JFBCrypt: b5333bb2ff2bc80dc370ac332dfbcefc41720dee
 
-PODFILE CHECKSUM: 0d6d26f57ed282e83007e7bc273705dd2353f7d3
+PODFILE CHECKSUM: e9d6763cfed500c666379342cb1b9c1682efbc97
 
-COCOAPODS: 1.6.0.beta.2
+COCOAPODS: 1.7.4

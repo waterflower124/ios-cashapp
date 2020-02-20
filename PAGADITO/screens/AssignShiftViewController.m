@@ -2,7 +2,7 @@
 //  AssignShiftViewController.m
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/18.
+//  Created by Javier Calderon  on 2019/1/18.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
@@ -55,7 +55,7 @@
         self.assignturnoAlertViewTitleLabel.text = @"Asignar Turno";
         self.checkboxcommentLabel.text = @"Asignar nuevo turno automaticaments todos los dias.";
         [self.cancelButton setTitle:@"Cancelar" forState:UIControlStateNormal];
-        [self.assignButton setTitle:@"Asignar" forState:UIControlStateNormal];
+        [self.assignButton setTitle:@"Aceptar" forState:UIControlStateNormal];
         [self.completeAlertViewContinueButton setTitle:@"Continuar" forState:UIControlStateNormal];
         [selectcashierButton setTitle:@"Seleccione un Cajero" forState:UIControlStateNormal];
     } else {
@@ -183,6 +183,7 @@
         self.newtransactionButton.frame = newtransactionButtonFrame;
         UIView *newtransactiolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, newtransactionButton.frame.size.width, 1)];
         newtransactiolineView.backgroundColor = [UIColor lightGrayColor];
+        [self.newtransactionButton addSubview:newtransactiolineView];
         
         CGRect canceltransactionButtonFrame = self.canceltransactionButton.frame;
         canceltransactionButtonFrame.origin.x = 0;
@@ -192,15 +193,15 @@
         canceltransactionlineView.backgroundColor = [UIColor lightGrayColor];
         [self.canceltransactionButton addSubview:canceltransactionlineView];
         
-        CGRect cerraturnoButtonFrame = self.cerraturnoButton.frame;
-        cerraturnoButtonFrame.origin.x = 0;
-        cerraturnoButtonFrame.origin.y = 420;
-        self.cerraturnoButton.frame = cerraturnoButtonFrame;
-        UIView *cerraturnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, cerraturnoButton.frame.size.width, 1)];
-        cerraturnolineView.backgroundColor = [UIColor lightGrayColor];
-        [self.cerraturnoButton addSubview:cerraturnolineView];
+//        CGRect cerraturnoButtonFrame = self.cerraturnoButton.frame;
+//        cerraturnoButtonFrame.origin.x = 0;
+//        cerraturnoButtonFrame.origin.y = 420;
+//        self.cerraturnoButton.frame = cerraturnoButtonFrame;
+//        UIView *cerraturnolineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, cerraturnoButton.frame.size.width, 1)];
+//        cerraturnolineView.backgroundColor = [UIColor lightGrayColor];
+//        [self.cerraturnoButton addSubview:cerraturnolineView];
         
-        [self.newtransactionButton addSubview:newtransactiolineView];
+        [self.cerraturnoButton setHidden:YES];
     }
     /////////////////////////////////////////////////////
     UITapGestureRecognizer *tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideSidePanel:)];
@@ -267,7 +268,8 @@
     
     NSDictionary *parameters = @{
                                  @"method": @"getUsersPOS",
-                                 @"param": string
+                                 @"param": string,
+                                 @"TOKEN": globals.server_token
                                  };
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -299,9 +301,9 @@
             [self.assignturnoAlertView setHidden:NO];
         } else {
             if(globals.selected_language == 0) {
-                [self displayAlertView:@"¡Advertencia!" :@"¡Todos sus cajeros ya poseen asignación de turno automático!"];
+                [self displayAlertView:@"¡Advertencia!" :@"El cajero seleccionado ya tiene un turno asignado automáticamente. Debes crear un nuevo cajero para asignarle un nuevo turno."];
             } else {
-                [self displayAlertView:@"Warning!" :@"All your ATMs already have automatic shift allocation!"];
+                [self displayAlertView:@"Warning!" :@"The selected cashier is automatically assigned a daily shift. You must create a new cashier in order to assign a new shift."];
             }
         }
         
@@ -309,9 +311,9 @@
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet."];
         } else {
-            [self displayAlertView:@"Warning!" :@"Network error."];
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue."];
         }
     }];
 }
@@ -470,7 +472,8 @@
     
     NSDictionary *parameters = @{
                                  @"method": @"insertShiftCode",
-                                 @"param": string
+                                 @"param": string,
+                                 @"TOKEN": globals.server_token
                                  };
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -489,10 +492,10 @@
         if([status1 isEqualToString:@"1"]) {
             [self.TransV setHidden:NO];
             if(globals.selected_language == 0) {
-                NSString *alertMessage = [NSString stringWithFormat:@"Haz asignado exitosamente un turno a %@?", self.selected_cashierUsername];
+                NSString *alertMessage = [NSString stringWithFormat:@"Asignaste un turno con éxito a %@", self.selected_cashierUsername];
                 self.completeAlertViewCommentLabel.text = alertMessage;
             } else {
-                NSString *alertMessage = [NSString stringWithFormat:@"You have successfully assigned a shift to %@?", self.selected_cashierUsername];
+                NSString *alertMessage = [NSString stringWithFormat:@"You succesfully assigned a shift to user %@", self.selected_cashierUsername];
                 self.completeAlertViewCommentLabel.text = alertMessage;
             }
             [self.completeInsertShiftAlertView setHidden:NO];
@@ -505,9 +508,9 @@
             }
         } else {
             if(globals.selected_language == 0) {
-                [self displayAlertView:@"¡Advertencia!" :@"¡Este cajero ya tiene un turno activo!"];
+                [self displayAlertView:@"¡Advertencia!" :@"El cajero seleccionado tiene un turno activo. Si quieres asignarle un turno diferente, primero debes cerrar el turno actual"];
             } else {
-                [self displayAlertView:@"Warning!" :@"Cashier already has an active shift!"];
+                [self displayAlertView:@"Warning!" :@"The selected cashier has an active shift. To assign a different time, please end the current shift."];
             }
         }
         
@@ -515,9 +518,9 @@
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet."];
         } else {
-            [self displayAlertView:@"Warning!" :@"Network error."];
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue."];
         }
     }];
 }
@@ -620,7 +623,8 @@
     
     NSDictionary *parameters = @{
                                  @"method": @"closeShift",
-                                 @"param": string
+                                 @"param": string,
+                                 @"TOKEN": globals.server_token
                                  };
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -648,9 +652,9 @@
         [self.activityIndicator stopAnimating];
         [self.overlayView removeFromSuperview];
         if(globals.selected_language == 0) {
-            [self displayAlertView:@"¡Advertencia!" :@"Error de red."];
+            [self displayAlertView:@"¡Advertencia!" :@"Por favor asegurate que estás conectado a internet."];
         } else {
-            [self displayAlertView:@"Warning!" :@"Network error."];
+            [self displayAlertView:@"Warning!" :@"Please check your internet connection to continue."];
         }
     }];
 }

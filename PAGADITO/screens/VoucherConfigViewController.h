@@ -2,7 +2,7 @@
 //  VoucherConfigViewController.h
 //  PAGADITO
 //
-//  Created by Water Flower on 2019/1/23.
+//  Created by Javier Calderon  on 2019/1/23.
 //  Copyright © 2019 PAGADITO. All rights reserved.
 //
 
@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface VoucherConfigViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIScrollView *textScrollView;
 
 @property (weak, nonatomic) IBOutlet UIView *TransV;
 @property (weak, nonatomic) IBOutlet UIView *SidePanel;
